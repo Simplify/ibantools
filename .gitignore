@@ -1,0 +1,5 @@
+typings
+node_modules
+.tern_port
+src/*.js
+test/*.js
