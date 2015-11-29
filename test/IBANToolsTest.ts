@@ -38,17 +38,17 @@ describe('IBANTools', () => {
 		});
 	});
 
-  describe('When initialized with invalid IBAN', () => {
-		var subject = new IBANTools({iban: 'GGG'});
+  describe('When initialized with invalid Dutch IBAN', () => {
+		var subject = new IBANTools({iban: 'NL92 ABNA 0417 1643 00'});
 	  it('isValid() should return false', () => {
 			expect(subject.isValid()).to.be.false;
 		});
-//	  it('getBBAN() should return null', () => {
-//			expect(subject.getBBAN()).to.be.null;
-//		});
-//	  it('getIBAN() should return null', () => {
-//			expect(subject.getIBAN()).to.be.null;
-//		});
+	  it('getBBAN() should return null', () => {
+			expect(subject.getBBAN()).to.be.null;
+		});
+	  it('getIBAN() should return null', () => {
+			expect(subject.getIBAN()).to.be.null;
+		});
 	});
 
 	// BR97 0036 0305 0000 1000 9795 493P 1

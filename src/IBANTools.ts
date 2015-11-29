@@ -1,6 +1,23 @@
 "use strict";
 
 /**
+ * Interface for IBAN Country Specification
+ */
+interface CountrySpec {
+  chars: number;
+  name: string;
+  bban_format: string;
+  bban_fields: string;
+}
+
+/**
+ * Interface for Map of country specifications
+ */
+interface CountryMap {
+  [code: string]: CountrySpec;
+}
+
+/**
  * Interface for IBANTools constructor params
  */
 export interface IBANToolsParams {
@@ -17,16 +34,23 @@ export default class IBANTools {
   countryName: string = null;
   validIBAN:   boolean = false;
   validBBAN:   boolean = false;
+  countrySpecs: CountryMap = {};
 
   /**
    * Create a IBANTools
    * @param {IBANToolsParams}
    */
   constructor(params: IBANToolsParams) {
+		this.fillSpecs();
     if (params.iban !== undefined) {
-      this.iban = params.iban.replace(/[^a-zA-Z0-9]/g, "").toUpperCase();
-      this.bban = this.iban.slice(4);
-      this.countryCode = this.iban.slice(0,2);
+			var tmpIban: string = params.iban.replace(/[^a-zA-Z0-9]/g, "").toUpperCase();
+			var spec = this.countrySpecs[tmpIban.slice(0,2)];
+			if (spec !== undefined && spec.chars === tmpIban.length) {
+				this.iban = tmpIban;
+				this.bban = this.iban.slice(4);
+				this.countryCode = this.iban.slice(0,2);
+				this.validIBAN = true;
+			}
     } else if (params.bban !== undefined &&
                params.countryCode !== undefined) {
       this.bban = params.bban;
@@ -39,7 +63,7 @@ export default class IBANTools {
    * @return {boolean}
    */
   isValid() {
-    return this.validIBAN && this.validBBAN;
+    return this.validIBAN;
   }
 
   /**
@@ -65,4 +89,12 @@ export default class IBANTools {
   getCountryCode() {
     return this.countryCode;
   }
+
+  /**
+   * Fill map of IBAN country specifications
+   */
+  fillSpecs() {
+    this.countrySpecs['NL'] = {chars: 18, bban_format: '4a,10n', bban_fields: 'bbbbcccccccccc', name: 'Netherlands'};
+  }
+
 }
