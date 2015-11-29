@@ -1,0 +1,17 @@
+{
+  "name": "iban-tools",
+  "version": "1.0.0",
+  "description": "Validation of IBAN numbers and generation of IBAN's from BBAN and country code",
+  "main": "IBANTools.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Saša Jovanić",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "gulp": "^3.9.0",
+    "gulp-typescript": "^2.9.2",
+    "mocha": "^2.3.4"
+  }
+}

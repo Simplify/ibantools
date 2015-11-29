@@ -1,5 +1,7 @@
 typings
 node_modules
-.tern_port
+.tern-port
 src/*.js
 test/*.js
+.DS_Store
+.dir-locals.el
