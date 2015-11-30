@@ -20,6 +20,12 @@ describe('IBANTools', () => {
 	  it('getIBAN() should return null', () => {
 			expect(subject.getIBAN()).to.be.null;
 		});
+	  it('getCountryCode() should return null', () => {
+			expect(subject.getCountryCode()).to.be.null;
+		});
+	  it('getCountryName() should return null', () => {
+			expect(subject.getCountryName()).to.be.null;
+		});
 	});
 
   describe('When initialized with valid Dutch IBAN', () => {
@@ -36,6 +42,9 @@ describe('IBANTools', () => {
 	  it('getCountryCode() should return NL', () => {
 			expect(subject.getCountryCode()).to.equal('NL');
 		});
+	  it('getCountryName() should return Netherlands', () => {
+			expect(subject.getCountryName()).to.equal('Netherlands');
+		});
 	});
 
   describe('When initialized with invalid Dutch IBAN', () => {
@@ -50,7 +59,17 @@ describe('IBANTools', () => {
 			expect(subject.getIBAN()).to.be.null;
 		});
 	});
-
-	// BR97 0036 0305 0000 1000 9795 493P 1
+  describe('When initialized with valid Brasilian IBAN', () => {
+		var subject = new IBANTools({iban: 'BR97 0036 0305 0000 1000 9795 493P 1'});
+	  it('isValid() should return true', () => {
+			expect(subject.isValid()).to.be.true;
+		});
+	  it('getIban() should return BR9700360305000010009795493P1', () => {
+			expect(subject.getIBAN()).to.equal('BR9700360305000010009795493P1');
+		});
+	  it('getFriendlyIban() should return BR97 0036 0305 0000 1000 9795 493P 1', () => {
+			expect(subject.getFriendlyIBAN()).to.equal('BR97 0036 0305 0000 1000 9795 493P 1');
+		});
+	});
 
 });
