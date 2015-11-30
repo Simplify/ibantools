@@ -59,6 +59,12 @@ describe('IBANTools', () => {
 			expect(subject.getIBAN()).to.be.null;
 		});
 	});
+  describe('When initialized with valid Macedonian IBAN', () => {
+		var subject = new IBANTools({iban: 'MK07 2501 2000 0058 984'});
+	  it('isValid() should return true', () => {
+			expect(subject.isValid()).to.be.true;
+		});
+	});
   describe('When initialized with valid Brasilian IBAN', () => {
 		var subject = new IBANTools({iban: 'BR97 0036 0305 0000 1000 9795 493P 1'});
 	  it('isValid() should return true', () => {

@@ -47,6 +47,7 @@ export default class IBANTools {
 			var spec = this.countrySpecs[tmpIban.slice(0,2)];
 			if (spec !== undefined &&
 					spec.chars === tmpIban.length &&
+					this.checkFormatBBAN(tmpIban.slice(4), spec.bban_fields) &&
 					this.mod9710(tmpIban) === 1) {
 				this.iban = tmpIban;
 				this.bban = this.iban.slice(4);
@@ -115,14 +116,14 @@ export default class IBANTools {
 	 * @return {number}
 	 */
 	mod9710(iban: string): number {
-		var tmp = iban.slice(3) + iban.slice(0,4);
+		iban = iban.slice(3) + iban.slice(0,4);
 		var validationString: string = '';
-		for (var n:number =1; n < tmp.length; n++) {
-			var c = tmp.charCodeAt(n);
+		for (var n:number =1; n < iban.length; n++) {
+			var c = iban.charCodeAt(n);
 			if (c >= 65) {
 				validationString += (c - 55).toString();
 			} else {
-				validationString += tmp[n];
+				validationString += iban[n];
 			}
 		}
 		while(validationString.length > 2) {
@@ -132,13 +133,35 @@ export default class IBANTools {
 		return parseInt(validationString, 10) % 97;
 	}
 
+	/**
+	 * Check BBAN format
+	 * @param {string} BBAN
+	 * @param {string} BBAN format
+	 */
+	checkFormatBBAN(bban: string, format: string): boolean {
+		for(var n:number = 0; n < format.length; n++) {
+			if (format[n] === 'a') {
+				if (/[A-Z]/.test(bban[n])) { continue; }
+			} else if (format[n] === 'n' ) {
+				if (/[0-9]/.test(bban[n])) { continue; }
+			} else {
+				if (/[A-Z0-9]/.test(bban[n])) { continue; }
+			}
+			return false;
+		}
+		return true;
+	}
+
   /**
    * Fill map of IBAN country specifications
    */
   fillSpecs() {
 		// INSERT_START
-    this.countrySpecs['NL'] = {chars: 18, bban_format: '4a,10n', bban_fields: 'bbbbcccccccccc', name: 'Netherlands'};
-		this.countrySpecs['BR'] = {chars: 29, bban_format: '23n, 1a, 1c', bban_fields: 'bbbbbbbbssssscccccccccctn', name: 'Brazil'};
+		this.countrySpecs['BA'] = {chars: 20, bban_format: 'nnnnnnnnnnnnnnnn', bban_fields: 'bbbsssccccccccxx', name: 'Bosnia and Herzegovina'};
+		this.countrySpecs['BR'] = {chars: 29, bban_format: 'nnnnnnnnnnnnnnnnnnnnnnnac', bban_fields: 'bbbbbbbbssssscccccccccctn', name: 'Brazil'};
+		this.countrySpecs['NL'] = {chars: 18, bban_format: 'aaaannnnnnnnnn', bban_fields: 'bbbbcccccccccc', name: 'Netherlands'};
+		this.countrySpecs['MK'] = {chars: 19, bban_format: 'nnnccccccccccnn', bban_fields: 'bbbccccccccccxx', name: 'Republic of Macedonia'};
+
 		// INSERT_END
   }
 }
