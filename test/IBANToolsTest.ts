@@ -72,7 +72,7 @@ describe('IBANTools', () => {
 			expect(subject.isValid()).to.be.true;
 		});
 	});
-  describe('When initialized with valid Brasilian IBAN', () => {
+  describe('When initialized with valid Brazilian IBAN', () => {
 		var subject = new IBANTools({iban: 'BR97 0036 0305 0000 1000 9795 493P 1'});
 	  it('isValid() should return true', () => {
 			expect(subject.isValid()).to.be.true;
