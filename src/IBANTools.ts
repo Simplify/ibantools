@@ -33,7 +33,6 @@ export default class IBANTools {
   countryCode: string = null;
   countryName: string = null;
   validIBAN:   boolean = false;
-  validBBAN:   boolean = false;
   countrySpecs: CountryMap = {};
 
   /**
@@ -42,7 +41,7 @@ export default class IBANTools {
    */
   constructor(params: IBANToolsParams) {
 		this.fillSpecs();
-    if (params.iban !== undefined) {
+    if (params.iban !== undefined && params.iban !== null) {
 			var tmpIban: string = params.iban.replace(/[^a-zA-Z0-9]/g, "").toUpperCase();
 			var spec = this.countrySpecs[tmpIban.slice(0,2)];
 			if (spec !== undefined &&

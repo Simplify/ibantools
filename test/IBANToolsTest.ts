@@ -28,6 +28,13 @@ describe('IBANTools', () => {
 		});
 	});
 
+	describe('When initialized with null IBAN', () => {
+		var subject = new IBANTools({iban: null});
+	  it('isValid() should return false', () => {
+			expect(subject.isValid()).to.be.false;
+		});
+	});
+
   describe('When initialized with valid Dutch IBAN', () => {
 		var subject = new IBANTools({iban: 'NL91 ABNA 0417 1643 00'});
 	  it('isValid() should return true', () => {
