@@ -10,7 +10,7 @@ let  countrySpecs: CountryMap = {};
 export function isValidIBAN(iban: string): boolean {
   if (iban !== undefined && iban !== null) {
     fillSpecs();
-    let tmpIban: string = iban.replace(/[^a-zA-Z0-9]/g, "").toUpperCase();
+    let tmpIban: string = electonicFormatIBAN(iban);
     let spec = countrySpecs[tmpIban.slice(0,2)];
     if (spec !== undefined &&
         spec.chars === tmpIban.length &&
@@ -27,7 +27,7 @@ export interface ComposeIBANParms {
 }
 export function composeIBAN(params: ComposeIBANParms): string {
   fillSpecs();
-  let bban: string = params.bban.replace(/[^a-zA-Z0-9]/g, "").toUpperCase();
+  let bban: string = electonicFormatIBAN(params.bban);
   let spec = countrySpecs[params.countryCode];
   if (spec !== undefined &&
       spec.chars === (bban.length + 4) &&
@@ -65,6 +65,7 @@ function mod9710(iban: string): number {
  * Check BBAN format
  * @param {string} BBAN
  * @param {string} BBAN regexp
+ * @return {boolean} valid
  */
 function checkFormatBBAN(bban: string, bformat: string): boolean {
   let reg = new RegExp(bformat, '');
@@ -73,6 +74,7 @@ function checkFormatBBAN(bban: string, bformat: string): boolean {
 
 /**
  * Get IBAN in electronic format (no spaces)
+ * IBAN validation is not performed.
  * @parms {string} IBAN
  * @return {string} IBAN or null if IBAN is not valid
  */
@@ -82,6 +84,8 @@ export function electonicFormatIBAN(iban: string) {
 
 /**
  * Get IBAN in friendly format (space after every 4 characters)
+ * IBAN validation is not performed.
+ * @parms {string} IBAN
  * @return {string} IBAN or null if IBAN is not valid
  */
 export function friendlyFormatIBAN(iban: string) {
