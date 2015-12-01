@@ -21,10 +21,20 @@ export function isValidIBAN(iban: string): boolean {
   }
   return false;
 }
+
+/**
+ * Interface for ComposeIBAN parameteres
+ */
 export interface ComposeIBANParms {
   countryCode?: string;
   bban?: string;
 }
+
+/**
+ * composeIBAN
+ * @param {ComposeIBANParams} Object with IBAN parameters
+ * @result {string} IBAN
+ */
 export function composeIBAN(params: ComposeIBANParms): string {
   fillSpecs();
   let bban: string = electonicFormatIBAN(params.bban);
@@ -36,6 +46,33 @@ export function composeIBAN(params: ComposeIBANParms): string {
     return params.countryCode + ('0' + (98 - checksom)).slice(-2) + bban;
   }
   return null;
+}
+
+/**
+ * Interface for ExtractIBAN result
+ */
+export interface ExtractIBANResult {
+	bban?:        string;
+	countryCode?: string;
+	countryName?: string;
+}
+
+/**
+ * extractIBAN
+ * @param {string} IBAN
+ * @result {ExtractIBANResult}
+ */
+export function extractIBAN(iban: string): ExtractIBANResult {
+	let result = <ExtractIBANResult>{};
+	iban = electonicFormatIBAN(iban);
+	if(isValidIBAN(iban)) {
+		result.bban = iban.slice(4);
+		result.countryCode = iban.slice(0,2);
+		let spec = countrySpecs[result.countryCode];
+		result.countryName = spec.name;
+		return result;
+	}
+	return null;
 }
 
 /**

@@ -3,7 +3,7 @@
 /// <reference path="../src/IBANTools.ts" />
 
 import chai = require('chai');
-var expect = chai.expect;
+let expect = chai.expect;
 
 //import iban from '../src/IBANTools';
 import iban = require('../src/IBANTools');
@@ -22,7 +22,7 @@ describe('IBANTools', () => {
     });
   });
 
-	describe('When calling composeIBAN()', () => {
+  describe('When calling composeIBAN()', () => {
     it('with valid country code and valid BBAN should return NL91ABNA0417164300', () => {
       expect(iban.composeIBAN({countryCode: 'NL', bban: 'ABNA0417164300'})).to.equal('NL91ABNA0417164300');
     });
@@ -40,11 +40,30 @@ describe('IBANTools', () => {
     });
   });
 
+  describe('When calling extractIBAN() with valid Brazilian IBAN', () => {
+    let ext = iban.extractIBAN('BR97 0036 0305 0000 1000 9795 493P 1');
+    it('BBAN should be 00360305000010009795493P1', () => {
+      expect(ext.bban).to.equal('00360305000010009795493P1');
+    });
+    it('countryCode should be BR', () => {
+      expect(ext.countryCode).to.equal('BR');
+    });
+    it('countryName should be Brazil', () => {
+      expect(ext.countryName).to.equal('Brazil');
+    });
+  });
+
+  describe('When calling extractIBAN() with invalid IBAN', () => {
+    it('it should return null', () => {
+      expect(iban.extractIBAN('BR97 0036 0305 1000 9795 493P 1')).to.be.null;
+    });
+  });
+
   describe('When calling electronicFormatIBAN()', () => {
     it('with valid Brazilian IBAN should return BR9700360305000010009795493P1', () => {
       expect(iban.electonicFormatIBAN('BR97 0036 0305 0000 1000 9795 493P 1')).to.equal('BR9700360305000010009795493P1');
     });
-	});
+  });
 
   describe('When calling friendlyFormatIBAN()', () => {
     it('with valid badly formated Brazilian IBAN should return BR97 0036 0305 0000 1000 9795 493P 1', () => {
