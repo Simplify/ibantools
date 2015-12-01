@@ -1,5 +1,8 @@
 "use strict";
 
+
+
+
 /**
  * Interface for IBAN Country Specification
  */
@@ -43,11 +46,8 @@ export default class IBANTools {
 		this.fillSpecs();
     if (params.iban !== undefined && params.iban !== null) {
 			var tmpIban: string = params.iban.replace(/[^a-zA-Z0-9]/g, "").toUpperCase();
-			var spec = this.countrySpecs[tmpIban.slice(0,2)];
-			if (spec !== undefined &&
-					spec.chars === tmpIban.length &&
-					this.checkFormatBBAN(tmpIban.slice(4), spec.bban_fields) &&
-					this.mod9710(tmpIban) === 1) {
+			if(this.isValidIBAN(tmpIban)) {
+				var spec = this.countrySpecs[tmpIban.slice(0,2)];
 				this.iban = tmpIban;
 				this.bban = this.iban.slice(4);
 				this.countryCode = this.iban.slice(0,2);
@@ -60,6 +60,46 @@ export default class IBANTools {
       this.countryCode = params.countryCode;
     }
   }
+
+	/**
+	 * Extract IBAN
+	 * @param {string} IBAN
+	 */
+	extractIBAN(iban: string):IBANTools {
+		this.fillSpecs();
+    if (iban !== undefined && iban !== null) {
+			var tmpIban: string = iban.replace(/[^a-zA-Z0-9]/g, "").toUpperCase();
+			if(this.isValidIBAN(tmpIban)) {
+				var spec = this.countrySpecs[tmpIban.slice(0,2)];
+				this.iban = tmpIban;
+				this.bban = this.iban.slice(4);
+				this.countryCode = this.iban.slice(0,2);
+				this.countryName = spec.name;
+				this.validIBAN = true;
+			}
+			return this;
+    }
+	}
+
+	/**
+	 * Validate IBAN
+	 * @param {string} IBAN
+	 * @return {boolean} valid
+	 */
+	isValidIBAN(iban: string): boolean {
+    if (iban !== undefined && iban !== null) {
+			this.fillSpecs();
+			var tmpIban: string = iban.replace(/[^a-zA-Z0-9]/g, "").toUpperCase();
+			var spec = this.countrySpecs[tmpIban.slice(0,2)];
+			if (spec !== undefined &&
+					spec.chars === tmpIban.length &&
+					this.checkFormatBBAN(tmpIban.slice(4), spec.bban_fields) &&
+					this.mod9710(tmpIban) === 1) {
+				return true;
+			}
+		}
+		return false;
+	}
 
   /**
    * Get IBAN validity
