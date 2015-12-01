@@ -21,73 +21,35 @@ describe('IBANTools', () => {
       expect(iban.isValidIBAN(null)).to.be.false;
     });
   });
-  describe('When calling composeIBAN()', () => {
+
+	describe('When calling composeIBAN()', () => {
     it('with valid country code and valid BBAN should return NL91ABNA0417164300', () => {
       expect(iban.composeIBAN({countryCode: 'NL', bban: 'ABNA0417164300'})).to.equal('NL91ABNA0417164300');
     });
     it('with invalid country code and valid BBAN should return null', () => {
       expect(iban.composeIBAN({countryCode: 'ZZ', bban: 'ABNA0417164300'})).to.be.null;
     });
-    it('with valid country code and invalid BBAN (alpha) should return null', () => {
+    it('with valid country code and invalid BBAN (non-alpha character) should return null', () => {
       expect(iban.composeIBAN({countryCode: 'NL', bban: 'A7NA0417164300'})).to.be.null;
     });
-    it('with valid country code and invalid BBAN (num) should return null', () => {
+    it('with valid country code and invalid BBAN (non-numeric character) should return null', () => {
       expect(iban.composeIBAN({countryCode: 'NL', bban: 'ABNA04171Z4300'})).to.be.null;
     });
-  });
-
-
-/*
-	describe('When calling extractIBAN() with valid IBAN', () => {
-    var subject = new IBANTools({}).extractIBAN('NL91 ABN A0 41 716 43 00');
-    it('isValid() should return true', () => {
-      expect(subject.isValid()).to.be.true;
-    });
-    it('getBBAN() should return ABNA0417164300', () => {
-      expect(subject.getBBAN()).to.equal('ABNA0417164300');
-    });
-    it('getIBAN() should return NL91ABNA0417164300', () => {
-      expect(subject.getIBAN()).to.equal('NL91ABNA0417164300');
-    });
-    it('getCountryCode() should return NL', () => {
-      expect(subject.getCountryCode()).to.equal('NL');
-    });
-    it('getCountryName() should return Netherlands', () => {
-      expect(subject.getCountryName()).to.equal('Netherlands');
+    it('with valid country code and invalid BBAN (character count wrong) should return null', () => {
+      expect(iban.composeIBAN({countryCode: 'NL', bban: 'ABNA04171643000'})).to.be.null;
     });
   });
 
-  describe('When initialized with valid Dutch IBAN', () => {
-    var subject = new IBANTools({iban: 'NL91 ABNA 0417 1643 00'});
-    it('isValid() should return true', () => {
-      expect(subject.isValid()).to.be.true;
+  describe('When calling electronicFormatIBAN()', () => {
+    it('with valid Brazilian IBAN should return BR9700360305000010009795493P1', () => {
+      expect(iban.electonicFormatIBAN('BR97 0036 0305 0000 1000 9795 493P 1')).to.equal('BR9700360305000010009795493P1');
     });
-    it('getBBAN() should return ABNA0417164300', () => {
-      expect(subject.getBBAN()).to.equal('ABNA0417164300');
-    });
-    it('getIBAN() should return NL91ABNA0417164300', () => {
-      expect(subject.getIBAN()).to.equal('NL91ABNA0417164300');
-    });
-    it('getCountryCode() should return NL', () => {
-      expect(subject.getCountryCode()).to.equal('NL');
-    });
-    it('getCountryName() should return Netherlands', () => {
-      expect(subject.getCountryName()).to.equal('Netherlands');
+	});
+
+  describe('When calling friendlyFormatIBAN()', () => {
+    it('with valid badly formated Brazilian IBAN should return BR97 0036 0305 0000 1000 9795 493P 1', () => {
+      expect(iban.friendlyFormatIBAN('BR97 0036-030500001000-9795493-P1')).to.equal('BR97 0036 0305 0000 1000 9795 493P 1');
     });
   });
 
-  describe('When initialized with valid Brazilian IBAN', () => {
-    var subject = new IBANTools({iban: 'BR97 0036 0305 0000 1000 9795 493P 1'});
-    it('isValid() should return true', () => {
-      expect(subject.isValid()).to.be.true;
-    });
-    it('getIban() should return BR9700360305000010009795493P1', () => {
-      expect(subject.getIBAN()).to.equal('BR9700360305000010009795493P1');
-    });
-    it('getFriendlyIban() should return BR97 0036 0305 0000 1000 9795 493P 1', () => {
-      expect(subject.getFriendlyIBAN()).to.equal('BR97 0036 0305 0000 1000 9795 493P 1');
-    });
-  });
-*/
 });
-
