@@ -22,8 +22,9 @@ request(url, function(error, response, html) {
 					bregexp += buildRegExp(match[2], match[1]);
 				});
 				bregexp += '$';
-        console.log("countrySpecs['" + countryCode + "'] = {chars: " + count +
-										", bban_regexp: '" + bregexp + "', bban_fields: '" + fields +
+        console.log("  countrySpecs['" + countryCode + "'] = {chars: " + count +
+										", bban_regexp: '" + bregexp +
+										//"', bban_fields: '" + fields +
 										"', name: '" + countryName + "'};");
       }
     });

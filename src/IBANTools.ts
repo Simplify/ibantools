@@ -32,7 +32,7 @@ export interface ComposeIBANParms {
 
 /**
  * composeIBAN
- * @param {ComposeIBANParams} Object with IBAN parameters
+ * @param {ComposeIBANParams} Object {bban: string, countryCode: string}
  * @result {string} IBAN
  */
 export function composeIBAN(params: ComposeIBANParms): string {
@@ -52,27 +52,27 @@ export function composeIBAN(params: ComposeIBANParms): string {
  * Interface for ExtractIBAN result
  */
 export interface ExtractIBANResult {
-	bban?:        string;
-	countryCode?: string;
-	countryName?: string;
+  bban?:        string;
+  countryCode?: string;
+  countryName?: string;
 }
 
 /**
  * extractIBAN
  * @param {string} IBAN
- * @result {ExtractIBANResult}
+ * @result {ExtractIBANResult} Object {bban: string, countryCode: string, countryName: string}
  */
 export function extractIBAN(iban: string): ExtractIBANResult {
-	let result = <ExtractIBANResult>{};
-	iban = electonicFormatIBAN(iban);
-	if(isValidIBAN(iban)) {
-		result.bban = iban.slice(4);
-		result.countryCode = iban.slice(0,2);
-		let spec = countrySpecs[result.countryCode];
-		result.countryName = spec.name;
-		return result;
-	}
-	return null;
+  let result = <ExtractIBANResult>{};
+  iban = electonicFormatIBAN(iban);
+  if(isValidIBAN(iban)) {
+    result.bban = iban.slice(4);
+    result.countryCode = iban.slice(0,2);
+    let spec = countrySpecs[result.countryCode];
+    result.countryName = spec.name;
+    return result;
+  }
+  return null;
 }
 
 /**
@@ -136,7 +136,6 @@ interface CountrySpec {
   chars: number;
   name: string;
   bban_regexp: string;
-  bban_fields: string;
 }
 
 /**
@@ -150,72 +149,72 @@ interface CountryMap {
  * Fill map of IBAN country specifications
  */
 function fillSpecs() {
-  countrySpecs['AL'] = {chars: 28, bban_regexp: '^[0-9]{8}[A-Z0-9]{16}$', bban_fields: 'bbbssssxcccccccccccccccc', name: 'Albania'};
-  countrySpecs['AD'] = {chars: 24, bban_regexp: '^[0-9]{8}[A-Z0-9]{12}$', bban_fields: 'bbbbsssscccccccccccc', name: 'Andorra'};
-  countrySpecs['AT'] = {chars: 20, bban_regexp: '^[0-9]{16}$', bban_fields: 'bbbbbccccccccccc', name: 'Austria'};
-  countrySpecs['AZ'] = {chars: 28, bban_regexp: '^[A-Z0-9]{4}[0-9]{20}$', bban_fields: 'bbbbcccccccccccccccccccc', name: 'Azerbaijan'};
-  countrySpecs['BH'] = {chars: 22, bban_regexp: '^[A-Z]{4}[A-Z0-9]{14}$', bban_fields: 'bbbbcccccccccccccc', name: 'Bahrain'};
-  countrySpecs['BE'] = {chars: 16, bban_regexp: '^[0-9]{12}$', bban_fields: 'bbbcccccccxx', name: 'Belgium'};
-  countrySpecs['BA'] = {chars: 20, bban_regexp: '^[0-9]{16}$', bban_fields: 'bbbsssccccccccxx', name: 'Bosnia and Herzegovina'};
-  countrySpecs['BR'] = {chars: 29, bban_regexp: '^[0-9]{23}[A-Z]{1}[A-Z0-9]{1}$', bban_fields: 'bbbbbbbbssssscccccccccctn', name: 'Brazil'};
-  countrySpecs['BG'] = {chars: 22, bban_regexp: '^[A-Z]{4}[0-9]{6}[A-Z0-9]{8}$', bban_fields: 'bbbbssssddcccccccc', name: 'Bulgaria'};
-  countrySpecs['CR'] = {chars: 21, bban_regexp: '^[0-9]{17}$', bban_fields: 'bbbcccccccccccccc', name: 'Costa Rica'};
-  countrySpecs['HR'] = {chars: 21, bban_regexp: '^[0-9]{17}$', bban_fields: 'bbbbbbbcccccccccc', name: 'Croatia'};
-  countrySpecs['CY'] = {chars: 28, bban_regexp: '^[0-9]{8}[A-Z0-9]{16}$', bban_fields: 'bbbssssscccccccccccccccc', name: 'Cyprus'};
-  countrySpecs['CZ'] = {chars: 24, bban_regexp: '^[0-9]{20}$', bban_fields: 'bbbbsssssscccccccccc', name: 'Czech Republic'};
-  countrySpecs['DK'] = {chars: 18, bban_regexp: '^[0-9]{14}$', bban_fields: 'bbbbcccccccccc', name: 'Denmark'};
-  countrySpecs['DO'] = {chars: 28, bban_regexp: '^[A-Z]{4}[0-9]{20}$', bban_fields: 'bbbbcccccccccccccccccccc', name: 'Dominican Republic'};
-  countrySpecs['TL'] = {chars: 23, bban_regexp: '^[0-9]{19}$', bban_fields: 'bbbccccccccccccccxx', name: 'East Timor'};
-  countrySpecs['EE'] = {chars: 20, bban_regexp: '^[0-9]{16}$', bban_fields: 'bbsscccccccccccx', name: 'Estonia'};
-  countrySpecs['FO'] = {chars: 18, bban_regexp: '^[0-9]{14}$', bban_fields: 'bbbbcccccccccx', name: 'Faroe Islands'};
-  countrySpecs['FI'] = {chars: 18, bban_regexp: '^[0-9]{14}$', bban_fields: 'bbbbbbcccccccx', name: 'Finland'};
-  countrySpecs['FR'] = {chars: 27, bban_regexp: '^[0-9]{10}[A-Z0-9]{11}[0-9]{2}$', bban_fields: 'bbbbbgggggcccccccccccxx', name: 'France'};
-  countrySpecs['GE'] = {chars: 22, bban_regexp: '^[A-Z0-9]{2}[0-9]{16}$', bban_fields: 'bbcccccccccccccccc', name: 'Georgia (country)'};
-  countrySpecs['DE'] = {chars: 22, bban_regexp: '^[0-9]{18}$', bban_fields: 'bbbbbbbbcccccccccc', name: 'Germany'};
-  countrySpecs['GI'] = {chars: 23, bban_regexp: '^[A-Z]{4}[A-Z0-9]{15}$', bban_fields: 'bbbbccccccccccccccc', name: 'Gibraltar'};
-  countrySpecs['GR'] = {chars: 27, bban_regexp: '^[0-9]{7}[A-Z0-9]{16}$', bban_fields: 'bbbsssscccccccccccccccc', name: 'Greece'};
-  countrySpecs['GL'] = {chars: 18, bban_regexp: '^[0-9]{14}$', bban_fields: 'bbbbcccccccccc', name: 'Greenland'};
-  countrySpecs['GT'] = {chars: 28, bban_regexp: '^[A-Z0-9]{4}[A-Z0-9]{20}$', bban_fields: 'bbbbmmttcccccccccccccccc', name: 'Guatemala'};
-  countrySpecs['HU'] = {chars: 28, bban_regexp: '^[0-9]{24}$', bban_fields: 'bbbsssskcccccccccccccccx', name: 'Hungary'};
-  countrySpecs['IS'] = {chars: 26, bban_regexp: '^[0-9]{22}$', bban_fields: 'bbbbsscccccciiiiiiiiii', name: 'Iceland'};
-  countrySpecs['IE'] = {chars: 22, bban_regexp: '^[A-Z0-9]{4}[0-9]{14}$', bban_fields: 'aaaabbbbbbcccccccc', name: 'Republic of Ireland'};
-  countrySpecs['IL'] = {chars: 23, bban_regexp: '^[0-9]{19}$', bban_fields: 'bbbnnnccccccccccccc', name: 'Israel'};
-  countrySpecs['IT'] = {chars: 27, bban_regexp: '^[A-Z]{1}[0-9]{10}[A-Z0-9]{12}$', bban_fields: 'xaaaaabbbbbcccccccccccc', name: 'Italy'};
-  countrySpecs['JO'] = {chars: 30, bban_regexp: '^[A-Z]{4}[0-9]{22}$', bban_fields: 'bbbbnnnncccccccccccccccccc', name: 'Jordan'};
-  countrySpecs['KZ'] = {chars: 20, bban_regexp: '^[0-9]{3}[A-Z0-9]{13}$', bban_fields: 'bbbccccccccccccc', name: 'Kazakhstan'};
-  countrySpecs['XK'] = {chars: 20, bban_regexp: '^[0-9]{4}[0-9]{10}[0-9]{2}$', bban_fields: 'bbbbcccccccccccc', name: 'Kosovo'};
-  countrySpecs['KW'] = {chars: 30, bban_regexp: '^[A-Z]{4}[A-Z0-9]{22}$', bban_fields: 'bbbbcccccccccccccccccccccc', name: 'Kuwait'};
-  countrySpecs['LV'] = {chars: 21, bban_regexp: '^[A-Z]{4}[A-Z0-9]{13}$', bban_fields: 'bbbbccccccccccccc', name: 'Latvia'};
-  countrySpecs['LB'] = {chars: 28, bban_regexp: '^[0-9]{4}[A-Z0-9]{20}$', bban_fields: 'bbbbcccccccccccccccccccc', name: 'Lebanon'};
-  countrySpecs['LI'] = {chars: 21, bban_regexp: '^[0-9]{5}[A-Z0-9]{12}$', bban_fields: 'bbbbbcccccccccccc', name: 'Liechtenstein'};
-  countrySpecs['LT'] = {chars: 20, bban_regexp: '^[0-9]{16}$', bban_fields: 'bbbbbccccccccccc', name: 'Lithuania'};
-  countrySpecs['LU'] = {chars: 20, bban_regexp: '^[0-9]{3}[A-Z0-9]{13}$', bban_fields: 'bbbccccccccccccc', name: 'Luxembourg'};
-  countrySpecs['MK'] = {chars: 19, bban_regexp: '^[0-9]{3}[A-Z0-9]{10}[0-9]{2}$', bban_fields: 'bbbccccccccccxx', name: 'Republic of Macedonia'};
-  countrySpecs['MT'] = {chars: 31, bban_regexp: '^[A-Z]{4}[0-9]{5}[A-Z0-9]{18}$', bban_fields: 'bbbbssssscccccccccccccccccc', name: 'Malta'};
-  countrySpecs['MR'] = {chars: 27, bban_regexp: '^[0-9]{23}$', bban_fields: 'bbbbbssssscccccccccccxx', name: 'Mauritania'};
-  countrySpecs['MU'] = {chars: 30, bban_regexp: '^[A-Z]{4}[0-9]{19}[A-Z]{3}$', bban_fields: 'bbbbbbssccccccccccccddd', name: 'Mauritius'};
-  countrySpecs['MC'] = {chars: 27, bban_regexp: '^[0-9]{10}[A-Z0-9]{11}[0-9]{2}$', bban_fields: 'bbbbbssssscccccccccccxx', name: 'Monaco'};
-  countrySpecs['MD'] = {chars: 24, bban_regexp: '^[A-Z0-9]{2}[A-Z0-9]{18}$', bban_fields: 'bbcccccccccccccccccc', name: 'Moldova'};
-  countrySpecs['ME'] = {chars: 22, bban_regexp: '^[0-9]{18}$', bban_fields: 'bbbcccccccccccccxx', name: 'Montenegro'};
-  countrySpecs['NL'] = {chars: 18, bban_regexp: '^[A-Z]{4}[0-9]{10}$', bban_fields: 'bbbbcccccccccc', name: 'Netherlands'};
-  countrySpecs['NO'] = {chars: 15, bban_regexp: '^[0-9]{11}$', bban_fields: 'bbbbccccccx', name: 'Norway'};
-  countrySpecs['PK'] = {chars: 24, bban_regexp: '^[A-Z0-9]{4}[0-9]{16}$', bban_fields: 'bbbbcccccccccccccccc', name: 'Pakistan'};
-  countrySpecs['PS'] = {chars: 29, bban_regexp: '^[A-Z0-9]{4}[0-9]{21}$', bban_fields: 'bbbbxxxxxxxxxcccccccccccc', name: 'Palestinian territories'};
-  countrySpecs['PL'] = {chars: 28, bban_regexp: '^[0-9]{24}$', bban_fields: 'bbbssssxcccccccccccccccc', name: 'Poland'};
-  countrySpecs['PT'] = {chars: 25, bban_regexp: '^[0-9]{21}$', bban_fields: 'bbbbsssscccccccccccxx', name: 'Portugal'};
-  countrySpecs['QA'] = {chars: 29, bban_regexp: '^[A-Z]{4}[A-Z0-9]{21}$', bban_fields: 'bbbbccccccccccccccccccccc', name: 'Qatar'};
-  countrySpecs['RO'] = {chars: 24, bban_regexp: '^[A-Z]{4}[A-Z0-9]{16}$', bban_fields: 'bbbbcccccccccccccccc', name: 'Romania'};
-  countrySpecs['SM'] = {chars: 27, bban_regexp: '^[A-Z]{1}[0-9]{10}[A-Z0-9]{12}$', bban_fields: 'xaaaaabbbbbcccccccccccc', name: 'San Marino'};
-  countrySpecs['SA'] = {chars: 24, bban_regexp: '^[0-9]{2}[A-Z0-9]{18}$', bban_fields: 'bbcccccccccccccccccc', name: 'Saudi Arabia'};
-  countrySpecs['RS'] = {chars: 22, bban_regexp: '^[0-9]{18}$', bban_fields: 'bbbcccccccccccccxx', name: 'Serbia'};
-  countrySpecs['SK'] = {chars: 24, bban_regexp: '^[0-9]{20}$', bban_fields: 'bbbbsssssscccccccccc', name: 'Slovakia'};
-  countrySpecs['SI'] = {chars: 19, bban_regexp: '^[0-9]{15}$', bban_fields: 'bbsssccccccccxx', name: 'Slovenia'};
-  countrySpecs['ES'] = {chars: 24, bban_regexp: '^[0-9]{20}$', bban_fields: 'bbbbggggxxcccccccccc', name: 'Spain'};
-  countrySpecs['SE'] = {chars: 24, bban_regexp: '^[0-9]{20}$', bban_fields: 'bbbccccccccccccccccc', name: 'Sweden'};
-  countrySpecs['CH'] = {chars: 21, bban_regexp: '^[0-9]{5}[A-Z0-9]{12}$', bban_fields: 'bbbbbcccccccccccc', name: 'Switzerland'};
-  countrySpecs['TN'] = {chars: 24, bban_regexp: '^[0-9]{20}$', bban_fields: 'bbsssccccccccccccccc', name: 'Tunisia'};
-  countrySpecs['TR'] = {chars: 26, bban_regexp: '^[0-9]{5}[A-Z0-9]{17}$', bban_fields: 'bbbbbxcccccccccccccccc', name: 'Turkey'};
-  countrySpecs['AE'] = {chars: 23, bban_regexp: '^[0-9]{3}[0-9]{16}$', bban_fields: 'bbbcccccccccccccccc', name: 'United Arab Emirates'};
-  countrySpecs['GB'] = {chars: 22, bban_regexp: '^[A-Z]{4}[0-9]{14}$', bban_fields: 'bbbbsssssscccccccc', name: 'United Kingdom'};
-  countrySpecs['VG'] = {chars: 24, bban_regexp: '^[A-Z0-9]{4}[0-9]{16}$', bban_fields: 'bbbbcccccccccccccccc', name: 'British Virgin Islands'};
+  countrySpecs['AL'] = {chars: 28, bban_regexp: '^[0-9]{8}[A-Z0-9]{16}$', name: 'Albania'};
+  countrySpecs['AD'] = {chars: 24, bban_regexp: '^[0-9]{8}[A-Z0-9]{12}$', name: 'Andorra'};
+  countrySpecs['AT'] = {chars: 20, bban_regexp: '^[0-9]{16}$', name: 'Austria'};
+  countrySpecs['AZ'] = {chars: 28, bban_regexp: '^[A-Z0-9]{4}[0-9]{20}$', name: 'Azerbaijan'};
+  countrySpecs['BH'] = {chars: 22, bban_regexp: '^[A-Z]{4}[A-Z0-9]{14}$', name: 'Bahrain'};
+  countrySpecs['BE'] = {chars: 16, bban_regexp: '^[0-9]{12}$', name: 'Belgium'};
+  countrySpecs['BA'] = {chars: 20, bban_regexp: '^[0-9]{16}$', name: 'Bosnia and Herzegovina'};
+  countrySpecs['BR'] = {chars: 29, bban_regexp: '^[0-9]{23}[A-Z]{1}[A-Z0-9]{1}$', name: 'Brazil'};
+  countrySpecs['BG'] = {chars: 22, bban_regexp: '^[A-Z]{4}[0-9]{6}[A-Z0-9]{8}$', name: 'Bulgaria'};
+  countrySpecs['CR'] = {chars: 21, bban_regexp: '^[0-9]{17}$', name: 'Costa Rica'};
+  countrySpecs['HR'] = {chars: 21, bban_regexp: '^[0-9]{17}$', name: 'Croatia'};
+  countrySpecs['CY'] = {chars: 28, bban_regexp: '^[0-9]{8}[A-Z0-9]{16}$', name: 'Cyprus'};
+  countrySpecs['CZ'] = {chars: 24, bban_regexp: '^[0-9]{20}$', name: 'Czech Republic'};
+  countrySpecs['DK'] = {chars: 18, bban_regexp: '^[0-9]{14}$', name: 'Denmark'};
+  countrySpecs['DO'] = {chars: 28, bban_regexp: '^[A-Z]{4}[0-9]{20}$', name: 'Dominican Republic'};
+  countrySpecs['TL'] = {chars: 23, bban_regexp: '^[0-9]{19}$', name: 'East Timor'};
+  countrySpecs['EE'] = {chars: 20, bban_regexp: '^[0-9]{16}$', name: 'Estonia'};
+  countrySpecs['FO'] = {chars: 18, bban_regexp: '^[0-9]{14}$', name: 'Faroe Islands'};
+  countrySpecs['FI'] = {chars: 18, bban_regexp: '^[0-9]{14}$', name: 'Finland'};
+  countrySpecs['FR'] = {chars: 27, bban_regexp: '^[0-9]{10}[A-Z0-9]{11}[0-9]{2}$', name: 'France'};
+  countrySpecs['GE'] = {chars: 22, bban_regexp: '^[A-Z0-9]{2}[0-9]{16}$', name: 'Georgia (country)'};
+  countrySpecs['DE'] = {chars: 22, bban_regexp: '^[0-9]{18}$', name: 'Germany'};
+  countrySpecs['GI'] = {chars: 23, bban_regexp: '^[A-Z]{4}[A-Z0-9]{15}$', name: 'Gibraltar'};
+  countrySpecs['GR'] = {chars: 27, bban_regexp: '^[0-9]{7}[A-Z0-9]{16}$', name: 'Greece'};
+  countrySpecs['GL'] = {chars: 18, bban_regexp: '^[0-9]{14}$', name: 'Greenland'};
+  countrySpecs['GT'] = {chars: 28, bban_regexp: '^[A-Z0-9]{4}[A-Z0-9]{20}$', name: 'Guatemala'};
+  countrySpecs['HU'] = {chars: 28, bban_regexp: '^[0-9]{24}$', name: 'Hungary'};
+  countrySpecs['IS'] = {chars: 26, bban_regexp: '^[0-9]{22}$', name: 'Iceland'};
+  countrySpecs['IE'] = {chars: 22, bban_regexp: '^[A-Z0-9]{4}[0-9]{14}$', name: 'Republic of Ireland'};
+  countrySpecs['IL'] = {chars: 23, bban_regexp: '^[0-9]{19}$', name: 'Israel'};
+  countrySpecs['IT'] = {chars: 27, bban_regexp: '^[A-Z]{1}[0-9]{10}[A-Z0-9]{12}$', name: 'Italy'};
+  countrySpecs['JO'] = {chars: 30, bban_regexp: '^[A-Z]{4}[0-9]{22}$', name: 'Jordan'};
+  countrySpecs['KZ'] = {chars: 20, bban_regexp: '^[0-9]{3}[A-Z0-9]{13}$', name: 'Kazakhstan'};
+  countrySpecs['XK'] = {chars: 20, bban_regexp: '^[0-9]{4}[0-9]{10}[0-9]{2}$', name: 'Kosovo'};
+  countrySpecs['KW'] = {chars: 30, bban_regexp: '^[A-Z]{4}[A-Z0-9]{22}$', name: 'Kuwait'};
+  countrySpecs['LV'] = {chars: 21, bban_regexp: '^[A-Z]{4}[A-Z0-9]{13}$', name: 'Latvia'};
+  countrySpecs['LB'] = {chars: 28, bban_regexp: '^[0-9]{4}[A-Z0-9]{20}$', name: 'Lebanon'};
+  countrySpecs['LI'] = {chars: 21, bban_regexp: '^[0-9]{5}[A-Z0-9]{12}$', name: 'Liechtenstein'};
+  countrySpecs['LT'] = {chars: 20, bban_regexp: '^[0-9]{16}$', name: 'Lithuania'};
+  countrySpecs['LU'] = {chars: 20, bban_regexp: '^[0-9]{3}[A-Z0-9]{13}$', name: 'Luxembourg'};
+  countrySpecs['MK'] = {chars: 19, bban_regexp: '^[0-9]{3}[A-Z0-9]{10}[0-9]{2}$', name: 'Republic of Macedonia'};
+  countrySpecs['MT'] = {chars: 31, bban_regexp: '^[A-Z]{4}[0-9]{5}[A-Z0-9]{18}$', name: 'Malta'};
+  countrySpecs['MR'] = {chars: 27, bban_regexp: '^[0-9]{23}$', name: 'Mauritania'};
+  countrySpecs['MU'] = {chars: 30, bban_regexp: '^[A-Z]{4}[0-9]{19}[A-Z]{3}$', name: 'Mauritius'};
+  countrySpecs['MC'] = {chars: 27, bban_regexp: '^[0-9]{10}[A-Z0-9]{11}[0-9]{2}$', name: 'Monaco'};
+  countrySpecs['MD'] = {chars: 24, bban_regexp: '^[A-Z0-9]{2}[A-Z0-9]{18}$', name: 'Moldova'};
+  countrySpecs['ME'] = {chars: 22, bban_regexp: '^[0-9]{18}$', name: 'Montenegro'};
+  countrySpecs['NL'] = {chars: 18, bban_regexp: '^[A-Z]{4}[0-9]{10}$', name: 'Netherlands'};
+  countrySpecs['NO'] = {chars: 15, bban_regexp: '^[0-9]{11}$', name: 'Norway'};
+  countrySpecs['PK'] = {chars: 24, bban_regexp: '^[A-Z0-9]{4}[0-9]{16}$', name: 'Pakistan'};
+  countrySpecs['PS'] = {chars: 29, bban_regexp: '^[A-Z0-9]{4}[0-9]{21}$', name: 'Palestinian territories'};
+  countrySpecs['PL'] = {chars: 28, bban_regexp: '^[0-9]{24}$', name: 'Poland'};
+  countrySpecs['PT'] = {chars: 25, bban_regexp: '^[0-9]{21}$', name: 'Portugal'};
+  countrySpecs['QA'] = {chars: 29, bban_regexp: '^[A-Z]{4}[A-Z0-9]{21}$', name: 'Qatar'};
+  countrySpecs['RO'] = {chars: 24, bban_regexp: '^[A-Z]{4}[A-Z0-9]{16}$', name: 'Romania'};
+  countrySpecs['SM'] = {chars: 27, bban_regexp: '^[A-Z]{1}[0-9]{10}[A-Z0-9]{12}$', name: 'San Marino'};
+  countrySpecs['SA'] = {chars: 24, bban_regexp: '^[0-9]{2}[A-Z0-9]{18}$', name: 'Saudi Arabia'};
+  countrySpecs['RS'] = {chars: 22, bban_regexp: '^[0-9]{18}$', name: 'Serbia'};
+  countrySpecs['SK'] = {chars: 24, bban_regexp: '^[0-9]{20}$', name: 'Slovakia'};
+  countrySpecs['SI'] = {chars: 19, bban_regexp: '^[0-9]{15}$', name: 'Slovenia'};
+  countrySpecs['ES'] = {chars: 24, bban_regexp: '^[0-9]{20}$', name: 'Spain'};
+  countrySpecs['SE'] = {chars: 24, bban_regexp: '^[0-9]{20}$', name: 'Sweden'};
+  countrySpecs['CH'] = {chars: 21, bban_regexp: '^[0-9]{5}[A-Z0-9]{12}$', name: 'Switzerland'};
+  countrySpecs['TN'] = {chars: 24, bban_regexp: '^[0-9]{20}$', name: 'Tunisia'};
+  countrySpecs['TR'] = {chars: 26, bban_regexp: '^[0-9]{5}[A-Z0-9]{17}$', name: 'Turkey'};
+  countrySpecs['AE'] = {chars: 23, bban_regexp: '^[0-9]{3}[0-9]{16}$', name: 'United Arab Emirates'};
+  countrySpecs['GB'] = {chars: 22, bban_regexp: '^[A-Z]{4}[0-9]{14}$', name: 'United Kingdom'};
+  countrySpecs['VG'] = {chars: 24, bban_regexp: '^[A-Z0-9]{4}[0-9]{16}$', name: 'British Virgin Islands'};
 }
