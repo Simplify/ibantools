@@ -5,6 +5,8 @@ const mocha = require('gulp-mocha');
 
 gulp.task('default', ['ts', 'tts', 'watch']);
 
+gulp.tast('package', ['definition', 'doc']);
+
 // Create JSDoc documentation
 gulp.task('doc', shell.task([
 	'./node_modules/.bin/jsdoc src/IBANTools.js -d docs -r README.md'

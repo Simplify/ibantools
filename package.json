@@ -14,7 +14,7 @@
     "url": "https://github.com/Simplify/iban-tools.git"
   },
   "scripts": {
-    "prepublish": "gulp doc",
+    "prepublish": "gulp package",
     "test": "gulp test",
     "getcc": "node scripts/getcc.js"
   },
