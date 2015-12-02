@@ -3,12 +3,20 @@
   "version": "1.0.0",
   "description": "Validation of IBAN numbers and generation of IBAN's from BBAN and country code",
   "main": "IBANTools.js",
+	"directories": {
+		"doc": "docs"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Simplify/iban-tools.git"
+	},
   "scripts": {
+		"prepublish": "gulp doc",
     "test": "mocha",
     "getcc": "node scripts/getcc.js"
   },
   "author": "Saša Jovanić",
-  "license": "ISC",
+  "license": "MPL-2.0",
   "devDependencies": {
     "chai": "^3.4.1",
     "cheerio": "^0.19.0",
