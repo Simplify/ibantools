@@ -5,7 +5,7 @@ const mocha = require('gulp-mocha');
 
 gulp.task('default', ['ts', 'tts', 'watch']);
 
-gulp.tast('package', ['definition', 'doc']);
+gulp.task('package', ['definition', 'doc']);
 
 // Create JSDoc documentation
 gulp.task('doc', shell.task([
