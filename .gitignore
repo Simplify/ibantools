@@ -5,3 +5,4 @@ src/*.js
 test/*.js
 .DS_Store
 .dir-locals.el
+docs

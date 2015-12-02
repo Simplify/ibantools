@@ -1,3 +1,7 @@
+/**
+ * Extracts IBAN country data from Wikipedia
+ */
+
 "use strict";
 
 let request = require('request');

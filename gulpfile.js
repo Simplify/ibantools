@@ -1,7 +1,13 @@
 var gulp = require('gulp');
 var ts = require('gulp-typescript');
+var shell = require('gulp-shell');
 
 gulp.task('default', ['ts', 'tts', 'watch']);
+
+gulp.task('doc', shell.task([
+	'./node_modules/.bin/jsdoc src/IBANTools.js -d docs -r README.md'
+]));
+
 
 // Compile typescript sources
 gulp.task('ts', function() {
