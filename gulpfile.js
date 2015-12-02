@@ -5,8 +5,15 @@ const mocha = require('gulp-mocha');
 
 gulp.task('default', ['ts', 'tts', 'watch']);
 
+// Create JSDoc documentation
 gulp.task('doc', shell.task([
 	'./node_modules/.bin/jsdoc src/IBANTools.js -d docs -r README.md'
+]));
+
+// Create TypeScript definition file
+gulp.task('definition', shell.task([
+	'tsc --declaration src/IBANTools.ts --module commonjs --outFile ./dist/ibantools.d.ts',
+	'rm ./src/IBANTools.d.ts'
 ]));
 
 // Compile typescript sources

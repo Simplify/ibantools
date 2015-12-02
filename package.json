@@ -6,6 +6,9 @@
   "directories": {
     "doc": "docs"
   },
+	"typescript": {
+		"definition": "dist/ibantools.d.ts"
+	},
   "repository": {
     "type": "git",
     "url": "https://github.com/Simplify/iban-tools.git"
