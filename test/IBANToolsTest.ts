@@ -46,6 +46,9 @@ describe('IBANTools', () => {
 
   describe('When calling extractIBAN() with valid Brazilian IBAN', () => {
     let ext = iban.extractIBAN('BR97 0036 0305 0000 1000 9795 493P 1');
+		it('valid should be true', () => {
+			expect(ext.valid).to.be.true;
+		});
     it('BBAN should be 00360305000010009795493P1', () => {
       expect(ext.bban).to.equal('00360305000010009795493P1');
     });
@@ -58,8 +61,18 @@ describe('IBANTools', () => {
   });
 
   describe('When calling extractIBAN() with invalid IBAN', () => {
-    it('it should return null', () => {
-      expect(iban.extractIBAN('BR97 0036 0305 1000 9795 493P 1')).to.be.null;
+		let ext = iban.extractIBAN('BR97 0036 0305 1000 9795 493P 1');
+		it('valid should be false', () => {
+			expect(ext.valid).to.be.false;
+		});
+    it('BBAN should be undefined', () => {
+      expect(ext.bban).to.be.undefined;
+    });
+    it('countryCode should be undefined', () => {
+      expect(ext.countryCode).to.be.undefined;
+    });
+    it('countryName should be undefined', () => {
+      expect(ext.countryName).to.be.undefined;
     });
   });
 

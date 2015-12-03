@@ -42,6 +42,6 @@ gulp.task('test', function() {
 
 // Watch for changes
 gulp.task('watch', function() {
-  gulp.watch('./src/**/*.ts', ['ts','tts','test']);
-  gulp.watch('./test/**/*.ts', ['tts','ts','test']);
+  gulp.watch('./src/**/*.ts', ['ts','tts']);
+  gulp.watch('./test/**/*.ts', ['tts','ts']);
 });

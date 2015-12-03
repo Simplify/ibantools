@@ -59,12 +59,13 @@ export interface ExtractIBANResult {
   bban?:        string;
   countryCode?: string;
   countryName?: string;
+	valid:        boolean;
 }
 
 /**
  * extractIBAN
  * @param {string} IBAN
- * @result {ExtractIBANResult} Object {bban: string, countryCode: string, countryName: string}
+ * @result {ExtractIBANResult} Object {bban: string, countryCode: string, countryName: string, valid: boolean}
  */
 export function extractIBAN(iban: string): ExtractIBANResult {
   let result = <ExtractIBANResult>{};
@@ -74,9 +75,11 @@ export function extractIBAN(iban: string): ExtractIBANResult {
     result.countryCode = iban.slice(0,2);
     let spec = countrySpecs[result.countryCode];
     result.countryName = spec.name;
-    return result;
-  }
-  return null;
+		result.valid = true;
+  } else {
+		result.valid = false;
+	}
+  return result;
 }
 
 /**
