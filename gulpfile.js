@@ -5,10 +5,20 @@ const ts = require('gulp-typescript');
 const shell = require('gulp-shell');
 const mocha = require('gulp-mocha');
 const merge = require('merge2');
+const Server = require('karma').Server;
 
 gulp.task('default', ['build_commonjs', 'build_commonjs_tests', 'watch']);
 
 gulp.task('package', ['definition', 'doc']);
+
+
+// Run karma tests only one time
+gulp.task('karma', function (done) {
+  new Server({
+	  configFile: __dirname + '/karma.conf.js',
+	  singleRun: true
+	}, done).start();
+});
 
 // Create JSDoc documentation
 gulp.task('doc', shell.task([
