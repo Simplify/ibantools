@@ -75,4 +75,10 @@ describe('IBANTools', () => {
     });
   });
 
+  describe('When calling friendlyFormatIBAN() with - as separator', () => {
+    it('with valid badly formated Brazilian IBAN should return BR97-0036-0305-0000-1000-9795-493P-1', () => {
+      expect(iban.friendlyFormatIBAN('BR97 0036-030500001000-9795493-P1', '-')).to.equal('BR97-0036-0305-0000-1000-9795-493P-1');
+    });
+  });
+
 });

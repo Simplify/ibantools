@@ -4,7 +4,7 @@
 
 "use strict";
 
-let  countrySpecs: CountryMap = {};
+let countrySpecs: CountryMap = {};
 
 /**
  * Validate IBAN
@@ -96,7 +96,7 @@ function mod9710(iban: string): number {
     }
   }
   while(validationString.length > 2) {
-    let part = validationString.slice(0,9); // 10 chars
+    let part = validationString.slice(0,6);
     validationString = (parseInt(part, 10) % 97).toString() + validationString.slice(part.length);
   }
   return parseInt(validationString, 10) % 97;
@@ -116,7 +116,7 @@ function checkFormatBBAN(bban: string, bformat: string): boolean {
 /**
  * Get IBAN in electronic format (no spaces)
  * IBAN validation is not performed.
- * @parms {string} IBAN
+ * @param {string} IBAN
  * @return {string} IBAN or null if IBAN is not valid
  */
 export function electonicFormatIBAN(iban: string) {
@@ -124,13 +124,15 @@ export function electonicFormatIBAN(iban: string) {
 }
 
 /**
- * Get IBAN in friendly format (space after every 4 characters)
+ * Get IBAN in friendly format (separated after every 4 characters)
  * IBAN validation is not performed.
- * @parms {string} IBAN
+ * @param {string} IBAN
+ * @param {string} separator, default is space ' '
  * @return {string} IBAN or null if IBAN is not valid
  */
-export function friendlyFormatIBAN(iban: string) {
-  return electonicFormatIBAN(iban).replace(/(.{4})(?!$)/g, "$1" + ' ');
+export function friendlyFormatIBAN(iban: string, separator?: string) {
+	if (typeof separator === 'undefined') { separator = ' '; }
+  return electonicFormatIBAN(iban).replace(/(.{4})(?!$)/g, "$1" + separator);
 }
 
 /**

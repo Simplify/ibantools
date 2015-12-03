@@ -21,7 +21,7 @@ gulp.task('definition', shell.task([
 // Compile typescript sources
 gulp.task('ts', function() {
   gulp.src(['src/**/*.ts'])
-    .pipe(ts({module: 'commonjs', target: 'ES6'}))
+    .pipe(ts({module: 'commonjs', target: 'ES5'}))
     .js
     .pipe(gulp.dest('./src'));
 });
