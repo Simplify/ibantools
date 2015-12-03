@@ -15,7 +15,7 @@ gulp.task('doc', shell.task([
   './node_modules/.bin/jsdoc src/IBANTools.js -d docs -r README.md'
 ]));
 
-// Compile typescript sources
+// Compile typescript sources - commonjs
 gulp.task('build_commonjs', function() {
   let build_result = gulp.src(['src/**/*.ts'])
         .pipe(ts({module: 'commonjs',
@@ -23,6 +23,16 @@ gulp.task('build_commonjs', function() {
                   declaration: true}));
   return merge([build_result.dts.pipe(gulp.dest('./dist')),
                 build_result.js.pipe(gulp.dest('./src'))]);
+});
+
+// Compile typescript sources - amd
+gulp.task('build_amd', function() {
+  let build_result = gulp.src(['src/**/*.ts'])
+        .pipe(ts({module: 'amd',
+                  target: 'ES5',
+                  declaration: true}));
+  return merge([build_result.dts.pipe(gulp.dest('./dist')),
+                build_result.js.pipe(gulp.dest('./dist'))]);
 });
 
 // Compile typescript tests
