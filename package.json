@@ -6,9 +6,9 @@
   "directories": {
     "doc": "docs"
   },
-	"typescript": {
-		"definition": "dist/ibantools.d.ts"
-	},
+  "typescript": {
+    "definition": "dist/ibantools.d.ts"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/Simplify/iban-tools.git"
@@ -28,6 +28,7 @@
     "gulp-shell": "^0.5.1",
     "gulp-typescript": "^2.9.2",
     "jsdoc": "^3.4.0",
+    "merge2": "^0.3.6",
     "mocha": "^2.3.4",
     "request": "^2.67.0"
   }
