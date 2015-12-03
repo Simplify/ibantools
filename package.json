@@ -16,7 +16,8 @@
   "scripts": {
     "prepublish": "gulp package",
     "test": "gulp test",
-    "getcc": "node scripts/getcc.js"
+    "getcc": "node scripts/getcc.js",
+		"coverage": "istanbul cover _mocha -- -R spec"
   },
   "author": "Saša Jovanić",
   "license": "MPL-2.0",
@@ -27,6 +28,7 @@
     "gulp-mocha": "^2.2.0",
     "gulp-shell": "^0.5.1",
     "gulp-typescript": "^2.9.2",
+    "istanbul": "^0.4.1",
     "jasmine-core": "^2.4.0",
     "jsdoc": "^3.4.0",
     "karma": "^0.13.15",
