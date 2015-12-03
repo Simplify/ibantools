@@ -10,9 +10,7 @@ import chai = require('chai');
 let expect = chai.expect;
 
 //import iban from '../src/IBANTools';
-import ibant = require('../src/IBANTools');
-
-const iban = ibant.IBANTools;
+import iban = require('../src/IBANTools');
 
 describe('IBANTools', () => {
 
