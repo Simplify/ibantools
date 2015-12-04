@@ -4,13 +4,12 @@
 
 /// <reference path="../typings/mocha/mocha.d.ts" />
 /// <reference path="../typings/chai/chai.d.ts" />
-/// <reference path="../src/IBANTools.ts" />
+/// <reference path="../build/ibantools.d.ts" />
 
 import chai = require('chai');
 let expect = chai.expect;
 
-//import iban from '../src/IBANTools';
-import iban = require('../src/IBANTools');
+import iban = require('../build/ibantools');
 
 describe('IBANTools', () => {
 
