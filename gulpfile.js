@@ -9,9 +9,7 @@ const rename = require('gulp-rename');
 const uglify = require('gulp-uglify');
 const Server = require('karma').Server;
 
-gulp.task('default', ['build_commonjs', 'build_commonjs_tests', 'watch']);
-
-gulp.task('package', ['build_commonjs', 'build_commonjs_tests', 'build_amd', 'doc', 'test', 'karma']);
+gulp.task('default', ['build', 'build_tests', 'watch']);
 
 // Run karma tests only one time
 gulp.task('karma', function (done) {
@@ -23,13 +21,27 @@ gulp.task('karma', function (done) {
 
 // Create JSDoc documentation
 gulp.task('doc', shell.task([
-  './node_modules/.bin/jsdoc build/ibantools.js -d docs -r README.md'
+  './node_modules/.bin/jsdoc dist/ibantools.js -d docs -r README.md'
 ]));
 
-// Compile typescript sources - commonjs
-gulp.task('build_commonjs', function() {
+// Compile typescript sources - for bower, no uglifier
+gulp.task('build_bower', function() {
   let build_result = gulp.src(['src/**/*.ts'])
-        .pipe(ts({module: 'commonjs',
+        .pipe(ts({module: 'umd',
+                  target: 'ES5',
+                  declaration: true}));
+  return merge([build_result.dts
+								.pipe(rename("ibantools.d.ts"))
+								.pipe(gulp.dest('./dist')),
+                build_result.js
+								.pipe(rename("ibantools.js"))
+								.pipe(gulp.dest('./dist'))]);
+});
+
+// Compile typescript sources - umd
+gulp.task('build', function() {
+  let build_result = gulp.src(['src/**/*.ts'])
+        .pipe(ts({module: 'umd',
                   target: 'ES5',
                   declaration: true}));
   return merge([build_result.dts
@@ -41,25 +53,10 @@ gulp.task('build_commonjs', function() {
 								.pipe(gulp.dest('./build'))]);
 });
 
-// Compile typescript sources - amd
-gulp.task('build_amd', function() {
-  let build_result = gulp.src(['src/**/*.ts'])
-        .pipe(ts({module: 'amd',
-                  target: 'ES5',
-                  declaration: true}));
-  return merge([build_result.dts
-								.pipe(rename("ibantools.d.ts"))
-								.pipe(gulp.dest('./dist')),
-                build_result.js
-								.pipe(uglify({preserveComments: "license"}))
-								.pipe(rename("ibantools.js"))
-								.pipe(gulp.dest('./dist'))]);
-});
-
 // Compile typescript tests
-gulp.task('build_commonjs_tests', function() {
+gulp.task('build_tests', function() {
   gulp.src(['test/**/*.ts'])
-    .pipe(ts({module: 'commonjs',
+    .pipe(ts({module: 'umd',
 							target: 'ES5'}))
 		.js
     .pipe(gulp.dest('./test'));
@@ -73,6 +70,6 @@ gulp.task('test', function() {
 
 // Watch for changes
 gulp.task('watch', function() {
-  gulp.watch('./src/**/*.ts', ['build_commonjs','build_commonjs_tests']);
-  gulp.watch('./test/**/*.ts', ['build_commonjs','build_commonjs_tests']);
+  gulp.watch('./src/**/*.ts', ['build','build_tests']);
+  gulp.watch('./test/**/*.ts', ['build','build_tests']);
 });

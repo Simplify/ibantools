@@ -1,4 +1,4 @@
-define(['dist/ibantools'], function(iban) {
+define(['build/ibantools'], function(iban) {
 
 	describe('IBANTools', function () {
 		describe('When calling isValidIBAN()', function () {
