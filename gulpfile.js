@@ -6,6 +6,7 @@ const shell = require('gulp-shell');
 const mocha = require('gulp-mocha');
 const merge = require('merge2');
 const rename = require('gulp-rename');
+const uglify = require('gulp-uglify');
 const Server = require('karma').Server;
 
 gulp.task('default', ['build_commonjs', 'build_commonjs_tests', 'watch']);
@@ -31,8 +32,13 @@ gulp.task('build_commonjs', function() {
         .pipe(ts({module: 'commonjs',
                   target: 'ES5',
                   declaration: true}));
-  return merge([build_result.dts.pipe(rename("ibantools.d.ts")).pipe(gulp.dest('./build')),
-                build_result.js.pipe(rename("ibantools.js")).pipe(gulp.dest('./build'))]);
+  return merge([build_result.dts
+								.pipe(rename("ibantools.d.ts"))
+								.pipe(gulp.dest('./build')),
+                build_result.js
+								.pipe(uglify({preserveComments: "license"}))
+								.pipe(rename("ibantools.js"))
+								.pipe(gulp.dest('./build'))]);
 });
 
 // Compile typescript sources - amd
@@ -41,8 +47,13 @@ gulp.task('build_amd', function() {
         .pipe(ts({module: 'amd',
                   target: 'ES5',
                   declaration: true}));
-  return merge([build_result.dts.pipe(rename("ibantools.d.ts")).pipe(gulp.dest('./dist')),
-                build_result.js.pipe(rename("ibantools.js")).pipe(gulp.dest('./dist'))]);
+  return merge([build_result.dts
+								.pipe(rename("ibantools.d.ts"))
+								.pipe(gulp.dest('./dist')),
+                build_result.js
+								.pipe(uglify({preserveComments: "license"}))
+								.pipe(rename("ibantools.js"))
+								.pipe(gulp.dest('./dist'))]);
 });
 
 // Compile typescript tests
@@ -50,7 +61,7 @@ gulp.task('build_commonjs_tests', function() {
   gulp.src(['test/**/*.ts'])
     .pipe(ts({module: 'commonjs',
 							target: 'ES5'}))
-    .js
+		.js
     .pipe(gulp.dest('./test'));
 });
 
