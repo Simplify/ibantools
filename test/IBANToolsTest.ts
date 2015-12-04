@@ -94,4 +94,17 @@ describe('IBANTools', () => {
     });
   });
 
+  describe('When calling getCountrySpecs()', () => {
+    let ext = iban.getCountrySpecs();
+    it('Country with code NL should return name Netherlands', () => {
+      expect(ext['NL'].name).to.equal('Netherlands');
+    });
+    it('Country with code BE should return chars 16', () => {
+      expect(ext['BE'].chars).to.equal(16);
+    });
+    it('Country with code AL should return bban_regexp ^[0-9]{8}[A-Z0-9]{16}$', () => {
+      expect(ext['AL'].bban_regexp).to.equal('^[0-9]{8}[A-Z0-9]{16}$');
+    });
+  });
+
 });

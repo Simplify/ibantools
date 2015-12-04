@@ -9,8 +9,7 @@ const Server = require('karma').Server;
 
 gulp.task('default', ['build_commonjs', 'build_commonjs_tests', 'watch']);
 
-gulp.task('package', ['definition', 'doc']);
-
+gulp.task('package', ['doc']);
 
 // Run karma tests only one time
 gulp.task('karma', function (done) {
@@ -63,5 +62,5 @@ gulp.task('test', function() {
 // Watch for changes
 gulp.task('watch', function() {
   gulp.watch('./src/**/*.ts', ['build_commonjs','build_commonjs_tests']);
-  gulp.watch('./test/**/*.ts', ['build_commonjs_tests','build_commonjs']);
+  gulp.watch('./test/**/*.ts', ['build_commonjs','build_commonjs_tests']);
 });

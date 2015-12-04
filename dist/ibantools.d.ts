@@ -1,4 +1,18 @@
 /**
+ * Interface for IBAN Country Specification
+ */
+export interface CountrySpec {
+    chars: number;
+    name: string;
+    bban_regexp: string;
+}
+/**
+ * Interface for Map of country specifications
+ */
+export interface CountryMap {
+    [code: string]: CountrySpec;
+}
+/**
  * Validate IBAN
  * @param {string} IBAN
  * @return {boolean} valid
@@ -47,3 +61,8 @@ export declare function electonicFormatIBAN(iban: string): string;
  * @return {string} IBAN or null if IBAN is not valid
  */
 export declare function friendlyFormatIBAN(iban: string, separator?: string): string;
+/**
+ * getCountrySpecs
+ * @return {CountryMap} Object [countryCode: string]CountrySpec -> {chars: :number, bban_regexp: string, name: string}
+ */
+export declare function getCountrySpecs(): CountryMap;
