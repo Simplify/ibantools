@@ -8,22 +8,30 @@ For more information about IBAN see [wikipedia page](https://en.wikipedia.org/wi
 
 ## Installation and usage
 
-### Node.js - "Server side"
+### Node
+
+#### Installation
 
 ```
 $ npm install iban-tools
 ```
+
+#### Usage
 
 ```js
 var ibantools = require('IBANTools');
 ibantools.isValidIBAN('NL91 ABNA 0517 1643 00');
 ```
 
+#### With TypeScript
+
 If you are using IBANTools with TypeScript, link definition file from the package:
 
 ```
 $ tsd link
 ```
+
+That will add link to `ibantools.d.ts` in your `typings/tsd.d.ts` file.
 
 ### AMD - RequireJS - "Client side"
 
