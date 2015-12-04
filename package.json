@@ -1,25 +1,31 @@
 {
-  "name": "iban-tools",
+  "name": "ibantools",
   "version": "1.0.0",
-  "description": "Validation of IBAN numbers and generation of IBAN's from BBAN and country code",
-  "main": "IBANTools.js",
+  "description": "Validation of IBAN numbers and generation of IBAN's plus some other helpful stuff",
+	"keywords": ["IBAN", "BBAN"],
+	"homepage": "https://github.com/Simplify/ibantools",
+	"bugs": "https://github.com/Simplify/ibantools/issues",
+  "main": "build/ibantools.js",
+	"files": ["build"],
   "directories": {
     "doc": "docs"
   },
   "typescript": {
-    "definition": "dist/ibantools.d.ts"
+    "definition": "build/ibantools.d.ts"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Simplify/iban-tools.git"
+    "url": "https://github.com/Simplify/ibantools.git"
   },
   "scripts": {
-    "prepublish": "gulp package",
     "test": "gulp test",
     "getcc": "node scripts/getcc.js",
     "coverage": "istanbul cover _mocha -- -R spec"
   },
-  "author": "Saša Jovanić",
+  "author": {
+		"name": "Saša Jovanić",
+		"url": "https://www.simplify.ba/"
+	},
   "license": "MPL-2.0",
   "devDependencies": {
     "chai": "^3.4.1",

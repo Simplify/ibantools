@@ -11,7 +11,7 @@ const Server = require('karma').Server;
 
 gulp.task('default', ['build_commonjs', 'build_commonjs_tests', 'watch']);
 
-gulp.task('package', ['doc']);
+gulp.task('package', ['build_commonjs', 'build_commonjs_tests', 'build_amd', 'doc', 'test', 'karma']);
 
 // Run karma tests only one time
 gulp.task('karma', function (done) {
@@ -23,7 +23,7 @@ gulp.task('karma', function (done) {
 
 // Create JSDoc documentation
 gulp.task('doc', shell.task([
-  './node_modules/.bin/jsdoc src/IBANTools.js -d docs -r README.md'
+  './node_modules/.bin/jsdoc build/ibantools.js -d docs -r README.md'
 ]));
 
 // Compile typescript sources - commonjs
