@@ -33,13 +33,31 @@ $ tsd link
 
 That will add link to `ibantools.d.ts` in your `typings/tsd.d.ts` file.
 
+Use it in your `.ts` files:
+
+```ts
+/// <reference path="../typings/tsd.d.ts" /> 
+import iban = require("ibantools");
+console.log(iban.isValidIBAN("NL91 ABNA 0517 1643 00"));
+```
+
 ### AMD - RequireJS - "Client side"
 
 * Working on it...
+
+
+
+## Note about TypeScript
+
+After TypeScript 1.8 release (now in typescript@next), It will be possible to directly use source `.ts` files from node packages, not only generated JavaScript files.
+I'm planing to add original source file to both node and bower package after 1.8 release.
+Mode info:
+
+* [Github issue](https://github.com/Microsoft/TypeScript/issues/247)
+* [Example](https://github.com/chanon/typescript_module_example)
 
 ## License
 
 This Source Code Form is subject to the terms of the Mozilla Public
 License, v. 2.0. If a copy of the MPL was not distributed with this
 file, You can obtain one at [http://mozilla.org/MPL/2.0/](http://mozilla.org/MPL/2.0/).
-

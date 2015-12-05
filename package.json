@@ -10,6 +10,7 @@
   "directories": {
     "doc": "docs"
   },
+	"typings": "build/ibantools.d.ts",
   "typescript": {
     "definition": "build/ibantools.d.ts"
   },
