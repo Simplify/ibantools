@@ -2,6 +2,8 @@
 
 [![License MPL-2.0] (https://img.shields.io/badge/license-MPL%202.0-green.svg?dummy)](https://github.com/Simplify/ibantools/blob/master/LICENSE)
 [![npm version](https://badge.fury.io/js/ibantools.svg)](https://badge.fury.io/js/ibantools)
+![npm dependencies](https://david-dm.org/simplify/ibantools.svg)
+
 
 IBANTools is JavaScript library for validation, creation and extraction of IBAN's.
 
