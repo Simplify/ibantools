@@ -1,3 +1,6 @@
+// Only need few tests. Basic idea is to test loading of AMD package, nothing else.
+// All other tests are in test directory.
+
 define(['build/ibantools'], function(iban) {
 
 	describe('IBANTools', function () {

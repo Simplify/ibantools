@@ -66,7 +66,14 @@ Mode info:
 
 ## API
 
-See documentation on Github pages.
+See [documentation](http://simplify.github.io/ibantools) with examples on Github pages.
+
+## Contributing
+
+* Write tests for your changes in `test/IBANToolsTest.ts`.
+* Do not write more tests in `karma/ibantoolsSpec.js` unless module have problem with loading using AMD.
+* Before making pull requests run `gulp all-with-tests`.
+* Try not to make pull requests with changes in `dist` of `build` directories.
 
 ## License
 

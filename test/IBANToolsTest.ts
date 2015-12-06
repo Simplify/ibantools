@@ -17,15 +17,69 @@ describe('IBANTools', () => {
     it('with valid IBAN should return true', () => {
       expect(iban.isValidIBAN('NL91 ABNA 0417 1643 00')).to.be.true;
     });
+    it('with valid IBAN should return true', () => {
+      expect(iban.isValidIBAN('NL91-ABNA-0417-1643-00')).to.be.true;
+    });
     it('with invalid IBAN should return false', () => {
       expect(iban.isValidIBAN('NL91 ABNA 0517 1643 00')).to.be.false;
     });
     it('with no IBAN should return false', () => {
       expect(iban.isValidIBAN(null)).to.be.false;
     });
+    it('with valid AT IBAN should return true', () => {
+      expect(iban.isValidIBAN('AT61 1904 3002 3457 3201')).to.be.true;
+    });
+    it('with valid HR IBAN should return true', () => {
+      expect(iban.isValidIBAN('HR12 1001 0051 8630 0016 0')).to.be.true;
+    });
+    it('with valid DE IBAN should return true', () => {
+      expect(iban.isValidIBAN('DE89 3704 0044 0532 0130 00')).to.be.true;
+    });
+    it('with valid GT IBAN should return true', () => {
+      expect(iban.isValidIBAN('GT82 TRAJ 0102 0000 0012 1002 9690')).to.be.true;
+    });
+    it('with valid JO IBAN should return true', () => {
+      expect(iban.isValidIBAN('JO94 CBJO 0010 0000 0000 0131 0003 02')).to.be.true;
+    });
+    it('with valid PA IBAN should return true', () => {
+      expect(iban.isValidIBAN('PS92 PALS 0000 0000 0400 1234 5670 2')).to.be.true;
+    });
+    it('with valid ES IBAN should return true', () => {
+      expect(iban.isValidIBAN('ES91 2100 0418 4502 0005 1332')).to.be.true;
+    });
+    it('with valid RS IBAN should return true', () => {
+      expect(iban.isValidIBAN('RS35 2600 0560 1001 6113 79')).to.be.true;
+    });
+    it('with valid TL IBAN should return true', () => {
+      expect(iban.isValidIBAN('TL38 0080 0123 4567 8910 157')).to.be.true;
+    });
+    it('with valid GL IBAN should return true', () => {
+      expect(iban.isValidIBAN('GL89 6471 0001 0002 06')).to.be.true;
+    });
+    it('with invalid RS IBAN should return false', () => {
+      expect(iban.isValidIBAN('RS36 2600 0560 1001 6113 79')).to.be.false;
+    });
+    it('with invalid TL IBAN should return false', () => {
+      expect(iban.isValidIBAN('TL38 0080 0123 4568 8910 157')).to.be.false;
+    });
+    it('with invalid GL IBAN should return false', () => {
+      expect(iban.isValidIBAN('GL89 6471 0001 0002 067')).to.be.false;
+    });
   });
 
-  describe('When calling composeIBAN()', () => {
+  describe('When calling isValidBBAN()', () => {
+    it('with valid BBAN and valid country code should return true', () => {
+      expect(iban.isValidBBAN('ABNA 0417 1643 00', 'NL')).to.be.true;
+    });
+    it('with invalid BBAN and valid country code should return false', () => {
+      expect(iban.isValidBBAN('A7NA 0417 1643 00', 'NL')).to.be.false;
+    });
+    it('with valid BBAN and invalid country code should return false', () => {
+      expect(iban.isValidBBAN('ABNA0417164300', 'ZZ')).to.be.false;
+    });
+	});
+
+	describe('When calling composeIBAN()', () => {
     it('with valid country code and valid BBAN should return NL91ABNA0417164300', () => {
       expect(iban.composeIBAN({countryCode: 'NL', bban: 'ABNA0417164300'})).to.equal('NL91ABNA0417164300');
     });

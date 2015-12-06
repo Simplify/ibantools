@@ -39,6 +39,9 @@ let countrySpecs: CountryMap = {};
  * // returns true
  * ibantools.isValidIBAN('NL91 ABNA 0517 1643 00');
  * @example
+ * // returns true
+ * ibantools.isValidIBAN('NL91-ABNA-0517-1643-00');
+ * @example
  * // returns false
  * ibantools.isValidIBAN('NL92 ABNA 0517 1643 00');
  * @alias module:ibantools.isValidIBAN
@@ -53,6 +56,36 @@ export function isValidIBAN(iban: string): boolean {
         spec.chars === tmpIban.length &&
         checkFormatBBAN(tmpIban.slice(4), spec.bban_regexp) &&
         mod9710(tmpIban) === 1) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
+ * Validate BBAN
+ * @example
+ * // returns true
+ * ibantools.isValidBBAN('ABNA 0517 1643 00', 'NL');
+ * @example
+ * // returns true
+ * ibantools.isValidBBAN('ABNA0517164300', 'NL');
+ * @example
+ * // returns false
+ * ibantools.isValidBBAN('A7NA 0517 1643 00', 'NL');
+ * @alias module:ibantools.isValidBBAN
+ * @param {string} BBAN BBAN
+ * @param {string} countryCode Country code
+ * @return {boolean} valid
+ */
+export function isValidBBAN(bban: string, countryCode: string): boolean {
+  if (bban !== undefined && bban !== null &&
+			countryCode !== undefined && countryCode !== null) {
+    const tmpBban: string = electonicFormatIBAN(bban);
+    const spec = countrySpecs[countryCode];
+    if (spec !== undefined &&
+        spec.chars - 4 === tmpBban.length &&
+        checkFormatBBAN(tmpBban, spec.bban_regexp)) {
       return true;
     }
   }
@@ -104,7 +137,7 @@ export interface ExtractIBANResult {
  * // returns {bban: 'ABNA0417164300', countryCode: 'NL', countryName: 'Netherlands', valid: true}
  * ibantools.extractIBAN('NL91ABNA0417164300');
  * @alias module:ibantools.extractIBAN
- * @param {string} IBAN
+ * @param {string} IBAN IBAN
  * @result {ExtractIBANResult} Object {bban: string, countryCode: string, countryName: string, valid: boolean}
  */
 export function extractIBAN(iban: string): ExtractIBANResult {
@@ -125,7 +158,7 @@ export function extractIBAN(iban: string): ExtractIBANResult {
 /**
  * Check BBAN format
  * @param {string} BBAN
- * @param {string} BBAN regexp
+ * @param {string} Regexp BBAN validation regexp
  * @return {boolean} valid
  */
 function checkFormatBBAN(bban: string, bformat: string): boolean {
@@ -140,8 +173,8 @@ function checkFormatBBAN(bban: string, bformat: string): boolean {
  * // returns 'NL91ABNA0417164300'
  * ibantools.electronicFormatIBAN('NL91 ABNA 0417 1643 00');
  * @alias module:ibantools.electronicFormatIBAN
- * @param {string} IBAN
- * @return {string} IBAN
+ * @param {string} IBAN IBAN
+ * @return {string} IBAN Electronic formated IBAN
  */
 export function electonicFormatIBAN(iban: string) {
   return iban.replace(/[^a-zA-Z0-9]/g, "").toUpperCase();
@@ -157,9 +190,9 @@ export function electonicFormatIBAN(iban: string) {
  * // returns 'NL91-ABNA-0417-1643-00'
  * ibantools.electronicFormatIBAN('NL91ABNA0417164300','-');
  * @alias module:ibantools.friendlyFormatIBAN
- * @param {string} IBAN
+ * @param {string} IBAN IBAN
  * @param {string} separator Not required. Default separator is space ' '
- * @return {string} IBAN or null if IBAN is not valid
+ * @return {string} IBAN Friendly formated IBAN
  */
 export function friendlyFormatIBAN(iban: string, separator?: string) {
   if (typeof separator === 'undefined') { separator = ' '; }

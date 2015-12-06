@@ -2,15 +2,20 @@
   "name": "ibantools",
   "version": "1.0.0",
   "description": "Validation of IBAN numbers and generation of IBAN's plus some other helpful stuff",
-	"keywords": ["IBAN", "BBAN"],
-	"homepage": "https://github.com/Simplify/ibantools",
-	"bugs": "https://github.com/Simplify/ibantools/issues",
+  "keywords": [
+    "IBAN",
+    "BBAN"
+  ],
+  "homepage": "https://github.com/Simplify/ibantools",
+  "bugs": "https://github.com/Simplify/ibantools/issues",
   "main": "build/ibantools.js",
-	"files": ["build"],
+  "files": [
+    "build"
+  ],
   "directories": {
     "doc": "docs"
   },
-	"typings": "build/ibantools.d.ts",
+  "typings": "build/ibantools.d.ts",
   "typescript": {
     "definition": "build/ibantools.d.ts"
   },
@@ -24,9 +29,9 @@
     "coverage": "istanbul cover _mocha -- -R spec"
   },
   "author": {
-		"name": "Saša Jovanić",
-		"url": "https://www.simplify.ba/"
-	},
+    "name": "Saša Jovanić",
+    "url": "https://www.simplify.ba/"
+  },
   "license": "MPL-2.0",
   "devDependencies": {
     "chai": "^3.4.1",
@@ -48,6 +53,7 @@
     "merge2": "^0.3.6",
     "mocha": "^2.3.4",
     "request": "^2.67.0",
-    "requirejs": "^2.1.22"
+    "requirejs": "^2.1.22",
+    "run-sequence": "^1.1.5"
   }
 }
