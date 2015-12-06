@@ -1,0 +1,70 @@
+{
+  "name": "ibantools",
+  "description": "Validation of IBAN numbers and generation of IBAN's plus some other helpful stuff",
+  "keywords": ["IBAN", "BBAN"],
+  "main": [
+    "dist/ibantools.js",
+    "dist/ibantools.d.ts"
+  ],
+  "typings": "dist/ibantools.d.ts",
+  "typescript": {
+    "definition": "dist/ibantools.d.ts"
+  },
+  "homepage": "https://github.com/Simplify/ibantools",
+  "license": "MPL-2.0",
+  "authors": [{"name": "Saša Jovanić", "homepage": "https://www.simplify.ba/"}],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Simplify/ibantools.git"
+  },
+  "moduleType": [
+    "amd",
+    "node"
+  ],
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "cheerio": "^0.19.0",
+    "gulp": "^3.9.0",
+    "gulp-mocha": "^2.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-shell": "^0.5.1",
+    "gulp-typescript": "^2.9.2",
+    "gulp-uglify": "^1.5.1",
+    "istanbul": "^0.4.1",
+    "jasmine-core": "^2.4.0",
+    "jsdoc": "^3.4.0",
+    "karma": "^0.13.15",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-firefox-launcher": "^0.1.7",
+    "karma-jasmine": "^0.3.6",
+    "karma-requirejs": "^0.2.2",
+    "merge2": "^0.3.6",
+    "mocha": "^2.3.4",
+    "request": "^2.67.0",
+    "requirejs": "^2.1.22"
+  },
+  "ignore": [
+		".gitignore",
+		".npmignore",
+		".DS_Store",
+		".tern-port",
+		"README.md",
+		"LICENSE",
+		"gulpfile.js",
+		"karma.conf.js",
+		"package.json",
+		"tslint.json",
+		"tsd.json",
+		"tsconfig.json",
+		"typings",
+		"src",
+		"karma",
+		"coverage",
+		"ghpages",
+    "node_modules",
+    "scripts",
+    "docs",
+    "build",
+    "test"
+  ]
+}
