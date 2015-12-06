@@ -1,11 +1,16 @@
 /*!
+ * @license
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /**
+ * @file Validation of IBAN numbers and generation of IBAN's plus some other helpful stuff
+ * @author Saša Jovanić
  * @module ibantools
  * @see module:ibantools
+ * @version 1.0.0
+ * @license MPL-2.0
  */
 "use strict";
 
@@ -199,7 +204,7 @@ function mod9710(iban: string): number {
  *   // Add country code letters to IBAN form field
  *   $('input#iban').value($(this).val());
  *   // Add new value to 'pattern' attribute to #iban input text field
- *   $('input#iban').attr('pattern', $(this).val() + '[0-9]{2}' + country.bban_regexp.slice(1).slice(-1));
+ *   $('input#iban').attr('pattern', $(this).val() + '[0-9]{2}' + country.bban_regexp.slice(1).replace('$',''));
  * });
  * @alias module:ibantools.getCountrySpecifications
  * @return {CountryMap} Object [countryCode: string]CountrySpec -> {chars: :number, bban_regexp: string, name: string}

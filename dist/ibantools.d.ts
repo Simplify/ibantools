@@ -102,7 +102,7 @@ export declare function friendlyFormatIBAN(iban: string, separator?: string): st
  *   // Add country code letters to IBAN form field
  *   $('input#iban').value($(this).val());
  *   // Add new value to 'pattern' attribute to #iban input text field
- *   $('input#iban').attr('pattern', $(this).val() + '[0-9]{2}' + country.bban_regexp.slice(1).slice(-1));
+ *   $('input#iban').attr('pattern', $(this).val() + '[0-9]{2}' + country.bban_regexp.slice(1).replace('$',''));
  * });
  * @alias module:ibantools.getCountrySpecifications
  * @return {CountryMap} Object [countryCode: string]CountrySpec -> {chars: :number, bban_regexp: string, name: string}
