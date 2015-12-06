@@ -2,7 +2,7 @@
 
 [![License MPL-2.0] (https://img.shields.io/badge/license-MPL%202.0-green.svg?dummy)](https://github.com/Simplify/ibantools/blob/master/LICENSE)
 
-IBANTools is JavaScript library for validation or creation of IBAN's.
+IBANTools is JavaScript library for validation, creation and extraction of IBAN's.
 
 For more information about IBAN see [wikipedia page](https://en.wikipedia.org/wiki/International_Bank_Account_Number).
 
@@ -10,22 +10,36 @@ For more information about IBAN see [wikipedia page](https://en.wikipedia.org/wi
 
 ### Node
 
-#### Installation
-
 ```
-$ npm install iban-tools
+$ npm install ibantools
 ```
 
-#### Usage
+### Bower
+
+```
+$ bower install ibantools
+```
+
+## Usage
+
+### Node - CommonJS
 
 ```js
-var ibantools = require('IBANTools');
+var ibantools = require('ibantools');
 ibantools.isValidIBAN('NL91 ABNA 0517 1643 00');
 ```
 
-#### With TypeScript
+### AMD - RequireJS
 
-If you are using IBANTools with TypeScript, link definition file from the package:
+```js
+require(["ibantools"], function(ibantools) {
+  console.log(ibantools.isValidIBAN('NL91 ABNA 0517 1643 00'));
+});
+```
+
+### With TypeScript
+
+If you are using `ibantools` with TypeScript, link definition file from the package:
 
 ```
 $ tsd link
@@ -41,20 +55,18 @@ import iban = require("ibantools");
 console.log(iban.isValidIBAN("NL91 ABNA 0517 1643 00"));
 ```
 
-### AMD - RequireJS - "Client side"
+### Note about TypeScript usage
 
-* Working on it...
-
-
-
-## Note about TypeScript
-
-After TypeScript 1.8 release (now in typescript@next), It will be possible to directly use source `.ts` files from node packages, not only generated JavaScript files.
+After TypeScript 1.8 release (available now in typescript@next), It will be possible to directly use source `.ts` files from node packages, not only generated JavaScript files.
 I'm planing to add original source file to both node and bower package after 1.8 release.
 Mode info:
 
 * [Github issue](https://github.com/Microsoft/TypeScript/issues/247)
 * [Example](https://github.com/chanon/typescript_module_example)
+
+## API
+
+See documentation on Github pages.
 
 ## License
 
