@@ -3,7 +3,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 /**
- * @module IBANTools
+ * @module ibantools
+ * @see module:ibantools
  */
 "use strict";
 (function (deps, factory) {
@@ -18,7 +19,14 @@
     var countrySpecs = {};
     /**
      * Validate IBAN
-     * @param {string} IBAN
+     * @example
+     * // returns true
+     * ibantools.isValidIBAN('NL91 ABNA 0517 1643 00');
+     * @example
+     * // returns false
+     * ibantools.isValidIBAN('NL92 ABNA 0517 1643 00');
+     * @alias module:ibantools.isValidIBAN
+     * @param {string} IBAN IBAN
      * @return {boolean} valid
      */
     function isValidIBAN(iban) {
@@ -37,8 +45,12 @@
     exports.isValidIBAN = isValidIBAN;
     /**
      * composeIBAN
+     * @example
+     * // returns NL91ABNA0417164300
+     * ibantools.composeIBAN('NL', 'ABNA0417164300');
+     * @alias module:ibantools.composeIBAN
      * @param {ComposeIBANParams} Object {bban: string, countryCode: string}
-     * @result {string} IBAN
+     * @result {string} IBAN IBAN
      */
     function composeIBAN(params) {
         var bban = electonicFormatIBAN(params.bban);
@@ -54,6 +66,10 @@
     exports.composeIBAN = composeIBAN;
     /**
      * extractIBAN
+     * @example
+     * // returns {bban: 'ABNA0417164300', countryCode: 'NL', countryName: 'Netherlands', valid: true}
+     * ibantools.extractIBAN('NL91ABNA0417164300');
+     * @alias module:ibantools.extractIBAN
      * @param {string} IBAN
      * @result {ExtractIBANResult} Object {bban: string, countryCode: string, countryName: string, valid: boolean}
      */
@@ -86,8 +102,12 @@
     /**
      * Get IBAN in electronic format (no spaces)
      * IBAN validation is not performed.
+     * @example
+     * // returns 'NL91ABNA0417164300'
+     * ibantools.electronicFormatIBAN('NL91 ABNA 0417 1643 00');
+     * @alias module:ibantools.electronicFormatIBAN
      * @param {string} IBAN
-     * @return {string} IBAN or null if IBAN is not valid
+     * @return {string} IBAN
      */
     function electonicFormatIBAN(iban) {
         return iban.replace(/[^a-zA-Z0-9]/g, "").toUpperCase();
@@ -96,8 +116,15 @@
     /**
      * Get IBAN in friendly format (separated after every 4 characters)
      * IBAN validation is not performed.
+     * @example
+     * // returns 'NL91 ABNA 0417 1643 00'
+     * ibantools.electronicFormatIBAN('NL91ABNA0417164300');
+     * @example
+     * // returns 'NL91-ABNA-0417-1643-00'
+     * ibantools.electronicFormatIBAN('NL91ABNA0417164300','-');
+     * @alias module:ibantools.friendlyFormatIBAN
      * @param {string} IBAN
-     * @param {string} separator, default is space ' '
+     * @param {string} separator Not required. Default separator is space ' '
      * @return {string} IBAN or null if IBAN is not valid
      */
     function friendlyFormatIBAN(iban, separator) {
@@ -131,13 +158,29 @@
         return parseInt(validationString, 10) % 97;
     }
     /**
-     * getCountrySpecs
+     * getCountrySpecifications
+     * @example
+     * // Validating IBAN form field after user selects his country
+     * // <select id="countries">
+     * //   ...
+     * //   <option value="NL">Netherlands</option>
+     * //   ...
+     * // </select>
+     * $('#countries').select(function() {
+     *   // Find country
+     *   let country = ibantools.getCountrySpecifications()[$(this).val()];
+     *   // Add country code letters to IBAN form field
+     *   $('input#iban').value($(this).val());
+     *   // Add new value to 'pattern' attribute to #iban input text field
+     *   $('input#iban').attr('pattern', $(this).val() + '[0-9]{2}' + country.bban_regexp.slice(1).slice(-1));
+     * });
+     * @alias module:ibantools.getCountrySpecifications
      * @return {CountryMap} Object [countryCode: string]CountrySpec -> {chars: :number, bban_regexp: string, name: string}
      */
-    function getCountrySpecs() {
+    function getCountrySpecifications() {
         return countrySpecs;
     }
-    exports.getCountrySpecs = getCountrySpecs;
+    exports.getCountrySpecifications = getCountrySpecifications;
     /**
      * Fill map of IBAN country specifications
      */

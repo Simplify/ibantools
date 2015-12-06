@@ -93,8 +93,8 @@ describe('IBANTools', () => {
     });
   });
 
-  describe('When calling getCountrySpecs()', () => {
-    let ext = iban.getCountrySpecs();
+  describe('When calling getCountrySpecifications()', () => {
+    let ext = iban.getCountrySpecifications();
     it('Country with code NL should return name Netherlands', () => {
       expect(ext['NL'].name).to.equal('Netherlands');
     });
