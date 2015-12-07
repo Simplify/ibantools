@@ -8,7 +8,7 @@
  * @author Saša Jovanić
  * @module ibantools
  * @see module:ibantools
- * @version 1.0.0
+ * @version 1.0.1
  * @license MPL-2.0
  */
 "use strict";
@@ -93,7 +93,8 @@
     function composeIBAN(params) {
         var bban = electonicFormatIBAN(params.bban);
         var spec = countrySpecs[params.countryCode];
-        if (spec !== undefined &&
+        if (bban !== null &&
+            spec !== undefined &&
             spec.chars === (bban.length + 4) &&
             checkFormatBBAN(bban, spec.bban_regexp)) {
             var checksom = mod9710(params.countryCode + '00' + bban);
@@ -148,6 +149,9 @@
      * @return {string} IBAN Electronic formated IBAN
      */
     function electonicFormatIBAN(iban) {
+        if (iban === undefined || iban === null) {
+            return null;
+        }
         return iban.replace(/[^a-zA-Z0-9]/g, "").toUpperCase();
     }
     exports.electonicFormatIBAN = electonicFormatIBAN;

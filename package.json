@@ -1,6 +1,6 @@
 {
   "name": "ibantools",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Validation of IBAN numbers and generation of IBAN's plus some other helpful stuff",
   "keywords": [
     "IBAN",
@@ -24,9 +24,9 @@
     "url": "https://github.com/Simplify/ibantools.git"
   },
   "scripts": {
-    "test": "gulp test",
+    "test": "gulp test-it",
     "getcc": "node scripts/getcc.js",
-    "coverage": "istanbul cover _mocha -- -R spec"
+    "coverage": "gulp coverage"
   },
   "author": {
     "name": "Saša Jovanić",

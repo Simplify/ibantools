@@ -77,6 +77,9 @@ describe('IBANTools', () => {
     it('with valid BBAN and invalid country code should return false', () => {
       expect(iban.isValidBBAN('ABNA0417164300', 'ZZ')).to.be.false;
     });
+    it('with valid BBAN and no country code should return false', () => {
+      expect(iban.isValidBBAN('ABNA0417164300', null)).to.be.false;
+    });
 	});
 
 	describe('When calling composeIBAN()', () => {
@@ -94,6 +97,9 @@ describe('IBANTools', () => {
     });
     it('with valid country code and invalid BBAN (character count wrong) should return null', () => {
       expect(iban.composeIBAN({countryCode: 'NL', bban: 'ABNA04171643000'})).to.be.null;
+    });
+    it('with valid country code and no BBAN should return null', () => {
+      expect(iban.composeIBAN({countryCode: 'NL', bban: null})).to.be.null;
     });
   });
 

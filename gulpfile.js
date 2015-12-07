@@ -12,6 +12,7 @@ const runSequence = require('run-sequence');
 
 gulp.task('default', ['watch']);
 
+// All build tasks and create documentation
 gulp.task('all', function(callback) {
 	runSequence('build',
 							'build-tests',
@@ -20,10 +21,28 @@ gulp.task('all', function(callback) {
 							callback);
 });
 
+// all build tasks, documentation and all tests
 gulp.task('all-with-tests', function(callback) {
 	runSequence('all',
 							'test',
 							'karma',
+							'coverage',
+							callback);
+});
+
+// Build and run tests
+gulp.task('test-it', function(callback) {
+	runSequence('build',
+							'build-tests',
+							'test',
+							callback);
+});
+
+// Build from source, build tests and run coverage task
+gulp.task('coverage', function(callback) {
+	runSequence('build',
+							'build-tests',
+							'istanbul',
 							callback);
 });
 
@@ -34,6 +53,11 @@ gulp.task('karma', function (done) {
     singleRun: true
   }, done).start();
 });
+
+// generate coverage report
+gulp.task('istanbul', shell.task([
+  './node_modules/.bin/istanbul cover _mocha -- -R spec'
+]));
 
 // Create JSDoc documentation
 gulp.task('doc', shell.task([
@@ -86,6 +110,6 @@ gulp.task('test', function() {
 
 // Watch for changes
 gulp.task('watch', function() {
-  gulp.watch('./src/**/*.ts', ['build']);
-  gulp.watch('./test/**/*.ts', ['build']);
+  gulp.watch('./src/**/*.ts', ['test-it']);
+  gulp.watch('./test/**/*.ts', ['test-it']);
 });

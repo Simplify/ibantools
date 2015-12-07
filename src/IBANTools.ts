@@ -9,7 +9,7 @@
  * @author Saša Jovanić
  * @module ibantools
  * @see module:ibantools
- * @version 1.0.0
+ * @version 1.0.1
  * @license MPL-2.0
  */
 "use strict";
@@ -112,7 +112,8 @@ export interface ComposeIBANParms {
 export function composeIBAN(params: ComposeIBANParms): string {
   let bban: string = electonicFormatIBAN(params.bban);
   let spec = countrySpecs[params.countryCode];
-  if (spec !== undefined &&
+  if (bban !== null &&
+			spec !== undefined &&
       spec.chars === (bban.length + 4) &&
       checkFormatBBAN(bban, spec.bban_regexp)) {
     let checksom = mod9710(params.countryCode + '00' + bban);
@@ -177,6 +178,9 @@ function checkFormatBBAN(bban: string, bformat: string): boolean {
  * @return {string} IBAN Electronic formated IBAN
  */
 export function electonicFormatIBAN(iban: string) {
+	if (iban === undefined || iban === null) {
+		return null;
+	}
   return iban.replace(/[^a-zA-Z0-9]/g, "").toUpperCase();
 }
 
