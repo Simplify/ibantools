@@ -77,6 +77,7 @@ See [documentation](http://simplify.github.io/ibantools) with examples on Github
 
 ## Contributing
 
+* `npm install` and after `node node_modules/.bin/tsd install` (or better install `tsd` globally and run `tsd install`).
 * Write tests for your changes in `test/IBANToolsTest.ts`.
 * Do not write more tests in `karma/ibantoolsSpec.js` unless module have problem with loading using AMD.
 * Before making pull requests run `gulp all-with-tests`.
