@@ -2,4 +2,4 @@ language: node_js
 node_js:
   - "4"
 before_sript:
-  - ./node_modules/.bin/tsd install
+  - node node_modules/.bin/tsd install
