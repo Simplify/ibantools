@@ -60,6 +60,7 @@
     "request": "^2.67.0",
     "requirejs": "^2.1.22",
     "run-sequence": "^1.1.5",
-    "tsd": "^0.6.5"
+    "tsd": "^0.6.5",
+    "typings": "^0.6.8"
   }
 }
