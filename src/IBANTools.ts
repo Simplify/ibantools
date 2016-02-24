@@ -211,7 +211,7 @@ export function friendlyFormatIBAN(iban: string, separator?: string) {
 function mod9710(iban: string): number {
   iban = iban.slice(3) + iban.slice(0,4);
   let validationString: string = '';
-  for (var n:number =1; n < iban.length; n++) {
+  for (let n:number =1; n < iban.length; n++) {
     let c = iban.charCodeAt(n);
     if (c >= 65) {
       validationString += (c - 55).toString();
