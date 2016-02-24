@@ -3,23 +3,16 @@
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
-/**
- * @file Validation of IBAN numbers and generation of IBAN's plus some other helpful stuff
- * @author Saša Jovanić
- * @module ibantools
- * @see module:ibantools
- * @version 1.0.1
- * @license MPL-2.0
- */
-"use strict";
-(function (deps, factory) {
-    if (typeof module === 'object' && typeof module.exports === 'object') {
-        var v = factory(require, exports); if (v !== undefined) module.exports = v;
-    }
-    else if (typeof define === 'function' && define.amd) {
-        define(deps, factory);
-    }
-})(["require", "exports"], function (require, exports) {
+define(["require", "exports"], function (require, exports) {
+    /**
+     * @file Validation of IBAN numbers and generation of IBAN's plus some other helpful stuff
+     * @author Saša Jovanić
+     * @module ibantools
+     * @see module:ibantools
+     * @version 1.0.1
+     * @license MPL-2.0
+     */
+    "use strict";
     // Country specifications
     var countrySpecs = {};
     /**
