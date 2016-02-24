@@ -15,13 +15,13 @@ For more information about IBAN see [wikipedia page](https://en.wikipedia.org/wi
 
 ## Installation and usage
 
-### Node
+### Node (Common JS ES5 and ES6)
 
 ```
 $ npm install ibantools
 ```
 
-### Bower
+### Bower (AMD ES6)
 
 ```
 $ bower install ibantools
@@ -29,14 +29,14 @@ $ bower install ibantools
 
 ## Usage
 
-### Node - CommonJS
+### Node.js - CommonJS
 
 ```js
 var ibantools = require('ibantools');
 ibantools.isValidIBAN('NL91 ABNA 0517 1643 00');
 ```
 
-### AMD - RequireJS
+### AMD - RequireJS - Browser
 
 ```js
 require(["ibantools"], function(ibantools) {
@@ -44,9 +44,25 @@ require(["ibantools"], function(ibantools) {
 });
 ```
 
+### Node.js - Common JS in browser
+
+Use browserify or webpack.
+
+### ES6
+
+Use node module, not bower.
+
+If you are using ES6-aware tools, like a [rollup](https://github.com/rollup/rollup) or [JSPM](http://jspm.io/) that understand 'jsnext:main', those will automatically select ES6 module from the package.
+
 ### With TypeScript
 
-If you are using `ibantools` with TypeScript, link definition file from the package:
+#### Typings (new way)
+
+TODO!
+
+#### TSD (old way)
+
+Link definition file from the package:
 
 ```
 $ tsd link
@@ -57,19 +73,10 @@ That will add link to `ibantools.d.ts` in your `typings/tsd.d.ts` file.
 Use it in your `.ts` files:
 
 ```ts
-/// <reference path="../typings/tsd.d.ts" /> 
+/// <reference path="../typings/tsd.d.ts" />
 import iban = require("ibantools");
 console.log(iban.isValidIBAN("NL91 ABNA 0517 1643 00"));
 ```
-
-### Note about TypeScript usage
-
-After TypeScript 1.8 release (available now in typescript@next), It will be possible to directly use source `.ts` files from node packages, not only generated JavaScript files.
-I'm planing to add original source file to both node and bower package after 1.8 release.
-Mode info:
-
-* [Github issue](https://github.com/Microsoft/TypeScript/issues/247)
-* [Example](https://github.com/chanon/typescript_module_example)
 
 ## API
 
