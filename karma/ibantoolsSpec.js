@@ -1,7 +1,7 @@
 // Only need few tests. Basic idea is to test loading of AMD package, nothing else.
 // All other tests are in test directory.
 
-define(['build/ibantools'], function(iban) {
+define(['dist/ibantools'], function(iban) {
 
 	describe('IBANTools', function () {
 		describe('When calling isValidIBAN()', function () {
@@ -18,4 +18,3 @@ define(['build/ibantools'], function(iban) {
 	});
 
 });
-
