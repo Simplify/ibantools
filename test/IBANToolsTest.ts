@@ -6,10 +6,11 @@
 /// <reference path="../typings/chai/chai.d.ts" />
 /// <reference path="../build/ibantools.d.ts" />
 
-import chai = require('chai');
-let expect = chai.expect;
+import * as chai from 'chai';
+const expect = chai.expect;
 
-import iban = require('../build/ibantools');
+import * as iban from '../build/ibantools';
+
 
 describe('IBANTools', () => {
 
