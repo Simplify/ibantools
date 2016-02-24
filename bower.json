@@ -18,8 +18,7 @@
     "url": "https://github.com/Simplify/ibantools.git"
   },
   "moduleType": [
-    "amd",
-    "node"
+    "amd"
   ],
   "devDependencies": {
     "chai": "^3.4.1",
@@ -29,7 +28,6 @@
     "gulp-rename": "^1.2.2",
     "gulp-shell": "^0.5.1",
     "gulp-typescript": "^2.9.2",
-    "gulp-uglify": "^1.5.1",
     "istanbul": "^0.4.1",
     "jasmine-core": "^2.4.0",
     "jsdoc": "^3.4.0",
@@ -41,15 +39,17 @@
     "merge2": "^0.3.6",
     "mocha": "^2.3.4",
     "request": "^2.67.0",
-    "requirejs": "^2.1.22"
+    "requirejs": "^2.1.22",
+    "run-sequence": "^1.1.5",
+    "tsd": "^0.6.5"
   },
   "ignore": [
 		".gitignore",
 		".npmignore",
 		".DS_Store",
 		".tern-port",
+    ".editorconfig",
 		"README.md",
-		"LICENSE",
 		"gulpfile.js",
 		"karma.conf.js",
 		"package.json",

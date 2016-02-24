@@ -6,7 +6,6 @@ const shell = require('gulp-shell');
 const mocha = require('gulp-mocha');
 const merge = require('merge2');
 const rename = require('gulp-rename');
-const uglify = require('gulp-uglify');
 const Server = require('karma').Server;
 const runSequence = require('run-sequence');
 
@@ -17,6 +16,7 @@ gulp.task('all', function(callback) {
 	runSequence('build',
 							'build-tests',
 							'build-bower',
+              'build-es6',
 							'doc',
 							callback);
 });
@@ -64,10 +64,10 @@ gulp.task('doc', shell.task([
   './node_modules/.bin/jsdoc dist/ibantools.js -d docs -r README.md'
 ]));
 
-// Compile typescript sources - for bower, no uglifier
+// Compile typescript sources - for bower - amd
 gulp.task('build-bower', function() {
   let build_result = gulp.src(['src/**/*.ts'])
-        .pipe(ts({module: 'umd',
+        .pipe(ts({module: 'amd',
                   target: 'ES5',
                   declaration: true}));
   return merge([build_result.dts
@@ -78,22 +78,31 @@ gulp.task('build-bower', function() {
                 .pipe(gulp.dest('./dist'))]);
 });
 
-// Compile typescript sources - umd
+// Compile typescript sources - node package - commonjs es5
 gulp.task('build', function() {
   let build_result = gulp.src(['src/**/*.ts'])
-        .pipe(ts({module: 'umd',
+        .pipe(ts({module: 'commonjs',
                   target: 'ES5',
                   declaration: true}));
   return merge([build_result.dts
                 .pipe(rename("ibantools.d.ts"))
                 .pipe(gulp.dest('./build')),
                 build_result.js
-                .pipe(uglify({preserveComments: "license"}))
                 .pipe(rename("ibantools.js"))
                 .pipe(gulp.dest('./build'))]);
 });
 
-// Compile typescript tests
+// compile es6 module - both bower and node, for "jsnext"
+gulp.task('build-es6', function() {
+  return gulp.src(['src/**/*.ts'])
+        .pipe(ts({module: 'es6',
+                  target: 'ES6'}))
+        .js
+        .pipe(rename("ibantools.js"))
+        .pipe(gulp.dest('./es6'));
+});
+
+// Compile typescript tests, umd, I'll run tests from node and "browser"
 gulp.task('build-tests', function() {
   return gulp.src(['test/**/*.ts'])
     .pipe(ts({module: 'umd',

@@ -1,6 +1,6 @@
 {
   "name": "ibantools",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Validation of IBAN numbers and generation of IBAN's plus some other helpful stuff",
   "keywords": [
     "IBAN",
@@ -9,8 +9,12 @@
   "homepage": "https://github.com/Simplify/ibantools",
   "bugs": "https://github.com/Simplify/ibantools/issues",
   "main": "build/ibantools.js",
+  "jsnext:main": "es6/ibantools.js",
   "files": [
-    "build"
+    "build",
+    "es6",
+    "LICENSE",
+    "typings.json"
   ],
   "directories": {
     "doc": "docs"
@@ -24,9 +28,11 @@
     "url": "https://github.com/Simplify/ibantools.git"
   },
   "scripts": {
+    "build": "rm -rf dist && rm -rf es6 && rm -rf build && gulp all",
     "test": "gulp test-it",
     "getcc": "node scripts/getcc.js",
-    "coverage": "gulp coverage"
+    "coverage": "gulp coverage",
+    "prepublish": "typings install && npm run build"
   },
   "author": {
     "name": "Saša Jovanić",
@@ -41,7 +47,6 @@
     "gulp-rename": "^1.2.2",
     "gulp-shell": "^0.5.1",
     "gulp-typescript": "^2.9.2",
-    "gulp-uglify": "^1.5.1",
     "istanbul": "^0.4.1",
     "jasmine-core": "^2.4.0",
     "jsdoc": "^3.4.0",
