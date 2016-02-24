@@ -35,7 +35,7 @@
     "karma-chrome-launcher": "^0.2",
     "karma-jasmine": "^0.3",
     "karma-requirejs": "^0.2",
-    "merge2": "^0.3",
+    "merge2": "^1.0",
     "mocha": "^2.3",
     "request": "^2.67",
     "requirejs": "^2.1",
