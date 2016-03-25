@@ -1,5 +1,7 @@
 /**
  * Extracts IBAN country data from Wikipedia
+ * 25.03.2016: Info is outdated, use:
+ * https://www.swift.com/sites/default/files/resources/swift_standards_ibanregistry.pdf
  */
 
 "use strict";
