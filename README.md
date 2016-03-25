@@ -56,27 +56,7 @@ If you are using ES6-aware tools, like a [rollup](https://github.com/rollup/roll
 
 ### With TypeScript
 
-#### Typings (new way)
-
 Include ibantools as dependency and run `typings install`.
-
-#### TSD (old way)
-
-Link definition file from the package:
-
-```
-$ tsd link
-```
-
-That will add link to `ibantools.d.ts` in your `typings/tsd.d.ts` file.
-
-Use it in your `.ts` files:
-
-```ts
-/// <reference path="../typings/tsd.d.ts" />
-import iban = require("ibantools");
-console.log(iban.isValidIBAN("NL91 ABNA 0517 1643 00"));
-```
 
 ## API
 
