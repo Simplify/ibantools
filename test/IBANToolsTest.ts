@@ -56,6 +56,9 @@ describe('IBANTools', () => {
     it('with valid GL IBAN should return true', () => {
       expect(iban.isValidIBAN('GL89 6471 0001 0002 06')).to.be.true;
     });
+    it('with valid UA IBAN should return true', () => {
+      expect(iban.isValidIBAN('UA21 3996 2200 0002 6007 2335 6600 1')).to.be.true;
+    });
     it('with invalid RS IBAN should return false', () => {
       expect(iban.isValidIBAN('RS36 2600 0560 1001 6113 79')).to.be.false;
     });
