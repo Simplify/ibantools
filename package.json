@@ -1,6 +1,6 @@
 {
   "name": "ibantools",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Validation of IBAN numbers and generation of IBAN's plus some other helpful stuff",
   "keywords": [
     "IBAN",
@@ -10,6 +10,10 @@
   "bugs": "https://github.com/Simplify/ibantools/issues",
   "main": "build/ibantools.js",
   "jsnext:main": "es6/ibantools.js",
+  "jspm": {
+    "main": "es6/ibantools.js",
+    "format": "esm"
+  },
   "files": [
     "build",
     "es6",
@@ -59,6 +63,7 @@
     "request": "^2.67",
     "requirejs": "^2.1",
     "run-sequence": "^1.1",
-    "typings": "^0.6"
+    "typescript": "^1.8",
+    "typings": "^0.7"
   }
 }
