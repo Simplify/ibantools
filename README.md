@@ -50,15 +50,15 @@ Use browserify or webpack.
 
 ### ES6
 
-Use node module, not bower.
+Use node, not bower module.
 
-If you are using ES6-aware tools, like a [rollup](https://github.com/rollup/rollup) or [JSPM](http://jspm.io/) that understand 'jsnext:main', those will automatically select ES6 module from the package.
+If you are using ES6-aware tools, like a [rollup](https://github.com/rollup/rollup) or [JSPM](http://jspm.io/), they will automatically select ES6 module from the package.
 
 ### With TypeScript
 
 #### Typings (new way)
 
-TODO!
+Include ibantools as dependency and run `typings install`.
 
 #### TSD (old way)
 
@@ -84,11 +84,11 @@ See [documentation](http://simplify.github.io/ibantools) with examples on Github
 
 ## Contributing
 
-* `npm install` and after `node node_modules/.bin/tsd install` (or better install `tsd` globally and run `tsd install`).
+* `npm install` and after `node node_modules/.bin/typings install` (or run `typings install` if you have typings installed globally).
 * Write tests for your changes in `test/IBANToolsTest.ts`.
 * Do not write more tests in `karma/ibantoolsSpec.js` unless module have problem with loading using AMD.
 * Before making pull requests run `gulp all-with-tests`.
-* Try not to make pull requests with changes in `dist` of `build` directories.
+* Try not to make pull requests with changes in `dist`, `es6` or `build` directories.
 
 ## License
 
