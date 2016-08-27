@@ -1,0 +1,23 @@
+2016-08-27  Saša Jovanić  <sasa@simplify.ba>
+
+        * Added Sao Tome And Principe (ST)
+        * Added Saint Lucia (LC)
+        * Added Aland Islands (AX)
+        * Added French Guyana (GF)
+        * Added Guadeloupe (GP)
+        * Added Martinique (MQ)
+        * Added Reunion (RE)
+        * Added French Polynesia (PF)
+        * Added French Southern Territories (TF)
+        * Added Mayotte (YT)
+        * Added New Caledonia (NC)
+        * Added Saint Barthelemy (BL)
+        * Added Saint Martin (MF)
+        * Added Saint Pierre et Miquelon (PM)
+        * Added Wallis and Futuna Islands (WF)
+        * Added Seychelles (SC)
+        * Fixed Republic of Azerbaijan and Jordan regexps
+        * Fixed some of the country names
+        * Added Node 6 to Travis CI
+        * Updated development dependencies and typings
+        * Removed old script that used to retrive IBAN countries and codes from Wikipedia

@@ -11,7 +11,8 @@
 
 IBANTools is JavaScript library for validation, creation and extraction of IBAN's.
 
-For more information about IBAN see [wikipedia page](https://en.wikipedia.org/wiki/International_Bank_Account_Number).
+For more information about IBAN see [wikipedia page](https://en.wikipedia.org/wiki/International_Bank_Account_Number) and
+[IBAN registry](https://www.swift.com/sites/default/files/resources/swift_standards_ibanregistry.pdf).
 
 ## Installation and usage
 

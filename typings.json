@@ -1,8 +1,8 @@
 {
   "name": "ibantools",
-  "ambientDependencies": {
-    "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#fb2b3b1e068c9ff7d8f9b0851c08d37d96c95c38",
-    "mocha": "github:DefinitelyTyped/DefinitelyTyped/mocha/mocha.d.ts#fb2b3b1e068c9ff7d8f9b0851c08d37d96c95c38",
-    "chai": "github:DefinitelyTyped/DefinitelyTyped/chai/chai.d.ts#fb2b3b1e068c9ff7d8f9b0851c08d37d96c95c38"
+  "globalDependencies": {
+    "chai": "registry:dt/chai#3.4.0+20160601211834",
+    "mocha": "registry:env/mocha#2.2.5+20160723033700",
+    "node": "registry:env/node#6.0.0+20160825160117"
   }
 }

@@ -56,7 +56,7 @@ gulp.task('karma', function (done) {
 
 // generate coverage report
 gulp.task('istanbul', shell.task([
-  './node_modules/.bin/istanbul cover _mocha -- -R spec'
+  './node_modules/.bin/istanbul cover _mocha --report lcovonly -- -R spec'
 ]));
 
 // Create JSDoc documentation
