@@ -1,5 +1,6 @@
 2016-08-27  Saša Jovanić  <sasa@simplify.ba>
 
+        * Released version 1.1.0
         * Added Sao Tome And Principe (ST)
         * Added Saint Lucia (LC)
         * Added Aland Islands (AX)
@@ -19,5 +20,7 @@
         * Fixed Republic of Azerbaijan and Jordan regexps
         * Fixed some of the country names
         * Added Node 6 to Travis CI
+        * Added Codecov to Travis CI config file
+        * Added this ChangeLog
         * Updated development dependencies and typings
         * Removed old script that used to retrive IBAN countries and codes from Wikipedia
