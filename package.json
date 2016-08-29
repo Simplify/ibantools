@@ -33,7 +33,7 @@
   },
   "scripts": {
     "build": "rm -rf dist && rm -rf es6 && rm -rf build && gulp all",
-    "test": "gulp coverage && codecov",
+    "test": "gulp coverage",
     "karma": "gulp karma",
     "coverage": "gulp coverage",
     "prepublish": "typings install && npm run build"
@@ -47,6 +47,7 @@
     "chai": "^3.4",
     "cheerio": "^0.22",
     "codecov": "^1.0.1",
+    "coveralls": "^2.11.12",
     "gulp": "^3.9",
     "gulp-mocha": "^3.0",
     "gulp-rename": "^1.2",
@@ -61,6 +62,7 @@
     "karma-requirejs": "^1.0",
     "merge2": "^1.0",
     "mocha": "^3.0",
+    "mocha-lcov-reporter": "^1.2.0",
     "request": "^2.67",
     "requirejs": "^2.1",
     "run-sequence": "^1.1",
