@@ -8,6 +8,7 @@
 [![Dependency Status](https://david-dm.org/simplify/ibantools.svg)](https://david-dm.org/simplify/ibantools)
 
 [![Build Status](https://travis-ci.org/Simplify/ibantools.svg?branch=master)](https://travis-ci.org/Simplify/ibantools)
+[![Coverage Status](https://coveralls.io/repos/github/Simplify/ibantools/badge.svg?branch=master)](https://coveralls.io/github/Simplify/ibantools?branch=master)
 
 IBANTools is JavaScript library for validation, creation and extraction of IBAN's.
 

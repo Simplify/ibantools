@@ -46,7 +46,6 @@
   "devDependencies": {
     "chai": "^3.4",
     "cheerio": "^0.22",
-    "codecov": "^1.0.1",
     "coveralls": "^2.11.12",
     "gulp": "^3.9",
     "gulp-mocha": "^3.0",
