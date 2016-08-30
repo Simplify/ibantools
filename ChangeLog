@@ -1,3 +1,9 @@
+2016-08-30  Saša Jovanić  <sasa@simplify.ba>
+
+        * Removed CodeCov codes
+        * Added Coveralls badge and integration
+        * Added Dependency CI badge
+
 2016-08-27  Saša Jovanić  <sasa@simplify.ba>
 
         * Released version 1.1.0
