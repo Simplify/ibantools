@@ -4,11 +4,13 @@
 
 [![Bower version](https://badge.fury.io/bo/ibantools.svg)](https://badge.fury.io/bo/ibantools)
 [![npm version](https://badge.fury.io/js/ibantools.svg)](https://badge.fury.io/js/ibantools)
-[![devDependency Status](https://david-dm.org/simplify/ibantools/dev-status.svg)](https://david-dm.org/simplify/ibantools#info=devDependencies)
-[![Dependency Status](https://david-dm.org/simplify/ibantools.svg)](https://david-dm.org/simplify/ibantools)
 
 [![Build Status](https://travis-ci.org/Simplify/ibantools.svg?branch=master)](https://travis-ci.org/Simplify/ibantools)
 [![Coverage Status](https://coveralls.io/repos/github/Simplify/ibantools/badge.svg?branch=master)](https://coveralls.io/github/Simplify/ibantools?branch=master)
+
+[![devDependency Status](https://david-dm.org/simplify/ibantools/dev-status.svg)](https://david-dm.org/simplify/ibantools#info=devDependencies)
+[![Dependency Status](https://david-dm.org/simplify/ibantools.svg)](https://david-dm.org/simplify/ibantools)
+[![Dependency Status](https://dependencyci.com/github/Simplify/ibantools/badge)](https://dependencyci.com/github/Simplify/ibantools)
 
 IBANTools is JavaScript library for validation, creation and extraction of IBAN's.
 
