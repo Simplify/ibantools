@@ -9,7 +9,7 @@ define(["require", "exports"], function (require, exports) {
      * @author Saša Jovanić
      * @module ibantools
      * @see module:ibantools
-     * @version 1.1.0
+     * @version 1.2.0
      * @license MPL-2.0
      */
     "use strict";
@@ -103,7 +103,7 @@ define(["require", "exports"], function (require, exports) {
      * ibantools.extractIBAN('NL91ABNA0417164300');
      * @alias module:ibantools.extractIBAN
      * @param {string} IBAN IBAN
-     * @result {ExtractIBANResult} Object {bban: string, countryCode: string, countryName: string, valid: boolean}
+     * @return {ExtractIBANResult} Object {bban: string, countryCode: string, countryName: string, valid: boolean}
      */
     function extractIBAN(iban) {
         var result = {};
@@ -216,6 +216,54 @@ define(["require", "exports"], function (require, exports) {
         return countrySpecs;
     }
     exports.getCountrySpecifications = getCountrySpecifications;
+    /**
+     * Validate BIC/SWIFT
+     * @example
+     * // returns true
+     * ibantools.isValidBIC('ABNANL2A');
+     * @example
+     * // returns true
+     * ibantools.isValidBIC('NEDSZAJJXXX');
+     * @example
+     * // returns false
+     * ibantools.isValidBIC('ABN4NL2A');
+     * @example
+     * // returns false
+     * ibantools.isValidBIC('ABNA NL 2A');
+     * @alias module:ibantools.isValidBIC
+     * @param {string} BIC BIC
+     * @return {boolean} valid
+     */
+    function isValidBIC(bic) {
+        var reg = new RegExp('^[a-zA-Z]{6}[a-zA-Z0-9]{2}[XXX0-9]{0,3}$', '');
+        return reg.test(bic);
+    }
+    exports.isValidBIC = isValidBIC;
+    /**
+     * extractBIC
+     * @example
+     * // returns {bankCode: 'ABNA', countryCode: 'NL', locationCode: '2A', branchCode: null, testBIC: flase, valid: true}
+     * ibantools.extractBIC('ABNANL2A');
+     * @alias module:ibantools.extractBIC
+     * @param {string} BIC BIC
+     * @return {ExtractBICResult} Object {bancCode: string, countryCode: string, locationCode: string, branchCode: string, testBIC: boolean, valid: boolean}
+     */
+    function extractBIC(bic) {
+        var result = {};
+        if (isValidBIC(bic)) {
+            result.bankCode = bic.slice(0, 4);
+            result.countryCode = bic.slice(4, 6);
+            result.locationCode = bic.slice(6, 8);
+            result.testBIC = (result.locationCode[1] == '0' ? true : false);
+            result.branchCode = (bic.length > 8 ? bic.slice(8) : null);
+            result.valid = true;
+        }
+        else {
+            result.valid = false;
+        }
+        return result;
+    }
+    exports.extractBIC = extractBIC;
     /**
      * Fill map of IBAN country specifications
      */

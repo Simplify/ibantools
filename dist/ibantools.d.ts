@@ -83,7 +83,7 @@ export interface ExtractIBANResult {
  * ibantools.extractIBAN('NL91ABNA0417164300');
  * @alias module:ibantools.extractIBAN
  * @param {string} IBAN IBAN
- * @result {ExtractIBANResult} Object {bban: string, countryCode: string, countryName: string, valid: boolean}
+ * @return {ExtractIBANResult} Object {bban: string, countryCode: string, countryName: string, valid: boolean}
  */
 export declare function extractIBAN(iban: string): ExtractIBANResult;
 /**
@@ -133,3 +133,43 @@ export declare function friendlyFormatIBAN(iban: string, separator?: string): st
  * @return {CountryMap} Object [countryCode: string]CountrySpec -> {chars: :number, bban_regexp: string, name: string}
  */
 export declare function getCountrySpecifications(): CountryMap;
+/**
+ * Validate BIC/SWIFT
+ * @example
+ * // returns true
+ * ibantools.isValidBIC('ABNANL2A');
+ * @example
+ * // returns true
+ * ibantools.isValidBIC('NEDSZAJJXXX');
+ * @example
+ * // returns false
+ * ibantools.isValidBIC('ABN4NL2A');
+ * @example
+ * // returns false
+ * ibantools.isValidBIC('ABNA NL 2A');
+ * @alias module:ibantools.isValidBIC
+ * @param {string} BIC BIC
+ * @return {boolean} valid
+ */
+export declare function isValidBIC(bic: string): boolean;
+/**
+ * Interface for ExtractBIC result
+ */
+export interface ExtractBICResult {
+    bankCode?: string;
+    countryCode?: string;
+    locationCode?: string;
+    branchCode?: string;
+    testBIC?: boolean;
+    valid: boolean;
+}
+/**
+ * extractBIC
+ * @example
+ * // returns {bankCode: 'ABNA', countryCode: 'NL', locationCode: '2A', branchCode: null, testBIC: flase, valid: true}
+ * ibantools.extractBIC('ABNANL2A');
+ * @alias module:ibantools.extractBIC
+ * @param {string} BIC BIC
+ * @return {ExtractBICResult} Object {bancCode: string, countryCode: string, locationCode: string, branchCode: string, testBIC: boolean, valid: boolean}
+ */
+export declare function extractBIC(bic: string): ExtractBICResult;

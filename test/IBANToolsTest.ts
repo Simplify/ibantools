@@ -70,6 +70,90 @@ describe('IBANTools', () => {
     });
   });
 
+  describe('When calling isValidBIC()', function () {
+    it('with valid BIC ABNANL2A should return true', function () {
+      expect(iban.isValidBIC('ABNANL2A')).to.be.true;
+    });
+    it('with valid BIC ABNANL2A000 should return true', function () {
+      expect(iban.isValidBIC('ABNANL2A000')).to.be.true;
+    });
+    it('with valid BIC ABNANL2AXXX should return true', function () {
+      expect(iban.isValidBIC('ABNANL2AXXX')).to.be.true;
+    });
+    it('with invalid BIC ABN4NL2A should return false', function () {
+      expect(iban.isValidBIC('ABN4NL2A')).to.be.false;
+    });
+    it('with invalid BIC ABNANL2A01F should return false', function () {
+      expect(iban.isValidBIC('ABNANL2A01F')).to.be.false;
+    });
+  });
+
+  describe('When calling extractBIC() with valid BIC ABNANL2A', function () {
+    let ext = iban.extractBIC('ABNANL2A');
+    it('valid should be true', () => {
+      expect(ext.valid).to.be.true;
+    });
+    it('bankCode should be ABNA', () => {
+      expect(ext.bankCode).to.equal('ABNA');
+    });
+    it('countryCode should be NL', () => {
+      expect(ext.countryCode).to.equal('NL');
+    });
+    it('locationCode should be 2A', () => {
+      expect(ext.locationCode).to.equal('2A');
+    });
+    it('testBIC should be false', () => {
+      expect(ext.testBIC).to.be.false;
+    });
+    it('branchCode should be null', () => {
+      expect(ext.branchCode).to.be.null;
+    });
+  });
+
+  describe('When calling extractBIC() with invalid BIC ABN7NL2A', function () {
+    let ext = iban.extractBIC('ABN7NL2A');
+    it('valid should be false', () => {
+      expect(ext.valid).to.be.false;
+    });
+    it('bankCode should be undefined', () => {
+      expect(ext.bankCode).to.be.undefined;
+    });
+    it('countryCode should be undefined', () => {
+      expect(ext.countryCode).to.be.undefined;
+    });
+    it('locationCode should be undefined', () => {
+      expect(ext.locationCode).to.be.undefined;
+    });
+    it('testBIC should be undefined', () => {
+      expect(ext.testBIC).to.be.undefined;
+    });
+    it('branchCode should be undefined', () => {
+      expect(ext.branchCode).to.be.undefined;
+    });
+  });
+
+  describe('When calling extractBIC() with valid BIC NEDSZAJ0XXX', function () {
+    let ext = iban.extractBIC('NEDSZAJ0XXX');
+    it('valid should be true', () => {
+      expect(ext.valid).to.be.true;
+    });
+    it('bankCode should be NEDS', () => {
+      expect(ext.bankCode).to.equal('NEDS');
+    });
+    it('countryCode should be ZA', () => {
+      expect(ext.countryCode).to.equal('ZA');
+    });
+    it('locationCode should be J0', () => {
+      expect(ext.locationCode).to.equal('J0');
+    });
+    it('testBIC should be true', () => {
+      expect(ext.testBIC).to.be.true;
+    });
+    it('branchCode should be XXX', () => {
+      expect(ext.branchCode).to.equal('XXX');
+    });
+  });
+
   describe('When calling isValidBBAN()', () => {
     it('with valid BBAN and valid country code should return true', () => {
       expect(iban.isValidBBAN('ABNA 0417 1643 00', 'NL')).to.be.true;
@@ -83,9 +167,9 @@ describe('IBANTools', () => {
     it('with valid BBAN and no country code should return false', () => {
       expect(iban.isValidBBAN('ABNA0417164300', null)).to.be.false;
     });
-	});
+  });
 
-	describe('When calling composeIBAN()', () => {
+  describe('When calling composeIBAN()', () => {
     it('with valid country code and valid BBAN should return NL91ABNA0417164300', () => {
       expect(iban.composeIBAN({countryCode: 'NL', bban: 'ABNA0417164300'})).to.equal('NL91ABNA0417164300');
     });
@@ -108,9 +192,9 @@ describe('IBANTools', () => {
 
   describe('When calling extractIBAN() with valid Brazilian IBAN', () => {
     let ext = iban.extractIBAN('BR97 0036 0305 0000 1000 9795 493P 1');
-		it('valid should be true', () => {
-			expect(ext.valid).to.be.true;
-		});
+    it('valid should be true', () => {
+      expect(ext.valid).to.be.true;
+    });
     it('BBAN should be 00360305000010009795493P1', () => {
       expect(ext.bban).to.equal('00360305000010009795493P1');
     });
@@ -123,10 +207,10 @@ describe('IBANTools', () => {
   });
 
   describe('When calling extractIBAN() with invalid IBAN', () => {
-		let ext = iban.extractIBAN('BR97 0036 0305 1000 9795 493P 1');
-		it('valid should be false', () => {
-			expect(ext.valid).to.be.false;
-		});
+    let ext = iban.extractIBAN('BR97 0036 0305 1000 9795 493P 1');
+    it('valid should be false', () => {
+      expect(ext.valid).to.be.false;
+    });
     it('BBAN should be undefined', () => {
       expect(ext.bban).to.be.undefined;
     });

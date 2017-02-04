@@ -1,3 +1,14 @@
+2017-02-04  Saša Jovanić  <sasa@simplify.ba>
+	* Added BIC/SWIFT validation
+	* Added BIC/SWIFT extraction
+	* Updated TypeScript definitions
+
+2017-01-29  Saša Jovanić  <sasa@simplify.ba>
+	* Removed testing on Node 4 and 5 in TravisCI and added testing on 7
+	* Updated dev dependencies
+	* Removed TSLint deprecations
+	* Fixed ducumentation
+
 2016-08-30  Saša Jovanić  <sasa@simplify.ba>
 
         * Removed CodeCov codes

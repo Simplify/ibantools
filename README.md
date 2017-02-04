@@ -12,10 +12,12 @@
 [![Dependency Status](https://david-dm.org/simplify/ibantools.svg)](https://david-dm.org/simplify/ibantools)
 [![Dependency Status](https://dependencyci.com/github/Simplify/ibantools/badge)](https://dependencyci.com/github/Simplify/ibantools)
 
-IBANTools is JavaScript library for validation, creation and extraction of IBAN's.
+IBANTools is TypeScript/JavaScript library for validation, creation and extraction of IBAN, BBAN and BIC/SWIFT numbers.
 
-For more information about IBAN see [wikipedia page](https://en.wikipedia.org/wiki/International_Bank_Account_Number) and
+For more information about IBAN/BBAN see [wikipedia page](https://en.wikipedia.org/wiki/International_Bank_Account_Number) and
 [IBAN registry](https://www.swift.com/sites/default/files/resources/swift_standards_ibanregistry.pdf).
+
+For more information about BIC/SWIFT see [this wikipedia page](https://en.wikipedia.org/wiki/ISO_9362).
 
 ## Installation and usage
 
@@ -38,6 +40,7 @@ $ bower install ibantools
 ```js
 var ibantools = require('ibantools');
 ibantools.isValidIBAN('NL91 ABNA 0517 1643 00');
+ibantools.isValidBIC('ABNANL2A');
 ```
 
 ### AMD - RequireJS - Browser
@@ -45,6 +48,7 @@ ibantools.isValidIBAN('NL91 ABNA 0517 1643 00');
 ```js
 require(["ibantools"], function(ibantools) {
   console.log(ibantools.isValidIBAN('NL91 ABNA 0517 1643 00'));
+  console.log(ibantools.isValidBIC('ABNANL2A'));
 });
 ```
 

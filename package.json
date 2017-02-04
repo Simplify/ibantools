@@ -1,7 +1,7 @@
 {
   "name": "ibantools",
-  "version": "1.1.1",
-  "description": "Validation of IBAN numbers and generation of IBAN's plus some other helpful stuff",
+  "version": "1.2.0",
+  "description": "Validation, extraction and creation of IBAN, BBAN, BIC/SWIFT numbers plus some other helpful stuff",
   "keywords": [
     "IBAN",
     "BBAN"
