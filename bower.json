@@ -1,7 +1,7 @@
 {
   "name": "ibantools",
-  "description": "Validation of IBAN numbers and generation of IBAN's plus some other helpful stuff",
-  "keywords": ["IBAN", "BBAN"],
+  "description": "Validation, extraction and creation of IBAN, BBAN, BIC/SWIFT numbers plus some other helpful stuff",
+  "keywords": ["IBAN", "BBAN", "BIC", "SWIFT"],
   "main": [
     "dist/ibantools.js",
     "dist/ibantools.d.ts"
@@ -26,7 +26,7 @@
 		".DS_Store",
 		".tern-port",
     ".editorconfig",
-		"README.md",
+    "README.md",
 		"gulpfile.js",
 		"karma.conf.js",
 		"package.json",

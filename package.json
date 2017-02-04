@@ -4,7 +4,9 @@
   "description": "Validation, extraction and creation of IBAN, BBAN, BIC/SWIFT numbers plus some other helpful stuff",
   "keywords": [
     "IBAN",
-    "BBAN"
+    "BBAN",
+    "BIC",
+    "SWIFT"
   ],
   "homepage": "https://github.com/Simplify/ibantools",
   "bugs": "https://github.com/Simplify/ibantools/issues",
