@@ -7,6 +7,6 @@ test/*.js
 docs
 coverage
 ghpages
-es6
+jsnext
 build
 npm-debug.log

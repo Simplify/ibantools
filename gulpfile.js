@@ -16,7 +16,7 @@ gulp.task('all', function(callback) {
 	runSequence('build',
 							'build-tests',
 							'build-bower',
-              'build-es6',
+              'build-jsnext',
 							'doc',
 							callback);
 });
@@ -92,14 +92,14 @@ gulp.task('build', function() {
                 .pipe(gulp.dest('./build'))]);
 });
 
-// compile es6 module - both bower and node, for "jsnext"
-gulp.task('build-es6', function() {
+// compile es5 module - both bower and node, for "jsnext"
+gulp.task('build-jsnext', function() {
   return gulp.src(['src/**/*.ts'])
-        .pipe(ts({module: 'es6',
-                  target: 'ES6'}))
+        .pipe(ts({module: 'ES2015',
+                  target: 'ES5'}))
         .js
         .pipe(rename("ibantools.js"))
-        .pipe(gulp.dest('./es6'));
+        .pipe(gulp.dest('./jsnext'));
 });
 
 // Compile typescript tests, umd, I'll run tests from node and "browser"

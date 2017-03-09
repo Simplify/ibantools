@@ -27,7 +27,7 @@ For more information about BIC/SWIFT see [this wikipedia page](https://en.wikipe
 $ npm install ibantools
 ```
 
-### Bower (AMD ES6)
+### Bower (AMD ES5)
 
 ```
 $ bower install ibantools
@@ -56,11 +56,11 @@ require(["ibantools"], function(ibantools) {
 
 Use browserify or webpack.
 
-### ES6
+### jsnext:main
 
 Use node, not bower module.
 
-If you are using ES6-aware tools, like a [rollup](https://github.com/rollup/rollup) or [JSPM](http://jspm.io/), they will automatically select ES6 module from the package.
+If you are using tools that support `jsnext`, like a [rollup](https://github.com/rollup/rollup) or [JSPM](http://jspm.io/), they will automatically select right module from the package.
 
 ### With TypeScript
 
@@ -76,7 +76,7 @@ See [documentation](http://simplify.github.io/ibantools) with examples on Github
 * Write tests for your changes in `test/IBANToolsTest.ts`.
 * Do not write more tests in `karma/ibantoolsSpec.js` unless module have problem with loading using AMD.
 * Before making pull requests run `gulp all-with-tests`.
-* Try not to make pull requests with changes in `dist`, `es6` or `build` directories.
+* Try not to make pull requests with changes in `dist`, `jsnext` or `build` directories.
 
 ## License
 
