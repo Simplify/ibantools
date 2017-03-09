@@ -80,11 +80,14 @@ describe('IBANTools', () => {
     it('with valid BIC ABNANL2AXXX should return true', function () {
       expect(iban.isValidBIC('ABNANL2AXXX')).to.be.true;
     });
+    it('with valid BIC NOLADE21KI should return true', function () {
+      expect(iban.isValidBIC('NOLADE21KIE')).to.be.true;
+    });
     it('with invalid BIC ABN4NL2A should return false', function () {
       expect(iban.isValidBIC('ABN4NL2A')).to.be.false;
     });
-    it('with invalid BIC ABNANL2A01F should return false', function () {
-      expect(iban.isValidBIC('ABNANL2A01F')).to.be.false;
+    it('with invalid BIC ABNANL2A01F should return true', function () {
+      expect(iban.isValidBIC('ABNANL2A01F')).to.be.true;
     });
   });
 
@@ -105,8 +108,8 @@ describe('IBANTools', () => {
     it('testBIC should be false', () => {
       expect(ext.testBIC).to.be.false;
     });
-    it('branchCode should be null', () => {
-      expect(ext.branchCode).to.be.null;
+    it('branchCode should be 619 (primary office)', () => {
+      expect(ext.branchCode).to.equal('619');
     });
   });
 

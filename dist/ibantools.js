@@ -5,11 +5,11 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 define(["require", "exports"], function (require, exports) {
     /**
-     * @file Validation of IBAN numbers and generation of IBAN's plus some other helpful stuff
+     * @file Validation, extraction and creation of IBAN, BBAN, BIC/SWIFT numbers plus some other helpful stuff
      * @author Saša Jovanić
      * @module ibantools
      * @see module:ibantools
-     * @version 1.2.0
+     * @version 1.3.0
      * @license MPL-2.0
      */
     "use strict";
@@ -235,7 +235,7 @@ define(["require", "exports"], function (require, exports) {
      * @return {boolean} valid
      */
     function isValidBIC(bic) {
-        var reg = new RegExp('^[a-zA-Z]{6}[a-zA-Z0-9]{2}[XXX0-9]{0,3}$', '');
+        var reg = new RegExp('^[a-zA-Z]{6}[a-zA-Z0-9]{2}[A-Z0-9]{0,3}$', '');
         return reg.test(bic);
     }
     exports.isValidBIC = isValidBIC;
@@ -255,7 +255,7 @@ define(["require", "exports"], function (require, exports) {
             result.countryCode = bic.slice(4, 6);
             result.locationCode = bic.slice(6, 8);
             result.testBIC = (result.locationCode[1] == '0' ? true : false);
-            result.branchCode = (bic.length > 8 ? bic.slice(8) : null);
+            result.branchCode = (bic.length > 8 ? bic.slice(8) : '619');
             result.valid = true;
         }
         else {
