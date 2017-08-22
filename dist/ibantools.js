@@ -13,6 +13,7 @@ define(["require", "exports"], function (require, exports) {
      * @license MPL-2.0
      */
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     // Country specifications
     var countrySpecs = {};
     /**
