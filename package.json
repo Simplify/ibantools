@@ -25,7 +25,7 @@
   "directories": {
     "doc": "docs"
   },
-  "typings": "build/ibantools.d.ts",
+  "types": "build/ibantools.d.ts",
   "typescript": {
     "definition": "build/ibantools.d.ts"
   },
@@ -38,7 +38,7 @@
     "test": "gulp coverage",
     "karma": "gulp karma",
     "coverage": "gulp coverage",
-    "prepublish": "typings install && npm run build"
+    "prepare": "npm run build"
   },
   "author": {
     "name": "Saša Jovanić",
@@ -46,6 +46,8 @@
   },
   "license": "MPL-2.0",
   "devDependencies": {
+    "@types/chai": "^4.0.4",
+    "@types/mocha": "^2.2.42",
     "chai": "^4.1",
     "cheerio": "^0.22",
     "coveralls": "^2.13",
@@ -67,7 +69,6 @@
     "request": "^2.81",
     "requirejs": "^2.3",
     "run-sequence": "^2.1",
-    "typescript": "^2.4",
-    "typings": "^2.1"
+    "typescript": "^2.4"
   }
 }

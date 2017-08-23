@@ -1,3 +1,6 @@
+2017-08-23  Saša Jovanić  <sasa@simplify.ba>
+	* Now using @types - typings removed
+
 2017-08-22  Saša Jovanić  <sasa@simplify.ba>
 	* Updated development dependencies
 	* Added node version 8 to TravisCI tests
@@ -11,7 +14,7 @@
 	* Updated development dependencies
 
 2017-02-04  Saša Jovanić  <sasa@simplify.ba>
-        * Released version 1.2.0
+	* Released version 1.2.0
 	* Added BIC/SWIFT validation
 	* Added BIC/SWIFT extraction
 	* Updated TypeScript definitions
@@ -23,34 +26,32 @@
 	* Fixed ducumentation
 
 2016-08-30  Saša Jovanić  <sasa@simplify.ba>
-
-        * Removed CodeCov codes
-        * Added Coveralls badge and integration
-        * Added Dependency CI badge
+	* Removed CodeCov codes
+	* Added Coveralls badge and integration
+	* Added Dependency CI badge
 
 2016-08-27  Saša Jovanić  <sasa@simplify.ba>
-
-        * Released version 1.1.0
-        * Added Sao Tome And Principe (ST)
-        * Added Saint Lucia (LC)
-        * Added Aland Islands (AX)
-        * Added French Guyana (GF)
-        * Added Guadeloupe (GP)
-        * Added Martinique (MQ)
-        * Added Reunion (RE)
-        * Added French Polynesia (PF)
-        * Added French Southern Territories (TF)
-        * Added Mayotte (YT)
-        * Added New Caledonia (NC)
-        * Added Saint Barthelemy (BL)
-        * Added Saint Martin (MF)
-        * Added Saint Pierre et Miquelon (PM)
-        * Added Wallis and Futuna Islands (WF)
-        * Added Seychelles (SC)
-        * Fixed Republic of Azerbaijan and Jordan regexps
-        * Fixed some of the country names
-        * Added Node 6 to Travis CI
-        * Added Codecov to Travis CI config file
-        * Added this ChangeLog
-        * Updated development dependencies and typings
-        * Removed old script that used to retrive IBAN countries and codes from Wikipedia
+	* Released version 1.1.0
+	* Added Sao Tome And Principe (ST)
+	* Added Saint Lucia (LC)
+	* Added Aland Islands (AX)
+	* Added French Guyana (GF)
+	* Added Guadeloupe (GP)
+	* Added Martinique (MQ)
+	* Added Reunion (RE)
+	* Added French Polynesia (PF)
+	* Added French Southern Territories (TF)
+	* Added Mayotte (YT)
+	* Added New Caledonia (NC)
+	* Added Saint Barthelemy (BL)
+	* Added Saint Martin (MF)
+	* Added Saint Pierre et Miquelon (PM)
+	* Added Wallis and Futuna Islands (WF)
+	* Added Seychelles (SC)
+	* Fixed Republic of Azerbaijan and Jordan regexps
+	* Fixed some of the country names
+	* Added Node 6 to Travis CI
+	* Added Codecov to Travis CI config file
+	* Added this ChangeLog
+	* Updated development dependencies and typings
+	* Removed old script that used to retrive IBAN countries and codes from Wikipedia

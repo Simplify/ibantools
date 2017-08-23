@@ -2,9 +2,6 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-/// <reference path="../typings/index.d.ts" />
-/// <reference path="../build/ibantools.d.ts" />
-
 import * as chai from 'chai';
 const expect = chai.expect;
 

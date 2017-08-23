@@ -18,17 +18,12 @@
     "./**/*.tsx",
     "!./**/*.d.ts",
     "!./gulpfile.ts",
-    "./typings/**/*.d.ts",
     "!./node_modules/**/*.ts",
     "./node_modules/typescript/lib/lib.es6.d.ts"
   ],
   "exclude": [],
   "files": [
 		"./src/IBANTools.ts",
-    "./test/IBANToolsTest.ts",
-    "./typings/bundle.d.ts",
-    "./typings/gulp/gulp.d.ts",
-    "./typings/mocha/mocha.d.ts",
-    "./node_modules/typescript/lib/lib.es6.d.ts"
+    "./test/IBANToolsTest.ts"
   ]
 }

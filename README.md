@@ -64,7 +64,7 @@ If you are using tools that support `jsnext`, like a [rollup](https://github.com
 
 ### With TypeScript
 
-Include ibantools as dependency and run `typings install`.
+Install library/module using npm. Package bundles type definitions and if you are on TypeScript 2.0 or above `tsc` will access those automatically. If not, check your `tsconfig.json` file.
 
 ## API
 
@@ -72,10 +72,10 @@ See [documentation](http://simplify.github.io/ibantools) with examples on Github
 
 ## Contributing
 
-* `npm install` and after `node node_modules/.bin/typings install` (or run `typings install` if you have typings installed globally).
+* Clone this repo and run `npm install`.
 * Write tests for your changes in `test/IBANToolsTest.ts`.
 * Do not write more tests in `karma/ibantoolsSpec.js` unless module have problem with loading using AMD.
-* Before making pull requests run `gulp all-with-tests`.
+* Before making pull requests run `gulp all && gulp test && gulp karma`.
 * Try not to make pull requests with changes in `dist`, `jsnext` or `build` directories.
 
 ## License
