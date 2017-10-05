@@ -3,6 +3,7 @@
 	* Updated mocha development dependency to 4.0
 	* Added contribution guide
 	* Updated JSDoc to latest version
+	* Added issue and pull request template
 
 2017-08-23  Saša Jovanić  <sasa@simplify.ba>
 	* Now using @types - typings removed
