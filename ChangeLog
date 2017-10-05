@@ -1,4 +1,5 @@
 2017-10-05  Saša Jovanić  <sasa@simplify.ba>
+	* Released version 1.4.0
 	* Added code of conduct
 	* Updated mocha development dependency to 4.0
 	* Added contribution guide

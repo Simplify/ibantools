@@ -9,7 +9,7 @@ define(["require", "exports"], function (require, exports) {
      * @author Saša Jovanić
      * @module ibantools
      * @see module:ibantools
-     * @version 1.3.0
+     * @version 1.4.0
      * @license MPL-2.0
      */
     "use strict";

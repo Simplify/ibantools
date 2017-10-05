@@ -22,11 +22,13 @@
   ],
   "ignore": [
 		".gitignore",
+    ".github",
 		".npmignore",
 		".DS_Store",
 		".tern-port",
     ".editorconfig",
     "README.md",
+    "CONTRIBUTION.md",
 		"gulpfile.js",
 		"karma.conf.js",
 		"package.json",
