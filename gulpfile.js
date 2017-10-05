@@ -61,7 +61,7 @@ gulp.task('istanbul', shell.task([
 
 // Create JSDoc documentation
 gulp.task('doc', shell.task([
-  './node_modules/.bin/jsdoc dist/ibantools.js -d docs -r README.md'
+  './node_modules/.bin/jsdoc dist/ibantools.js -d docs -r README.md -t node_modules/docdash'
 ]));
 
 // Compile typescript sources - for bower - amd

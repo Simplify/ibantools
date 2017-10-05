@@ -1,4 +1,8 @@
 2017-10-05  Saša Jovanić  <sasa@simplify.ba>
+	* Changed documentation theme to `docdash`
+	* Fixed links in README to avoid broken links in documentation
+
+2017-10-05  Saša Jovanić  <sasa@simplify.ba>
 	* Released version 1.4.0
 	* Added code of conduct
 	* Updated mocha development dependency to 4.0

@@ -72,10 +72,10 @@ See [documentation](http://simplify.github.io/ibantools) with examples on Github
 
 ## Contributing
 
-This project adheres to the Contributor Covenant [code of conduct](.github/CODE_OF_CONDUCT.md).
+This project adheres to the Contributor Covenant [code of conduct](https://github.com/Simplify/ibantools/blob/master/.github/CODE_OF_CONDUCT.md).
 By participating, you are expected to uphold this code.
 
-For contribution details, please read [this document](CONTRIBUTING.md).
+For contribution details, please read [this document](https://github.com/Simplify/ibantools/blob/master/CONTRIBUTING.md).
 
 ## License
 
