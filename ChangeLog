@@ -1,6 +1,7 @@
 2017-10-05  Saša Jovanić  <sasa@simplify.ba>
 	* Changed documentation theme to `docdash`
 	* Fixed links in README to avoid broken links in documentation
+	* Updated `coverals` package
 
 2017-10-05  Saša Jovanić  <sasa@simplify.ba>
 	* Released version 1.4.0

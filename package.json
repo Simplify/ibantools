@@ -50,7 +50,7 @@
     "@types/mocha": "^2.2.42",
     "chai": "^4.1",
     "cheerio": "^0.22",
-    "coveralls": "^2.13",
+    "coveralls": "^3.0",
     "docdash": "^0.4.0",
     "gulp": "^3.9",
     "gulp-mocha": "^4.3",
