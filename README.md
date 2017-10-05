@@ -72,11 +72,10 @@ See [documentation](http://simplify.github.io/ibantools) with examples on Github
 
 ## Contributing
 
-* Clone this repo and run `npm install`.
-* Write tests for your changes in `test/IBANToolsTest.ts`.
-* Do not write more tests in `karma/ibantoolsSpec.js` unless module have problem with loading using AMD.
-* Before making pull requests run `gulp all && gulp test && gulp karma`.
-* Try not to make pull requests with changes in `dist`, `jsnext` or `build` directories.
+This project adheres to the Contributor Covenant [code of conduct](.github/CODE_OF_CONDUCT.md).
+By participating, you are expected to uphold this code.
+
+For contribution details, please read [this document](CONTRIBUTING.md).
 
 ## License
 
