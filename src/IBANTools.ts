@@ -9,7 +9,7 @@
  * @author Saša Jovanić
  * @module ibantools
  * @see module:ibantools
- * @version 1.4.0
+ * @version 1.5.0
  * @license MPL-2.0
  */
 "use strict";
@@ -50,7 +50,7 @@ let countrySpecs: CountryMap = {};
  */
 export function isValidIBAN(iban: string): boolean {
   if (iban !== undefined && iban !== null) {
-    let tmpIban: string = electonicFormatIBAN(iban);
+    let tmpIban: string = electronicFormatIBAN(iban);
     let spec = countrySpecs[tmpIban.slice(0,2)];
     if (spec !== undefined &&
         spec.chars === tmpIban.length &&
@@ -81,7 +81,7 @@ export function isValidIBAN(iban: string): boolean {
 export function isValidBBAN(bban: string, countryCode: string): boolean {
   if (bban !== undefined && bban !== null &&
 			countryCode !== undefined && countryCode !== null) {
-    const tmpBban: string = electonicFormatIBAN(bban);
+    const tmpBban: string = electronicFormatIBAN(bban);
     const spec = countrySpecs[countryCode];
     if (spec !== undefined &&
         spec.chars - 4 === tmpBban.length &&
@@ -110,7 +110,7 @@ export interface ComposeIBANParms {
  * @result {string} IBAN IBAN
  */
 export function composeIBAN(params: ComposeIBANParms): string {
-  let bban: string = electonicFormatIBAN(params.bban);
+  let bban: string = electronicFormatIBAN(params.bban);
   let spec = countrySpecs[params.countryCode];
   if (bban !== null &&
 			spec !== undefined &&
@@ -143,7 +143,7 @@ export interface ExtractIBANResult {
  */
 export function extractIBAN(iban: string): ExtractIBANResult {
   let result = <ExtractIBANResult>{};
-  iban = electonicFormatIBAN(iban);
+  iban = electronicFormatIBAN(iban);
   if(isValidIBAN(iban)) {
     result.bban = iban.slice(4);
     result.countryCode = iban.slice(0,2);
@@ -177,7 +177,7 @@ function checkFormatBBAN(bban: string, bformat: string): boolean {
  * @param {string} IBAN IBAN
  * @return {string} IBAN Electronic formated IBAN
  */
-export function electonicFormatIBAN(iban: string) {
+export function electronicFormatIBAN(iban: string) {
 	if (iban === undefined || iban === null) {
 		return null;
 	}
@@ -189,10 +189,10 @@ export function electonicFormatIBAN(iban: string) {
  * IBAN validation is not performed.
  * @example
  * // returns 'NL91 ABNA 0417 1643 00'
- * ibantools.electronicFormatIBAN('NL91ABNA0417164300');
+ * ibantools.friendlyFormatIBAN('NL91ABNA0417164300');
  * @example
  * // returns 'NL91-ABNA-0417-1643-00'
- * ibantools.electronicFormatIBAN('NL91ABNA0417164300','-');
+ * ibantools.friendlyFormatIBAN('NL91ABNA0417164300','-');
  * @alias module:ibantools.friendlyFormatIBAN
  * @param {string} IBAN IBAN
  * @param {string} separator Not required. Default separator is space ' '
@@ -200,7 +200,7 @@ export function electonicFormatIBAN(iban: string) {
  */
 export function friendlyFormatIBAN(iban: string, separator?: string) {
   if (typeof separator === 'undefined') { separator = ' '; }
-  return electonicFormatIBAN(iban).replace(/(.{4})(?!$)/g, "$1" + separator);
+  return electronicFormatIBAN(iban).replace(/(.{4})(?!$)/g, "$1" + separator);
 }
 
 /**

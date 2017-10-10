@@ -224,7 +224,7 @@ describe('IBANTools', () => {
 
   describe('When calling electronicFormatIBAN()', () => {
     it('with valid Brazilian IBAN should return BR9700360305000010009795493P1', () => {
-      expect(iban.electonicFormatIBAN('BR97 0036 0305 0000 1000 9795 493P 1')).to.equal('BR9700360305000010009795493P1');
+      expect(iban.electronicFormatIBAN('BR97 0036 0305 0000 1000 9795 493P 1')).to.equal('BR9700360305000010009795493P1');
     });
   });
 

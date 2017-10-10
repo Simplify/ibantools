@@ -96,16 +96,16 @@ export declare function extractIBAN(iban: string): ExtractIBANResult;
  * @param {string} IBAN IBAN
  * @return {string} IBAN Electronic formated IBAN
  */
-export declare function electonicFormatIBAN(iban: string): string;
+export declare function electronicFormatIBAN(iban: string): string;
 /**
  * Get IBAN in friendly format (separated after every 4 characters)
  * IBAN validation is not performed.
  * @example
  * // returns 'NL91 ABNA 0417 1643 00'
- * ibantools.electronicFormatIBAN('NL91ABNA0417164300');
+ * ibantools.friendlyFormatIBAN('NL91ABNA0417164300');
  * @example
  * // returns 'NL91-ABNA-0417-1643-00'
- * ibantools.electronicFormatIBAN('NL91ABNA0417164300','-');
+ * ibantools.friendlyFormatIBAN('NL91ABNA0417164300','-');
  * @alias module:ibantools.friendlyFormatIBAN
  * @param {string} IBAN IBAN
  * @param {string} separator Not required. Default separator is space ' '

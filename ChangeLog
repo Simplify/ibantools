@@ -1,3 +1,7 @@
+2017-10-10  Saša Jovanić  <sasa@simplify.ba>
+	* Released version 1.5.0
+	* Fixed typos in source code and documentation (GH-4)
+
 2017-10-05  Saša Jovanić  <sasa@simplify.ba>
 	* Changed documentation theme to `docdash`
 	* Fixed links in README to avoid broken links in documentation
