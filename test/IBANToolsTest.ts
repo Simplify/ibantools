@@ -80,6 +80,12 @@ describe('IBANTools', () => {
     it('with valid BIC NOLADE21KI should return true', function () {
       expect(iban.isValidBIC('NOLADE21KIE')).to.be.true;
     });
+    it('with valid BIC INGDDEFFXXX should return true', function () {
+      expect(iban.isValidBIC('INGDDEFFXXX')).to.be.true;
+    });
+    it('with invalid BIC INGDEFFXXX should return false', function () {
+      expect(iban.isValidBIC('INGDEFFXXX')).to.be.false;
+    });
     it('with invalid BIC ABN4NL2A should return false', function () {
       expect(iban.isValidBIC('ABN4NL2A')).to.be.false;
     });

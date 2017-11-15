@@ -1,3 +1,7 @@
+2017-11-15  Saša Jovanić  <sasa@simplify.ba>
+	* Released version 1.5.1
+	* Fixed mistake in BIC validation regexp when brach code is present (GH-5)
+
 2017-10-10  Saša Jovanić  <sasa@simplify.ba>
 	* Released version 1.5.0
 	* Fixed typos in source code and documentation (GH-4)

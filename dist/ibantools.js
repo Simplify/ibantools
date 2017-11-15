@@ -9,7 +9,7 @@ define(["require", "exports"], function (require, exports) {
      * @author Saša Jovanić
      * @module ibantools
      * @see module:ibantools
-     * @version 1.5.0
+     * @version 1.5.1
      * @license MPL-2.0
      */
     "use strict";
@@ -236,7 +236,7 @@ define(["require", "exports"], function (require, exports) {
      * @return {boolean} valid
      */
     function isValidBIC(bic) {
-        var reg = new RegExp('^[a-zA-Z]{6}[a-zA-Z0-9]{2}[A-Z0-9]{0,3}$', '');
+        var reg = new RegExp('^[a-zA-Z]{6}[a-zA-Z0-9]{2}([a-zA-Z0-9]{3})?$', '');
         return reg.test(bic);
     }
     exports.isValidBIC = isValidBIC;

@@ -9,7 +9,7 @@
  * @author Saša Jovanić
  * @module ibantools
  * @see module:ibantools
- * @version 1.5.0
+ * @version 1.5.1
  * @license MPL-2.0
  */
 "use strict";
@@ -269,7 +269,7 @@ export function getCountrySpecifications(): CountryMap {
  * @return {boolean} valid
  */
 export function isValidBIC(bic: string): boolean {
-  let reg = new RegExp('^[a-zA-Z]{6}[a-zA-Z0-9]{2}[A-Z0-9]{0,3}$', '');
+  let reg = new RegExp('^[a-zA-Z]{6}[a-zA-Z0-9]{2}([a-zA-Z0-9]{3})?$', '');
   return reg.test(bic);
 }
 
