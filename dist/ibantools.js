@@ -100,15 +100,16 @@ define(["require", "exports"], function (require, exports) {
     /**
      * extractIBAN
      * @example
-     * // returns {bban: 'ABNA0417164300', countryCode: 'NL', countryName: 'Netherlands', valid: true}
-     * ibantools.extractIBAN('NL91ABNA0417164300');
+     * // returns {iban: 'NL91ABNA0417164300', bban: 'ABNA0417164300', countryCode: 'NL', countryName: 'Netherlands', valid: true}
+     * ibantools.extractIBAN('NL91 ABNA 0417 1643 00');
      * @alias module:ibantools.extractIBAN
      * @param {string} IBAN IBAN
-     * @return {ExtractIBANResult} Object {bban: string, countryCode: string, countryName: string, valid: boolean}
+     * @return {ExtractIBANResult} Object {iban: string, bban: string, countryCode: string, countryName: string, valid: boolean}
      */
     function extractIBAN(iban) {
         var result = {};
         iban = electronicFormatIBAN(iban);
+        result.iban = iban;
         if (isValidIBAN(iban)) {
             result.bban = iban.slice(4);
             result.countryCode = iban.slice(0, 2);
@@ -146,7 +147,7 @@ define(["require", "exports"], function (require, exports) {
         if (iban === undefined || iban === null) {
             return null;
         }
-        return iban.replace(/[^a-zA-Z0-9]/g, "").toUpperCase();
+        return iban.replace(/[-\ ]/g, "").toUpperCase();
     }
     exports.electronicFormatIBAN = electronicFormatIBAN;
     /**

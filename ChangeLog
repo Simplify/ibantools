@@ -1,5 +1,5 @@
 2018-02-13  Saša Jovanić  <sasa@simplify.ba>
-	* Marked as version 1.6.0
+	* Released version 1.6.0
 	* Fixed link to latest IBAN registry PDF document
 	* Fixed validation for Costa Rica (it has 18 digits now, not 17)
 	* Added Republic of Belarus
@@ -7,6 +7,8 @@
 	* Renamed `Palestinian teritories` to `State of Palestine`, as in IBAN registry
 	* Added El Salvador
 	* Updated develpoment dependencies
+	* `ExtractIBANResult` now also contains `iban` that represents IBAN electronic format
+	* `electronicFormatIBAN` now removes only spaces and dashes, not the other unicode characters
 
 2017-11-15  Saša Jovanić  <sasa@simplify.ba>
 	* Released version 1.5.1

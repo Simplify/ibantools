@@ -71,6 +71,7 @@ export declare function composeIBAN(params: ComposeIBANParms): string;
  * Interface for ExtractIBAN result
  */
 export interface ExtractIBANResult {
+    iban: string;
     bban?: string;
     countryCode?: string;
     countryName?: string;
@@ -79,11 +80,11 @@ export interface ExtractIBANResult {
 /**
  * extractIBAN
  * @example
- * // returns {bban: 'ABNA0417164300', countryCode: 'NL', countryName: 'Netherlands', valid: true}
- * ibantools.extractIBAN('NL91ABNA0417164300');
+ * // returns {iban: 'NL91ABNA0417164300', bban: 'ABNA0417164300', countryCode: 'NL', countryName: 'Netherlands', valid: true}
+ * ibantools.extractIBAN('NL91 ABNA 0417 1643 00');
  * @alias module:ibantools.extractIBAN
  * @param {string} IBAN IBAN
- * @return {ExtractIBANResult} Object {bban: string, countryCode: string, countryName: string, valid: boolean}
+ * @return {ExtractIBANResult} Object {iban: string, bban: string, countryCode: string, countryName: string, valid: boolean}
  */
 export declare function extractIBAN(iban: string): ExtractIBANResult;
 /**

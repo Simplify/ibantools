@@ -213,6 +213,9 @@ describe('IBANTools', () => {
     it('valid should be true', () => {
       expect(ext.valid).to.be.true;
     });
+    it('IBAN should be BR9700360305000010009795493P1', () => {
+      expect(ext.iban).to.equal('BR9700360305000010009795493P1');
+    });
     it('BBAN should be 00360305000010009795493P1', () => {
       expect(ext.bban).to.equal('00360305000010009795493P1');
     });
@@ -228,6 +231,9 @@ describe('IBANTools', () => {
     let ext = iban.extractIBAN('BR97 0036 0305 1000 9795 493P 1');
     it('valid should be false', () => {
       expect(ext.valid).to.be.false;
+    });
+    it('IBAN should be BR9700360305100019795493P1', () => {
+      expect(ext.iban).to.equal('BR970036030510009795493P1');
     });
     it('BBAN should be undefined', () => {
       expect(ext.bban).to.be.undefined;
