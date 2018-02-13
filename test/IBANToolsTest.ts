@@ -26,14 +26,26 @@ describe('IBANTools', () => {
     it('with valid AT IBAN should return true', () => {
       expect(iban.isValidIBAN('AT61 1904 3002 3457 3201')).to.be.true;
     });
-    it('with valid HR IBAN should return true', () => {
-      expect(iban.isValidIBAN('HR12 1001 0051 8630 0016 0')).to.be.true;
+    it('with valid BY IBAN should return true', () => {
+      expect(iban.isValidIBAN('BY13 NBRB 3600 9000 0000 2Z00 AB00')).to.be.true;
+    });
+    it('with valid CR IBAN should return true', () => {
+      expect(iban.isValidIBAN('CR25 0102 0000 9074 8835 72')).to.be.true;
     });
     it('with valid DE IBAN should return true', () => {
       expect(iban.isValidIBAN('DE89 3704 0044 0532 0130 00')).to.be.true;
     });
+    it('with valid ES IBAN should return true', () => {
+      expect(iban.isValidIBAN('ES91 2100 0418 4502 0005 1332')).to.be.true;
+    });
     it('with valid GT IBAN should return true', () => {
       expect(iban.isValidIBAN('GT82 TRAJ 0102 0000 0012 1002 9690')).to.be.true;
+    });
+    it('with valid HR IBAN should return true', () => {
+      expect(iban.isValidIBAN('HR12 1001 0051 8630 0016 0')).to.be.true;
+    });
+    it('with valid IQ IBAN should return true', () => {
+      expect(iban.isValidIBAN('IQ98 NBIQ 8501 2345 6789 012')).to.be.true;
     });
     it('with valid JO IBAN should return true', () => {
       expect(iban.isValidIBAN('JO94 CBJO 0010 0000 0000 0131 0003 02')).to.be.true;
@@ -41,11 +53,11 @@ describe('IBANTools', () => {
     it('with valid PA IBAN should return true', () => {
       expect(iban.isValidIBAN('PS92 PALS 0000 0000 0400 1234 5670 2')).to.be.true;
     });
-    it('with valid ES IBAN should return true', () => {
-      expect(iban.isValidIBAN('ES91 2100 0418 4502 0005 1332')).to.be.true;
-    });
     it('with valid RS IBAN should return true', () => {
       expect(iban.isValidIBAN('RS35 2600 0560 1001 6113 79')).to.be.true;
+    });
+    it('with valid SV IBAN should return true', () => {
+      expect(iban.isValidIBAN('SV 62 CENR 00000000000000700025')).to.be.true;
     });
     it('with valid TL IBAN should return true', () => {
       expect(iban.isValidIBAN('TL38 0080 0123 4567 8910 157')).to.be.true;

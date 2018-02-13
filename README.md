@@ -15,7 +15,7 @@
 IBANTools is TypeScript/JavaScript library for validation, creation and extraction of IBAN, BBAN and BIC/SWIFT numbers.
 
 For more information about IBAN/BBAN see [wikipedia page](https://en.wikipedia.org/wiki/International_Bank_Account_Number) and
-[IBAN registry](https://www.swift.com/sites/default/files/resources/swift_standards_ibanregistry.pdf).
+[IBAN registry](https://www.swift.com/sites/default/files/resources/iban_registry.pdf).
 
 For more information about BIC/SWIFT see [this wikipedia page](https://en.wikipedia.org/wiki/ISO_9362).
 
