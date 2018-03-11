@@ -4,30 +4,13 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 /**
- * Interface for IBAN Country Specification
- */
-export interface CountrySpec {
-    chars: number;
-    name: string;
-    bban_regexp: string;
-}
-/**
- * Interface for Map of country specifications
- */
-export interface CountryMap {
-    [code: string]: CountrySpec;
-}
-/**
  * Validate IBAN
  * @example
  * // returns true
- * ibantools.isValidIBAN('NL91 ABNA 0517 1643 00');
- * @example
- * // returns true
- * ibantools.isValidIBAN('NL91-ABNA-0517-1643-00');
+ * ibantools.isValidIBAN("NL91ABNA0517164300");
  * @example
  * // returns false
- * ibantools.isValidIBAN('NL92 ABNA 0517 1643 00');
+ * ibantools.isValidIBAN("NL92ABNA0517164300");
  * @alias module:ibantools.isValidIBAN
  * @param {string} IBAN IBAN
  * @return {boolean} valid
@@ -37,13 +20,10 @@ export declare function isValidIBAN(iban: string): boolean;
  * Validate BBAN
  * @example
  * // returns true
- * ibantools.isValidBBAN('ABNA 0517 1643 00', 'NL');
- * @example
- * // returns true
- * ibantools.isValidBBAN('ABNA0517164300', 'NL');
+ * ibantools.isValidBBAN("ABNA0517164300", "NL");
  * @example
  * // returns false
- * ibantools.isValidBBAN('A7NA 0517 1643 00', 'NL');
+ * ibantools.isValidBBAN("A7NA0517164300", "NL");
  * @alias module:ibantools.isValidBBAN
  * @param {string} BBAN BBAN
  * @param {string} countryCode Country code
@@ -61,7 +41,7 @@ export interface ComposeIBANParms {
  * composeIBAN
  * @example
  * // returns NL91ABNA0417164300
- * ibantools.composeIBAN('NL', 'ABNA0417164300');
+ * ibantools.composeIBAN("NL", "ABNA0417164300");
  * @alias module:ibantools.composeIBAN
  * @param {ComposeIBANParams} Object {bban: string, countryCode: string}
  * @result {string} IBAN IBAN
@@ -80,8 +60,8 @@ export interface ExtractIBANResult {
 /**
  * extractIBAN
  * @example
- * // returns {iban: 'NL91ABNA0417164300', bban: 'ABNA0417164300', countryCode: 'NL', countryName: 'Netherlands', valid: true}
- * ibantools.extractIBAN('NL91 ABNA 0417 1643 00');
+ * // returns {iban: "NL91ABNA0417164300", bban: "ABNA0417164300", countryCode: "NL", countryName: "Netherlands", valid: true}
+ * ibantools.extractIBAN("NL91 ABNA 0417 1643 00");
  * @alias module:ibantools.extractIBAN
  * @param {string} IBAN IBAN
  * @return {ExtractIBANResult} Object {iban: string, bban: string, countryCode: string, countryName: string, valid: boolean}
@@ -91,8 +71,8 @@ export declare function extractIBAN(iban: string): ExtractIBANResult;
  * Get IBAN in electronic format (no spaces)
  * IBAN validation is not performed.
  * @example
- * // returns 'NL91ABNA0417164300'
- * ibantools.electronicFormatIBAN('NL91 ABNA 0417 1643 00');
+ * // returns "NL91ABNA0417164300"
+ * ibantools.electronicFormatIBAN("NL91 ABNA 0417 1643 00");
  * @alias module:ibantools.electronicFormatIBAN
  * @param {string} IBAN IBAN
  * @return {string} IBAN Electronic formated IBAN
@@ -102,19 +82,22 @@ export declare function electronicFormatIBAN(iban: string): string;
  * Get IBAN in friendly format (separated after every 4 characters)
  * IBAN validation is not performed.
  * @example
- * // returns 'NL91 ABNA 0417 1643 00'
- * ibantools.friendlyFormatIBAN('NL91ABNA0417164300');
+ * // returns "NL91 ABNA 0417 1643 00"
+ * ibantools.friendlyFormatIBAN("NL91ABNA0417164300");
  * @example
- * // returns 'NL91-ABNA-0417-1643-00'
- * ibantools.friendlyFormatIBAN('NL91ABNA0417164300','-');
+ * // returns "NL91-ABNA-0417-1643-00"
+ * ibantools.friendlyFormatIBAN("NL91ABNA0417164300","-");
  * @alias module:ibantools.friendlyFormatIBAN
  * @param {string} IBAN IBAN
- * @param {string} separator Not required. Default separator is space ' '
+ * @param {string} separator Not required. Default separator is space " "
  * @return {string} IBAN Friendly formated IBAN
  */
 export declare function friendlyFormatIBAN(iban: string, separator?: string): string;
 /**
  * getCountrySpecifications
+ * Returns specifications for all countries, even those who are not
+ * members of IBAN registry. `IBANRegistry` field indicates if country
+ * is member of not.
  * @example
  * // Validating IBAN form field after user selects his country
  * // <select id="countries">
@@ -122,32 +105,32 @@ export declare function friendlyFormatIBAN(iban: string, separator?: string): st
  * //   <option value="NL">Netherlands</option>
  * //   ...
  * // </select>
- * $('#countries').select(function() {
+ * $("#countries").select(function() {
  *   // Find country
  *   let country = ibantools.getCountrySpecifications()[$(this).val()];
  *   // Add country code letters to IBAN form field
- *   $('input#iban').value($(this).val());
- *   // Add new value to 'pattern' attribute to #iban input text field
- *   $('input#iban').attr('pattern', $(this).val() + '[0-9]{2}' + country.bban_regexp.slice(1).replace('$',''));
+ *   $("input#iban").value($(this).val());
+ *   // Add new value to "pattern" attribute to #iban input text field
+ *   $("input#iban").attr("pattern", $(this).val() + "[0-9]{2}" + country.bban_regexp.slice(1).replace("$",""));
  * });
  * @alias module:ibantools.getCountrySpecifications
- * @return {CountryMap} Object [countryCode: string]CountrySpec -> {chars: :number, bban_regexp: string, name: string}
+ * @return {CountryMap} Object [countryCode: string]CountrySpec -> {chars: :number, bban_regexp: string, name: string, IBANRegistry: boolean}
  */
 export declare function getCountrySpecifications(): CountryMap;
 /**
  * Validate BIC/SWIFT
  * @example
  * // returns true
- * ibantools.isValidBIC('ABNANL2A');
+ * ibantools.isValidBIC("ABNANL2A");
  * @example
  * // returns true
- * ibantools.isValidBIC('NEDSZAJJXXX');
+ * ibantools.isValidBIC("NEDSZAJJXXX");
  * @example
  * // returns false
- * ibantools.isValidBIC('ABN4NL2A');
+ * ibantools.isValidBIC("ABN4NL2A");
  * @example
  * // returns false
- * ibantools.isValidBIC('ABNA NL 2A');
+ * ibantools.isValidBIC("ABNA NL 2A");
  * @alias module:ibantools.isValidBIC
  * @param {string} BIC BIC
  * @return {boolean} valid
@@ -159,6 +142,7 @@ export declare function isValidBIC(bic: string): boolean;
 export interface ExtractBICResult {
     bankCode?: string;
     countryCode?: string;
+    countryName?: string;
     locationCode?: string;
     branchCode?: string;
     testBIC?: boolean;
@@ -167,10 +151,25 @@ export interface ExtractBICResult {
 /**
  * extractBIC
  * @example
- * // returns {bankCode: 'ABNA', countryCode: 'NL', locationCode: '2A', branchCode: null, testBIC: flase, valid: true}
- * ibantools.extractBIC('ABNANL2A');
+ * // returns {bankCode: "ABNA", countryCode: "NL", countryName: "Netherlands", locationCode: "2A", branchCode: null, testBIC: flase, valid: true}
+ * ibantools.extractBIC("ABNANL2A");
  * @alias module:ibantools.extractBIC
  * @param {string} BIC BIC
- * @return {ExtractBICResult} Object {bancCode: string, countryCode: string, locationCode: string, branchCode: string, testBIC: boolean, valid: boolean}
+ * @return {ExtractBICResult} Object {bancCode: string, countryCode: string, countryName: string, locationCode: string, branchCode: string, testBIC: boolean, valid: boolean}
  */
 export declare function extractBIC(bic: string): ExtractBICResult;
+/**
+ * Interface for IBAN Country Specification
+ */
+export interface CountrySpec {
+    chars: number;
+    name: string;
+    bban_regexp: string;
+    IBANRegistry: boolean;
+}
+/**
+ * Interface for Map of Country Specifications
+ */
+export interface CountryMap {
+    [code: string]: CountrySpec;
+}

@@ -1,3 +1,12 @@
+2018-03-11  Saša Jovanić  <sasa@simplify.ba>
+	* Released version 2.0.0
+	* BREAKING: `isValidIBAN` does not accept IBAN with `-` and ` ` any more - IBAN must be already in electronic format
+	* `getCountrySpecifications` now returns all countries (ISO-3166-1 alpha-2 + `XK` - temporary country code for Kosovo) with `IBANRegistry` boolean property that indicates if country is in IBAN registry or not
+	* `extractIBAN` now requires IBAN in electronic format
+	* `isValidBIC` now also checks if Country exists
+	* `extractBIC` also returns property `countryCode`
+	* Added `tslint` as development dependency
+
 2018-02-13  Saša Jovanić  <sasa@simplify.ba>
 	* Released version 1.6.0
 	* Fixed link to latest IBAN registry PDF document

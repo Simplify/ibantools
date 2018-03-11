@@ -35,11 +35,14 @@ $ bower install ibantools
 
 ## Usage
 
+See [full documentation](http://simplify.github.io/ibantools) with examples on Github pages.
+
 ### Node.js - CommonJS
 
 ```js
-var ibantools = require('ibantools');
-ibantools.isValidIBAN('NL91 ABNA 0517 1643 00');
+const ibantools = require('ibantools');
+const iban = electronicFormatIBAN('NL91 ABNA 0517 1643 00'); // 'NL91ABNA0517164300'
+ibantools.isValidIBAN(iban);
 ibantools.isValidBIC('ABNANL2A');
 ```
 
@@ -65,10 +68,6 @@ If you are using tools that support `jsnext`, like a [rollup](https://github.com
 ### With TypeScript
 
 Install library/module using npm. Package bundles type definitions and if you are on TypeScript 2.0 or above `tsc` will access those automatically. If not, check your `tsconfig.json` file.
-
-## API
-
-See [documentation](http://simplify.github.io/ibantools) with examples on Github pages.
 
 ## Contributing
 
