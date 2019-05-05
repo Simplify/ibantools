@@ -281,6 +281,15 @@ describe("IBANTools", () => {
     });
   });
 
+  describe("When calling friendlyFormatIBAN() with invalid argument", () => {
+    it("returns null when undefined is provided", () => {
+      expect(iban.friendlyFormatIBAN(undefined)).to.be.null;
+    });
+    it("returns null when null is provided", () => {
+      expect(iban.friendlyFormatIBAN(null)).to.be.null;
+    });
+  });
+
   describe("When calling getCountrySpecifications()", () => {
     const ext = iban.getCountrySpecifications();
     it("Country with code NL should return name Netherlands", () => {

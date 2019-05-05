@@ -144,6 +144,7 @@ function checkFormatBBAN(bban: string, bformat: string): boolean {
 /**
  * Get IBAN in electronic format (no spaces)
  * IBAN validation is not performed.
+ * When non-string value for IBAN is provided, returns null.
  * @example
  * // returns "NL91ABNA0417164300"
  * ibantools.electronicFormatIBAN("NL91 ABNA 0417 1643 00");
@@ -152,15 +153,14 @@ function checkFormatBBAN(bban: string, bformat: string): boolean {
  * @return {string} IBAN Electronic formated IBAN
  */
 export function electronicFormatIBAN(iban: string) {
-  if (iban === undefined || iban === null) {
-    return null;
-  }
+  if (typeof iban !== "string") { return null; }
   return iban.replace(/[-\ ]/g, "").toUpperCase();
 }
 
 /**
  * Get IBAN in friendly format (separated after every 4 characters)
  * IBAN validation is not performed.
+ * When non-string value for IBAN is provided, returns null.
  * @example
  * // returns "NL91 ABNA 0417 1643 00"
  * ibantools.friendlyFormatIBAN("NL91ABNA0417164300");
@@ -173,6 +173,7 @@ export function electronicFormatIBAN(iban: string) {
  * @return {string} IBAN Friendly formated IBAN
  */
 export function friendlyFormatIBAN(iban: string, separator?: string) {
+  if (typeof iban !== "string") { return null; }
   if (typeof separator === "undefined") { separator = " "; }
   return electronicFormatIBAN(iban).replace(/(.{4})(?!$)/g, "$1" + separator);
 }
