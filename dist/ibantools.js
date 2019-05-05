@@ -9,7 +9,7 @@ define(["require", "exports"], function (require, exports) {
      * @author Saša Jovanić
      * @module ibantools
      * @see module:ibantools
-     * @version 2.0.0
+     * @version 2.1.0
      * @license MPL-2.0
      */
     "use strict";
@@ -125,6 +125,7 @@ define(["require", "exports"], function (require, exports) {
     /**
      * Get IBAN in electronic format (no spaces)
      * IBAN validation is not performed.
+     * When non-string value for IBAN is provided, returns null.
      * @example
      * // returns "NL91ABNA0417164300"
      * ibantools.electronicFormatIBAN("NL91 ABNA 0417 1643 00");
@@ -133,7 +134,7 @@ define(["require", "exports"], function (require, exports) {
      * @return {string} IBAN Electronic formated IBAN
      */
     function electronicFormatIBAN(iban) {
-        if (iban === undefined || iban === null) {
+        if (typeof iban !== "string") {
             return null;
         }
         return iban.replace(/[-\ ]/g, "").toUpperCase();
@@ -142,6 +143,7 @@ define(["require", "exports"], function (require, exports) {
     /**
      * Get IBAN in friendly format (separated after every 4 characters)
      * IBAN validation is not performed.
+     * When non-string value for IBAN is provided, returns null.
      * @example
      * // returns "NL91 ABNA 0417 1643 00"
      * ibantools.friendlyFormatIBAN("NL91ABNA0417164300");
@@ -154,6 +156,9 @@ define(["require", "exports"], function (require, exports) {
      * @return {string} IBAN Friendly formated IBAN
      */
     function friendlyFormatIBAN(iban, separator) {
+        if (typeof iban !== "string") {
+            return null;
+        }
         if (typeof separator === "undefined") {
             separator = " ";
         }
@@ -243,8 +248,9 @@ define(["require", "exports"], function (require, exports) {
      * @param {string} BIC BIC
      * @return {ExtractBICResult} Object {bancCode: string, countryCode: string, countryName: string, locationCode: string, branchCode: string, testBIC: boolean, valid: boolean}
      */
-    function extractBIC(bic) {
+    function extractBIC(inputBic) {
         var result = {};
+        var bic = inputBic.toUpperCase();
         if (isValidBIC(bic)) {
             result.bankCode = bic.slice(0, 4);
             result.countryCode = bic.slice(4, 6);
@@ -498,7 +504,7 @@ define(["require", "exports"], function (require, exports) {
         US: { chars: null, bban_regexp: null, IBANRegistry: false, name: "United States of America" },
         UY: { chars: null, bban_regexp: null, IBANRegistry: false, name: "Uruguay" },
         UZ: { chars: null, bban_regexp: null, IBANRegistry: false, name: "Uzbekistan" },
-        VA: { chars: null, bban_regexp: null, IBANRegistry: false, name: "Holy See" },
+        VA: { chars: 22, bban_regexp: "^[0-9]{18}", IBANRegistry: true, name: "Vatican City State" },
         VC: { chars: null, bban_regexp: null, IBANRegistry: false, name: "Saint Vincent and the Granadines" },
         VE: { chars: null, bban_regexp: null, IBANRegistry: false, name: "Venezuela, Bolivian Republic of" },
         VG: { chars: 24, bban_regexp: "^[A-Z0-9]{4}[0-9]{16}$", name: "Virgin Islands, British", IBANRegistry: true },

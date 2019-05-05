@@ -70,6 +70,7 @@ export declare function extractIBAN(iban: string): ExtractIBANResult;
 /**
  * Get IBAN in electronic format (no spaces)
  * IBAN validation is not performed.
+ * When non-string value for IBAN is provided, returns null.
  * @example
  * // returns "NL91ABNA0417164300"
  * ibantools.electronicFormatIBAN("NL91 ABNA 0417 1643 00");
@@ -81,6 +82,7 @@ export declare function electronicFormatIBAN(iban: string): string;
 /**
  * Get IBAN in friendly format (separated after every 4 characters)
  * IBAN validation is not performed.
+ * When non-string value for IBAN is provided, returns null.
  * @example
  * // returns "NL91 ABNA 0417 1643 00"
  * ibantools.friendlyFormatIBAN("NL91ABNA0417164300");
@@ -157,7 +159,7 @@ export interface ExtractBICResult {
  * @param {string} BIC BIC
  * @return {ExtractBICResult} Object {bancCode: string, countryCode: string, countryName: string, locationCode: string, branchCode: string, testBIC: boolean, valid: boolean}
  */
-export declare function extractBIC(bic: string): ExtractBICResult;
+export declare function extractBIC(inputBic: string): ExtractBICResult;
 /**
  * Interface for IBAN Country Specification
  */
