@@ -274,8 +274,9 @@ export interface ExtractBICResult {
  * @param {string} BIC BIC
  * @return {ExtractBICResult} Object {bancCode: string, countryCode: string, countryName: string, locationCode: string, branchCode: string, testBIC: boolean, valid: boolean}
  */
-export function extractBIC(bic: string): ExtractBICResult {
+export function extractBIC(inputBic: string): ExtractBICResult {
   const result = {} as ExtractBICResult;
+  const bic = inputBic.toUpperCase();
   if (isValidBIC(bic)) {
     result.bankCode = bic.slice(0, 4);
     result.countryCode = bic.slice(4, 6);

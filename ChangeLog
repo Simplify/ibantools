@@ -1,9 +1,11 @@
 2019-05-05  Saša Jovanić  <sasa@simplify.ba>
-	* Merged PR1 - Renamed `main:jsnext` to `modules` - Thanks @NeoLegends ()PR1/GH9)
+	* Released varsion 2.1.0
+	* Merged PR1 - Renamed `main:jsnext` to `modules` - Thanks @NeoLegends (PR1/GH9)
 	* Upraded various packages containing security vulnerabilities using `npm audit fix`
 	* Upgraded Gulp to version 4 and all gulp tasks
-	* Added Vatican City State
+	* Added Vatican City State (GH13)
 	* `friendlyFormatIBAN` and `electronicFormatIBAN` will return `null` when non-string value is provided (GH15).
+	* Fixed issue with `extractBIC` when argument is provided in lowercase (GH12).
 
 2018-03-11  Saša Jovanić  <sasa@simplify.ba>
 	* Released version 2.0.0

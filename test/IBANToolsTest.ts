@@ -138,6 +138,12 @@ describe("IBANTools", () => {
       expect(ext.branchCode).to.equal("619");
     });
   });
+  describe("When calling extractBIC() with lowwercase BIC dnbanokk", () => {
+    const ext = iban.extractBIC("dnbanokk");
+    it("countryName should be Norway", () => {
+      expect(ext.countryName).to.equal("Norway");
+    });
+  });
 
   describe("When calling extractBIC() with invalid BIC ABN7NL2A", function() {
     const ext = iban.extractBIC("ABN7NL2A");
