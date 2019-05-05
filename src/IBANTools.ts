@@ -9,7 +9,7 @@
  * @author Saša Jovanić
  * @module ibantools
  * @see module:ibantools
- * @version 2.0.0
+ * @version 2.1.0
  * @license MPL-2.0
  */
 "use strict";
@@ -544,7 +544,7 @@ const countrySpecs: CountryMap = {
   US: {chars: null, bban_regexp: null, IBANRegistry: false, name: "United States of America"},
   UY: {chars: null, bban_regexp: null, IBANRegistry: false, name: "Uruguay"},
   UZ: {chars: null, bban_regexp: null, IBANRegistry: false, name: "Uzbekistan"},
-  VA: {chars: null, bban_regexp: null, IBANRegistry: false, name: "Holy See"},
+  VA: {chars: 22, bban_regexp: "^[0-9]{18}", IBANRegistry: true, name: "Vatican City State"},
   VC: {chars: null, bban_regexp: null, IBANRegistry: false, name: "Saint Vincent and the Granadines"},
   VE: {chars: null, bban_regexp: null, IBANRegistry: false, name: "Venezuela, Bolivian Republic of"},
   VG: {chars: 24, bban_regexp: "^[A-Z0-9]{4}[0-9]{16}$", name: "Virgin Islands, British", IBANRegistry: true},

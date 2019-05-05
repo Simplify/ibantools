@@ -70,6 +70,9 @@ describe("IBANTools", () => {
     it("with valid UA IBAN should return true", () => {
       expect(iban.isValidIBAN("UA213996220000026007233566001")).to.be.true;
     });
+    it("with valid VA IBAN should return true", () => {
+      expect(iban.isValidIBAN("VA59001123000012345678")).to.be.true;
+    });
     it("with invalid RS IBAN should return false", () => {
       expect(iban.isValidIBAN("RS36260005601001611379")).to.be.false;
     });

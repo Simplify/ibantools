@@ -1,3 +1,9 @@
+2019-05-05  Saša Jovanić  <sasa@simplify.ba>
+	* Merged PR1 - Renamed `main:jsnext` to `modules` - Thanks @NeoLegends
+	* Upraded various packages containing security vulnerabilities using `npm audit fix`
+	* Upgraded Gulp to version 4 and all gulp tasks
+	* Added Vatican City State
+
 2018-03-11  Saša Jovanić  <sasa@simplify.ba>
 	* Released version 2.0.0
 	* BREAKING: `isValidIBAN` does not accept IBAN with `-` and ` ` any more - IBAN must be already in electronic format
