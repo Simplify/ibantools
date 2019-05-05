@@ -68,9 +68,14 @@
     "merge2": "^1.2.1",
     "mocha": "^6.1",
     "mocha-lcov-reporter": "^1.2.0",
-    "request": "^2.88.0",
     "requirejs": "^2.3",
     "tslint": "^5.9.1",
-    "typescript": "^3.4"
+    "typescript": "^3.4",
+    "extend": ">=3.0.2",
+    "sshpk": ">=1.13.2"
+  },
+  "//": {
+    "extend": "deep dependency of karma - security issue",
+    "sshpk": "deep dependency of coverals - security issue"
   }
 }
