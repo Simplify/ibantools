@@ -1,4 +1,8 @@
 2019-05-05  Saša Jovanić  <sasa@simplify.ba>
+	* Updated development dependencies to latest versions
+	* Updated deep dependencies that have security issues
+
+2019-05-05  Saša Jovanić  <sasa@simplify.ba>
 	* Released varsion 2.1.0
 	* Merged PR1 - Renamed `main:jsnext` to `modules` - Thanks @NeoLegends (PR1/GH9)
 	* Upraded various packages containing security vulnerabilities using `npm audit fix`
