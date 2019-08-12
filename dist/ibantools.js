@@ -9,7 +9,7 @@ define(["require", "exports"], function (require, exports) {
      * @author Saša Jovanić
      * @module ibantools
      * @see module:ibantools
-     * @version 2.1.0
+     * @version 2.2.0
      * @license MPL-2.0
      */
     "use strict";
@@ -28,12 +28,14 @@ define(["require", "exports"], function (require, exports) {
      */
     function isValidIBAN(iban) {
         if (iban !== undefined && iban !== null) {
+            var reg = new RegExp("^[0-9]{2}$", "");
             var spec = countrySpecs[iban.slice(0, 2)];
             if (spec !== undefined &&
                 spec.IBANRegistry &&
                 spec.chars === iban.length &&
+                reg.test(iban.slice(2, 4)) &&
                 checkFormatBBAN(iban.slice(4), spec.bban_regexp) &&
-                mod9710(iban) === 1) {
+                isValidIBANChecksum(iban)) {
                 return true;
             }
         }
@@ -165,6 +167,31 @@ define(["require", "exports"], function (require, exports) {
         return electronicFormatIBAN(iban).replace(/(.{4})(?!$)/g, "$1" + separator);
     }
     exports.friendlyFormatIBAN = friendlyFormatIBAN;
+    /**
+     * Calculate checksum of IBAN and compares it with checksum provided in IBANregistry
+     * @param {string} IBAN
+     * @return {boolean}
+     */
+    function isValidIBANChecksum(iban) {
+        var providedChecksum = parseInt(iban.slice(2, 4), 10);
+        var temp = iban.slice(3) + iban.slice(0, 2) + '00';
+        var validationString = "";
+        for (var n = 1; n < temp.length; n++) {
+            var c = temp.charCodeAt(n);
+            if (c >= 65) {
+                validationString += (c - 55).toString();
+            }
+            else {
+                validationString += temp[n];
+            }
+        }
+        while (validationString.length > 2) {
+            var part = validationString.slice(0, 6);
+            validationString = (parseInt(part, 10) % 97).toString() + validationString.slice(part.length);
+        }
+        var rest = parseInt(validationString, 10) % 97;
+        return (98 - rest) === providedChecksum;
+    }
     /**
      * MOD-97-10
      * @param {string}

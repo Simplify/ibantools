@@ -1,3 +1,10 @@
+2019-08-12  Saša Jovanić  <sasa@simplify.ba>
+	* Released varsion 2.2.0
+	* Fixed Swift register PDF link on README file
+	* Fixed problem with invalid IBAN checksum structure (GH16)
+	* When checking if IBAN checksum is valid we will generate IBAN checksum and compare it with existing one instead of checking if result of mod97-10 is 1
+	* Added `strict` flag to tsconfig
+
 2019-05-05  Saša Jovanić  <sasa@simplify.ba>
 	* Updated development dependencies to latest versions
 	* Updated deep dependencies that have security issues

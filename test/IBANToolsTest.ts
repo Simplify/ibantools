@@ -73,6 +73,9 @@ describe("IBANTools", () => {
     it("with valid VA IBAN should return true", () => {
       expect(iban.isValidIBAN("VA59001123000012345678")).to.be.true;
     });
+    it("with valid SV IBAN should return true", () => {
+      expect(iban.isValidIBAN("SV62CENR00000000000000700025")).to.be.true;
+    });
     it("with invalid RS IBAN should return false", () => {
       expect(iban.isValidIBAN("RS36260005601001611379")).to.be.false;
     });
@@ -81,6 +84,15 @@ describe("IBANTools", () => {
     });
     it("with invalid GL IBAN should return false", () => {
       expect(iban.isValidIBAN("GL89647100010002067")).to.be.false;
+    });
+    it("with valid GB IBAN should return true", () => {
+      expect(iban.isValidIBAN("GB29NWBK60161331926819")).to.be.true;
+    });
+    it("with invalid GB IBAN should return false", () => {
+      expect(iban.isValidIBAN("GB2LABBY09012857201707")).to.be.false;
+    });
+    it("with invalid GB IBAN should return false", () => {
+      expect(iban.isValidIBAN("GB00HLFX11016111455365")).to.be.false;
     });
   });
 
