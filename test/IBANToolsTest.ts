@@ -137,9 +137,6 @@ describe("IBANTools", () => {
     it("countryCode should be NL", () => {
       expect(ext.countryCode).to.equal("NL");
     });
-    it("countryName should be Netherlands", () => {
-      expect(ext.countryName).to.equal("Netherlands");
-    });
     it("locationCode should be 2A", () => {
       expect(ext.locationCode).to.equal("2A");
     });
@@ -152,8 +149,8 @@ describe("IBANTools", () => {
   });
   describe("When calling extractBIC() with lowwercase BIC dnbanokk", () => {
     const ext = iban.extractBIC("dnbanokk");
-    it("countryName should be Norway", () => {
-      expect(ext.countryName).to.equal("Norway");
+    it("countryCode should be NO", () => {
+      expect(ext.countryCode).to.equal("NO");
     });
   });
 
@@ -167,9 +164,6 @@ describe("IBANTools", () => {
     });
     it("countryCode should be undefined", () => {
       expect(ext.countryCode).to.be.undefined;
-    });
-    it("countryName should be undefined", () => {
-      expect(ext.countryName).to.be.undefined;
     });
     it("locationCode should be undefined", () => {
       expect(ext.locationCode).to.be.undefined;
@@ -192,9 +186,6 @@ describe("IBANTools", () => {
     });
     it("countryCode should be ZA", () => {
       expect(ext.countryCode).to.equal("ZA");
-    });
-    it("countryName should be South Africa", () => {
-      expect(ext.countryName).to.equal("South Africa");
     });
     it("locationCode should be J0", () => {
       expect(ext.locationCode).to.equal("J0");
@@ -257,9 +248,6 @@ describe("IBANTools", () => {
     it("countryCode should be BR", () => {
       expect(ext.countryCode).to.equal("BR");
     });
-    it("countryName should be Brazil", () => {
-      expect(ext.countryName).to.equal("Brazil");
-    });
   });
 
   describe("When calling extractIBAN() with invalid IBAN", () => {
@@ -275,9 +263,6 @@ describe("IBANTools", () => {
     });
     it("countryCode should be undefined", () => {
       expect(ext.countryCode).to.be.undefined;
-    });
-    it("countryName should be undefined", () => {
-      expect(ext.countryName).to.be.undefined;
     });
   });
 
@@ -310,9 +295,6 @@ describe("IBANTools", () => {
 
   describe("When calling getCountrySpecifications()", () => {
     const ext = iban.getCountrySpecifications();
-    it("Country with code NL should return name Netherlands", () => {
-      expect(ext.NL.name).to.equal("Netherlands");
-    });
     it("Country with code BA should return IBANRegistry true", () => {
       expect(ext.BA.IBANRegistry).to.be.true;
     });

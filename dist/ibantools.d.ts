@@ -54,17 +54,16 @@ export interface ExtractIBANResult {
     iban: string;
     bban?: string;
     countryCode?: string;
-    countryName?: string;
     valid: boolean;
 }
 /**
  * extractIBAN
  * @example
- * // returns {iban: "NL91ABNA0417164300", bban: "ABNA0417164300", countryCode: "NL", countryName: "Netherlands", valid: true}
+ * // returns {iban: "NL91ABNA0417164300", bban: "ABNA0417164300", countryCode: "NL", valid: true}
  * ibantools.extractIBAN("NL91 ABNA 0417 1643 00");
  * @alias module:ibantools.extractIBAN
  * @param {string} IBAN IBAN
- * @return {ExtractIBANResult} Object {iban: string, bban: string, countryCode: string, countryName: string, valid: boolean}
+ * @return {ExtractIBANResult} Object {iban: string, bban: string, countryCode: string, valid: boolean}
  */
 export declare function extractIBAN(iban: string): ExtractIBANResult;
 /**
@@ -116,7 +115,7 @@ export declare function friendlyFormatIBAN(iban: string, separator?: string): st
  *   $("input#iban").attr("pattern", $(this).val() + "[0-9]{2}" + country.bban_regexp.slice(1).replace("$",""));
  * });
  * @alias module:ibantools.getCountrySpecifications
- * @return {CountryMap} Object [countryCode: string]CountrySpec -> {chars: :number, bban_regexp: string, name: string, IBANRegistry: boolean}
+ * @return {CountryMap} Object [countryCode: string]CountrySpec -> {chars: :number, bban_regexp: string, IBANRegistry: boolean}
  */
 export declare function getCountrySpecifications(): CountryMap;
 /**
@@ -144,7 +143,6 @@ export declare function isValidBIC(bic: string): boolean;
 export interface ExtractBICResult {
     bankCode?: string;
     countryCode?: string;
-    countryName?: string;
     locationCode?: string;
     branchCode?: string;
     testBIC?: boolean;
@@ -153,11 +151,11 @@ export interface ExtractBICResult {
 /**
  * extractBIC
  * @example
- * // returns {bankCode: "ABNA", countryCode: "NL", countryName: "Netherlands", locationCode: "2A", branchCode: null, testBIC: flase, valid: true}
+ * // returns {bankCode: "ABNA", countryCode: "NL", locationCode: "2A", branchCode: null, testBIC: flase, valid: true}
  * ibantools.extractBIC("ABNANL2A");
  * @alias module:ibantools.extractBIC
  * @param {string} BIC BIC
- * @return {ExtractBICResult} Object {bancCode: string, countryCode: string, countryName: string, locationCode: string, branchCode: string, testBIC: boolean, valid: boolean}
+ * @return {ExtractBICResult} Object {bancCode: string, countryCode: string, locationCode: string, branchCode: string, testBIC: boolean, valid: boolean}
  */
 export declare function extractBIC(inputBic: string): ExtractBICResult;
 /**
@@ -165,7 +163,6 @@ export declare function extractBIC(inputBic: string): ExtractBICResult;
  */
 export interface CountrySpec {
     chars: number;
-    name: string;
     bban_regexp: string;
     IBANRegistry: boolean;
 }
