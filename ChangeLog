@@ -1,6 +1,7 @@
 2020-03-29  Saša Jovanić  <sasa@simplify.ba>
 	* Merged #18 - Drop country names from output - PR from @eemeli (Eemeli Aro) that removes country names from functions output. Country code is still present. This will reduce total bundle size. If you still need country names, please use `countrynames` or `country-iso` packages.
 	* Merged various dependabot pull requests.
+	* Added prettier as dev dependency.
 
 2019-08-12  Saša Jovanić  <sasa@simplify.ba>
 	* Released varsion 2.2.0

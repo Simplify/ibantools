@@ -53,6 +53,7 @@
     "cheerio": "^0.22",
     "coveralls": "^3.0.3",
     "docdash": "^1.1",
+    "extend": ">=3.0.2",
     "gulp": "^4.0.1",
     "gulp-mocha": "^6.0",
     "gulp-rename": "^1.2",
@@ -68,11 +69,11 @@
     "merge2": "^1.2.1",
     "mocha": "^6.1",
     "mocha-lcov-reporter": "^1.2.0",
+    "prettier": "^2.0.2",
     "requirejs": "^2.3",
+    "sshpk": ">=1.13.2",
     "tslint": "^5.9.1",
-    "typescript": "^3.4",
-    "extend": ">=3.0.2",
-    "sshpk": ">=1.13.2"
+    "typescript": "^3.4"
   },
   "//": {
     "extend": "deep dependency of karma - security issue",
