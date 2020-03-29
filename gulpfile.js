@@ -81,8 +81,8 @@ gulp.task("test", function() {
 
 // Watch for changes
 gulp.task("watch", function() {
-  gulp.watch("./src/**/*.ts", ["test-it"]);
-  gulp.watch("./test/**/*.ts", ["test-it"]);
+  gulp.watch("./src/**/*.ts", gulp.series("test-it"));
+  gulp.watch("./test/**/*.ts", gulp.series("test-it"));
 });
 
 // Default task
