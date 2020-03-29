@@ -3,6 +3,7 @@
 	* Merged various dependabot pull requests.
 	* Added prettier as dev dependency.
 	* Upgraded dependencies based on `npm audit`.
+	* Added node 13 and dropped node 11 on Travis.
 
 2019-08-12  Saša Jovanić  <sasa@simplify.ba>
 	* Released varsion 2.2.0
