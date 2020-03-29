@@ -93,6 +93,9 @@ describe("IBANTools", () => {
     it("with invalid GB IBAN should return false", () => {
       expect(iban.isValidIBAN("GB00HLFX11016111455365")).to.be.false;
     });
+    it("with valid EG IBAN should return true", () => {
+      expect(iban.isValidIBAN("EG380019000500000000263180002")).to.be.true;
+    });
   });
 
   describe("When calling isValidBIC()", function() {

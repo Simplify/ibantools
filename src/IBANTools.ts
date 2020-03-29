@@ -431,7 +431,7 @@ const countrySpecs: CountryMap = {
   DZ: { chars: null, bban_regexp: null, IBANRegistry: false },
   EC: { chars: null, bban_regexp: null, IBANRegistry: false },
   EE: { chars: 20, bban_regexp: "^[0-9]{16}$", IBANRegistry: true },
-  EG: { chars: null, bban_regexp: null, IBANRegistry: false },
+  EG: { chars: 29, bban_regexp: "^[0-9]{25}", IBANRegistry: true },
   EH: { chars: null, bban_regexp: null, IBANRegistry: false },
   ER: { chars: null, bban_regexp: null, IBANRegistry: false },
   ES: { chars: 24, bban_regexp: "^[0-9]{20}$", IBANRegistry: true },
