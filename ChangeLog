@@ -5,6 +5,7 @@
 	* Upgraded dependencies based on `npm audit`.
 	* Added node 13 and dropped node 11 on Travis.
 	* Added Egypt as new addition to official IBAN specification.
+	* Added countries that are not in official IBAN specification published by Swift: Algeria, Angola, Benin, Burkina Faso, Burundi, Cameroon, Cape Verde, Iran, Ivory Coast, Madagascar, Mali, Mozambique, Senegal, Comoros, Chad, Gabon, Honduras, Morocco, Nicaragua, Niger, Togo, Central African Republic, Djibouti, Equatorial Guinea and Guinea-Bissau.
 
 2019-08-12  Saša Jovanić  <sasa@simplify.ba>
 	* Released varsion 2.2.0

@@ -32,7 +32,6 @@ export function isValidIBAN(iban: string): boolean {
     const spec = countrySpecs[iban.slice(0, 2)];
     if (
       spec !== undefined &&
-      spec.IBANRegistry &&
       spec.chars === iban.length &&
       reg.test(iban.slice(2, 4)) &&
       checkFormatBBAN(iban.slice(4), spec.bban_regexp) &&
@@ -339,7 +338,7 @@ export function extractBIC(inputBic: string): ExtractBICResult {
 export interface CountrySpec {
   chars: number;
   bban_regexp: string;
-  IBANRegistry: boolean;
+  IBANRegistry: boolean; // Is country part of official IBAN registry
 }
 
 /**
@@ -358,7 +357,7 @@ const countrySpecs: CountryMap = {
   AI: { chars: null, bban_regexp: null, IBANRegistry: false },
   AL: { chars: 28, bban_regexp: "^[0-9]{8}[A-Z0-9]{16}$", IBANRegistry: true },
   AM: { chars: null, bban_regexp: null, IBANRegistry: false },
-  AO: { chars: null, bban_regexp: null, IBANRegistry: false },
+  AO: { chars: 25, bban_regexp: "^[0-9]{21}$", IBANRegistry: false },
   AQ: { chars: null, bban_regexp: null, IBANRegistry: false },
   AR: { chars: null, bban_regexp: null, IBANRegistry: false },
   AS: { chars: null, bban_regexp: null, IBANRegistry: false },
@@ -371,15 +370,15 @@ const countrySpecs: CountryMap = {
   BB: { chars: null, bban_regexp: null, IBANRegistry: false },
   BD: { chars: null, bban_regexp: null, IBANRegistry: false },
   BE: { chars: 16, bban_regexp: "^[0-9]{12}$", IBANRegistry: true },
-  BF: { chars: null, bban_regexp: null, IBANRegistry: false },
+  BF: { chars: 27, bban_regexp: "^[0-9]{23}$", IBANRegistry: false },
   BG: {
     chars: 22,
     bban_regexp: "^[A-Z]{4}[0-9]{6}[A-Z0-9]{8}$",
     IBANRegistry: true
   },
   BH: { chars: 22, bban_regexp: "^[A-Z]{4}[A-Z0-9]{14}$", IBANRegistry: true },
-  BI: { chars: null, bban_regexp: null, IBANRegistry: false },
-  BJ: { chars: null, bban_regexp: null, IBANRegistry: false },
+  BI: { chars: 16, bban_regexp: "^[0-9]{12}$", IBANRegistry: false },
+  BJ: { chars: 28, bban_regexp: "^[A-Z]{1}[0-9]{23}$", IBANRegistry: false },
   BL: {
     chars: 27,
     bban_regexp: "^[0-9]{10}[A-Z0-9]{11}[0-9]{2}$",
@@ -407,13 +406,13 @@ const countrySpecs: CountryMap = {
   CA: { chars: null, bban_regexp: null, IBANRegistry: false },
   CC: { chars: null, bban_regexp: null, IBANRegistry: false },
   CD: { chars: null, bban_regexp: null, IBANRegistry: false },
-  CF: { chars: null, bban_regexp: null, IBANRegistry: false },
-  CG: { chars: null, bban_regexp: null, IBANRegistry: false },
+  CF: { chars: 27, bban_regexp: "^[0-9]{23}$", IBANRegistry: false },
+  CG: { chars: 27, bban_regexp: "^[0-9]{23}$", IBANRegistry: false },
   CH: { chars: 21, bban_regexp: "^[0-9]{5}[A-Z0-9]{12}$", IBANRegistry: true },
-  CI: { chars: null, bban_regexp: null, IBANRegistry: false },
+  CI: { chars: 28, bban_regexp: "^[A-Z]{1}[0-9]{23}$", IBANRegistry: false },
   CK: { chars: null, bban_regexp: null, IBANRegistry: false },
   CL: { chars: null, bban_regexp: null, IBANRegistry: false },
-  CM: { chars: null, bban_regexp: null, IBANRegistry: false },
+  CM: { chars: 27, bban_regexp: "^[0-9]{23}$", IBANRegistry: false },
   CN: { chars: null, bban_regexp: null, IBANRegistry: false },
   CO: { chars: null, bban_regexp: null, IBANRegistry: false },
   CR: { chars: 22, bban_regexp: "^[0-9]{18}$", IBANRegistry: true },
@@ -424,11 +423,11 @@ const countrySpecs: CountryMap = {
   CY: { chars: 28, bban_regexp: "^[0-9]{8}[A-Z0-9]{16}$", IBANRegistry: true },
   CZ: { chars: 24, bban_regexp: "^[0-9]{20}$", IBANRegistry: true },
   DE: { chars: 22, bban_regexp: "^[0-9]{18}$", IBANRegistry: true },
-  DJ: { chars: null, bban_regexp: null, IBANRegistry: false },
+  DJ: { chars: 27, bban_regexp: "^[0-9]{23}$", IBANRegistry: false },
   DK: { chars: 18, bban_regexp: "^[0-9]{14}$", IBANRegistry: true },
   DM: { chars: null, bban_regexp: null, IBANRegistry: false },
   DO: { chars: 28, bban_regexp: "^[A-Z]{4}[0-9]{20}$", IBANRegistry: true },
-  DZ: { chars: null, bban_regexp: null, IBANRegistry: false },
+  DZ: { chars: 24, bban_regexp: "^[0-9]{20}$", IBANRegistry: false },
   EC: { chars: null, bban_regexp: null, IBANRegistry: false },
   EE: { chars: 20, bban_regexp: "^[0-9]{16}$", IBANRegistry: true },
   EG: { chars: 29, bban_regexp: "^[0-9]{25}", IBANRegistry: true },
@@ -446,7 +445,7 @@ const countrySpecs: CountryMap = {
     bban_regexp: "^[0-9]{10}[A-Z0-9]{11}[0-9]{2}$",
     IBANRegistry: true
   },
-  GA: { chars: null, bban_regexp: null, IBANRegistry: false },
+  GA: { chars: 27, bban_regexp: "^[0-9]{23}$", IBANRegistry: false },
   GB: { chars: 22, bban_regexp: "^[A-Z]{4}[0-9]{14}$", IBANRegistry: true },
   GD: { chars: null, bban_regexp: null, IBANRegistry: false },
   GE: { chars: 22, bban_regexp: "^[A-Z0-9]{2}[0-9]{16}$", IBANRegistry: true },
@@ -466,16 +465,16 @@ const countrySpecs: CountryMap = {
     bban_regexp: "^[0-9]{10}[A-Z0-9]{11}[0-9]{2}$",
     IBANRegistry: true
   },
-  GQ: { chars: null, bban_regexp: null, IBANRegistry: false },
+  GQ: { chars: 27, bban_regexp: "^[0-9]{23}$", IBANRegistry: false },
   GR: { chars: 27, bban_regexp: "^[0-9]{7}[A-Z0-9]{16}$", IBANRegistry: true },
   GS: { chars: null, bban_regexp: null, IBANRegistry: false },
   GT: { chars: 28, bban_regexp: "^[A-Z0-9]{24}$", IBANRegistry: true },
   GU: { chars: null, bban_regexp: null, IBANRegistry: false },
-  GW: { chars: null, bban_regexp: null, IBANRegistry: false },
+  GW: { chars: 25, bban_regexp: "^[A-Z]{2}[0-9]{19}$", IBANRegistry: false },
   GY: { chars: null, bban_regexp: null, IBANRegistry: false },
   HK: { chars: null, bban_regexp: null, IBANRegistry: false },
   HM: { chars: null, bban_regexp: null, IBANRegistry: false },
-  HN: { chars: null, bban_regexp: null, IBANRegistry: false },
+  HN: { chars: 28, bban_regexp: "^[A-Z]{4}[0-9]{20}$", IBANRegistry: false },
   HR: { chars: 21, bban_regexp: "^[0-9]{17}$", IBANRegistry: true },
   HT: { chars: null, bban_regexp: null, IBANRegistry: false },
   HU: { chars: 28, bban_regexp: "^[0-9]{24}$", IBANRegistry: true },
@@ -486,7 +485,7 @@ const countrySpecs: CountryMap = {
   IN: { chars: null, bban_regexp: null, IBANRegistry: false },
   IO: { chars: null, bban_regexp: null, IBANRegistry: false },
   IQ: { chars: 23, bban_regexp: "^[A-Z]{4}[0-9]{15}$", IBANRegistry: true },
-  IR: { chars: null, bban_regexp: null, IBANRegistry: false },
+  IR: { chars: 26, bban_regexp: "^[0-9]{22}$", IBANRegistry: false },
   IS: { chars: 26, bban_regexp: "^[0-9]{22}$", IBANRegistry: true },
   IT: {
     chars: 27,
@@ -505,7 +504,7 @@ const countrySpecs: CountryMap = {
   KG: { chars: null, bban_regexp: null, IBANRegistry: false },
   KH: { chars: null, bban_regexp: null, IBANRegistry: false },
   KI: { chars: null, bban_regexp: null, IBANRegistry: false },
-  KM: { chars: null, bban_regexp: null, IBANRegistry: false },
+  KM: { chars: 27, bban_regexp: "^[0-9]{23}$", IBANRegistry: false },
   KN: { chars: null, bban_regexp: null, IBANRegistry: false },
   KP: { chars: null, bban_regexp: null, IBANRegistry: false },
   KR: { chars: null, bban_regexp: null, IBANRegistry: false },
@@ -523,7 +522,7 @@ const countrySpecs: CountryMap = {
   LU: { chars: 20, bban_regexp: "^[0-9]{3}[A-Z0-9]{13}$", IBANRegistry: true },
   LV: { chars: 21, bban_regexp: "^[A-Z]{4}[A-Z0-9]{13}$", IBANRegistry: true },
   LY: { chars: null, bban_regexp: null, IBANRegistry: false },
-  MA: { chars: null, bban_regexp: null, IBANRegistry: false },
+  MA: { chars: 28, bban_regexp: "^[0-9]{24}$", IBANRegistry: false },
   MC: {
     chars: 27,
     bban_regexp: "^[0-9]{10}[A-Z0-9]{11}[0-9]{2}$",
@@ -540,14 +539,14 @@ const countrySpecs: CountryMap = {
     bban_regexp: "^[0-9]{10}[A-Z0-9]{11}[0-9]{2}$",
     IBANRegistry: true
   },
-  MG: { chars: null, bban_regexp: null, IBANRegistry: false },
+  MG: { chars: 27, bban_regexp: "^[0-9]{23}$", IBANRegistry: false },
   MH: { chars: null, bban_regexp: null, IBANRegistry: false },
   MK: {
     chars: 19,
     bban_regexp: "^[0-9]{3}[A-Z0-9]{10}[0-9]{2}$",
     IBANRegistry: true
   },
-  ML: { chars: null, bban_regexp: null, IBANRegistry: false },
+  ML: { chars: 28, bban_regexp: "^[A-Z]{1}[0-9]{23}$", IBANRegistry: false },
   MM: { chars: null, bban_regexp: null, IBANRegistry: false },
   MN: { chars: null, bban_regexp: null, IBANRegistry: false },
   MO: { chars: null, bban_regexp: null, IBANRegistry: false },
@@ -573,17 +572,17 @@ const countrySpecs: CountryMap = {
   MW: { chars: null, bban_regexp: null, IBANRegistry: false },
   MX: { chars: null, bban_regexp: null, IBANRegistry: false },
   MY: { chars: null, bban_regexp: null, IBANRegistry: false },
-  MZ: { chars: null, bban_regexp: null, IBANRegistry: false },
+  MZ: { chars: 25, bban_regexp: "^[0-9]{21}$", IBANRegistry: false },
   NA: { chars: null, bban_regexp: null, IBANRegistry: false },
   NC: {
     chars: 27,
     bban_regexp: "^[0-9]{10}[A-Z0-9]{11}[0-9]{2}$",
     IBANRegistry: true
   },
-  NE: { chars: null, bban_regexp: null, IBANRegistry: false },
+  NE: { chars: 28, bban_regexp: "^[A-Z]{2}[0-9]{22}$", IBANRegistry: false },
   NF: { chars: null, bban_regexp: null, IBANRegistry: false },
   NG: { chars: null, bban_regexp: null, IBANRegistry: false },
-  NI: { chars: null, bban_regexp: null, IBANRegistry: false },
+  NI: { chars: 32, bban_regexp: "^[A-Z]{4}[0-9]{24}$", IBANRegistry: false },
   NL: { chars: 18, bban_regexp: "^[A-Z]{4}[0-9]{10}$", IBANRegistry: true },
   NO: { chars: 15, bban_regexp: "^[0-9]{11}$", IBANRegistry: true },
   NP: { chars: null, bban_regexp: null, IBANRegistry: false },
@@ -643,7 +642,7 @@ const countrySpecs: CountryMap = {
     bban_regexp: "^[A-Z]{1}[0-9]{10}[A-Z0-9]{12}$",
     IBANRegistry: true
   },
-  SN: { chars: null, bban_regexp: null, IBANRegistry: false },
+  SN: { chars: 28, bban_regexp: "^[A-Z]{1}[0-9]{23}$", IBANRegistry: false },
   SO: { chars: null, bban_regexp: null, IBANRegistry: false },
   SR: { chars: null, bban_regexp: null, IBANRegistry: false },
   SS: { chars: null, bban_regexp: null, IBANRegistry: false },
@@ -653,13 +652,13 @@ const countrySpecs: CountryMap = {
   SY: { chars: null, bban_regexp: null, IBANRegistry: false },
   SZ: { chars: null, bban_regexp: null, IBANRegistry: false },
   TC: { chars: null, bban_regexp: null, IBANRegistry: false },
-  TD: { chars: null, bban_regexp: null, IBANRegistry: false },
+  TD: { chars: 27, bban_regexp: "^[0-9]{23}$", IBANRegistry: false },
   TF: {
     chars: 27,
     bban_regexp: "^[0-9]{10}[A-Z0-9]{11}[0-9]{2}$",
     IBANRegistry: true
   },
-  TG: { chars: null, bban_regexp: null, IBANRegistry: false },
+  TG: { chars: 28, bban_regexp: "^[A-Z]{2}[0-9]{22}$", IBANRegistry: false },
   TH: { chars: null, bban_regexp: null, IBANRegistry: false },
   TJ: { chars: null, bban_regexp: null, IBANRegistry: false },
   TK: { chars: null, bban_regexp: null, IBANRegistry: false },

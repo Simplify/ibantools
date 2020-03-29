@@ -31,7 +31,6 @@ define(["require", "exports"], function (require, exports) {
             var reg = new RegExp("^[0-9]{2}$", "");
             var spec = countrySpecs[iban.slice(0, 2)];
             if (spec !== undefined &&
-                spec.IBANRegistry &&
                 spec.chars === iban.length &&
                 reg.test(iban.slice(2, 4)) &&
                 checkFormatBBAN(iban.slice(4), spec.bban_regexp) &&
@@ -306,7 +305,7 @@ define(["require", "exports"], function (require, exports) {
         AI: { chars: null, bban_regexp: null, IBANRegistry: false },
         AL: { chars: 28, bban_regexp: "^[0-9]{8}[A-Z0-9]{16}$", IBANRegistry: true },
         AM: { chars: null, bban_regexp: null, IBANRegistry: false },
-        AO: { chars: null, bban_regexp: null, IBANRegistry: false },
+        AO: { chars: 25, bban_regexp: "^[0-9]{21}$", IBANRegistry: false },
         AQ: { chars: null, bban_regexp: null, IBANRegistry: false },
         AR: { chars: null, bban_regexp: null, IBANRegistry: false },
         AS: { chars: null, bban_regexp: null, IBANRegistry: false },
@@ -334,7 +333,7 @@ define(["require", "exports"], function (require, exports) {
             IBANRegistry: true
         },
         BM: { chars: null, bban_regexp: null, IBANRegistry: false },
-        BN: { chars: null, bban_regexp: null, IBANRegistry: false },
+        BN: { chars: 28, bban_regexp: "^[A-Z]{1}[0-9]{23}$", IBANRegistry: false },
         BO: { chars: null, bban_regexp: null, IBANRegistry: false },
         BQ: { chars: null, bban_regexp: null, IBANRegistry: false },
         BR: {
@@ -376,7 +375,7 @@ define(["require", "exports"], function (require, exports) {
         DK: { chars: 18, bban_regexp: "^[0-9]{14}$", IBANRegistry: true },
         DM: { chars: null, bban_regexp: null, IBANRegistry: false },
         DO: { chars: 28, bban_regexp: "^[A-Z]{4}[0-9]{20}$", IBANRegistry: true },
-        DZ: { chars: null, bban_regexp: null, IBANRegistry: false },
+        DZ: { chars: 24, bban_regexp: "^[0-9]{20}$", IBANRegistry: false },
         EC: { chars: null, bban_regexp: null, IBANRegistry: false },
         EE: { chars: 20, bban_regexp: "^[0-9]{16}$", IBANRegistry: true },
         EG: { chars: 29, bban_regexp: "^[0-9]{25}", IBANRegistry: true },

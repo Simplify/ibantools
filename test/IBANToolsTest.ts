@@ -93,8 +93,83 @@ describe("IBANTools", () => {
     it("with invalid GB IBAN should return false", () => {
       expect(iban.isValidIBAN("GB00HLFX11016111455365")).to.be.false;
     });
-    it("with valid EG IBAN should return true", () => {
+    it("with valid Egypt IBAN should return true", () => {
       expect(iban.isValidIBAN("EG380019000500000000263180002")).to.be.true;
+    });
+    it("with valid Algeria IBAN should return true", () => {
+      expect(iban.isValidIBAN("DZ3512341234123412341234")).to.be.true;
+    });
+    it("with valid Angola IBAN should return true", () => {
+      expect(iban.isValidIBAN("AO44123412341234123412341")).to.be.true;
+    });
+    it("with valid Benin IBAN should return true", () => {
+      expect(iban.isValidIBAN("BJ83A12312341234123412341234")).to.be.true;
+    });
+    it("with valid Burkina Faso IBAN should return true", () => {
+      expect(iban.isValidIBAN("BF4512341234123412341234123")).to.be.true;
+    });
+    it("with valid Burundi IBAN should return true", () => {
+      expect(iban.isValidIBAN("BI33123412341234")).to.be.true;
+    });
+    it("with valid Cape Verde IBAN should return true", () => {
+      expect(iban.isValidIBAN("CM1512341234123412341234123")).to.be.true;
+    });
+    it("with valid Iran IBAN should return true", () => {
+      expect(iban.isValidIBAN("IR081234123412341234123412")).to.be.true;
+    });
+    it("with valid Ivory Coast IBAN should return true", () => {
+      expect(iban.isValidIBAN("CI77A12312341234123412341234")).to.be.true;
+    });
+    it("with valid Madagaskar IBAN should return true", () => {
+      expect(iban.isValidIBAN("MG4012341234123412341234123")).to.be.true;
+    });
+    it("with valid Mali IBAN should return true", () => {
+      expect(iban.isValidIBAN("ML75A12312341234123412341234")).to.be.true;
+    });
+    it("with valid Mozambique IBAN should return true", () => {
+      expect(iban.isValidIBAN("MZ97123412341234123412341")).to.be.true;
+    });
+    it("with valid Senegal IBAN should return true", () => {
+      expect(iban.isValidIBAN("SN15A12312341234123412341234")).to.be.true;
+    });
+    it("with valid Comoros IBAN should return true", () => {
+      expect(iban.isValidIBAN("KM4600005000010010904400137")).to.be.true;
+    });
+    it("with valid Chad IBAN should return true", () => {
+      expect(iban.isValidIBAN("TD8960002000010271091600153")).to.be.true;
+    });
+    it("with valid Congo IBAN should return true", () => {
+      expect(iban.isValidIBAN("CG3930011000101013451300019")).to.be.true;
+    });
+    it("with valid Gabon IBAN should return true", () => {
+      expect(iban.isValidIBAN("GA2140021010032001890020126")).to.be.true;
+    });
+    it("with valid Honduras IBAN should return true", () => {
+      expect(iban.isValidIBAN("HN54PISA00000000000000123124")).to.be.true;
+    });
+    it("with valid Marocco IBAN should return true", () => {
+      expect(iban.isValidIBAN("MA64011519000001205000534921")).to.be.true;
+    });
+    it("with valid Nicaragua IBAN should return true", () => {
+      expect(iban.isValidIBAN("NI92BAMC000000000000000003123123")).to.be.true;
+    });
+    it("with valid Niger IBAN should return true", () => {
+      expect(iban.isValidIBAN("NE58NE0380100100130305000268")).to.be.true;
+    });
+    it("with valid Togo IBAN should return true", () => {
+      expect(iban.isValidIBAN("TG53TG0090604310346500400070")).to.be.true;
+    });
+    it("with valid Central African Republic IBAN should return true", () => {
+      expect(iban.isValidIBAN("CF4220001000010120069700160")).to.be.true;
+    });
+    it("with valid Djibouti IBAN should return true", () => {
+      expect(iban.isValidIBAN("DJ2110002010010409943020008")).to.be.true;
+    });
+    it("with valid Equatorial Guinea IBAN should return true", () => {
+      expect(iban.isValidIBAN("GQ7050002001003715228190196")).to.be.true;
+    });
+    it("with valid Guinea-Bissau IBAN should return true", () => {
+      expect(iban.isValidIBAN("GW04GW1430010181800637601")).to.be.true;
     });
   });
 
