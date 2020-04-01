@@ -10,7 +10,6 @@
 
 [![devDependency Status](https://david-dm.org/simplify/ibantools/dev-status.svg)](https://david-dm.org/simplify/ibantools#info=devDependencies)
 [![Dependency Status](https://david-dm.org/simplify/ibantools.svg)](https://david-dm.org/simplify/ibantools)
-[![Dependency Status](https://dependencyci.com/github/Simplify/ibantools/badge)](https://dependencyci.com/github/Simplify/ibantools)
 
 IBANTools is TypeScript/JavaScript library for validation, creation and extraction of IBAN, BBAN and BIC/SWIFT numbers.
 
