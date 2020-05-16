@@ -31,6 +31,19 @@ export declare function isValidIBAN(iban: string): boolean;
  */
 export declare function isValidBBAN(bban: string, countryCode: string): boolean;
 /**
+ * Validate if country code is from a SEPA country
+ * @example
+ * // returns true
+ * ibantools.isSEPACountry("NL");
+ * @example
+ * // returns false
+ * ibantools.isSEPACountry("PK");
+ * @alias module:ibantools.isSEPACountry
+ * @param {string} countryCode Country code
+ * @return {boolean} valid
+ */
+export declare function isSEPACountry(countryCode: string): boolean;
+/**
  * Interface for ComposeIBAN parameteres
  */
 export interface ComposeIBANParms {
@@ -115,7 +128,7 @@ export declare function friendlyFormatIBAN(iban: string, separator?: string): st
  *   $("input#iban").attr("pattern", $(this).val() + "[0-9]{2}" + country.bban_regexp.slice(1).replace("$",""));
  * });
  * @alias module:ibantools.getCountrySpecifications
- * @return {CountryMap} Object [countryCode: string]CountrySpec -> {chars: :number, bban_regexp: string, IBANRegistry: boolean}
+ * @return {CountryMap} Object [countryCode: string]CountrySpec -> {chars: :number, bban_regexp: string, IBANRegistry: boolean, SEPA: boolean}
  */
 export declare function getCountrySpecifications(): CountryMap;
 /**
@@ -165,6 +178,7 @@ export interface CountrySpec {
     chars: number;
     bban_regexp: string;
     IBANRegistry: boolean;
+    SEPA: boolean;
 }
 /**
  * Interface for Map of Country Specifications
