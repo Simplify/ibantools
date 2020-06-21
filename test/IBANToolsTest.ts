@@ -171,51 +171,54 @@ describe("IBANTools", () => {
     it("with valid Guinea-Bissau IBAN should return true", () => {
       expect(iban.isValidIBAN("GW04GW1430010181800637601")).to.be.true;
     });
+    it("with valid Seychelles IBAN should return true", () => {
+      expect(iban.isValidIBAN("SC52BAHL01031234567890123456USD")).to.be.true;
+    });
   });
 
-  describe("When calling isValidBIC()", function () {
-    it("with valid BIC ABNANL2A should return true", function () {
+  describe("When calling isValidBIC()", function() {
+    it("with valid BIC ABNANL2A should return true", function() {
       expect(iban.isValidBIC("ABNANL2A")).to.be.true;
     });
-    it("with valid BIC ABNANL2A000 should return true", function () {
+    it("with valid BIC ABNANL2A000 should return true", function() {
       expect(iban.isValidBIC("ABNANL2A000")).to.be.true;
     });
-    it("with valid BIC ABNANL2AXXX should return true", function () {
+    it("with valid BIC ABNANL2AXXX should return true", function() {
       expect(iban.isValidBIC("ABNANL2AXXX")).to.be.true;
     });
-    it("with valid BIC ABNAAA2AXXX should return true", function () {
+    it("with valid BIC ABNAAA2AXXX should return true", function() {
       expect(iban.isValidBIC("ABNAAA2AXXX")).to.be.false;
     });
-    it("with valid BIC NOLADE21KI should return true", function () {
+    it("with valid BIC NOLADE21KI should return true", function() {
       expect(iban.isValidBIC("NOLADE21KIE")).to.be.true;
     });
-    it("with valid BIC INGDDEFFXXX should return true", function () {
+    it("with valid BIC INGDDEFFXXX should return true", function() {
       expect(iban.isValidBIC("INGDDEFFXXX")).to.be.true;
     });
-    it("with invalid BIC INGDEFFXXX should return false", function () {
+    it("with invalid BIC INGDEFFXXX should return false", function() {
       expect(iban.isValidBIC("INGDEFFXXX")).to.be.false;
     });
-    it("with invalid BIC ABN4NL2A should return false", function () {
+    it("with invalid BIC ABN4NL2A should return false", function() {
       expect(iban.isValidBIC("ABN4NL2A")).to.be.false;
     });
-    it("with invalid BIC ABNANL2A01F should return true", function () {
+    it("with invalid BIC ABNANL2A01F should return true", function() {
       expect(iban.isValidBIC("ABNANL2A01F")).to.be.true;
     });
   });
 
-  describe("When calling isSEPACountry()", function () {
-    it("with valid country code NL should return true", function () {
-      expect(iban.isSEPACountry("NL")).to.be.true
+  describe("When calling isSEPACountry()", function() {
+    it("with valid country code NL should return true", function() {
+      expect(iban.isSEPACountry("NL")).to.be.true;
     });
-    it("with valid country code PK return false", function () {
+    it("with valid country code PK return false", function() {
       expect(iban.isSEPACountry("PK")).to.be.false;
     });
-    it("with non valid country code XX return false", function () {
+    it("with non valid country code XX return false", function() {
       expect(iban.isSEPACountry("XX")).to.be.false;
     });
   });
 
-  describe("When calling extractBIC() with valid BIC ABNANL2A", function () {
+  describe("When calling extractBIC() with valid BIC ABNANL2A", function() {
     const ext = iban.extractBIC("ABNANL2A");
     it("valid should be true", () => {
       expect(ext.valid).to.be.true;
@@ -243,7 +246,7 @@ describe("IBANTools", () => {
     });
   });
 
-  describe("When calling extractBIC() with invalid BIC ABN7NL2A", function () {
+  describe("When calling extractBIC() with invalid BIC ABN7NL2A", function() {
     const ext = iban.extractBIC("ABN7NL2A");
     it("valid should be false", () => {
       expect(ext.valid).to.be.false;
@@ -265,7 +268,7 @@ describe("IBANTools", () => {
     });
   });
 
-  describe("When calling extractBIC() with valid BIC NEDSZAJ0XXX", function () {
+  describe("When calling extractBIC() with valid BIC NEDSZAJ0XXX", function() {
     const ext = iban.extractBIC("NEDSZAJ0XXX");
     it("valid should be true", () => {
       expect(ext.valid).to.be.true;
