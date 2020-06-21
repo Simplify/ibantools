@@ -1,7 +1,7 @@
 {
   "name": "ibantools",
   "description": "Validation, extraction and creation of IBAN, BBAN, BIC/SWIFT numbers plus some other helpful stuff",
-  "keywords": ["IBAN", "BBAN", "BIC", "SWIFT"],
+  "keywords": ["IBAN", "BBAN", "BIC", "SWIFT", "SEPA"],
   "main": [
     "dist/ibantools.js",
     "dist/ibantools.d.ts"
