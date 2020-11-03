@@ -1,3 +1,9 @@
+2020-11-03  Saša Jovanić  <sasa@simplify.ba>
+	* Added Node 15 and removed node 13 to Travis environments
+	* Updated various development dependencies
+	* Test file is no longer written in TypeScript - types/chai is a problem when building for ES5
+	* Switched from `istanbul` to `nyc` for code coverage
+
 2020-06-21  Saša Jovanić  <sasa@simplify.ba>
 	* Version 3.1.0
 	* Merged PR from @EarthlingRich (Richard Leurs) that adds `isSEPACountry` function.
