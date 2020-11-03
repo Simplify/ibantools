@@ -208,6 +208,12 @@ describe("IBANTools", function() {
     it("with invalid BIC ABNANL2A01F should return true", function() {
       expect(iban.isValidBIC("ABNANL2A01F")).to.be.true;
     });
+    it("with invalid BIC `null` should return false", function() {
+      expect(iban.isValidBIC(null)).to.be.false;
+    });
+    it("with invalid BIC `undefined` should return false", function() {
+      expect(iban.isValidBIC(undefined)).to.be.false;
+    });
   });
 
   describe("When calling isSEPACountry()", function() {

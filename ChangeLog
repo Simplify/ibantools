@@ -4,6 +4,7 @@
 	* Test file is no longer written in TypeScript - types/chai is a problem when building for ES5
 	* Switched from `istanbul` to `nyc` for code coverage
 	* Added Libya as new addition to official IBAN registry
+	* Fix chash when `isValidBIC` receives `null` or `undefined`
 
 2020-06-21  Saša Jovanić  <sasa@simplify.ba>
 	* Version 3.1.0

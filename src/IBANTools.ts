@@ -312,6 +312,9 @@ export function getCountrySpecifications(): CountryMap {
  * @return {boolean} valid
  */
 export function isValidBIC(bic: string): boolean {
+  if (!bic) {
+    return false;
+  }
   const reg = new RegExp("^[a-zA-Z]{6}[a-zA-Z0-9]{2}([a-zA-Z0-9]{3})?$", "");
   const spec = countrySpecs[bic.toUpperCase().slice(4, 6)];
   return reg.test(bic) && spec !== undefined;

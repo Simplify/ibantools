@@ -288,6 +288,9 @@ define(["require", "exports"], function (require, exports) {
      * @return {boolean} valid
      */
     function isValidBIC(bic) {
+        if (!bic) {
+            return false;
+        }
         var reg = new RegExp("^[a-zA-Z]{6}[a-zA-Z0-9]{2}([a-zA-Z0-9]{3})?$", "");
         var spec = countrySpecs[bic.toUpperCase().slice(4, 6)];
         return reg.test(bic) && spec !== undefined;
