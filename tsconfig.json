@@ -24,7 +24,6 @@
   ],
   "exclude": [],
   "files": [
-		"./src/IBANTools.ts",
-    "./test/IBANToolsTest.ts"
+		"./src/IBANTools.ts"
   ]
 }

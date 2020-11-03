@@ -1,10 +1,10 @@
 node_modules
 .tern-port
-test/*.js
 .DS_Store
 .dir-locals.el
 docs
 coverage
+.nyc_output
 ghpages
 jsnext
 build
