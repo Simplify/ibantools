@@ -5,6 +5,7 @@
 [![Bower version](https://badge.fury.io/bo/ibantools.svg)](https://badge.fury.io/bo/ibantools)
 [![npm version](https://badge.fury.io/js/ibantools.svg)](https://badge.fury.io/js/ibantools)
 
+[![Build CI](https://github.com/Simplify/ibantools/workflows/Build%20CI/badge.svg?branch=master)](https://github.com/Simplify/ibantools/actions?query=workflow%3A%22Build+CI%22)
 [![Build Status](https://travis-ci.org/Simplify/ibantools.svg?branch=master)](https://travis-ci.org/Simplify/ibantools)
 [![Coverage Status](https://coveralls.io/repos/github/Simplify/ibantools/badge.svg?branch=master)](https://coveralls.io/github/Simplify/ibantools?branch=master)
 
