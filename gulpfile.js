@@ -20,7 +20,10 @@ gulp.task("karma", function(done) {
 });
 
 // generate coverage report
-gulp.task("nyc", shell.task(["nyc report --reporter=text-lcov"]));
+gulp.task(
+  "nyc",
+  shell.task(["nyc mocha && nyc report --reporter=text-lcov | coveralls"])
+);
 
 // Create JSDoc documentation
 gulp.task(
