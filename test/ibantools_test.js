@@ -175,6 +175,9 @@ describe("IBANTools", function() {
     it("with valid Seychelles IBAN should return true", function() {
       expect(iban.isValidIBAN("SC52BAHL01031234567890123456USD")).to.be.true;
     });
+    it("with valid Libya IBAN should return true", function() {
+      expect(iban.isValidIBAN("LY83002048000020100120361")).to.be.true;
+    });
   });
 
   describe("When calling isValidBIC()", function() {
