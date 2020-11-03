@@ -27,6 +27,7 @@
 		".DS_Store",
 		".tern-port",
     ".editorconfig",
+    ".nyc_output",
     "README.md",
     "CONTRIBUTION.md",
 		"gulpfile.js",

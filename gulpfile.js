@@ -20,12 +20,7 @@ gulp.task("karma", function(done) {
 });
 
 // generate coverage report
-gulp.task(
-  "istanbul",
-  shell.task([
-    "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
-  ])
-);
+gulp.task("nyc", shell.task(["nyc report --reporter=text-lcov | coveralls"]));
 
 // Create JSDoc documentation
 gulp.task(
@@ -66,14 +61,6 @@ gulp.task("build-module", function() {
     .pipe(gulp.dest("./jsnext"));
 });
 
-// Compile typescript tests, umd, I'll run tests from node and "browser"
-gulp.task("build-tests", function() {
-  return gulp
-    .src(["test/**/*.ts"])
-    .pipe(ts({ module: "umd", target: "ES5" }))
-    .js.pipe(gulp.dest("./test"));
-});
-
 // Run tests
 gulp.task("test", function() {
   return gulp.src(["test/**/*.js"], { read: false }).pipe(mocha());
@@ -82,23 +69,20 @@ gulp.task("test", function() {
 // Watch for changes
 gulp.task("watch", function() {
   gulp.watch("./src/**/*.ts", gulp.series("test-it"));
-  gulp.watch("./test/**/*.ts", gulp.series("test-it"));
+  gulp.watch("./test/**/*.js", gulp.series("test-it"));
 });
 
 // Default task
 gulp.task("default", gulp.series("watch"));
 
 // All build tasks and documentation generation
-gulp.task(
-  "all",
-  gulp.series("build", "build-tests", "build-bower", "build-module", "doc")
-);
+gulp.task("all", gulp.series("build", "build-bower", "build-module", "doc"));
 
 // "all" build tasks, documentation and all tests
-gulp.task("all-with-tests", gulp.series("all", "test", "karma", "istanbul"));
+gulp.task("all-with-tests", gulp.series("all", "test", "karma", "nyc"));
 
 // "compile" and run tests
-gulp.task("test-it", gulp.series("build", "build-tests", "test"));
+gulp.task("test-it", gulp.series("build", "test"));
 
-// Build from source, build tests and run coverage task
-gulp.task("coverage", gulp.series("build", "build-tests", "istanbul"));
+// Send last report to Soveralls
+gulp.task("coverage", gulp.series("nyc"));

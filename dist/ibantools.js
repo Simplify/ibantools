@@ -14,6 +14,7 @@ define(["require", "exports"], function (require, exports) {
      */
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
+    exports.extractBIC = exports.isValidBIC = exports.getCountrySpecifications = exports.friendlyFormatIBAN = exports.electronicFormatIBAN = exports.extractIBAN = exports.composeIBAN = exports.isSEPACountry = exports.isValidBBAN = exports.isValidIBAN = void 0;
     /**
      * Validate IBAN
      * @example
