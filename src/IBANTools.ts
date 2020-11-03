@@ -763,7 +763,12 @@ const countrySpecs: CountryMap = {
     IBANRegistry: true,
     SEPA: true
   },
-  LY: { chars: null, bban_regexp: null, IBANRegistry: false, SEPA: false },
+  LY: {
+    chars: 25,
+    bban_regexp: "^[0-9]{21}$",
+    IBANRegistry: true,
+    SEPA: false
+  },
   MA: {
     chars: 28,
     bban_regexp: "^[0-9]{24}$",

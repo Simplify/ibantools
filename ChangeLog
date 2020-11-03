@@ -3,6 +3,7 @@
 	* Updated various development dependencies
 	* Test file is no longer written in TypeScript - types/chai is a problem when building for ES5
 	* Switched from `istanbul` to `nyc` for code coverage
+	* Added Libya as new addition to official IBAN registry
 
 2020-06-21  Saša Jovanić  <sasa@simplify.ba>
 	* Version 3.1.0
