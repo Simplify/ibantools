@@ -1,3 +1,7 @@
+2020-11-04  Saša Jovanić  <sasa@simplify.ba>
+	* Removed Travis CI integration and integrated Github Action to show badge on master branch and status on pull requests
+	* Upgraded to `typescript` 4
+
 2020-11-03  Saša Jovanić  <sasa@simplify.ba>
 	* Version 3.2.0
 	* Added Node 15 and removed node 13 to Travis environments
@@ -5,7 +9,7 @@
 	* Test file is no longer written in TypeScript - types/chai is a problem when building for ES5
 	* Switched from `istanbul` to `nyc` for code coverage
 	* Added Libya as new addition to official IBAN registry
-	* Fix chash when `isValidBIC` receives `null` or `undefined`
+	* Fix crash when `isValidBIC` receives `null` or `undefined`
 	* Added Github Build Action as preparation to move away from Travis CI
 
 2020-06-21  Saša Jovanić  <sasa@simplify.ba>
