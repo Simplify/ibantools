@@ -1,4 +1,8 @@
 2020-11-04  Saša Jovanić  <sasa@simplify.ba>
+	* Version 3.2.1
+	* Merged PR from @witoldsz: Fixed Azerbaijan IBAN check regexp
+
+2020-11-04  Saša Jovanić  <sasa@simplify.ba>
 	* Removed Travis CI integration and integrated Github Action to show badge on master branch and status on pull requests
 	* Upgraded to `typescript` 4
 

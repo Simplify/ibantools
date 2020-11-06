@@ -366,7 +366,7 @@ define(["require", "exports"], function (require, exports) {
         },
         AZ: {
             chars: 28,
-            bban_regexp: "^[A-Z]{4}[0-9]{20}$",
+            bban_regexp: "^[A-Z]{4}[A-Z0-9]{20}$",
             IBANRegistry: true,
             SEPA: false
         },
