@@ -1,0 +1,15 @@
+name: ESLint (Master)
+
+on: [push pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Lint code
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - run: npm ci
+    - run: npm run lint
