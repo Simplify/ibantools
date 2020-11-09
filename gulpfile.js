@@ -19,6 +19,9 @@ gulp.task("karma", function(done) {
   ).start();
 });
 
+// lint files
+gulp.task("lint", shell.task(["eslint 'src/**/*.ts' 'test/**/*.js'"]));
+
 // generate coverage report
 gulp.task(
   "nyc",
