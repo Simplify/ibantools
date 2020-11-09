@@ -1,4 +1,4 @@
-name: Build CI (master)
+name: Build CI (Master)
 
 on:
   push:
