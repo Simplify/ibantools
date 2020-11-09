@@ -8,6 +8,7 @@ By participating, you are expected to uphold this code.
 * Clone this repo and run `npm install`.
 * Write tests for your changes in `test/ibantools_test.js`.
 * Do not write more tests in `karma/ibantoolsSpec.js` unless module have problem with loading using AMD.
+* Write what you did in `ChangeLog` file.
 * Before making pull requests run `gulp all && gulp test && gulp karma && gulp lint`.
 * Make sure that test coverage stays at 100%.
 * Try not to make pull requests with changes in `dist`, `jsnext` or `build` directories.
