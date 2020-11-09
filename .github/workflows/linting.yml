@@ -1,4 +1,4 @@
-name: ESLint (Master)
+name: ESLint & Prettier
 
 on: [push, pull_request]
 
