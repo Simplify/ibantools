@@ -1,94 +1,98 @@
-"use strict";
+'use strict';
 
-const gulp = require("gulp");
-const ts = require("gulp-typescript");
-const shell = require("gulp-shell");
-const mocha = require("gulp-mocha");
-const merge = require("merge2");
-const rename = require("gulp-rename");
-const Server = require("karma").Server;
+const gulp = require('gulp');
+const ts = require('gulp-typescript');
+const shell = require('gulp-shell');
+const mocha = require('gulp-mocha');
+const merge = require('merge2');
+const rename = require('gulp-rename');
+const Server = require('karma').Server;
+const typedoc = require('gulp-typedoc');
 
 // Run karma tests only one time
-gulp.task("karma", function(done) {
+gulp.task('karma', function(done) {
   new Server(
     {
-      configFile: __dirname + "/karma.conf.js",
-      singleRun: true
+      configFile: __dirname + '/karma.conf.js',
+      singleRun: true,
     },
-    done
+    done,
   ).start();
 });
 
 // lint files
-gulp.task("lint", shell.task(["eslint 'src/**/*.ts' 'test/**/*.js'"]));
+gulp.task('lint', shell.task(["eslint 'src/**/*.ts' 'test/**/*.js'"]));
 
 // generate coverage report
-gulp.task(
-  "nyc",
-  shell.task(["nyc mocha && nyc report --reporter=text-lcov | coveralls"])
-);
+gulp.task('nyc', shell.task(['nyc mocha && nyc report --reporter=text-lcov | coveralls']));
 
-// Create JSDoc documentation
-gulp.task(
-  "doc",
-  shell.task([
-    "./node_modules/.bin/jsdoc dist/ibantools.js -d docs -r README.md -t node_modules/docdash"
-  ])
-);
+// TypeDoc documentation
+gulp.task('doc', function() {
+  return gulp.src(['src/**/*.ts']).pipe(
+    typedoc({
+      mode: 'library',
+      module: 'commonjs',
+      target: 'es5',
+      out: 'docs/',
+      disableSources: true,
+      disableOutputCheck: true,
+      hideGenerator: true,
+      includeVersion: true,
+      theme: 'minimal',
+      name: 'IBANTools',
+    }),
+  );
+});
 
 // Compile typescript sources - for bower - amd
-gulp.task("build-bower", function() {
-  let build_result = gulp
-    .src(["src/**/*.ts"])
-    .pipe(ts({ module: "amd", target: "ES5", declaration: true }));
+gulp.task('build-bower', function() {
+  let build_result = gulp.src(['src/**/*.ts']).pipe(ts({ module: 'amd', target: 'ES5', declaration: true }));
   return merge([
-    build_result.dts.pipe(rename("ibantools.d.ts")).pipe(gulp.dest("./dist")),
-    build_result.js.pipe(rename("ibantools.js")).pipe(gulp.dest("./dist"))
+    build_result.dts.pipe(rename('ibantools.d.ts')).pipe(gulp.dest('./dist')),
+    build_result.js.pipe(rename('ibantools.js')).pipe(gulp.dest('./dist')),
   ]);
 });
 
 // Compile typescript sources - node package - commonjs es5
-gulp.task("build", function() {
-  let build_result = gulp
-    .src(["src/**/*.ts"])
-    .pipe(ts({ module: "commonjs", target: "ES5", declaration: true }));
+gulp.task('build', function() {
+  let build_result = gulp.src(['src/**/*.ts']).pipe(ts({ module: 'commonjs', target: 'ES5', declaration: true }));
   return merge([
-    build_result.dts.pipe(rename("ibantools.d.ts")).pipe(gulp.dest("./build")),
-    build_result.js.pipe(rename("ibantools.js")).pipe(gulp.dest("./build"))
+    build_result.dts.pipe(rename('ibantools.d.ts')).pipe(gulp.dest('./build')),
+    build_result.js.pipe(rename('ibantools.js')).pipe(gulp.dest('./build')),
   ]);
 });
 
 // compile es5 module - both bower and node, for "module" part of `package.json`
-gulp.task("build-module", function() {
+gulp.task('build-module', function() {
   return gulp
-    .src(["src/**/*.ts"])
-    .pipe(ts({ module: "ES2015", target: "ES5" }))
-    .js.pipe(rename("ibantools.js"))
-    .pipe(gulp.dest("./jsnext"));
+    .src(['src/**/*.ts'])
+    .pipe(ts({ module: 'ES2015', target: 'ES5' }))
+    .js.pipe(rename('ibantools.js'))
+    .pipe(gulp.dest('./jsnext'));
 });
 
 // Run tests
-gulp.task("test", function() {
-  return gulp.src(["test/**/*.js"], { read: false }).pipe(mocha());
+gulp.task('test', function() {
+  return gulp.src(['test/**/*.js'], { read: false }).pipe(mocha());
 });
 
 // Watch for changes
-gulp.task("watch", function() {
-  gulp.watch("./src/**/*.ts", gulp.series("test-it"));
-  gulp.watch("./test/**/*.js", gulp.series("test-it"));
+gulp.task('watch', function() {
+  gulp.watch('./src/**/*.ts', gulp.series('test-it'));
+  gulp.watch('./test/**/*.js', gulp.series('test-it'));
 });
 
 // Default task
-gulp.task("default", gulp.series("watch"));
+gulp.task('default', gulp.series('watch'));
 
 // All build tasks and documentation generation
-gulp.task("all", gulp.series("build", "build-bower", "build-module", "doc"));
+gulp.task('all', gulp.series('build', 'build-bower', 'build-module', 'doc'));
 
 // "all" build tasks, documentation and all tests
-gulp.task("all-with-tests", gulp.series("all", "test", "karma", "nyc"));
+gulp.task('all-with-tests', gulp.series('all', 'test', 'karma', 'nyc'));
 
 // "compile" and run tests
-gulp.task("test-it", gulp.series("build", "test"));
+gulp.task('test-it', gulp.series('build', 'test'));
 
 // Send last report to Soveralls
-gulp.task("coverage", gulp.series("nyc"));
+gulp.task('coverage', gulp.series('nyc'));

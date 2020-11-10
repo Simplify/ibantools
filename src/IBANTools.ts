@@ -5,26 +5,26 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /**
- * @file Validation, extraction and creation of IBAN, BBAN, BIC/SWIFT numbers plus some other helpful stuff
+ * Validation, extraction and creation of IBAN, BBAN, BIC/SWIFT numbers plus some other helpful stuff
+ * @packageDocumentation
  * @author Saša Jovanić
  * @module ibantools
- * @see module:ibantools
- * @version 3.2.0
+ * @version 4.0.0
  * @license MPL-2.0
+ * @preferred
  */
 'use strict';
 
 /**
  * Validate IBAN
- * @example
+ * ```
  * // returns true
  * ibantools.isValidIBAN("NL91ABNA0517164300");
- * @example
+ * ```
+ * ```
  * // returns false
  * ibantools.isValidIBAN("NL92ABNA0517164300");
- * @alias module:ibantools.isValidIBAN
- * @param {string} IBAN IBAN
- * @return {boolean} valid
+ * ```
  */
 export function isValidIBAN(iban: string): boolean {
   if (iban !== undefined && iban !== null) {
@@ -32,6 +32,7 @@ export function isValidIBAN(iban: string): boolean {
     const spec = countrySpecs[iban.slice(0, 2)];
     if (
       spec !== undefined &&
+      spec.bban_regexp !== null &&
       spec.chars === iban.length &&
       reg.test(iban.slice(2, 4)) &&
       checkFormatBBAN(iban.slice(4), spec.bban_regexp) &&
@@ -45,21 +46,27 @@ export function isValidIBAN(iban: string): boolean {
 
 /**
  * Validate BBAN
- * @example
+ *
+ * ```
  * // returns true
  * ibantools.isValidBBAN("ABNA0517164300", "NL");
- * @example
+ * ```
+ * ```
  * // returns false
  * ibantools.isValidBBAN("A7NA0517164300", "NL");
- * @alias module:ibantools.isValidBBAN
- * @param {string} BBAN BBAN
- * @param {string} countryCode Country code
- * @return {boolean} valid
+ * ```
  */
-export function isValidBBAN(bban: string, countryCode: string): boolean {
+export function isValidBBAN(bban?: string, countryCode?: string): boolean {
   if (bban !== undefined && bban !== null && countryCode !== undefined && countryCode !== null) {
     const spec = countrySpecs[countryCode];
-    if (spec !== undefined && spec.chars - 4 === bban.length && checkFormatBBAN(bban, spec.bban_regexp)) {
+    if (
+      spec !== undefined &&
+      spec !== null &&
+      spec.chars !== null &&
+      spec.bban_regexp !== null &&
+      spec.chars - 4 === bban.length &&
+      checkFormatBBAN(bban, spec.bban_regexp)
+    ) {
       return true;
     }
   }
@@ -68,15 +75,14 @@ export function isValidBBAN(bban: string, countryCode: string): boolean {
 
 /**
  * Validate if country code is from a SEPA country
- * @example
+ * ```
  * // returns true
  * ibantools.isSEPACountry("NL");
- * @example
+ * ```
+ * ```
  * // returns false
  * ibantools.isSEPACountry("PK");
- * @alias module:ibantools.isSEPACountry
- * @param {string} countryCode Country code
- * @return {boolean} valid
+ * ```
  */
 export function isSEPACountry(countryCode: string): boolean {
   if (countryCode !== undefined && countryCode !== null) {
@@ -91,31 +97,35 @@ export function isSEPACountry(countryCode: string): boolean {
 /**
  * Interface for ComposeIBAN parameteres
  */
-export interface ComposeIBANParms {
+export interface ComposeIBANParams {
   countryCode?: string;
   bban?: string;
 }
 
 /**
  * composeIBAN
- * @example
+ *
+ * ```
  * // returns NL91ABNA0417164300
  * ibantools.composeIBAN("NL", "ABNA0417164300");
- * @alias module:ibantools.composeIBAN
- * @param {ComposeIBANParams} Object {bban: string, countryCode: string}
- * @result {string} IBAN IBAN
+ * ```
  */
-export function composeIBAN(params: ComposeIBANParms): string {
-  const bban: string = electronicFormatIBAN(params.bban);
+export function composeIBAN(params: ComposeIBANParams): string | null {
+  const formated_bban: string = electronicFormatIBAN(params.bban) || '';
+  if (params.countryCode === null || params.countryCode === undefined) {
+    return null;
+  }
   const spec = countrySpecs[params.countryCode];
   if (
-    bban !== null &&
+    formated_bban !== '' &&
     spec !== undefined &&
-    spec.chars === bban.length + 4 &&
-    checkFormatBBAN(bban, spec.bban_regexp)
+    spec.chars !== null &&
+    spec.chars === formated_bban.length + 4 &&
+    spec.bban_regexp !== null &&
+    checkFormatBBAN(formated_bban, spec.bban_regexp)
   ) {
-    const checksom = mod9710(params.countryCode + '00' + bban);
-    return params.countryCode + ('0' + (98 - checksom)).slice(-2) + bban;
+    const checksom = mod9710(params.countryCode + '00' + formated_bban);
+    return params.countryCode + ('0' + (98 - checksom)).slice(-2) + formated_bban;
   }
   return null;
 }
@@ -132,12 +142,10 @@ export interface ExtractIBANResult {
 
 /**
  * extractIBAN
- * @example
+ * ```
  * // returns {iban: "NL91ABNA0417164300", bban: "ABNA0417164300", countryCode: "NL", valid: true}
  * ibantools.extractIBAN("NL91 ABNA 0417 1643 00");
- * @alias module:ibantools.extractIBAN
- * @param {string} IBAN IBAN
- * @return {ExtractIBANResult} Object {iban: string, bban: string, countryCode: string, valid: boolean}
+ * ```
  */
 export function extractIBAN(iban: string): ExtractIBANResult {
   const result = {} as ExtractIBANResult;
@@ -154,9 +162,8 @@ export function extractIBAN(iban: string): ExtractIBANResult {
 
 /**
  * Check BBAN format
- * @param {string} BBAN
- * @param {string} Regexp BBAN validation regexp
- * @return {boolean} valid
+ *
+ * @ignore
  */
 function checkFormatBBAN(bban: string, bformat: string): boolean {
   const reg = new RegExp(bformat, '');
@@ -167,14 +174,12 @@ function checkFormatBBAN(bban: string, bformat: string): boolean {
  * Get IBAN in electronic format (no spaces)
  * IBAN validation is not performed.
  * When non-string value for IBAN is provided, returns null.
- * @example
+ * ```
  * // returns "NL91ABNA0417164300"
  * ibantools.electronicFormatIBAN("NL91 ABNA 0417 1643 00");
- * @alias module:ibantools.electronicFormatIBAN
- * @param {string} IBAN IBAN
- * @return {string} IBAN Electronic formated IBAN
+ * ```
  */
-export function electronicFormatIBAN(iban: string): string | null {
+export function electronicFormatIBAN(iban?: string): string | null {
   if (typeof iban !== 'string') {
     return null;
   }
@@ -185,31 +190,33 @@ export function electronicFormatIBAN(iban: string): string | null {
  * Get IBAN in friendly format (separated after every 4 characters)
  * IBAN validation is not performed.
  * When non-string value for IBAN is provided, returns null.
- * @example
+ * ```
  * // returns "NL91 ABNA 0417 1643 00"
  * ibantools.friendlyFormatIBAN("NL91ABNA0417164300");
- * @example
+ * ```
+ * ```
  * // returns "NL91-ABNA-0417-1643-00"
  * ibantools.friendlyFormatIBAN("NL91ABNA0417164300","-");
- * @alias module:ibantools.friendlyFormatIBAN
- * @param {string} IBAN IBAN
- * @param {string} separator Not required. Default separator is space " "
- * @return {string} IBAN Friendly formated IBAN
+ * ```
  */
-export function friendlyFormatIBAN(iban: string, separator?: string): string | null {
+export function friendlyFormatIBAN(iban?: string, separator?: string): string | null {
   if (typeof iban !== 'string') {
     return null;
   }
-  if (typeof separator === 'undefined') {
+  if (separator === undefined || separator === null) {
     separator = ' ';
   }
-  return electronicFormatIBAN(iban).replace(/(.{4})(?!$)/g, '$1' + separator);
+  const electronic_iban = electronicFormatIBAN(iban);
+  if (electronic_iban === null) {
+    return null;
+  }
+  return electronic_iban.replace(/(.{4})(?!$)/g, '$1' + separator);
 }
 
 /**
- * Calculate checksum of IBAN and compares it with checksum provided in IBANregistry
- * @param {string} IBAN
- * @return {boolean}
+ * Calculate checksum of IBAN and compares it with checksum provided in IBAN Registry
+ *
+ * @ignore
  */
 function isValidIBANChecksum(iban: string): boolean {
   const providedChecksum: number = parseInt(iban.slice(2, 4), 10);
@@ -232,8 +239,8 @@ function isValidIBANChecksum(iban: string): boolean {
 }
 /**
  * MOD-97-10
- * @param {string}
- * @return {number}
+ *
+ * @ignore
  */
 function mod9710(iban: string): number {
   iban = iban.slice(3) + iban.slice(0, 4);
@@ -254,11 +261,11 @@ function mod9710(iban: string): number {
 }
 
 /**
- * getCountrySpecifications
  * Returns specifications for all countries, even those who are not
  * members of IBAN registry. `IBANRegistry` field indicates if country
  * is member of not.
- * @example
+ *
+ * ```
  * // Validating IBAN form field after user selects his country
  * // <select id="countries">
  * //   ...
@@ -273,8 +280,7 @@ function mod9710(iban: string): number {
  *   // Add new value to "pattern" attribute to #iban input text field
  *   $("input#iban").attr("pattern", $(this).val() + "[0-9]{2}" + country.bban_regexp.slice(1).replace("$",""));
  * });
- * @alias module:ibantools.getCountrySpecifications
- * @return {CountryMap} Object [countryCode: string]CountrySpec -> {chars: :number, bban_regexp: string, IBANRegistry: boolean, SEPA: boolean}
+ * ```
  */
 export function getCountrySpecifications(): CountryMap {
   return countrySpecs;
@@ -282,21 +288,20 @@ export function getCountrySpecifications(): CountryMap {
 
 /**
  * Validate BIC/SWIFT
- * @example
+ *
+ * ```
  * // returns true
  * ibantools.isValidBIC("ABNANL2A");
- * @example
+ *
  * // returns true
  * ibantools.isValidBIC("NEDSZAJJXXX");
- * @example
+ *
  * // returns false
  * ibantools.isValidBIC("ABN4NL2A");
- * @example
+ *
  * // returns false
  * ibantools.isValidBIC("ABNA NL 2A");
- * @alias module:ibantools.isValidBIC
- * @param {string} BIC BIC
- * @return {boolean} valid
+ * ```
  */
 export function isValidBIC(bic: string): boolean {
   if (!bic) {
@@ -321,12 +326,10 @@ export interface ExtractBICResult {
 
 /**
  * extractBIC
- * @example
+ * ```
  * // returns {bankCode: "ABNA", countryCode: "NL", locationCode: "2A", branchCode: null, testBIC: flase, valid: true}
  * ibantools.extractBIC("ABNANL2A");
- * @alias module:ibantools.extractBIC
- * @param {string} BIC BIC
- * @return {ExtractBICResult} Object {bancCode: string, countryCode: string, locationCode: string, branchCode: string, testBIC: boolean, valid: boolean}
+ * ```
  */
 export function extractBIC(inputBic: string): ExtractBICResult {
   const result = {} as ExtractBICResult;
@@ -348,8 +351,8 @@ export function extractBIC(inputBic: string): ExtractBICResult {
  * Interface for IBAN Country Specification
  */
 export interface CountrySpec {
-  chars: number;
-  bban_regexp: string;
+  chars: number | null;
+  bban_regexp: string | null;
   IBANRegistry: boolean; // Is country part of official IBAN registry
   SEPA: boolean;
 }
@@ -361,7 +364,10 @@ export interface CountryMap {
   [code: string]: CountrySpec;
 }
 
-// Country specifications
+/**
+ * Country specifications
+ * @ignore
+ */
 const countrySpecs: CountryMap = {
   AD: {
     chars: 24,

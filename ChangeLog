@@ -1,3 +1,7 @@
+2020-11-10  Saša Jovanić  <sasa@simplify.ba>
+	* Switch from `jsdoc` to `typedoc` for documentation generation
+	* Typo in interface name fixed, this will require mayor version release
+
 2020-11-09  Saša Jovanić  <sasa@simplify.ba>
 	* Removed `tslint` and added `eslint` and `prettier` to be used with `gulp lint` task
 	* Added GitHub Action for linting to workflow
