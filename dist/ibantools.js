@@ -9,7 +9,7 @@ define(["require", "exports"], function (require, exports) {
      * @packageDocumentation
      * @author Saša Jovanić
      * @module ibantools
-     * @version 3.2.1
+     * @version 3.2.2
      * @license MPL-2.0
      * @preferred
      */
@@ -475,7 +475,7 @@ define(["require", "exports"], function (require, exports) {
             SEPA: false,
         },
         CU: { chars: null, bban_regexp: null, IBANRegistry: false, SEPA: false },
-        CV: { chars: null, bban_regexp: null, IBANRegistry: false, SEPA: false },
+        CV: { chars: 25, bban_regexp: '^[0-9]{21}$', IBANRegistry: false, SEPA: false },
         CW: { chars: null, bban_regexp: null, IBANRegistry: false, SEPA: false },
         CX: { chars: null, bban_regexp: null, IBANRegistry: false, SEPA: false },
         CY: {

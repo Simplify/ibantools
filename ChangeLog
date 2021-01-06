@@ -1,4 +1,9 @@
 2020-11-10  Saša Jovanić  <sasa@simplify.ba>
+	* Version 3.2.2
+	* Fixed support for Cape Verde
+	* Dependabot PR merged
+
+2020-11-10  Saša Jovanić  <sasa@simplify.ba>
 	* Switch from `jsdoc` to `typedoc` for documentation generation
 	* Typo in interface name fixed, this will require mayor version release
 

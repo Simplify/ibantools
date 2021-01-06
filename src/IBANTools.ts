@@ -9,7 +9,7 @@
  * @packageDocumentation
  * @author Saša Jovanić
  * @module ibantools
- * @version 4.0.0
+ * @version 3.2.2
  * @license MPL-2.0
  * @preferred
  */
@@ -525,7 +525,7 @@ const countrySpecs: CountryMap = {
     SEPA: false,
   },
   CU: { chars: null, bban_regexp: null, IBANRegistry: false, SEPA: false },
-  CV: { chars: null, bban_regexp: null, IBANRegistry: false, SEPA: false },
+  CV: { chars: 25, bban_regexp: '^[0-9]{21}$', IBANRegistry: false, SEPA: false },
   CW: { chars: null, bban_regexp: null, IBANRegistry: false, SEPA: false },
   CX: { chars: null, bban_regexp: null, IBANRegistry: false, SEPA: false },
   CY: {

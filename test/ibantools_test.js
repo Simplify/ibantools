@@ -113,8 +113,14 @@ describe('IBANTools', function() {
     it('with valid Burundi IBAN should return true', function() {
       expect(iban.isValidIBAN('BI33123412341234')).to.be.true;
     });
-    it('with valid Cape Verde IBAN should return true', function() {
+    it('with valid Cameroon IBAN should return true', function() {
       expect(iban.isValidIBAN('CM1512341234123412341234123')).to.be.true;
+    });
+    it('with valid Cape Verde IBAN should return true', function() {
+      expect(iban.isValidIBAN('CV05123412341234123412341')).to.be.true;
+    });
+    it('with valid Cape Verde IBAN should return true (2)', function() {
+      expect(iban.isValidIBAN('CV64000300008885500810176')).to.be.true;
     });
     it('with valid Iran IBAN should return true', function() {
       expect(iban.isValidIBAN('IR081234123412341234123412')).to.be.true;
