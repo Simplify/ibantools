@@ -15,7 +15,7 @@ define(["require", "exports"], function (require, exports) {
      */
     'use strict';
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.extractBIC = exports.isValidBIC = exports.getCountrySpecifications = exports.friendlyFormatIBAN = exports.electronicFormatIBAN = exports.extractIBAN = exports.composeIBAN = exports.isSEPACountry = exports.isValidBBAN = exports.isValidIBAN = void 0;
+    exports.extractBIC = exports.isValidBIC = exports.getCountrySpecifications = exports.isValidIBANChecksum = exports.friendlyFormatIBAN = exports.electronicFormatIBAN = exports.extractIBAN = exports.composeIBAN = exports.isSEPACountry = exports.isValidBBAN = exports.isValidIBAN = void 0;
     /**
      * Validate IBAN
      * ```
@@ -192,8 +192,6 @@ define(["require", "exports"], function (require, exports) {
     exports.friendlyFormatIBAN = friendlyFormatIBAN;
     /**
      * Calculate checksum of IBAN and compares it with checksum provided in IBAN Registry
-     *
-     * @ignore
      */
     function isValidIBANChecksum(iban) {
         var providedChecksum = parseInt(iban.slice(2, 4), 10);
@@ -215,6 +213,7 @@ define(["require", "exports"], function (require, exports) {
         var rest = parseInt(validationString, 10) % 97;
         return 98 - rest === providedChecksum;
     }
+    exports.isValidIBANChecksum = isValidIBANChecksum;
     /**
      * MOD-97-10
      *

@@ -409,6 +409,18 @@ describe('IBANTools', function() {
     });
   });
 
+  describe('When calling isValidIBANChecksum()', function() {
+    it('with valid IBAN should return true', function() {
+      expect(iban.isValidIBANChecksum('NL91ABNA0417164300')).to.be.true;
+    });
+    it('with invalid IBAN checksum should return false', function() {
+      expect(iban.isValidIBAN('NL91ABNA0517164300')).to.be.false;
+    });
+    it('with no IBAN should return false', function() {
+      expect(iban.isValidIBAN(null)).to.be.false;
+    });
+  });
+
   describe('When calling getCountrySpecifications()', function() {
     var ext = iban.getCountrySpecifications();
     it('Country with code BA should return IBANRegistry true', function() {

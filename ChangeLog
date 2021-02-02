@@ -1,3 +1,6 @@
+2021-02-01  Daniel Friesen <d@danf.ca>
+	* Added isValidIBANChecksum as an export
+
 2020-11-10  Saša Jovanić  <sasa@simplify.ba>
 	* Version 3.2.2
 	* Fixed support for Cape Verde

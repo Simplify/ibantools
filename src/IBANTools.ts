@@ -215,10 +215,8 @@ export function friendlyFormatIBAN(iban?: string, separator?: string): string | 
 
 /**
  * Calculate checksum of IBAN and compares it with checksum provided in IBAN Registry
- *
- * @ignore
  */
-function isValidIBANChecksum(iban: string): boolean {
+export function isValidIBANChecksum(iban: string): boolean {
   const providedChecksum: number = parseInt(iban.slice(2, 4), 10);
   const temp: string = iban.slice(3) + iban.slice(0, 2) + '00';
   let validationString = '';

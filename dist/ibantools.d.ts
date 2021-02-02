@@ -98,6 +98,10 @@ export declare function electronicFormatIBAN(iban?: string): string | null;
  */
 export declare function friendlyFormatIBAN(iban?: string, separator?: string): string | null;
 /**
+ * Calculate checksum of IBAN and compares it with checksum provided in IBAN Registry
+ */
+export declare function isValidIBANChecksum(iban: string): boolean;
+/**
  * Returns specifications for all countries, even those who are not
  * members of IBAN registry. `IBANRegistry` field indicates if country
  * is member of not.
