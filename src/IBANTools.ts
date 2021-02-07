@@ -288,9 +288,9 @@ function mod9710(iban: string): number {
  * ```
  */
 export function getCountrySpecifications(): CountryMap {
-  var countyMap: CountryMap = {};
-  for (var countyCode in countrySpecs) {
-    var county = countrySpecs[countyCode];
+  const countyMap: CountryMap = {};
+  for (const countyCode in countrySpecs) {
+    const county = countrySpecs[countyCode];
     countyMap[countyCode] = {
       chars: county.chars ? county.chars : null,
       bban_regexp: county.bban_regexp ? county.bban_regexp : null,
