@@ -462,7 +462,7 @@ define(["require", "exports"], function (require, exports) {
             IBANRegistry: true,
         },
         CU: {},
-        CV: { chars: 25, bban_regexp: '^[0-9]{21}$', },
+        CV: { chars: 25, bban_regexp: '^[0-9]{21}$' },
         CW: {},
         CX: {},
         CY: {
