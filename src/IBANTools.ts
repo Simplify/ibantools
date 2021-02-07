@@ -34,6 +34,7 @@ export function isValidIBAN(iban: string): boolean {
       spec !== undefined &&
       spec.bban_regexp &&
       spec.bban_regexp !== null &&
+      spec.chars &&
       spec.chars === iban.length &&
       reg.test(iban.slice(2, 4)) &&
       checkFormatBBAN(iban.slice(4), spec.bban_regexp) &&
@@ -63,10 +64,10 @@ export function isValidBBAN(bban?: string, countryCode?: string): boolean {
     if (
       spec !== undefined &&
       spec !== null &&
-      spec.chars !== null &&
       spec.bban_regexp &&
       spec.bban_regexp !== null &&
       spec.chars &&
+      spec.chars !== null &&
       spec.chars - 4 === bban.length &&
       checkFormatBBAN(bban, spec.bban_regexp)
     ) {
