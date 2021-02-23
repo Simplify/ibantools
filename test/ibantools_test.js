@@ -423,14 +423,29 @@ describe('IBANTools', function() {
 
   describe('When calling getCountrySpecifications()', function() {
     var ext = iban.getCountrySpecifications();
-    it('Country with code BA should return IBANRegistry true', function() {
-      expect(ext.BA.IBANRegistry).to.be.true;
-    });
     it('Country with code BE should return chars 16', function() {
       expect(ext.BE.chars).to.equal(16);
     });
+    it('Country with code AF should return chars null', function() {
+      expect(ext.AF.chars).to.be.null;
+    });
     it('Country with code AL should return bban_regexp ^[0-9]{8}[A-Z0-9]{16}$', function() {
       expect(ext.AL.bban_regexp).to.equal('^[0-9]{8}[A-Z0-9]{16}$');
+    });
+    it('Country with code AF should return bban_regexp null', function() {
+      expect(ext.AF.bban_regexp).to.be.null;
+    });
+    it('Country with code BA should return IBANRegistry true', function() {
+      expect(ext.BA.IBANRegistry).to.be.true;
+    });
+    it('Country with code AO should return IBANRegistry false', function() {
+      expect(ext.AO.IBANRegistry).to.be.false;
+    });
+    it('Country with code NL should return SEPA true', function() {
+      expect(ext.NL.SEPA).to.be.true;
+    });
+    it('Country with code NL should return SEPA false', function() {
+      expect(ext.PK.SEPA).to.be.false;
     });
   });
 });
