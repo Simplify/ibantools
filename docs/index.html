@@ -1,0 +1,215 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>IBANTools</title>
+	<meta name="description" content="Documentation for IBANTools">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">IBANTools</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<h1>IBANTools</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#ibantools" id="ibantools" style="color: inherit; text-decoration: none;">
+					<h1>IBANTools</h1>
+				</a>
+				<p><a href="https://github.com/Simplify/ibantools/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MPL%202.0-green.svg?dummy" alt="License"></a></p>
+				<p><a href="https://badge.fury.io/bo/ibantools"><img src="https://badge.fury.io/bo/ibantools.svg" alt="Bower version"></a>
+				<a href="https://badge.fury.io/js/ibantools"><img src="https://badge.fury.io/js/ibantools.svg" alt="npm version"></a></p>
+				<p><img src="https://github.com/Simplify/ibantools/workflows/Build%20CI%20(Master)/badge.svg?branch=master" alt="Build CI">
+					<img src="https://github.com/Simplify/ibantools/workflows/ESLint%20&%20Prettier/badge.svg?branch=master" alt="ESLint &amp; Prettier CI">
+				<a href="https://coveralls.io/github/Simplify/ibantools?branch=master"><img src="https://coveralls.io/repos/github/Simplify/ibantools/badge.svg?branch=master" alt="Coverage Status"></a></p>
+				<p><a href="https://david-dm.org/simplify/ibantools#info=devDependencies"><img src="https://david-dm.org/simplify/ibantools/dev-status.svg" alt="devDependency Status"></a>
+				<a href="https://david-dm.org/simplify/ibantools"><img src="https://david-dm.org/simplify/ibantools.svg" alt="Dependency Status"></a></p>
+				<p>IBANTools is TypeScript/JavaScript library for validation, creation and extraction of IBAN, BBAN and BIC/SWIFT numbers.</p>
+				<p>For more information about IBAN/BBAN see <a href="https://en.wikipedia.org/wiki/International_Bank_Account_Number">wikipedia page</a> and
+				<a href="https://www.swift.com/resource/iban-registry-pdf">IBAN registry</a>.</p>
+				<p>For more information about BIC/SWIFT see <a href="https://en.wikipedia.org/wiki/ISO_9362">this wikipedia page</a>.</p>
+				<a href="#installation-and-usage" id="installation-and-usage" style="color: inherit; text-decoration: none;">
+					<h2>Installation and usage</h2>
+				</a>
+				<a href="#node-common-js-es5-and-es6" id="node-common-js-es5-and-es6" style="color: inherit; text-decoration: none;">
+					<h3>Node (Common JS ES5 and ES6)</h3>
+				</a>
+				<pre><code><span style="color: #001080">$</span><span style="color: #000000"> </span><span style="color: #001080">npm</span><span style="color: #000000"> </span><span style="color: #001080">install</span><span style="color: #000000"> </span><span style="color: #001080">ibantools</span>
+</code></pre>
+				<a href="#bower-amd-es5" id="bower-amd-es5" style="color: inherit; text-decoration: none;">
+					<h3>Bower (AMD ES5)</h3>
+				</a>
+				<pre><code><span style="color: #001080">$</span><span style="color: #000000"> </span><span style="color: #001080">bower</span><span style="color: #000000"> </span><span style="color: #001080">install</span><span style="color: #000000"> </span><span style="color: #001080">ibantools</span>
+</code></pre>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h2>Usage</h2>
+				</a>
+				<p>See <a href="http://simplify.github.io/ibantools">full documentation</a> with examples on Github pages.</p>
+				<a href="#nodejs---commonjs" id="nodejs---commonjs" style="color: inherit; text-decoration: none;">
+					<h3>Node.js - CommonJS</h3>
+				</a>
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">ibantools</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;ibantools&#039;</span><span style="color: #000000">);</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">iban</span><span style="color: #000000"> = </span><span style="color: #795E26">electronicFormatIBAN</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;NL91 ABNA 0517 1643 00&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;NL91ABNA0517164300&#039;</span>
+<span style="color: #001080">ibantools</span><span style="color: #000000">.</span><span style="color: #795E26">isValidIBAN</span><span style="color: #000000">(</span><span style="color: #001080">iban</span><span style="color: #000000">);</span>
+<span style="color: #001080">ibantools</span><span style="color: #000000">.</span><span style="color: #795E26">isValidBIC</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;ABNANL2A&#039;</span><span style="color: #000000">);</span>
+</code></pre>
+				<a href="#amd---requirejs---browser" id="amd---requirejs---browser" style="color: inherit; text-decoration: none;">
+					<h3>AMD - RequireJS - Browser</h3>
+				</a>
+				<pre><code class="language-js"><span style="color: #795E26">require</span><span style="color: #000000">([</span><span style="color: #A31515">&quot;ibantools&quot;</span><span style="color: #000000">], </span><span style="color: #0000FF">function</span><span style="color: #000000">(</span><span style="color: #001080">ibantools</span><span style="color: #000000">) {</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">ibantools</span><span style="color: #000000">.</span><span style="color: #795E26">isValidIBAN</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;NL91 ABNA 0517 1643 00&#039;</span><span style="color: #000000">));</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">ibantools</span><span style="color: #000000">.</span><span style="color: #795E26">isValidBIC</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;ABNANL2A&#039;</span><span style="color: #000000">));</span>
+<span style="color: #000000">});</span>
+</code></pre>
+				<a href="#nodejs---common-js-in-browser" id="nodejs---common-js-in-browser" style="color: inherit; text-decoration: none;">
+					<h3>Node.js - Common JS in browser</h3>
+				</a>
+				<p>Use browserify or webpack.</p>
+				<a href="#jsnextmain" id="jsnextmain" style="color: inherit; text-decoration: none;">
+					<h3>jsnext:main</h3>
+				</a>
+				<p>Use node, not bower module.</p>
+				<p>If you are using tools that support <code>jsnext</code>, like a <a href="https://github.com/rollup/rollup">rollup</a> or <a href="http://jspm.io/">JSPM</a>, they will automatically select right module from the package.</p>
+				<a href="#with-typescript" id="with-typescript" style="color: inherit; text-decoration: none;">
+					<h3>With TypeScript</h3>
+				</a>
+				<p>Install library/module using npm. Package bundles type definitions and if you are on TypeScript 2.0 or above <code>tsc</code> will access those automatically. If not, check your <code>tsconfig.json</code> file.</p>
+				<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
+					<h2>Contributing</h2>
+				</a>
+				<p>This project adheres to the Contributor Covenant <a href="https://github.com/Simplify/ibantools/blob/master/.github/CODE_OF_CONDUCT.md">code of conduct</a>.
+				By participating, you are expected to uphold this code.</p>
+				<p>For contribution details, please read <a href="https://github.com/Simplify/ibantools/blob/master/CONTRIBUTING.md">this document</a>.</p>
+				<a href="#license" id="license" style="color: inherit; text-decoration: none;">
+					<h2>License</h2>
+				</a>
+				<p>This Source Code Form is subject to the terms of the Mozilla Public
+					License, v. 2.0. If a copy of the MPL was not distributed with this
+				file, You can obtain one at <a href="http://mozilla.org/MPL/2.0/">http://mozilla.org/MPL/2.0/</a>.</p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/composeibanparams.html" class="tsd-kind-icon">ComposeIBANParams</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/countrymap.html" class="tsd-kind-icon">Country<wbr>Map</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/countryspec.html" class="tsd-kind-icon">Country<wbr>Spec</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/extractbicresult.html" class="tsd-kind-icon">ExtractBICResult</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/extractibanresult.html" class="tsd-kind-icon">ExtractIBANResult</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#countryspecs" class="tsd-kind-icon">country<wbr>Specs</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#composeiban" class="tsd-kind-icon">composeIBAN</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#electronicformatiban" class="tsd-kind-icon">electronic<wbr>FormatIBAN</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#extractbic" class="tsd-kind-icon">extractBIC</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#extractiban" class="tsd-kind-icon">extractIBAN</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#friendlyformatiban" class="tsd-kind-icon">friendly<wbr>FormatIBAN</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#getcountryspecifications" class="tsd-kind-icon">get<wbr>Country<wbr>Specifications</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#issepacountry" class="tsd-kind-icon">isSEPACountry</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#isvalidbban" class="tsd-kind-icon">is<wbr>ValidBBAN</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#isvalidbic" class="tsd-kind-icon">is<wbr>ValidBIC</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#isvalidiban" class="tsd-kind-icon">is<wbr>ValidIBAN</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

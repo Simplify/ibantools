@@ -2,6 +2,7 @@
 	* Version 3.2.4
 	* Exported `countrySpecs` to restore a bit of compatibility broken in 3.2.3
 	* Updated development dependencies
+	* Documentation is now part of master branch
 
 2021-02-07  Saša Jovanić  <sasa@simplify.ba>
 	* Version 3.2.3
