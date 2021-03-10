@@ -9,7 +9,7 @@
  * @packageDocumentation
  * @author Saša Jovanić
  * @module ibantools
- * @version 3.2.5
+ * @version 3.3.0
  * @license MPL-2.0
  * @preferred
  */
@@ -25,7 +25,7 @@
  * // returns false
  * ibantools.isValidIBAN("NL92ABNA0517164300");
  * ```
- */
+v */
 export function isValidIBAN(iban: string): boolean {
   if (iban !== undefined && iban !== null) {
     const reg = new RegExp('^[0-9]{2}$', '');
@@ -44,6 +44,66 @@ export function isValidIBAN(iban: string): boolean {
     }
   }
   return false;
+}
+
+/**
+ * IBAM validation errors
+ */
+export enum ValidationErrorsIBAN {
+  NoIBANProvided,
+  NoIBANCountry,
+  WrongBBANLength,
+  WrongBBANFormat,
+  ChecksumNotNumber,
+  WrongIBANChecksum,
+}
+
+/**
+ * Interface for ValidateIBAN result
+ */
+export interface ValidateIBANResult {
+  errorCodes: ValidationErrorsIBAN[];
+  valid: boolean;
+}
+
+/**
+ * validateIBAN
+ * ```
+ * // returns {errorCodes: [], valid: true}
+ * ibantools.validateIBAN("NL91 ABNA 0417 1643 00");
+ * ```
+ */
+export function validateIBAN(iban?: string): ValidateIBANResult {
+  const result = { errorCodes: [], valid: true } as ValidateIBANResult;
+  if (iban !== undefined && iban !== null && iban !== '') {
+    const spec = countrySpecs[iban.slice(0, 2)];
+    if (spec === undefined) {
+      result.valid = false;
+      result.errorCodes.push(ValidationErrorsIBAN.NoIBANCountry);
+    } else {
+      if (spec.chars !== iban.length) {
+        result.valid = false;
+        result.errorCodes.push(ValidationErrorsIBAN.WrongBBANLength);
+      }
+      if (spec.bban_regexp && !checkFormatBBAN(iban.slice(4), spec.bban_regexp)) {
+        result.valid = false;
+        result.errorCodes.push(ValidationErrorsIBAN.WrongBBANFormat);
+      }
+      const reg = new RegExp('^[0-9]{2}$', '');
+      if (!reg.test(iban.slice(2, 4))) {
+        result.valid = false;
+        result.errorCodes.push(ValidationErrorsIBAN.ChecksumNotNumber);
+      }
+      if (!isValidIBANChecksum(iban)) {
+        result.valid = false;
+        result.errorCodes.push(ValidationErrorsIBAN.WrongIBANChecksum);
+      }
+    }
+  } else {
+    result.valid = false;
+    result.errorCodes.push(ValidationErrorsIBAN.NoIBANProvided);
+  }
+  return result;
 }
 
 /**
@@ -283,7 +343,7 @@ function mod9710(iban: string): number {
  *   let country = ibantools.getCountrySpecifications()[$(this).val()];
  *   // Add country code letters to IBAN form field
  *   $("input#iban").value($(this).val());
- *   // Add new value to "pattern" attribute to #iban input text field
+ *   // Add New value to "pattern" attribute to #iban input text field
  *   $("input#iban").attr("pattern", $(this).val() + "[0-9]{2}" + country.bban_regexp.slice(1).replace("$",""));
  * });
  * ```
@@ -327,6 +387,51 @@ export function isValidBIC(bic: string): boolean {
   const reg = new RegExp('^[a-zA-Z]{6}[a-zA-Z0-9]{2}([a-zA-Z0-9]{3})?$', '');
   const spec = countrySpecs[bic.toUpperCase().slice(4, 6)];
   return reg.test(bic) && spec !== undefined;
+}
+
+/**
+ * BIC validation errors
+ */
+export enum ValidationErrorsBIC {
+  NoBICProvided,
+  NoBICCountry,
+  WrongBICFormat,
+}
+
+/**
+ * Interface for ValidateBIC result
+ */
+export interface ValidateBICResult {
+  errorCodes: ValidationErrorsBIC[];
+  valid: boolean;
+}
+
+/**
+ * validateBIC
+ * ```
+ * // returns {errorCodes: [], valid: true}
+ * ibantools.validateBIC("NEDSZAJJXXX");
+ * ```
+ */
+export function validateBIC(bic?: string): ValidateBICResult {
+  const result = { errorCodes: [], valid: true } as ValidateBICResult;
+  if (bic !== undefined && bic !== null && bic !== '') {
+    const spec = countrySpecs[bic.toUpperCase().slice(4, 6)];
+    if (spec === undefined) {
+      result.valid = false;
+      result.errorCodes.push(ValidationErrorsBIC.NoBICCountry);
+    } else {
+      const reg = new RegExp('^[a-zA-Z]{6}[a-zA-Z0-9]{2}([a-zA-Z0-9]{3})?$', '');
+      if (!reg.test(bic)) {
+        result.valid = false;
+        result.errorCodes.push(ValidationErrorsBIC.WrongBICFormat);
+      }
+    }
+  } else {
+    result.valid = false;
+    result.errorCodes.push(ValidationErrorsBIC.NoBICProvided);
+  }
+  return result;
 }
 
 /**

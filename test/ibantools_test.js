@@ -187,6 +187,59 @@ describe('IBANTools', function() {
     });
   });
 
+  describe('When calling validateIBAN()', function() {
+    it('with null IBAN should return false', function() {
+      expect(iban.validateIBAN(null)).to.deep.equal({
+        valid: false,
+        errorCodes: [iban.ValidationErrorsIBAN.NoIBANProvided],
+      });
+    });
+
+    it('with empty IBAN should return false', function() {
+      expect(iban.validateIBAN('')).to.deep.equal({
+        valid: false,
+        errorCodes: [iban.ValidationErrorsIBAN.NoIBANProvided],
+      });
+    });
+
+    it('with undefined IBAN should return false', function() {
+      expect(iban.validateIBAN(undefined)).to.deep.equal({
+        valid: false,
+        errorCodes: [iban.ValidationErrorsIBAN.NoIBANProvided],
+      });
+    });
+
+    it('with invalid IBAN checksum should return false with correct code', function() {
+      expect(iban.validateIBAN('NL91ABNA0517164300')).to.deep.equal({
+        valid: false,
+        errorCodes: [iban.ValidationErrorsIBAN.WrongIBANChecksum],
+      });
+    });
+
+    it('with invalid IBAN country should return false with correct code', function() {
+      expect(iban.validateIBAN('XX91ABNA0517164300')).to.deep.equal({
+        valid: false,
+        errorCodes: [iban.ValidationErrorsIBAN.NoIBANCountry],
+      });
+    });
+
+    it('with invalid IBAN should return multiple error codes', function() {
+      expect(iban.validateIBAN('NL9ZA8NA057164300')).to.deep.equal({
+        valid: false,
+        errorCodes: [
+          iban.ValidationErrorsIBAN.WrongBBANLength,
+          iban.ValidationErrorsIBAN.WrongBBANFormat,
+          iban.ValidationErrorsIBAN.ChecksumNotNumber,
+          iban.ValidationErrorsIBAN.WrongIBANChecksum,
+        ],
+      });
+    });
+
+    it('with valid Libya IBAN should return true', function() {
+      expect(iban.validateIBAN('LY83002048000020100120361')).to.deep.equal({ valid: true, errorCodes: [] });
+    });
+  });
+
   describe('When calling isValidBIC()', function() {
     it('with valid BIC ABNANL2A should return true', function() {
       expect(iban.isValidBIC('ABNANL2A')).to.be.true;
@@ -220,6 +273,47 @@ describe('IBANTools', function() {
     });
     it('with invalid BIC `undefined` should return false', function() {
       expect(iban.isValidBIC(undefined)).to.be.false;
+    });
+  });
+
+  describe('When calling validateBIC()', function() {
+    it('with null BIC should return false', function() {
+      expect(iban.validateBIC(null)).to.deep.equal({
+        valid: false,
+        errorCodes: [iban.ValidationErrorsBIC.NoBICProvided],
+      });
+    });
+
+    it('with empty BIC should return false', function() {
+      expect(iban.validateBIC('')).to.deep.equal({
+        valid: false,
+        errorCodes: [iban.ValidationErrorsBIC.NoBICProvided],
+      });
+    });
+
+    it('with undefined BIC should return false', function() {
+      expect(iban.validateBIC(undefined)).to.deep.equal({
+        valid: false,
+        errorCodes: [iban.ValidationErrorsBIC.NoBICProvided],
+      });
+    });
+
+    it('with invalid BIC should return false with correct code', function() {
+      expect(iban.validateBIC('ABN4NL2A')).to.deep.equal({
+        valid: false,
+        errorCodes: [iban.ValidationErrorsBIC.WrongBICFormat],
+      });
+    });
+
+    it('with invalid BIC country should return false with correct code', function() {
+      expect(iban.validateIBAN('ABNAXX2A')).to.deep.equal({
+        valid: false,
+        errorCodes: [iban.ValidationErrorsBIC.NoBICCountry],
+      });
+    });
+
+    it('with valid BIC should return true', function() {
+      expect(iban.validateBIC('ABNANL2A')).to.deep.equal({ valid: true, errorCodes: [] });
     });
   });
 
