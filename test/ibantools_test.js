@@ -409,6 +409,17 @@ describe('IBANTools', function() {
     });
   });
 
+  describe('Adding country specification allows us to use it', function() {
+    it('Adds and uses country code XX', function() {
+      iban.countrySpecs['XX'] = { chars: 24, bban_regexp: '^[0-9]{8}[A-Z0-9]{12}$', IBANRegistry: true };
+      var ext = iban.getCountrySpecifications();
+      expect(ext.XX.chars).to.equal(24);
+      expect(ext.XX.bban_regexp).to.equal('^[0-9]{8}[A-Z0-9]{12}$');
+      expect(ext.XX.IBANRegistry).to.be.true;
+      expect(ext.XX.SEPA).to.be.false;
+    });
+  });
+
   describe('When calling getCountrySpecifications()', function() {
     var ext = iban.getCountrySpecifications();
     it('Country with code BE should return chars 16', function() {
@@ -432,7 +443,7 @@ describe('IBANTools', function() {
     it('Country with code NL should return SEPA true', function() {
       expect(ext.NL.SEPA).to.be.true;
     });
-    it('Country with code NL should return SEPA false', function() {
+    it('Country with code PK should return SEPA false', function() {
       expect(ext.PK.SEPA).to.be.false;
     });
   });

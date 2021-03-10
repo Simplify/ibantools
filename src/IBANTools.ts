@@ -9,7 +9,7 @@
  * @packageDocumentation
  * @author Saša Jovanić
  * @module ibantools
- * @version 3.2.3
+ * @version 3.2.4
  * @license MPL-2.0
  * @preferred
  */
@@ -400,9 +400,8 @@ interface CountryMapInternal {
 
 /**
  * Country specifications
- * @ignore
  */
-const countrySpecs: CountryMapInternal = {
+export const countrySpecs: CountryMapInternal = {
   AD: {
     chars: 24,
     bban_regexp: '^[0-9]{8}[A-Z0-9]{12}$',

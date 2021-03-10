@@ -172,3 +172,23 @@ export interface CountrySpec {
 export interface CountryMap {
     [code: string]: CountrySpec;
 }
+/**
+ * Interface for IBAN Country Specification
+ */
+interface CountrySpecInternal {
+    chars?: number;
+    bban_regexp?: string;
+    IBANRegistry?: boolean;
+    SEPA?: boolean;
+}
+/**
+ * Interface for Map of Country Specifications
+ */
+interface CountryMapInternal {
+    [code: string]: CountrySpecInternal;
+}
+/**
+ * Country specifications
+ */
+export declare const countrySpecs: CountryMapInternal;
+export {};

@@ -9,13 +9,13 @@ define(["require", "exports"], function (require, exports) {
      * @packageDocumentation
      * @author Saša Jovanić
      * @module ibantools
-     * @version 3.2.3
+     * @version 3.2.4
      * @license MPL-2.0
      * @preferred
      */
     'use strict';
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.extractBIC = exports.isValidBIC = exports.getCountrySpecifications = exports.friendlyFormatIBAN = exports.electronicFormatIBAN = exports.extractIBAN = exports.composeIBAN = exports.isSEPACountry = exports.isValidBBAN = exports.isValidIBAN = void 0;
+    exports.countrySpecs = exports.extractBIC = exports.isValidBIC = exports.getCountrySpecifications = exports.friendlyFormatIBAN = exports.electronicFormatIBAN = exports.extractIBAN = exports.composeIBAN = exports.isSEPACountry = exports.isValidBBAN = exports.isValidIBAN = void 0;
     /**
      * Validate IBAN
      * ```
@@ -30,7 +30,7 @@ define(["require", "exports"], function (require, exports) {
     function isValidIBAN(iban) {
         if (iban !== undefined && iban !== null) {
             var reg = new RegExp('^[0-9]{2}$', '');
-            var spec = countrySpecs[iban.slice(0, 2)];
+            var spec = exports.countrySpecs[iban.slice(0, 2)];
             if (spec !== undefined &&
                 spec.bban_regexp &&
                 spec.bban_regexp !== null &&
@@ -59,7 +59,7 @@ define(["require", "exports"], function (require, exports) {
      */
     function isValidBBAN(bban, countryCode) {
         if (bban !== undefined && bban !== null && countryCode !== undefined && countryCode !== null) {
-            var spec = countrySpecs[countryCode];
+            var spec = exports.countrySpecs[countryCode];
             if (spec !== undefined &&
                 spec !== null &&
                 spec.bban_regexp &&
@@ -87,7 +87,7 @@ define(["require", "exports"], function (require, exports) {
      */
     function isSEPACountry(countryCode) {
         if (countryCode !== undefined && countryCode !== null) {
-            var spec = countrySpecs[countryCode];
+            var spec = exports.countrySpecs[countryCode];
             if (spec !== undefined) {
                 return spec.SEPA ? spec.SEPA : false;
             }
@@ -108,7 +108,7 @@ define(["require", "exports"], function (require, exports) {
         if (params.countryCode === null || params.countryCode === undefined) {
             return null;
         }
-        var spec = countrySpecs[params.countryCode];
+        var spec = exports.countrySpecs[params.countryCode];
         if (formated_bban !== '' &&
             spec !== undefined &&
             spec.chars &&
@@ -268,8 +268,8 @@ define(["require", "exports"], function (require, exports) {
      */
     function getCountrySpecifications() {
         var countyMap = {};
-        for (var countyCode in countrySpecs) {
-            var county = countrySpecs[countyCode];
+        for (var countyCode in exports.countrySpecs) {
+            var county = exports.countrySpecs[countyCode];
             countyMap[countyCode] = {
                 chars: county.chars ? county.chars : null,
                 bban_regexp: county.bban_regexp ? county.bban_regexp : null,
@@ -302,7 +302,7 @@ define(["require", "exports"], function (require, exports) {
             return false;
         }
         var reg = new RegExp('^[a-zA-Z]{6}[a-zA-Z0-9]{2}([a-zA-Z0-9]{3})?$', '');
-        var spec = countrySpecs[bic.toUpperCase().slice(4, 6)];
+        var spec = exports.countrySpecs[bic.toUpperCase().slice(4, 6)];
         return reg.test(bic) && spec !== undefined;
     }
     exports.isValidBIC = isValidBIC;
@@ -332,9 +332,8 @@ define(["require", "exports"], function (require, exports) {
     exports.extractBIC = extractBIC;
     /**
      * Country specifications
-     * @ignore
      */
-    var countrySpecs = {
+    exports.countrySpecs = {
         AD: {
             chars: 24,
             bban_regexp: '^[0-9]{8}[A-Z0-9]{12}$',
