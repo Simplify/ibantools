@@ -25,5 +25,8 @@
   "exclude": [],
   "files": [
 		"./src/IBANTools.ts"
-  ]
+  ],
+  "typedocOptions": {
+    "name": "IBANTools"
+  }
 }

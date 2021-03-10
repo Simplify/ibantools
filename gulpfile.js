@@ -7,7 +7,6 @@ const mocha = require('gulp-mocha');
 const merge = require('merge2');
 const rename = require('gulp-rename');
 const Server = require('karma').Server;
-const typedoc = require('gulp-typedoc');
 
 // Run karma tests only one time
 gulp.task('karma', function(done) {
@@ -27,22 +26,7 @@ gulp.task('lint', shell.task(["eslint 'src/**/*.ts' 'test/**/*.js'"]));
 gulp.task('nyc', shell.task(['nyc mocha && nyc report --reporter=text-lcov | coveralls']));
 
 // TypeDoc documentation
-gulp.task('doc', function() {
-  return gulp.src(['src/**/*.ts']).pipe(
-    typedoc({
-      mode: 'library',
-      module: 'commonjs',
-      target: 'es5',
-      out: 'docs/',
-      disableSources: true,
-      disableOutputCheck: true,
-      hideGenerator: true,
-      includeVersion: true,
-      theme: 'minimal',
-      name: 'IBANTools',
-    }),
-  );
-});
+gulp.task('doc', shell.task(['typedoc src/IBANTools.ts']));
 
 // Compile typescript sources - for bower - amd
 gulp.task('build-bower', function() {
@@ -88,11 +72,11 @@ gulp.task('default', gulp.series('watch'));
 // All build tasks and documentation generation
 gulp.task('all', gulp.series('build', 'build-bower', 'build-module', 'doc'));
 
-// "all" build tasks, documentation and all tests
-gulp.task('all-with-tests', gulp.series('all', 'test', 'karma', 'nyc'));
+// "all" build tasks, documentation, linting and all tests
+gulp.task('all-with-tests', gulp.series('all', 'lint', 'test', 'karma', 'nyc'));
 
 // "compile" and run tests
 gulp.task('test-it', gulp.series('build', 'test'));
 
-// Send last report to Soveralls
+// Send last report to Coveralls
 gulp.task('coverage', gulp.series('nyc'));
