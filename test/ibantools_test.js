@@ -99,7 +99,7 @@ describe('IBANTools', function() {
       expect(iban.isValidIBAN('EG380019000500000000263180002')).to.be.true;
     });
     it('with valid Algeria IBAN should return true', function() {
-      expect(iban.isValidIBAN('DZ3512341234123412341234')).to.be.true;
+      expect(iban.isValidIBAN('DZ580002100001113000000570')).to.be.true;
     });
     it('with valid Angola IBAN should return true', function() {
       expect(iban.isValidIBAN('AO44123412341234123412341')).to.be.true;
@@ -108,7 +108,7 @@ describe('IBANTools', function() {
       expect(iban.isValidIBAN('BJ83A12312341234123412341234')).to.be.true;
     });
     it('with valid Burkina Faso IBAN should return true', function() {
-      expect(iban.isValidIBAN('BF4512341234123412341234123')).to.be.true;
+      expect(iban.isValidIBAN('BF42BF0840101300463574000390')).to.be.true;
     });
     it('with valid Burundi IBAN should return true', function() {
       expect(iban.isValidIBAN('BI33123412341234')).to.be.true;
