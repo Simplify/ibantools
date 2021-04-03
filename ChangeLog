@@ -1,4 +1,7 @@
 2021-04-03  Saša Jovanić <sasa@simplify.ba>
+	* Error codes for IBAN and BIC validation. Added `validateIBAN` and `validateBIC` methods that will return error codes.
+
+2021-04-03  Saša Jovanić <sasa@simplify.ba>
 	* Version 3.2.5
 	* (Dependabot) Bump y18n from 3.2.1 to 3.2.2
 

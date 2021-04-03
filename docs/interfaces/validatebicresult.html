@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ExtractBICResult | IBANTools</title>
+	<title>ValidateBICResult | IBANTools</title>
 	<meta name="description" content="Documentation for IBANTools">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">IBANTools</a>
 				</li>
 				<li>
-					<a href="extractbicresult.html">ExtractBICResult</a>
+					<a href="validatebicresult.html">ValidateBICResult</a>
 				</li>
 			</ul>
-			<h1>Interface ExtractBICResult</h1>
+			<h1>Interface ValidateBICResult</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Interface for ExtractBIC result</p>
+						<p>Interface for ValidateBIC result</p>
 					</div>
 				</div>
 			</section>
@@ -76,7 +76,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ExtractBICResult</span>
+						<span class="target">ValidateBICResult</span>
 					</li>
 				</ul>
 			</section>
@@ -87,12 +87,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="extractbicresult.html#bankcode" class="tsd-kind-icon">bank<wbr>Code</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="extractbicresult.html#branchcode" class="tsd-kind-icon">branch<wbr>Code</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="extractbicresult.html#countrycode" class="tsd-kind-icon">country<wbr>Code</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="extractbicresult.html#locationcode" class="tsd-kind-icon">location<wbr>Code</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="extractbicresult.html#testbic" class="tsd-kind-icon">testBIC</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="extractbicresult.html#valid" class="tsd-kind-icon">valid</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="validatebicresult.html#errorcodes" class="tsd-kind-icon">error<wbr>Codes</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="validatebicresult.html#valid" class="tsd-kind-icon">valid</a></li>
 							</ul>
 						</section>
 					</div>
@@ -101,52 +97,12 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="bankcode" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> bank<wbr>Code</h3>
-					<div class="tsd-signature tsd-kind-icon">bank<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="errorcodes" class="tsd-anchor"></a>
+					<h3>error<wbr>Codes</h3>
+					<div class="tsd-signature tsd-kind-icon">error<wbr>Codes<span class="tsd-signature-symbol">:</span> <a href="../enums/validationerrorsbic.html" class="tsd-signature-type" data-tsd-kind="Enumeration">ValidationErrorsBIC</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Simplify/ibantools/blob/e0323f8/src/IBANTools.ts#L441">IBANTools.ts:441</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="branchcode" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> branch<wbr>Code</h3>
-					<div class="tsd-signature tsd-kind-icon">branch<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/Simplify/ibantools/blob/e0323f8/src/IBANTools.ts#L444">IBANTools.ts:444</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="countrycode" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> country<wbr>Code</h3>
-					<div class="tsd-signature tsd-kind-icon">country<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/Simplify/ibantools/blob/e0323f8/src/IBANTools.ts#L442">IBANTools.ts:442</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="locationcode" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> location<wbr>Code</h3>
-					<div class="tsd-signature tsd-kind-icon">location<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/Simplify/ibantools/blob/e0323f8/src/IBANTools.ts#L443">IBANTools.ts:443</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="testbic" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> testBIC</h3>
-					<div class="tsd-signature tsd-kind-icon">testBIC<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/Simplify/ibantools/blob/e0323f8/src/IBANTools.ts#L445">IBANTools.ts:445</a></li>
+							<li>Defined in <a href="https://github.com/Simplify/ibantools/blob/e0323f8/src/IBANTools.ts#L405">IBANTools.ts:405</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -156,7 +112,7 @@
 					<div class="tsd-signature tsd-kind-icon">valid<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Simplify/ibantools/blob/e0323f8/src/IBANTools.ts#L446">IBANTools.ts:446</a></li>
+							<li>Defined in <a href="https://github.com/Simplify/ibantools/blob/e0323f8/src/IBANTools.ts#L406">IBANTools.ts:406</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -187,39 +143,27 @@
 					<li class=" tsd-kind-interface">
 						<a href="countryspec.html" class="tsd-kind-icon">Country<wbr>Spec</a>
 					</li>
+					<li class=" tsd-kind-interface">
+						<a href="extractbicresult.html" class="tsd-kind-icon">ExtractBICResult</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="extractibanresult.html" class="tsd-kind-icon">ExtractIBANResult</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="extractbicresult.html" class="tsd-kind-icon">ExtractBICResult</a>
+						<a href="validatebicresult.html" class="tsd-kind-icon">ValidateBICResult</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="extractbicresult.html#bankcode" class="tsd-kind-icon">bank<wbr>Code</a>
+								<a href="validatebicresult.html#errorcodes" class="tsd-kind-icon">error<wbr>Codes</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="extractbicresult.html#branchcode" class="tsd-kind-icon">branch<wbr>Code</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="extractbicresult.html#countrycode" class="tsd-kind-icon">country<wbr>Code</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="extractbicresult.html#locationcode" class="tsd-kind-icon">location<wbr>Code</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="extractbicresult.html#testbic" class="tsd-kind-icon">testBIC</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="extractbicresult.html#valid" class="tsd-kind-icon">valid</a>
+								<a href="validatebicresult.html#valid" class="tsd-kind-icon">valid</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface">
-						<a href="extractibanresult.html" class="tsd-kind-icon">ExtractIBANResult</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="validatebicresult.html" class="tsd-kind-icon">ValidateBICResult</a>
-					</li>
 					<li class=" tsd-kind-interface">
 						<a href="validateibanresult.html" class="tsd-kind-icon">ValidateIBANResult</a>
 					</li>

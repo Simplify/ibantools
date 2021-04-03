@@ -13,8 +13,34 @@
  * // returns false
  * ibantools.isValidIBAN("NL92ABNA0517164300");
  * ```
- */
+v */
 export declare function isValidIBAN(iban: string): boolean;
+/**
+ * IBAM validation errors
+ */
+export declare enum ValidationErrorsIBAN {
+    NoIBANProvided = 0,
+    NoIBANCountry = 1,
+    WrongBBANLength = 2,
+    WrongBBANFormat = 3,
+    ChecksumNotNumber = 4,
+    WrongIBANChecksum = 5
+}
+/**
+ * Interface for ValidateIBAN result
+ */
+export interface ValidateIBANResult {
+    errorCodes: ValidationErrorsIBAN[];
+    valid: boolean;
+}
+/**
+ * validateIBAN
+ * ```
+ * // returns {errorCodes: [], valid: true}
+ * ibantools.validateIBAN("NL91 ABNA 0417 1643 00");
+ * ```
+ */
+export declare function validateIBAN(iban?: string): ValidateIBANResult;
 /**
  * Validate BBAN
  *
@@ -114,7 +140,7 @@ export declare function friendlyFormatIBAN(iban?: string, separator?: string): s
  *   let country = ibantools.getCountrySpecifications()[$(this).val()];
  *   // Add country code letters to IBAN form field
  *   $("input#iban").value($(this).val());
- *   // Add new value to "pattern" attribute to #iban input text field
+ *   // Add New value to "pattern" attribute to #iban input text field
  *   $("input#iban").attr("pattern", $(this).val() + "[0-9]{2}" + country.bban_regexp.slice(1).replace("$",""));
  * });
  * ```
@@ -138,6 +164,29 @@ export declare function getCountrySpecifications(): CountryMap;
  * ```
  */
 export declare function isValidBIC(bic: string): boolean;
+/**
+ * BIC validation errors
+ */
+export declare enum ValidationErrorsBIC {
+    NoBICProvided = 0,
+    NoBICCountry = 1,
+    WrongBICFormat = 2
+}
+/**
+ * Interface for ValidateBIC result
+ */
+export interface ValidateBICResult {
+    errorCodes: ValidationErrorsBIC[];
+    valid: boolean;
+}
+/**
+ * validateBIC
+ * ```
+ * // returns {errorCodes: [], valid: true}
+ * ibantools.validateBIC("NEDSZAJJXXX");
+ * ```
+ */
+export declare function validateBIC(bic?: string): ValidateBICResult;
 /**
  * Interface for ExtractBIC result
  */

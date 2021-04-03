@@ -1,6 +1,6 @@
 {
   "name": "ibantools",
-  "version": "3.2.5",
+  "version": "3.3.0",
   "description": "Validation, extraction and creation of IBAN, BBAN, BIC/SWIFT numbers plus some other helpful stuff like ISO 3136-1 alpha 2 country list",
   "keywords": [
     "IBAN",

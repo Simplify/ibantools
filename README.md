@@ -43,6 +43,12 @@ See [full documentation](http://simplify.github.io/ibantools) with examples on G
 const ibantools = require('ibantools');
 const iban = electronicFormatIBAN('NL91 ABNA 0517 1643 00'); // 'NL91ABNA0517164300'
 ibantools.isValidIBAN(iban);
+
+// If you want to know reason why IBAN is invalid
+ibantools.validateIBAN('NL91ABNA0517164300');
+// Returns { valid: false, errorCodes: [iban.ValidationErrorsIBAN.WrongIBANChecksum] }
+
+// Validate BIC
 ibantools.isValidBIC('ABNANL2A');
 ```
 
