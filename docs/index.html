@@ -96,6 +96,12 @@
 				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">ibantools</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;ibantools&#039;</span><span style="color: #000000">);</span>
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">iban</span><span style="color: #000000"> = </span><span style="color: #795E26">electronicFormatIBAN</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;NL91 ABNA 0517 1643 00&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// &#039;NL91ABNA0517164300&#039;</span>
 <span style="color: #001080">ibantools</span><span style="color: #000000">.</span><span style="color: #795E26">isValidIBAN</span><span style="color: #000000">(</span><span style="color: #001080">iban</span><span style="color: #000000">);</span>
+
+<span style="color: #008000">// If you want to know reason why IBAN is invalid</span>
+<span style="color: #001080">ibantools</span><span style="color: #000000">.</span><span style="color: #795E26">validateIBAN</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;NL91ABNA0517164300&#039;</span><span style="color: #000000">);</span>
+<span style="color: #008000">// Returns { valid: false, errorCodes: [iban.ValidationErrorsIBAN.WrongIBANChecksum] }</span>
+
+<span style="color: #008000">// Validate BIC</span>
 <span style="color: #001080">ibantools</span><span style="color: #000000">.</span><span style="color: #795E26">isValidBIC</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;ABNANL2A&#039;</span><span style="color: #000000">);</span>
 </code></pre>
 				<a href="#amd---requirejs---browser" id="amd---requirejs---browser" style="color: inherit; text-decoration: none;">
