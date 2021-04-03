@@ -244,6 +244,7 @@ define(["require", "exports"], function (require, exports) {
             separator = ' ';
         }
         var electronic_iban = electronicFormatIBAN(iban);
+        /* istanbul ignore if */
         if (electronic_iban === null) {
             return null;
         }

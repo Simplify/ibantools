@@ -1,4 +1,7 @@
 2021-04-03  Saša Jovanić <sasa@simplify.ba>
+	* Coverage improved to 100%
+
+2021-04-03  Saša Jovanić <sasa@simplify.ba>
 	* Version 3.3.0
 	* Error codes for IBAN and BIC validation. Added `validateIBAN` and `validateBIC` methods that will return error codes.
 

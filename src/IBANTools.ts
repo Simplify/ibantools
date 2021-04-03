@@ -273,6 +273,7 @@ export function friendlyFormatIBAN(iban?: string, separator?: string): string | 
     separator = ' ';
   }
   const electronic_iban = electronicFormatIBAN(iban);
+  /* istanbul ignore if */
   if (electronic_iban === null) {
     return null;
   }

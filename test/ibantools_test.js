@@ -274,6 +274,9 @@ describe('IBANTools', function() {
     it('with invalid BIC `undefined` should return false', function() {
       expect(iban.isValidBIC(undefined)).to.be.false;
     });
+    it('with invalid BIC ABNAXX2A should return false', function() {
+      expect(iban.isValidBIC('ABNAXX2A')).to.be.false;
+    });
   });
 
   describe('When calling validateBIC()', function() {
@@ -306,7 +309,7 @@ describe('IBANTools', function() {
     });
 
     it('with invalid BIC country should return false with correct code', function() {
-      expect(iban.validateIBAN('ABNAXX2A')).to.deep.equal({
+      expect(iban.validateBIC('ABNAXX2A')).to.deep.equal({
         valid: false,
         errorCodes: [iban.ValidationErrorsBIC.NoBICCountry],
       });
@@ -433,6 +436,9 @@ describe('IBANTools', function() {
     it('with valid country code and invalid BBAN (character count wrong) should return null', function() {
       expect(iban.composeIBAN({ countryCode: 'NL', bban: 'ABNA04171643000' })).to.be.null;
     });
+    it('without country codeshould return null', function() {
+      expect(iban.composeIBAN({ bban: 'ABNA04171643000' })).to.be.null;
+    });
     it('with valid country code and no BBAN should return null', function() {
       expect(iban.composeIBAN({ countryCode: 'NL', bban: null })).to.be.null;
     });
@@ -500,6 +506,9 @@ describe('IBANTools', function() {
     });
     it('returns null when null is provided', function() {
       expect(iban.friendlyFormatIBAN(null)).to.be.null;
+    });
+    it('returns empty string when empty string is provided', function() {
+      expect(iban.friendlyFormatIBAN('')).to.equal('');
     });
   });
 
