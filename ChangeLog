@@ -1,4 +1,8 @@
-2021-03-29 Xavier Alvarez
+2021-04-03  Saša Jovanić <sasa@simplify.ba>
+	* Version 3.2.5
+	* (Dependabot) Bump y18n from 3.2.1 to 3.2.2
+
+2021-03-29  Xavier Alvarez
 	* Fix validation for Burkina Faso, Benin, Algeria and Mali
 
 2021-03-10  Saša Jovanić  <sasa@simplify.ba>

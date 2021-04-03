@@ -9,7 +9,7 @@
  * @packageDocumentation
  * @author Saša Jovanić
  * @module ibantools
- * @version 3.2.4
+ * @version 3.2.5
  * @license MPL-2.0
  * @preferred
  */
