@@ -77,27 +77,26 @@ export function validateIBAN(iban?: string): ValidateIBANResult {
   const result = { errorCodes: [], valid: true } as ValidateIBANResult;
   if (iban !== undefined && iban !== null && iban !== '') {
     const spec = countrySpecs[iban.slice(0, 2)];
-    if (spec === undefined) {
+    if (!spec || !(spec.bban_regexp || spec.chars)) {
       result.valid = false;
       result.errorCodes.push(ValidationErrorsIBAN.NoIBANCountry);
-    } else {
-      if (spec.chars !== iban.length) {
-        result.valid = false;
-        result.errorCodes.push(ValidationErrorsIBAN.WrongBBANLength);
-      }
-      if (spec.bban_regexp && !checkFormatBBAN(iban.slice(4), spec.bban_regexp)) {
-        result.valid = false;
-        result.errorCodes.push(ValidationErrorsIBAN.WrongBBANFormat);
-      }
-      const reg = new RegExp('^[0-9]{2}$', '');
-      if (!reg.test(iban.slice(2, 4))) {
-        result.valid = false;
-        result.errorCodes.push(ValidationErrorsIBAN.ChecksumNotNumber);
-      }
-      if (!isValidIBANChecksum(iban)) {
-        result.valid = false;
-        result.errorCodes.push(ValidationErrorsIBAN.WrongIBANChecksum);
-      }
+    }
+    if (spec && spec.chars && spec.chars !== iban.length) {
+      result.valid = false;
+      result.errorCodes.push(ValidationErrorsIBAN.WrongBBANLength);
+    }
+    if (spec && spec.bban_regexp && !checkFormatBBAN(iban.slice(4), spec.bban_regexp)) {
+      result.valid = false;
+      result.errorCodes.push(ValidationErrorsIBAN.WrongBBANFormat);
+    }
+    const reg = new RegExp('^[0-9]{2}$', '');
+    if (!reg.test(iban.slice(2, 4))) {
+      result.valid = false;
+      result.errorCodes.push(ValidationErrorsIBAN.ChecksumNotNumber);
+    }
+    if (!isValidIBANChecksum(iban)) {
+      result.valid = false;
+      result.errorCodes.push(ValidationErrorsIBAN.WrongIBANChecksum);
     }
   } else {
     result.valid = false;
