@@ -1,3 +1,7 @@
+2021-05-05 Daniel Friesen <d@danf.ca>
+  * Fixed `validateIBAN`'s handling of unsupported countries like US
+  * Added checksum validation for unsupported/unknown countries to `validateIBAN`
+
 2021-04-03  Saša Jovanić <sasa@simplify.ba>
 	* Coverage improved to 100%
 
