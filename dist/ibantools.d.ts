@@ -78,7 +78,7 @@ export interface ComposeIBANParams {
  *
  * ```
  * // returns NL91ABNA0417164300
- * ibantools.composeIBAN("NL", "ABNA0417164300");
+ * ibantools.composeIBAN({ countryCode: "NL", bban: "ABNA0417164300" });
  * ```
  */
 export declare function composeIBAN(params: ComposeIBANParams): string | null;
