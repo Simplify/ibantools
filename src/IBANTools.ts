@@ -512,6 +512,7 @@ export const countrySpecs: CountryMapInternal = {
     chars: 24,
     bban_regexp: '^[0-9]{8}[A-Z0-9]{12}$',
     IBANRegistry: true,
+    SEPA: true,
   },
   AE: {
     chars: 23,
@@ -563,6 +564,7 @@ export const countrySpecs: CountryMapInternal = {
     chars: 22,
     bban_regexp: '^[A-Z]{4}[0-9]{6}[A-Z0-9]{8}$',
     IBANRegistry: true,
+    SEPA: true,
   },
   BH: {
     chars: 22,
@@ -673,7 +675,7 @@ export const countrySpecs: CountryMapInternal = {
   FJ: {},
   FK: {},
   FM: {},
-  FO: { chars: 18, bban_regexp: '^[0-9]{14}$', IBANRegistry: true, SEPA: true },
+  FO: { chars: 18, bban_regexp: '^[0-9]{14}$', IBANRegistry: true },
   FR: {
     chars: 27,
     bban_regexp: '^[0-9]{10}[A-Z0-9]{11}[0-9]{2}$',
@@ -709,7 +711,7 @@ export const countrySpecs: CountryMapInternal = {
     IBANRegistry: true,
     SEPA: true,
   },
-  GL: { chars: 18, bban_regexp: '^[0-9]{14}$', IBANRegistry: true, SEPA: true },
+  GL: { chars: 18, bban_regexp: '^[0-9]{14}$', IBANRegistry: true },
   GM: {},
   GN: {},
   GP: {
