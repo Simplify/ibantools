@@ -2,6 +2,7 @@
 	* Fixed issue not showing AD and BG as SEPA countries
 	* Fixed issue when incorrectly showing GL and FO as SEPA countryes
 	* Fixed incorrect documentation for `composeIBAN`
+	* Updates list of supported Node.js versions
 
 2021-05-05 Daniel Friesen <d@danf.ca>
   * Fixed `validateIBAN`'s handling of unsupported countries like US
