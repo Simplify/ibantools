@@ -1,4 +1,5 @@
 2021-07-24  Saša Jovanić <sasa@simplify.ba>
+	* Version 3.3.1
 	* Fixed issue not showing AD and BG as SEPA countries
 	* Fixed issue when incorrectly showing GL and FO as SEPA countryes
 	* Fixed incorrect documentation for `composeIBAN`
