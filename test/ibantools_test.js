@@ -216,10 +216,31 @@ describe('IBANTools', function() {
       });
     });
 
-    it('with invalid IBAN country should return false with correct code', function() {
-      expect(iban.validateIBAN('XX91ABNA0517164300')).to.deep.equal({
+    it('with invalid IBAN country and correct checksum should return false with correct code', function() {
+      expect(iban.validateIBAN('XX09ABNA0517164300')).to.deep.equal({
         valid: false,
         errorCodes: [iban.ValidationErrorsIBAN.NoIBANCountry],
+      });
+    });
+
+    it('with invalid IBAN country and wrong checksum should return false with wrong code', function() {
+      expect(iban.validateIBAN('XX91ABNA0517164300')).to.deep.equal({
+        valid: false,
+        errorCodes: [iban.ValidationErrorsIBAN.NoIBANCountry, iban.ValidationErrorsIBAN.WrongIBANChecksum],
+      });
+    });
+
+    it('with country with no IBAN support should return false with correct code', function() {
+      expect(iban.validateIBAN('US64SVBKUS6S3300958879')).to.deep.equal({
+        valid: false,
+        errorCodes: [iban.ValidationErrorsIBAN.NoIBANCountry],
+      });
+    });
+
+    it('with country with no IBAN support and wrong checksum should return false with wrong code', function() {
+      expect(iban.validateIBAN('US46SVBKUS6S3300958879')).to.deep.equal({
+        valid: false,
+        errorCodes: [iban.ValidationErrorsIBAN.NoIBANCountry, iban.ValidationErrorsIBAN.WrongIBANChecksum],
       });
     });
 
