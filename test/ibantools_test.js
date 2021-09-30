@@ -439,6 +439,12 @@ describe('IBANTools', function() {
     it('with valid BBAN and no country code should return false', function() {
       expect(iban.isValidBBAN('ABNA0417164300', null)).to.be.false;
     });
+    it('with invalid BBAN for country code NO should return false', function() {
+      expect(iban.isValidBBAN('12043175441', 'NO')).to.be.false;
+    })
+    it('with valid BBAN for country code NO should return true', function() {
+      expect(iban.isValidBBAN('12043175449', 'NO')).to.be.true;
+    })
   });
 
   describe('When calling composeIBAN()', function() {

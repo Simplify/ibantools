@@ -210,3 +210,6 @@
 	* Added this ChangeLog
 	* Updated development dependencies and typings
 	* Removed old script that used to retrive IBAN countries and codes from Wikipedia
+
+2021-09-30 Simen Mailund Svendsen <simen.m.s@hotmail.com>
+  * Fix invalid norwegian BBANS (failing MOD11 check) being incorrectly returned as valid

@@ -130,6 +130,9 @@ export function isValidBBAN(bban?: string, countryCode?: string): boolean {
       spec.chars - 4 === bban.length &&
       checkFormatBBAN(bban, spec.bban_regexp)
     ) {
+      if (spec.bban_validation_func) {
+        return spec.bban_validation_func(bban)
+      }
       return true;
     }
   }
@@ -492,6 +495,7 @@ export interface CountryMap {
 interface CountrySpecInternal {
   chars?: number;
   bban_regexp?: string;
+  bban_validation_func?: (bban: string) => boolean;
   IBANRegistry?: boolean; // Is country part of official IBAN registry
   SEPA?: boolean; // Is county part of SEPA initiative
 }
@@ -501,6 +505,23 @@ interface CountrySpecInternal {
  */
 interface CountryMapInternal {
   [code: string]: CountrySpecInternal;
+}
+
+const mod11Check = (bban: string): boolean => {
+  const weights = [5, 4, 3, 2, 7, 6, 5, 4, 3, 2];
+  const bbanWithoutSpacesAndPeriods = bban.replace(/[\s.]+/g, '');
+  if (bbanWithoutSpacesAndPeriods.length !== 11) {
+    return false;
+  } else {
+    const controlDigit = parseInt(bbanWithoutSpacesAndPeriods.charAt(10), 10);
+    const bbanWithoutControlDigit = bbanWithoutSpacesAndPeriods.substring(0, 10);
+    let sum = 0;
+    for (let index = 0; index < 10; index++) {
+      sum += parseInt(bbanWithoutControlDigit.charAt(index), 10) * weights[index];
+    }
+    const remainder = sum % 11;
+    return controlDigit === (remainder === 0 ? 0 : 11 - remainder);
+  }
 }
 
 /**
@@ -943,7 +964,7 @@ export const countrySpecs: CountryMapInternal = {
     IBANRegistry: true,
     SEPA: true,
   },
-  NO: { chars: 15, bban_regexp: '^[0-9]{11}$', IBANRegistry: true, SEPA: true },
+  NO: { chars: 15, bban_regexp: '^[0-9]{11}$', bban_validation_func: mod11Check, IBANRegistry: true, SEPA: true },
   NP: {},
   NR: {},
   NU: {},
