@@ -37,7 +37,7 @@ export function isValidIBAN(iban: string): boolean {
       spec.chars &&
       spec.chars === iban.length &&
       reg.test(iban.slice(2, 4)) &&
-      checkFormatBBAN(iban.slice(4), spec.bban_regexp) &&
+      isValidBBAN(iban.slice(4), iban.slice(0, 2)) &&
       isValidIBANChecksum(iban)
     ) {
       return true;
@@ -85,7 +85,7 @@ export function validateIBAN(iban?: string): ValidateIBANResult {
       result.valid = false;
       result.errorCodes.push(ValidationErrorsIBAN.WrongBBANLength);
     }
-    if (spec && spec.bban_regexp && !checkFormatBBAN(iban.slice(4), spec.bban_regexp)) {
+    if (spec && spec.bban_regexp && !isValidBBAN(iban.slice(4), iban.slice(0, 2))) {
       result.valid = false;
       result.errorCodes.push(ValidationErrorsIBAN.WrongBBANFormat);
     }
@@ -131,7 +131,7 @@ export function isValidBBAN(bban?: string, countryCode?: string): boolean {
       checkFormatBBAN(bban, spec.bban_regexp)
     ) {
       if (spec.bban_validation_func) {
-        return spec.bban_validation_func(bban);
+        return spec.bban_validation_func(bban.replace(/[\s.]+/g, ''));
       }
       return true;
     }
@@ -507,6 +507,11 @@ interface CountryMapInternal {
   [code: string]: CountrySpecInternal;
 }
 
+/**
+ * Used for Norway IBAN check
+ *
+ * @ignore
+ */
 const mod11Check = (bban: string): boolean => {
   const weights = [5, 4, 3, 2, 7, 6, 5, 4, 3, 2];
   const bbanWithoutSpacesAndPeriods = bban.replace(/[\s.]+/g, '');
@@ -522,6 +527,34 @@ const mod11Check = (bban: string): boolean => {
     const remainder = sum % 11;
     return controlDigit === (remainder === 0 ? 0 : 11 - remainder);
   }
+};
+
+/**
+ * Spain (ES) BBAN check
+ *
+ * @ignore
+ */
+const checkSpainBBAN = (bban: string): boolean => {
+  const weightsBankBranch = [4, 8, 5, 10, 9, 7, 3, 6];
+  const weightsAccount = [1, 2, 4, 8, 5, 10, 9, 7, 3, 6];
+  const controlBankBranch = parseInt(bban.charAt(8), 10);
+  const controlAccount = parseInt(bban.charAt(9), 10);
+  const bankBranch = bban.substring(0, 8);
+  const account = bban.substring(10, 20);
+  let sum = 0;
+  for (let index = 0; index < 8; index++) {
+    sum += parseInt(bankBranch.charAt(index), 10) * weightsBankBranch[index];
+  }
+  let remainder = sum % 11;
+  if (controlBankBranch !== (remainder === 0 ? 0 : 11 - remainder)) {
+    return false;
+  }
+  sum = 0;
+  for (let index = 0; index < 10; index++) {
+    sum += parseInt(account.charAt(index), 10) * weightsAccount[index];
+  }
+  remainder = sum % 11;
+  return controlAccount === (remainder === 0 ? 0 : 11 - remainder);
 };
 
 /**
@@ -689,7 +722,7 @@ export const countrySpecs: CountryMapInternal = {
   EG: { chars: 29, bban_regexp: '^[0-9]{25}', IBANRegistry: true },
   EH: {},
   ER: {},
-  ES: { chars: 24, bban_regexp: '^[0-9]{20}$', IBANRegistry: true, SEPA: true },
+  ES: { chars: 24, bban_validation_func: checkSpainBBAN, bban_regexp: '^[0-9]{20}$', IBANRegistry: true, SEPA: true },
   ET: {},
   FI: { chars: 18, bban_regexp: '^[0-9]{14}$', IBANRegistry: true, SEPA: true },
   FJ: {},

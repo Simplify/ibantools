@@ -38,6 +38,9 @@ describe('IBANTools', function() {
     it('with valid ES IBAN should return true', function() {
       expect(iban.isValidIBAN('ES9121000418450200051332')).to.be.true;
     });
+    it('with invalid ES IBAN should return false', function() {
+      expect(iban.isValidIBAN('ES8350210036679521296135')).to.be.false;
+    });
     it('with valid GT IBAN should return true', function() {
       expect(iban.isValidIBAN('GT82TRAJ01020000001210029690')).to.be.true;
     });
@@ -575,6 +578,9 @@ describe('IBANTools', function() {
     });
     it('Country with code PK should return SEPA false', function() {
       expect(ext.PK.SEPA).to.be.false;
+    });
+    it('Country with code NO should have extra BBAN valication function', function() {
+      expect(ext.NO.bban_validation_function).not.to.be.null;
     });
   });
 });
