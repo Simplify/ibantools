@@ -6,10 +6,10 @@
 
 /**
  * Validation, extraction and creation of IBAN, BBAN, BIC/SWIFT numbers plus some other helpful stuff
- * @packageDocumentation
+ * @package Documentation
  * @author Saša Jovanić
  * @module ibantools
- * @version 3.3.1
+ * @version 4.0.0
  * @license MPL-2.0
  * @preferred
  */
@@ -508,11 +508,11 @@ interface CountryMapInternal {
 }
 
 /**
- * Used for Norway IBAN check
+ * Used for Norway BBAN check
  *
  * @ignore
  */
-const mod11Check = (bban: string): boolean => {
+const checkNorwayBBAN = (bban: string): boolean => {
   const weights = [5, 4, 3, 2, 7, 6, 5, 4, 3, 2];
   const bbanWithoutSpacesAndPeriods = bban.replace(/[\s.]+/g, '');
   if (bbanWithoutSpacesAndPeriods.length !== 11) {
@@ -527,6 +527,23 @@ const mod11Check = (bban: string): boolean => {
     const remainder = sum % 11;
     return controlDigit === (remainder === 0 ? 0 : 11 - remainder);
   }
+};
+
+/**
+ * Used for Poland BBAN check
+ *
+ * @ignore
+ */
+const checkPolandBBAN = (bban: string): boolean => {
+  const weights = [3, 9, 7, 1, 3, 9, 7];
+  const controlDigit = parseInt(bban.charAt(7), 10);
+  const toCheck = bban.substring(0, 7);
+  let sum = 0;
+  for (let index = 0; index < 7; index++) {
+    sum += parseInt(toCheck.charAt(index), 10) * weights[index];
+  }
+  const remainder = sum % 10;
+  return controlDigit === (remainder === 0 ? 0 : 10 - remainder);
 };
 
 /**
@@ -997,7 +1014,7 @@ export const countrySpecs: CountryMapInternal = {
     IBANRegistry: true,
     SEPA: true,
   },
-  NO: { chars: 15, bban_regexp: '^[0-9]{11}$', bban_validation_func: mod11Check, IBANRegistry: true, SEPA: true },
+  NO: { chars: 15, bban_regexp: '^[0-9]{11}$', bban_validation_func: checkNorwayBBAN, IBANRegistry: true, SEPA: true },
   NP: {},
   NR: {},
   NU: {},
@@ -1017,7 +1034,7 @@ export const countrySpecs: CountryMapInternal = {
     bban_regexp: '^[A-Z0-9]{4}[0-9]{16}$',
     IBANRegistry: true,
   },
-  PL: { chars: 28, bban_regexp: '^[0-9]{24}$', IBANRegistry: true, SEPA: true },
+  PL: { chars: 28, bban_validation_func: checkPolandBBAN, bban_regexp: '^[0-9]{24}$', IBANRegistry: true, SEPA: true },
   PM: {
     chars: 27,
     bban_regexp: '^[0-9]{10}[A-Z0-9]{11}[0-9]{2}$',

@@ -1,7 +1,8 @@
 2021-11-17  Saša Jovanić <sasa@simplify.ba>
 	* Fixed Senegal (SN) regular expression
 	* Updated Burundi (BI) specification
-	* Added Spain (ES) BBAN validation
+	* Added Spain (ES) extra BBAN validation
+	* Added Poland (PL) extra BBAN validation
 	* Added test to check for extra BBAN validation function
 
 2021-09-30  Simen Mailund Svendsen <simen.m.s@hotmail.com>

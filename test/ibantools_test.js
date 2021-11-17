@@ -185,8 +185,11 @@ describe('IBANTools', function() {
     it('with valid Libya IBAN should return true', function() {
       expect(iban.isValidIBAN('LY83002048000020100120361')).to.be.true;
     });
-    it('with valid SN IBAN should return true', function() {
+    it('with valid Senegal IBAN should return true', function() {
       expect(iban.isValidIBAN('SN08SN0100152000048500003035')).to.be.true;
+    });
+    it('with valid Poland IBAN should return true', function() {
+      expect(iban.isValidIBAN('PL10105000997603123456789123')).to.be.true;
     });
   });
 
