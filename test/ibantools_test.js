@@ -111,7 +111,7 @@ describe('IBANTools', function() {
       expect(iban.isValidIBAN('BF42BF0840101300463574000390')).to.be.true;
     });
     it('with valid Burundi IBAN should return true', function() {
-      expect(iban.isValidIBAN('BI33123412341234')).to.be.true;
+      expect(iban.isValidIBAN('BI4210000100010000332045181')).to.be.true;
     });
     it('with valid Cameroon IBAN should return true', function() {
       expect(iban.isValidIBAN('CM1512341234123412341234123')).to.be.true;
@@ -136,9 +136,6 @@ describe('IBANTools', function() {
     });
     it('with valid Mozambique IBAN should return true', function() {
       expect(iban.isValidIBAN('MZ97123412341234123412341')).to.be.true;
-    });
-    it('with valid Senegal IBAN should return true', function() {
-      expect(iban.isValidIBAN('SN15A12312341234123412341234')).to.be.true;
     });
     it('with valid Comoros IBAN should return true', function() {
       expect(iban.isValidIBAN('KM4600005000010010904400137')).to.be.true;
@@ -184,6 +181,9 @@ describe('IBANTools', function() {
     });
     it('with valid Libya IBAN should return true', function() {
       expect(iban.isValidIBAN('LY83002048000020100120361')).to.be.true;
+    });
+    it('with valid SN IBAN should return true', function() {
+      expect(iban.isValidIBAN('SN08SN0100152000048500003035')).to.be.true;
     });
   });
 
@@ -441,10 +441,10 @@ describe('IBANTools', function() {
     });
     it('with invalid BBAN for country code NO should return false', function() {
       expect(iban.isValidBBAN('12043175441', 'NO')).to.be.false;
-    })
+    });
     it('with valid BBAN for country code NO should return true', function() {
       expect(iban.isValidBBAN('12043175449', 'NO')).to.be.true;
-    })
+    });
   });
 
   describe('When calling composeIBAN()', function() {

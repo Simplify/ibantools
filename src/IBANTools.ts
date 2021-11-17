@@ -131,7 +131,7 @@ export function isValidBBAN(bban?: string, countryCode?: string): boolean {
       checkFormatBBAN(bban, spec.bban_regexp)
     ) {
       if (spec.bban_validation_func) {
-        return spec.bban_validation_func(bban)
+        return spec.bban_validation_func(bban);
       }
       return true;
     }
@@ -522,7 +522,7 @@ const mod11Check = (bban: string): boolean => {
     const remainder = sum % 11;
     return controlDigit === (remainder === 0 ? 0 : 11 - remainder);
   }
-}
+};
 
 /**
  * Country specifications
@@ -592,8 +592,8 @@ export const countrySpecs: CountryMapInternal = {
     IBANRegistry: true,
   },
   BI: {
-    chars: 16,
-    bban_regexp: '^[0-9]{12}$',
+    chars: 27,
+    bban_regexp: '^[0-9]{23}$',
   },
   BJ: {
     chars: 28,
@@ -1050,7 +1050,7 @@ export const countrySpecs: CountryMapInternal = {
   },
   SN: {
     chars: 28,
-    bban_regexp: '^[A-Z]{1}[0-9]{23}$',
+    bban_regexp: '^[A-Z]{2}[0-9]{22}$',
   },
   SO: {},
   SR: {},

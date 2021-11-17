@@ -1,3 +1,10 @@
+2021-11-17  Saša Jovanić <sasa@simplify.ba>
+	* Fixed Senegal (SN) regular expression
+	* Updated Burundi (BI) specification
+
+2021-09-30  Simen Mailund Svendsen <simen.m.s@hotmail.com>
+	* Fix invalid norwegian BBANS (failing MOD11 check) being incorrectly returned as valid
+
 2021-07-24  Saša Jovanić <sasa@simplify.ba>
 	* Version 3.3.1
 	* Fixed issue not showing AD and BG as SEPA countries
@@ -210,6 +217,3 @@
 	* Added this ChangeLog
 	* Updated development dependencies and typings
 	* Removed old script that used to retrive IBAN countries and codes from Wikipedia
-
-2021-09-30 Simen Mailund Svendsen <simen.m.s@hotmail.com>
-  * Fix invalid norwegian BBANS (failing MOD11 check) being incorrectly returned as valid
