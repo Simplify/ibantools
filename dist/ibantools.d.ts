@@ -227,6 +227,7 @@ export interface CountryMap {
 interface CountrySpecInternal {
     chars?: number;
     bban_regexp?: string;
+    bban_validation_func?: (bban: string) => boolean;
     IBANRegistry?: boolean;
     SEPA?: boolean;
 }

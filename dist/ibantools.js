@@ -6,10 +6,10 @@
 define(["require", "exports"], function (require, exports) {
     /**
      * Validation, extraction and creation of IBAN, BBAN, BIC/SWIFT numbers plus some other helpful stuff
-     * @packageDocumentation
+     * @package Documentation
      * @author Saša Jovanić
      * @module ibantools
-     * @version 3.3.1
+     * @version 4.0.0
      * @license MPL-2.0
      * @preferred
      */
@@ -37,7 +37,7 @@ define(["require", "exports"], function (require, exports) {
                 spec.chars &&
                 spec.chars === iban.length &&
                 reg.test(iban.slice(2, 4)) &&
-                checkFormatBBAN(iban.slice(4), spec.bban_regexp) &&
+                isValidBBAN(iban.slice(4), iban.slice(0, 2)) &&
                 isValidIBANChecksum(iban)) {
                 return true;
             }
@@ -76,7 +76,7 @@ define(["require", "exports"], function (require, exports) {
                 result.valid = false;
                 result.errorCodes.push(ValidationErrorsIBAN.WrongBBANLength);
             }
-            if (spec && spec.bban_regexp && !checkFormatBBAN(iban.slice(4), spec.bban_regexp)) {
+            if (spec && spec.bban_regexp && !isValidBBAN(iban.slice(4), iban.slice(0, 2))) {
                 result.valid = false;
                 result.errorCodes.push(ValidationErrorsIBAN.WrongBBANFormat);
             }
@@ -120,6 +120,9 @@ define(["require", "exports"], function (require, exports) {
                 spec.chars !== null &&
                 spec.chars - 4 === bban.length &&
                 checkFormatBBAN(bban, spec.bban_regexp)) {
+                if (spec.bban_validation_func) {
+                    return spec.bban_validation_func(bban.replace(/[\s.]+/g, ''));
+                }
                 return true;
             }
         }
@@ -423,6 +426,71 @@ define(["require", "exports"], function (require, exports) {
     }
     exports.extractBIC = extractBIC;
     /**
+     * Used for Norway BBAN check
+     *
+     * @ignore
+     */
+    var checkNorwayBBAN = function (bban) {
+        var weights = [5, 4, 3, 2, 7, 6, 5, 4, 3, 2];
+        var bbanWithoutSpacesAndPeriods = bban.replace(/[\s.]+/g, '');
+        if (bbanWithoutSpacesAndPeriods.length !== 11) {
+            return false;
+        }
+        else {
+            var controlDigit = parseInt(bbanWithoutSpacesAndPeriods.charAt(10), 10);
+            var bbanWithoutControlDigit = bbanWithoutSpacesAndPeriods.substring(0, 10);
+            var sum = 0;
+            for (var index = 0; index < 10; index++) {
+                sum += parseInt(bbanWithoutControlDigit.charAt(index), 10) * weights[index];
+            }
+            var remainder = sum % 11;
+            return controlDigit === (remainder === 0 ? 0 : 11 - remainder);
+        }
+    };
+    /**
+     * Used for Poland BBAN check
+     *
+     * @ignore
+     */
+    var checkPolandBBAN = function (bban) {
+        var weights = [3, 9, 7, 1, 3, 9, 7];
+        var controlDigit = parseInt(bban.charAt(7), 10);
+        var toCheck = bban.substring(0, 7);
+        var sum = 0;
+        for (var index = 0; index < 7; index++) {
+            sum += parseInt(toCheck.charAt(index), 10) * weights[index];
+        }
+        var remainder = sum % 10;
+        return controlDigit === (remainder === 0 ? 0 : 10 - remainder);
+    };
+    /**
+     * Spain (ES) BBAN check
+     *
+     * @ignore
+     */
+    var checkSpainBBAN = function (bban) {
+        var weightsBankBranch = [4, 8, 5, 10, 9, 7, 3, 6];
+        var weightsAccount = [1, 2, 4, 8, 5, 10, 9, 7, 3, 6];
+        var controlBankBranch = parseInt(bban.charAt(8), 10);
+        var controlAccount = parseInt(bban.charAt(9), 10);
+        var bankBranch = bban.substring(0, 8);
+        var account = bban.substring(10, 20);
+        var sum = 0;
+        for (var index = 0; index < 8; index++) {
+            sum += parseInt(bankBranch.charAt(index), 10) * weightsBankBranch[index];
+        }
+        var remainder = sum % 11;
+        if (controlBankBranch !== (remainder === 0 ? 0 : 11 - remainder)) {
+            return false;
+        }
+        sum = 0;
+        for (var index = 0; index < 10; index++) {
+            sum += parseInt(account.charAt(index), 10) * weightsAccount[index];
+        }
+        remainder = sum % 11;
+        return controlAccount === (remainder === 0 ? 0 : 11 - remainder);
+    };
+    /**
      * Country specifications
      */
     exports.countrySpecs = {
@@ -490,8 +558,8 @@ define(["require", "exports"], function (require, exports) {
             IBANRegistry: true,
         },
         BI: {
-            chars: 16,
-            bban_regexp: '^[0-9]{12}$',
+            chars: 27,
+            bban_regexp: '^[0-9]{23}$',
         },
         BJ: {
             chars: 28,
@@ -587,7 +655,7 @@ define(["require", "exports"], function (require, exports) {
         EG: { chars: 29, bban_regexp: '^[0-9]{25}', IBANRegistry: true },
         EH: {},
         ER: {},
-        ES: { chars: 24, bban_regexp: '^[0-9]{20}$', IBANRegistry: true, SEPA: true },
+        ES: { chars: 24, bban_validation_func: checkSpainBBAN, bban_regexp: '^[0-9]{20}$', IBANRegistry: true, SEPA: true },
         ET: {},
         FI: { chars: 18, bban_regexp: '^[0-9]{14}$', IBANRegistry: true, SEPA: true },
         FJ: {},
@@ -862,7 +930,7 @@ define(["require", "exports"], function (require, exports) {
             IBANRegistry: true,
             SEPA: true,
         },
-        NO: { chars: 15, bban_regexp: '^[0-9]{11}$', IBANRegistry: true, SEPA: true },
+        NO: { chars: 15, bban_regexp: '^[0-9]{11}$', bban_validation_func: checkNorwayBBAN, IBANRegistry: true, SEPA: true },
         NP: {},
         NR: {},
         NU: {},
@@ -882,7 +950,7 @@ define(["require", "exports"], function (require, exports) {
             bban_regexp: '^[A-Z0-9]{4}[0-9]{16}$',
             IBANRegistry: true,
         },
-        PL: { chars: 28, bban_regexp: '^[0-9]{24}$', IBANRegistry: true, SEPA: true },
+        PL: { chars: 28, bban_validation_func: checkPolandBBAN, bban_regexp: '^[0-9]{24}$', IBANRegistry: true, SEPA: true },
         PM: {
             chars: 27,
             bban_regexp: '^[0-9]{10}[A-Z0-9]{11}[0-9]{2}$',
@@ -948,7 +1016,7 @@ define(["require", "exports"], function (require, exports) {
         },
         SN: {
             chars: 28,
-            bban_regexp: '^[A-Z]{1}[0-9]{23}$',
+            bban_regexp: '^[A-Z]{2}[0-9]{22}$',
         },
         SO: {},
         SR: {},
