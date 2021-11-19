@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ValidationErrorsIBAN | IBANTools</title>
+	<title>ValidationErrorsBIC | IBANTools</title>
 	<meta name="description" content="Documentation for IBANTools">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">IBANTools</a>
 				</li>
 				<li>
-					<a href="ValidationErrorsIBAN.html">ValidationErrorsIBAN</a>
+					<a href="ValidationErrorsBIC.html">ValidationErrorsBIC</a>
 				</li>
 			</ul>
-			<h1>Enumeration ValidationErrorsIBAN</h1>
+			<h1>Enumeration ValidationErrorsBIC</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>IBAM validation errors</p>
+						<p>BIC validation errors</p>
 					</div>
 				</div>
 			</section>
@@ -79,12 +79,9 @@
 						<section class="tsd-index-section ">
 							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="ValidationErrorsIBAN.html#ChecksumNotNumber" class="tsd-kind-icon">Checksum<wbr>Not<wbr>Number</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="ValidationErrorsIBAN.html#NoIBANCountry" class="tsd-kind-icon">NoIBANCountry</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="ValidationErrorsIBAN.html#NoIBANProvided" class="tsd-kind-icon">NoIBANProvided</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="ValidationErrorsIBAN.html#WrongBBANFormat" class="tsd-kind-icon">WrongBBANFormat</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="ValidationErrorsIBAN.html#WrongBBANLength" class="tsd-kind-icon">WrongBBANLength</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="ValidationErrorsIBAN.html#WrongIBANChecksum" class="tsd-kind-icon">WrongIBANChecksum</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="ValidationErrorsBIC.html#NoBICCountry" class="tsd-kind-icon">NoBICCountry</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="ValidationErrorsBIC.html#NoBICProvided" class="tsd-kind-icon">NoBICProvided</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="ValidationErrorsBIC.html#WrongBICFormat" class="tsd-kind-icon">WrongBICFormat</a></li>
 							</ul>
 						</section>
 					</div>
@@ -93,62 +90,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Enumeration members</h2>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="ChecksumNotNumber" class="tsd-anchor"></a>
-					<h3>Checksum<wbr>Not<wbr>Number</h3>
-					<div class="tsd-signature tsd-kind-icon">Checksum<wbr>Not<wbr>Number<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 4</span></div>
+					<a name="NoBICCountry" class="tsd-anchor"></a>
+					<h3>NoBICCountry</h3>
+					<div class="tsd-signature tsd-kind-icon">NoBICCountry<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 1</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Simplify/ibantools/blob/5e95691/src/IBANTools.ts#L57">IBANTools.ts:57</a></li>
+							<li>Defined in <a href="https://github.com/Simplify/ibantools/blob/d813308/src/IBANTools.ts#L400">IBANTools.ts:400</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="NoIBANCountry" class="tsd-anchor"></a>
-					<h3>NoIBANCountry</h3>
-					<div class="tsd-signature tsd-kind-icon">NoIBANCountry<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 1</span></div>
+					<a name="NoBICProvided" class="tsd-anchor"></a>
+					<h3>NoBICProvided</h3>
+					<div class="tsd-signature tsd-kind-icon">NoBICProvided<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 0</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Simplify/ibantools/blob/5e95691/src/IBANTools.ts#L54">IBANTools.ts:54</a></li>
+							<li>Defined in <a href="https://github.com/Simplify/ibantools/blob/d813308/src/IBANTools.ts#L399">IBANTools.ts:399</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="NoIBANProvided" class="tsd-anchor"></a>
-					<h3>NoIBANProvided</h3>
-					<div class="tsd-signature tsd-kind-icon">NoIBANProvided<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 0</span></div>
+					<a name="WrongBICFormat" class="tsd-anchor"></a>
+					<h3>WrongBICFormat</h3>
+					<div class="tsd-signature tsd-kind-icon">WrongBICFormat<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 2</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Simplify/ibantools/blob/5e95691/src/IBANTools.ts#L53">IBANTools.ts:53</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="WrongBBANFormat" class="tsd-anchor"></a>
-					<h3>WrongBBANFormat</h3>
-					<div class="tsd-signature tsd-kind-icon">WrongBBANFormat<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 3</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/Simplify/ibantools/blob/5e95691/src/IBANTools.ts#L56">IBANTools.ts:56</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="WrongBBANLength" class="tsd-anchor"></a>
-					<h3>WrongBBANLength</h3>
-					<div class="tsd-signature tsd-kind-icon">WrongBBANLength<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 2</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/Simplify/ibantools/blob/5e95691/src/IBANTools.ts#L55">IBANTools.ts:55</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="WrongIBANChecksum" class="tsd-anchor"></a>
-					<h3>WrongIBANChecksum</h3>
-					<div class="tsd-signature tsd-kind-icon">WrongIBANChecksum<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 5</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/Simplify/ibantools/blob/5e95691/src/IBANTools.ts#L58">IBANTools.ts:58</a></li>
+							<li>Defined in <a href="https://github.com/Simplify/ibantools/blob/d813308/src/IBANTools.ts#L401">IBANTools.ts:401</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -164,36 +131,27 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-enum">
-						<a href="ValidationErrorsBIC.html" class="tsd-kind-icon">Validation<wbr>ErrorsBIC</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-enum">
-						<a href="ValidationErrorsIBAN.html" class="tsd-kind-icon">Validation<wbr>ErrorsIBAN</a>
+						<a href="ValidationErrorsBIC.html" class="tsd-kind-icon">Validation<wbr>ErrorsBIC</a>
 						<ul>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="ValidationErrorsIBAN.html#ChecksumNotNumber" class="tsd-kind-icon">Checksum<wbr>Not<wbr>Number</a>
+								<a href="ValidationErrorsBIC.html#NoBICCountry" class="tsd-kind-icon">NoBICCountry</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="ValidationErrorsIBAN.html#NoIBANCountry" class="tsd-kind-icon">NoIBANCountry</a>
+								<a href="ValidationErrorsBIC.html#NoBICProvided" class="tsd-kind-icon">NoBICProvided</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="ValidationErrorsIBAN.html#NoIBANProvided" class="tsd-kind-icon">NoIBANProvided</a>
-							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="ValidationErrorsIBAN.html#WrongBBANFormat" class="tsd-kind-icon">WrongBBANFormat</a>
-							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="ValidationErrorsIBAN.html#WrongBBANLength" class="tsd-kind-icon">WrongBBANLength</a>
-							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="ValidationErrorsIBAN.html#WrongIBANChecksum" class="tsd-kind-icon">WrongIBANChecksum</a>
+								<a href="ValidationErrorsBIC.html#WrongBICFormat" class="tsd-kind-icon">WrongBICFormat</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-enum">
+						<a href="ValidationErrorsIBAN.html" class="tsd-kind-icon">Validation<wbr>ErrorsIBAN</a>
+					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/ComposeIBANParams.html" class="tsd-kind-icon">ComposeIBANParams</a>
 					</li>
