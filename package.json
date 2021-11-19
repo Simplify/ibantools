@@ -58,7 +58,7 @@
     "docdash": "^1.2.0",
     "eslint": "^7.31.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "gulp": "^4.0.2",
     "gulp-mocha": "^8.0",
     "gulp-rename": "^2.0",
@@ -75,7 +75,7 @@
     "nyc": "^15.1.0",
     "prettier": "^2.3.2",
     "requirejs": "^2.3.6",
-    "typedoc": "^0.21.4",
+    "typedoc": "^0.22.9",
     "typescript": "^4.3.5"
   }
 }
