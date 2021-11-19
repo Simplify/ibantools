@@ -1,6 +1,7 @@
 2021-11-18  Saša Jovanić <sasa@simplify.ba>
-	* Updated README with new badges
+	* Updated README with new and updated badges
 	* Fixed documentation on GH pages
+	* Added dependabot dependency updates and merged some created dependency pull requests
 
 2021-11-17  Saša Jovanić <sasa@simplify.ba>
 	* Version 4.0.0
