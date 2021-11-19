@@ -1,16 +1,25 @@
 # IBANTools
 
-[![License](https://img.shields.io/badge/license-MPL%202.0-green.svg?dummy)](https://github.com/Simplify/ibantools/blob/master/LICENSE)
+[![License](https://github.com/Simplify/ibantools/blob/master/LICENSE)](https://img.shields.io/github/license/Simplify/ibantools)
 
 [![Bower version](https://badge.fury.io/bo/ibantools.svg)](https://badge.fury.io/bo/ibantools)
 [![npm version](https://badge.fury.io/js/ibantools.svg)](https://badge.fury.io/js/ibantools)
+[![NPM downloads](https://www.npmjs.com/package/ibantools)](https://img.shields.io/npm/dw/ibantools)
+![Dependents (via libraries.io)](https://img.shields.io/librariesio/dependents/npm/ibantools)
 
 ![Build CI](https://github.com/Simplify/ibantools/workflows/Build%20CI%20(Master)/badge.svg?branch=master)
 ![ESLint & Prettier CI](https://github.com/Simplify/ibantools/workflows/ESLint%20&%20Prettier/badge.svg?branch=master)
 [![Coverage Status](https://coveralls.io/repos/github/Simplify/ibantools/badge.svg?branch=master)](https://coveralls.io/github/Simplify/ibantools?branch=master)
 
-[![devDependency Status](https://david-dm.org/simplify/ibantools/dev-status.svg)](https://david-dm.org/simplify/ibantools#info=devDependencies)
-[![Dependency Status](https://david-dm.org/simplify/ibantools.svg)](https://david-dm.org/simplify/ibantools)
+![GitHub last commit](https://img.shields.io/github/last-commit/Simplify/IBANtools)
+![GitHub contributors](https://img.shields.io/github/contributors/Simplify/IBANTools)
+![GitHub issues](https://img.shields.io/github/issues/Simplify/ibantools)
+![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/Simplify/ibantools)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/Simplify/ibantools)
+![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/Simplify/IBANTools)
+
+![No deps](https://img.shields.io/badge/dependencies-0-brightgreen)
+![dev deps](https://img.shields.io/librariesio/github/Simplify/IBANTools?label=devDependencies)
 
 IBANTools is TypeScript/JavaScript library for validation, creation and extraction of IBAN, BBAN and BIC/SWIFT numbers.
 
