@@ -2,6 +2,7 @@
 	* Updated README with new and updated badges
 	* Fixed documentation on GH pages
 	* Added dependabot dependency updates and merged some created dependency pull requests
+	* Added Node 17 to build version on GitHub actions
 
 2021-11-17  Saša Jovanić <sasa@simplify.ba>
 	* Version 4.0.0
