@@ -13,7 +13,7 @@
  * // returns false
  * ibantools.isValidIBAN("NL92ABNA0517164300");
  * ```
-v */
+ */
 export declare function isValidIBAN(iban: string): boolean;
 /**
  * IBAM validation errors

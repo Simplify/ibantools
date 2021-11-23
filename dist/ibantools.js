@@ -9,7 +9,7 @@ define(["require", "exports"], function (require, exports) {
      * @package Documentation
      * @author Saša Jovanić
      * @module ibantools
-     * @version 4.0.0
+     * @version 4.0.1
      * @license MPL-2.0
      * @preferred
      */
@@ -26,7 +26,7 @@ define(["require", "exports"], function (require, exports) {
      * // returns false
      * ibantools.isValidIBAN("NL92ABNA0517164300");
      * ```
-    v */
+     */
     function isValidIBAN(iban) {
         if (iban !== undefined && iban !== null) {
             var reg = new RegExp('^[0-9]{2}$', '');
@@ -480,7 +480,7 @@ define(["require", "exports"], function (require, exports) {
             sum += parseInt(bankBranch.charAt(index), 10) * weightsBankBranch[index];
         }
         var remainder = sum % 11;
-        if (controlBankBranch !== (remainder === 0 ? 0 : 11 - remainder)) {
+        if (controlBankBranch !== (remainder === 0 ? 0 : remainder === 1 ? 1 : 11 - remainder)) {
             return false;
         }
         sum = 0;
@@ -488,7 +488,7 @@ define(["require", "exports"], function (require, exports) {
             sum += parseInt(account.charAt(index), 10) * weightsAccount[index];
         }
         remainder = sum % 11;
-        return controlAccount === (remainder === 0 ? 0 : 11 - remainder);
+        return controlAccount === (remainder === 0 ? 0 : remainder === 1 ? 1 : 11 - remainder);
     };
     /**
      * Country specifications

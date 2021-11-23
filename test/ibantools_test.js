@@ -38,6 +38,9 @@ describe('IBANTools', function() {
     it('with valid ES IBAN should return true', function() {
       expect(iban.isValidIBAN('ES9121000418450200051332')).to.be.true;
     });
+    it('with valid ES IBAN should return true', function() {
+      expect(iban.isValidIBAN('ES4901825500610201630983')).to.be.true;
+    });
     it('with invalid ES IBAN should return false', function() {
       expect(iban.isValidIBAN('ES8350210036679521296135')).to.be.false;
     });
