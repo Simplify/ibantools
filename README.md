@@ -4,7 +4,7 @@
 
 [![Bower version](https://badge.fury.io/bo/ibantools.svg)](https://badge.fury.io/bo/ibantools)
 [![npm version](https://badge.fury.io/js/ibantools.svg)](https://badge.fury.io/js/ibantools)
-[![NPM downloads](https://www.npmjs.com/package/ibantools)](https://img.shields.io/npm/dw/ibantools)
+[![NPM downloads](https://img.shields.io/npm/dw/ibantools)](https://www.npmjs.com/package/ibantools)
 ![Dependents (via libraries.io)](https://img.shields.io/librariesio/dependents/npm/ibantools)
 
 ![Build CI](https://github.com/Simplify/ibantools/workflows/Build%20CI%20(Master)/badge.svg?branch=master)
