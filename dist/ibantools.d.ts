@@ -24,7 +24,8 @@ export declare enum ValidationErrorsIBAN {
     WrongBBANLength = 2,
     WrongBBANFormat = 3,
     ChecksumNotNumber = 4,
-    WrongIBANChecksum = 5
+    WrongIBANChecksum = 5,
+    WrongAccountBankBranchChecksum = 6
 }
 /**
  * Interface for ValidateIBAN result

@@ -9,7 +9,7 @@
  * @package Documentation
  * @author Saša Jovanić
  * @module ibantools
- * @version 4.0.1
+ * @version 4.1.0
  * @license MPL-2.0
  * @preferred
  */
@@ -56,6 +56,7 @@ export enum ValidationErrorsIBAN {
   WrongBBANFormat,
   ChecksumNotNumber,
   WrongIBANChecksum,
+  WrongAccountBankBranchChecksum,
 }
 
 /**
@@ -85,9 +86,13 @@ export function validateIBAN(iban?: string): ValidateIBANResult {
       result.valid = false;
       result.errorCodes.push(ValidationErrorsIBAN.WrongBBANLength);
     }
-    if (spec && spec.bban_regexp && !isValidBBAN(iban.slice(4), iban.slice(0, 2))) {
+    if (spec && spec.bban_regexp && !checkFormatBBAN(iban.slice(4), spec.bban_regexp)) {
       result.valid = false;
       result.errorCodes.push(ValidationErrorsIBAN.WrongBBANFormat);
+    }
+    if (spec && spec.bban_validation_func && !spec.bban_validation_func(iban.slice(4))) {
+      result.valid = false;
+      result.errorCodes.push(ValidationErrorsIBAN.WrongAccountBankBranchChecksum);
     }
     const reg = new RegExp('^[0-9]{2}$', '');
     if (!reg.test(iban.slice(2, 4))) {
@@ -527,6 +532,24 @@ const checkNorwayBBAN = (bban: string): boolean => {
     const remainder = sum % 11;
     return controlDigit === (remainder === 0 ? 0 : 11 - remainder);
   }
+};
+
+/**
+ * Used for Netherlands BBAN check
+ *
+ * @ignore
+ */
+const checkDutchBBAN = (bban: string): boolean => {
+  const bbanWithoutSpacesAndPeriods = bban.replace(/[\s.]+/g, '');
+  const accountNumber = bbanWithoutSpacesAndPeriods.substring(4, 14);
+  if (accountNumber.startsWith('000')) {
+    return true; // Postbank account, no `elfproef` possible
+  }
+  let sum = 0;
+  for (let index = 0; index < 10; index++) {
+    sum += parseInt(accountNumber.charAt(index), 10) * (10 - index);
+  }
+  return sum % 11 === 0;
 };
 
 /**
@@ -1011,6 +1034,7 @@ export const countrySpecs: CountryMapInternal = {
   NL: {
     chars: 18,
     bban_regexp: '^[A-Z]{4}[0-9]{10}$',
+    bban_validation_func: checkDutchBBAN,
     IBANRegistry: true,
     SEPA: true,
   },

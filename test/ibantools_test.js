@@ -17,6 +17,9 @@ describe('IBANTools', function() {
     it('with valid IBAN should return true', function() {
       expect(iban.isValidIBAN('NL91ABNA0417164300')).to.be.true;
     });
+    it('with valid IBAN should return true', function() {
+      expect(iban.isValidIBAN('NL50PSTB0000054322')).to.be.true;
+    });
     it('with invalid IBAN should return false', function() {
       expect(iban.isValidIBAN('NL91ABNA0517164300')).to.be.false;
     });
@@ -221,7 +224,10 @@ describe('IBANTools', function() {
     it('with invalid IBAN checksum should return false with correct code', function() {
       expect(iban.validateIBAN('NL91ABNA0517164300')).to.deep.equal({
         valid: false,
-        errorCodes: [iban.ValidationErrorsIBAN.WrongIBANChecksum],
+        errorCodes: [
+          iban.ValidationErrorsIBAN.WrongAccountBankBranchChecksum,
+          iban.ValidationErrorsIBAN.WrongIBANChecksum,
+        ],
       });
     });
 
@@ -259,6 +265,7 @@ describe('IBANTools', function() {
         errorCodes: [
           iban.ValidationErrorsIBAN.WrongBBANLength,
           iban.ValidationErrorsIBAN.WrongBBANFormat,
+          iban.ValidationErrorsIBAN.WrongAccountBankBranchChecksum,
           iban.ValidationErrorsIBAN.ChecksumNotNumber,
           iban.ValidationErrorsIBAN.WrongIBANChecksum,
         ],
@@ -438,6 +445,9 @@ describe('IBANTools', function() {
   describe('When calling isValidBBAN()', function() {
     it('with valid BBAN and valid country code should return true', function() {
       expect(iban.isValidBBAN('ABNA0417164300', 'NL')).to.be.true;
+    });
+    it('with valid BBAN and valid country code should return true', function() {
+      expect(iban.isValidBBAN('PSTB0000054322', 'NL')).to.be.true;
     });
     it('with invalid BBAN and valid country code should return false', function() {
       expect(iban.isValidBBAN('A7NA0417164300', 'NL')).to.be.false;
