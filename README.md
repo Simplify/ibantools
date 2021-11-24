@@ -1,6 +1,6 @@
 # IBANTools
 
-[![License](https://github.com/Simplify/ibantools/blob/master/LICENSE)](https://img.shields.io/github/license/Simplify/ibantools)
+[![License](https://img.shields.io/github/license/Simplify/ibantools)](https://github.com/Simplify/ibantools/blob/master/LICENSE)
 
 [![Bower version](https://badge.fury.io/bo/ibantools.svg)](https://badge.fury.io/bo/ibantools)
 [![npm version](https://badge.fury.io/js/ibantools.svg)](https://badge.fury.io/js/ibantools)
