@@ -1,6 +1,7 @@
 2021-11-25  Saša Jovanić <sasa@simplify.ba>
+	* Version 4.1.0
 	* Added Belgian (BE) extra BBAN validation
-	* Added mod97/10 BBAN validation for countries that do it that way: BA, ME, MK, PT, RS, SI
+	* Added mod97/10 BBAN validation for countries that do it that way: BA, ME, MK, PT, RS and SI
 
 2021-11-24  Saša Jovanić <sasa@simplify.ba>
 	* Added Netherlands (NL) extra BBAN validation

@@ -21,6 +21,8 @@
 ![No deps](https://img.shields.io/badge/dependencies-0-brightgreen)
 ![dev deps](https://img.shields.io/librariesio/github/Simplify/IBANTools?label=devDependencies)
 
+## About
+
 IBANTools is TypeScript/JavaScript library for validation, creation and extraction of IBAN, BBAN and BIC/SWIFT numbers.
 
 For more information about IBAN/BBAN see [wikipedia page](https://en.wikipedia.org/wiki/International_Bank_Account_Number) and
@@ -28,7 +30,7 @@ For more information about IBAN/BBAN see [wikipedia page](https://en.wikipedia.o
 
 For more information about BIC/SWIFT see [this wikipedia page](https://en.wikipedia.org/wiki/ISO_9362).
 
-## Installation and usage
+## Installation
 
 ### Node (Common JS ES5 and ES6)
 

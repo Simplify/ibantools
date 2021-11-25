@@ -481,7 +481,7 @@ define(["require", "exports"], function (require, exports) {
         return reminder === checksum;
     };
     /**
-     * Used for Belgian BBAN check
+     * Mod 97/10 calculation
      *
      * @ignore
      */
@@ -492,6 +492,12 @@ define(["require", "exports"], function (require, exports) {
         }
         return parseInt(validationString, 10) % 97;
     };
+    /**
+     * Check BBAN based on Mod97/10 calculation for countries that support it:
+     * BA, ME, MK, PT, RS, SI
+     *
+     * @ignore
+     */
     var checkMod9710BBAN = function (bban) {
         var stripped = bban.replace(/[\s.]+/g, '');
         var reminder = mod9710(stripped);
