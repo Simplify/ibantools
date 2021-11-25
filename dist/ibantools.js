@@ -177,7 +177,7 @@ define(["require", "exports"], function (require, exports) {
             spec.bban_regexp &&
             spec.bban_regexp !== null &&
             checkFormatBBAN(formated_bban, spec.bban_regexp)) {
-            var checksom = mod9710(params.countryCode + '00' + formated_bban);
+            var checksom = mod9710Iban(params.countryCode + '00' + formated_bban);
             return params.countryCode + ('0' + (98 - checksom)).slice(-2) + formated_bban;
         }
         return null;
@@ -287,7 +287,7 @@ define(["require", "exports"], function (require, exports) {
      *
      * @ignore
      */
-    function mod9710(iban) {
+    function mod9710Iban(iban) {
         iban = iban.slice(3) + iban.slice(0, 4);
         var validationString = '';
         for (var n = 1; n < iban.length; n++) {
@@ -299,11 +299,7 @@ define(["require", "exports"], function (require, exports) {
                 validationString += iban[n];
             }
         }
-        while (validationString.length > 2) {
-            var part = validationString.slice(0, 6);
-            validationString = (parseInt(part, 10) % 97).toString() + validationString.slice(part.length);
-        }
-        return parseInt(validationString, 10) % 97;
+        return mod9710(validationString);
     }
     /**
      * Returns specifications for all countries, even those who are not
@@ -470,6 +466,38 @@ define(["require", "exports"], function (require, exports) {
         return sum % 11 === 0;
     };
     /**
+     * Used for Belgian BBAN check
+     *
+     * @ignore
+     */
+    var checkBelgianBBAN = function (bban) {
+        var stripped = bban.replace(/[\s.]+/g, '');
+        var checkingPart = parseInt(stripped.substring(0, stripped.length - 2), 10);
+        var checksum = parseInt(stripped.substring(stripped.length - 2, stripped.length), 10);
+        var reminder = checkingPart % 97;
+        if (reminder === 0) {
+            reminder = 97;
+        }
+        return reminder === checksum;
+    };
+    /**
+     * Used for Belgian BBAN check
+     *
+     * @ignore
+     */
+    var mod9710 = function (validationString) {
+        while (validationString.length > 2) {
+            var part = validationString.slice(0, 6);
+            validationString = (parseInt(part, 10) % 97).toString() + validationString.slice(part.length);
+        }
+        return parseInt(validationString, 10) % 97;
+    };
+    var checkMod9710BBAN = function (bban) {
+        var stripped = bban.replace(/[\s.]+/g, '');
+        var reminder = mod9710(stripped);
+        return reminder === 1;
+    };
+    /**
      * Used for Poland BBAN check
      *
      * @ignore
@@ -559,11 +587,12 @@ define(["require", "exports"], function (require, exports) {
         BA: {
             chars: 20,
             bban_regexp: '^[0-9]{16}$',
+            bban_validation_func: checkMod9710BBAN,
             IBANRegistry: true,
         },
         BB: {},
         BD: {},
-        BE: { chars: 16, bban_regexp: '^[0-9]{12}$', IBANRegistry: true, SEPA: true },
+        BE: { chars: 16, bban_regexp: '^[0-9]{12}$', bban_validation_func: checkBelgianBBAN, IBANRegistry: true, SEPA: true },
         BF: {
             chars: 28,
             bban_regexp: '^[A-Z0-9]{2}[0-9]{22}$',
@@ -875,6 +904,7 @@ define(["require", "exports"], function (require, exports) {
         ME: {
             chars: 22,
             bban_regexp: '^[0-9]{18}$',
+            bban_validation_func: checkMod9710BBAN,
             IBANRegistry: true,
         },
         MF: {
@@ -890,6 +920,7 @@ define(["require", "exports"], function (require, exports) {
         MK: {
             chars: 19,
             bban_regexp: '^[0-9]{3}[A-Z0-9]{10}[0-9]{2}$',
+            bban_validation_func: checkMod9710BBAN,
             IBANRegistry: true,
         },
         ML: {
@@ -986,7 +1017,7 @@ define(["require", "exports"], function (require, exports) {
             bban_regexp: '^[A-Z0-9]{4}[0-9]{21}$',
             IBANRegistry: true,
         },
-        PT: { chars: 25, bban_regexp: '^[0-9]{21}$', IBANRegistry: true, SEPA: true },
+        PT: { chars: 25, bban_regexp: '^[0-9]{21}$', bban_validation_func: checkMod9710BBAN, IBANRegistry: true, SEPA: true },
         PW: {},
         PY: {},
         QA: {
@@ -1008,6 +1039,7 @@ define(["require", "exports"], function (require, exports) {
         RS: {
             chars: 22,
             bban_regexp: '^[0-9]{18}$',
+            bban_validation_func: checkMod9710BBAN,
             IBANRegistry: true,
         },
         RU: {},
@@ -1027,7 +1059,13 @@ define(["require", "exports"], function (require, exports) {
         SE: { chars: 24, bban_regexp: '^[0-9]{20}$', IBANRegistry: true, SEPA: true },
         SG: {},
         SH: {},
-        SI: { chars: 19, bban_regexp: '^[0-9]{15}$', IBANRegistry: true, SEPA: true },
+        SI: {
+            chars: 19,
+            bban_regexp: '^[0-9]{15}$',
+            bban_validation_func: checkMod9710BBAN,
+            IBANRegistry: true,
+            SEPA: true,
+        },
         SJ: {},
         SK: { chars: 24, bban_regexp: '^[0-9]{20}$', IBANRegistry: true, SEPA: true },
         SL: {},

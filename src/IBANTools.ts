@@ -197,7 +197,7 @@ export function composeIBAN(params: ComposeIBANParams): string | null {
     spec.bban_regexp !== null &&
     checkFormatBBAN(formated_bban, spec.bban_regexp)
   ) {
-    const checksom = mod9710(params.countryCode + '00' + formated_bban);
+    const checksom = mod9710Iban(params.countryCode + '00' + formated_bban);
     return params.countryCode + ('0' + (98 - checksom)).slice(-2) + formated_bban;
   }
   return null;
@@ -316,7 +316,7 @@ function isValidIBANChecksum(iban: string): boolean {
  *
  * @ignore
  */
-function mod9710(iban: string): number {
+function mod9710Iban(iban: string): number {
   iban = iban.slice(3) + iban.slice(0, 4);
   let validationString = '';
   for (let n = 1; n < iban.length; n++) {
@@ -327,11 +327,7 @@ function mod9710(iban: string): number {
       validationString += iban[n];
     }
   }
-  while (validationString.length > 2) {
-    const part = validationString.slice(0, 6);
-    validationString = (parseInt(part, 10) % 97).toString() + validationString.slice(part.length);
-  }
-  return parseInt(validationString, 10) % 97;
+  return mod9710(validationString);
 }
 
 /**
@@ -553,6 +549,41 @@ const checkDutchBBAN = (bban: string): boolean => {
 };
 
 /**
+ * Used for Belgian BBAN check
+ *
+ * @ignore
+ */
+const checkBelgianBBAN = (bban: string): boolean => {
+  const stripped = bban.replace(/[\s.]+/g, '');
+  const checkingPart = parseInt(stripped.substring(0, stripped.length - 2), 10);
+  const checksum = parseInt(stripped.substring(stripped.length - 2, stripped.length), 10);
+  let reminder = checkingPart % 97;
+  if (reminder === 0) {
+    reminder = 97;
+  }
+  return reminder === checksum;
+};
+
+/**
+ * Used for Belgian BBAN check
+ *
+ * @ignore
+ */
+const mod9710 = (validationString: string): number => {
+  while (validationString.length > 2) {
+    const part = validationString.slice(0, 6);
+    validationString = (parseInt(part, 10) % 97).toString() + validationString.slice(part.length);
+  }
+  return parseInt(validationString, 10) % 97;
+};
+
+const checkMod9710BBAN = (bban: string): boolean => {
+  const stripped = bban.replace(/[\s.]+/g, '');
+  let reminder = mod9710(stripped);
+  return reminder === 1;
+};
+
+/**
  * Used for Poland BBAN check
  *
  * @ignore
@@ -644,11 +675,12 @@ export const countrySpecs: CountryMapInternal = {
   BA: {
     chars: 20,
     bban_regexp: '^[0-9]{16}$',
+    bban_validation_func: checkMod9710BBAN,
     IBANRegistry: true,
   },
   BB: {},
   BD: {},
-  BE: { chars: 16, bban_regexp: '^[0-9]{12}$', IBANRegistry: true, SEPA: true },
+  BE: { chars: 16, bban_regexp: '^[0-9]{12}$', bban_validation_func: checkBelgianBBAN, IBANRegistry: true, SEPA: true },
   BF: {
     chars: 28,
     bban_regexp: '^[A-Z0-9]{2}[0-9]{22}$',
@@ -960,6 +992,7 @@ export const countrySpecs: CountryMapInternal = {
   ME: {
     chars: 22,
     bban_regexp: '^[0-9]{18}$',
+    bban_validation_func: checkMod9710BBAN,
     IBANRegistry: true,
   },
   MF: {
@@ -975,6 +1008,7 @@ export const countrySpecs: CountryMapInternal = {
   MK: {
     chars: 19,
     bban_regexp: '^[0-9]{3}[A-Z0-9]{10}[0-9]{2}$',
+    bban_validation_func: checkMod9710BBAN,
     IBANRegistry: true,
   },
   ML: {
@@ -1071,7 +1105,7 @@ export const countrySpecs: CountryMapInternal = {
     bban_regexp: '^[A-Z0-9]{4}[0-9]{21}$',
     IBANRegistry: true,
   },
-  PT: { chars: 25, bban_regexp: '^[0-9]{21}$', IBANRegistry: true, SEPA: true },
+  PT: { chars: 25, bban_regexp: '^[0-9]{21}$', bban_validation_func: checkMod9710BBAN, IBANRegistry: true, SEPA: true },
   PW: {},
   PY: {},
   QA: {
@@ -1093,6 +1127,7 @@ export const countrySpecs: CountryMapInternal = {
   RS: {
     chars: 22,
     bban_regexp: '^[0-9]{18}$',
+    bban_validation_func: checkMod9710BBAN,
     IBANRegistry: true,
   },
   RU: {},
@@ -1112,7 +1147,13 @@ export const countrySpecs: CountryMapInternal = {
   SE: { chars: 24, bban_regexp: '^[0-9]{20}$', IBANRegistry: true, SEPA: true },
   SG: {},
   SH: {},
-  SI: { chars: 19, bban_regexp: '^[0-9]{15}$', IBANRegistry: true, SEPA: true },
+  SI: {
+    chars: 19,
+    bban_regexp: '^[0-9]{15}$',
+    bban_validation_func: checkMod9710BBAN,
+    IBANRegistry: true,
+    SEPA: true,
+  },
   SJ: {},
   SK: { chars: 24, bban_regexp: '^[0-9]{20}$', IBANRegistry: true, SEPA: true },
   SL: {},

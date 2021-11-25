@@ -197,6 +197,39 @@ describe('IBANTools', function() {
     it('with valid Poland IBAN should return true', function() {
       expect(iban.isValidIBAN('PL10105000997603123456789123')).to.be.true;
     });
+    it('with valid Belgian IBAN should return true', function() {
+      expect(iban.isValidIBAN('BE68539007547034')).to.be.true;
+    });
+    it('with valid BA IBAN should return true', function() {
+      expect(iban.isValidIBAN('BA391290079401028494')).to.be.true;
+    });
+    it('with valid BA IBAN should return true', function() {
+      expect(iban.isValidIBAN('BA391990440001200279')).to.be.true;
+    });
+    it('with valid MK IBAN should return true', function() {
+      expect(iban.isValidIBAN('MK07250120000058984')).to.be.true;
+    });
+    it('with valid MK IBAN should return true', function() {
+      expect(iban.isValidIBAN('MK07500120050057453')).to.be.true;
+    });
+    it('with valid ME IBAN should return true', function() {
+      expect(iban.isValidIBAN('ME25505000012345678951')).to.be.true;
+    });
+    it('with valid ME IBAN should return true', function() {
+      expect(iban.isValidIBAN('ME25907000000005800138')).to.be.true;
+    });
+    it('with valid PT IBAN should return true', function() {
+      expect(iban.isValidIBAN('PT50002600000524218600185')).to.be.true;
+    });
+    it('with valid PT IBAN should return true', function() {
+      expect(iban.isValidIBAN('PT50000405010020500101441')).to.be.true;
+    });
+    it('with valid SI IBAN should return true', function() {
+      expect(iban.isValidIBAN('SI56191000000123438')).to.be.true;
+    });
+    it('with valid SI IBAN should return true', function() {
+      expect(iban.isValidIBAN('SI56051008000032875')).to.be.true;
+    });
   });
 
   describe('When calling validateIBAN()', function() {

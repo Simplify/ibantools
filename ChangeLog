@@ -1,3 +1,7 @@
+2021-11-25  Saša Jovanić <sasa@simplify.ba>
+	* Added Belgian (BE) extra BBAN validation
+	* Added mod97/10 BBAN validation for countries that do it that way: BA, ME, MK, PT, RS, SI
+
 2021-11-24  Saša Jovanić <sasa@simplify.ba>
 	* Added Netherlands (NL) extra BBAN validation
 	* Added extra error code when validating IBAN `WrongAccountBankBranchChecksum` that indicates when checksum for account number or bank or branch code is incorrect
