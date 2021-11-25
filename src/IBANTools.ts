@@ -565,7 +565,7 @@ const checkBelgianBBAN = (bban: string): boolean => {
 };
 
 /**
- * Used for Belgian BBAN check
+ * Mod 97/10 calculation
  *
  * @ignore
  */
@@ -577,9 +577,15 @@ const mod9710 = (validationString: string): number => {
   return parseInt(validationString, 10) % 97;
 };
 
+/**
+ * Check BBAN based on Mod97/10 calculation for countries that support it:
+ * BA, ME, MK, PT, RS, SI
+ *
+ * @ignore
+ */
 const checkMod9710BBAN = (bban: string): boolean => {
   const stripped = bban.replace(/[\s.]+/g, '');
-  let reminder = mod9710(stripped);
+  const reminder = mod9710(stripped);
   return reminder === 1;
 };
 
