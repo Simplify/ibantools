@@ -1,3 +1,6 @@
+2021-11-27  Saša Jovanić <sasa@simplify.ba>
+	* Added Croatian (HR) BBAN validation
+
 2021-11-25  Saša Jovanić <sasa@simplify.ba>
 	* Version 4.1.0
 	* Added Belgian (BE) extra BBAN validation

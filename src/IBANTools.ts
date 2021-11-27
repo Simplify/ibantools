@@ -9,7 +9,7 @@
  * @package Documentation
  * @author Saša Jovanić
  * @module ibantools
- * @version 4.1.0
+ * @version 4.1.1
  * @license MPL-2.0
  * @preferred
  */
@@ -635,6 +635,37 @@ const checkSpainBBAN = (bban: string): boolean => {
 };
 
 /**
+ * Mod 11/10 check
+ *
+ * @ignore
+ */
+const checkMod1110 = (toCheck: string, control: number): boolean => {
+  let nr = 10;
+  for (let index = 0; index < toCheck.length; index++) {
+    nr += parseInt(toCheck.charAt(index), 10);
+    if (nr % 10 !== 0) {
+      nr = nr % 10;
+    }
+    nr = nr * 2;
+    nr = nr % 11;
+  }
+  return control === (11 - nr === 10 ? 0 : 11 - nr);
+};
+
+/**
+ * Croatian (HR) BBAN check
+ *
+ * @ignore
+ */
+const checkCroatianBBAN = (bban: string): boolean => {
+  const controlBankBranch = parseInt(bban.charAt(6), 10);
+  const controlAccount = parseInt(bban.charAt(16), 10);
+  const bankBranch = bban.substring(0, 6);
+  const account = bban.substring(7, 16);
+  return checkMod1110(bankBranch, controlBankBranch) && checkMod1110(account, controlAccount);
+};
+
+/**
  * Country specifications
  */
 export const countrySpecs: CountryMapInternal = {
@@ -878,7 +909,13 @@ export const countrySpecs: CountryMapInternal = {
     chars: 28,
     bban_regexp: '^[A-Z]{4}[0-9]{20}$',
   },
-  HR: { chars: 21, bban_regexp: '^[0-9]{17}$', IBANRegistry: true, SEPA: true },
+  HR: {
+    chars: 21,
+    bban_regexp: '^[0-9]{17}$',
+    bban_validation_func: checkCroatianBBAN,
+    IBANRegistry: true,
+    SEPA: true,
+  },
   HT: {},
   HU: { chars: 28, bban_regexp: '^[0-9]{24}$', IBANRegistry: true, SEPA: true },
   ID: {},
