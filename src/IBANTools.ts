@@ -665,6 +665,29 @@ const checkCroatianBBAN = (bban: string): boolean => {
   return checkMod1110(bankBranch, controlBankBranch) && checkMod1110(account, controlAccount);
 };
 
+const checkCzechBBAN = (bban: string): boolean => {
+  const weightsPrefix = [10, 5, 8, 4, 2, 1];
+  const weightsSuffix = [6, 3, 7, 9, 10, 5, 8, 4, 2, 1];
+  const controlPrefix = parseInt(bban.charAt(9), 10);
+  const controlSuffix = parseInt(bban.charAt(19), 10);
+  const prefix = bban.substring(4, 9);
+  const suffix = bban.substring(10, 19);
+  let sum = 0;
+  for (let index = 0; index < prefix.length; index++) {
+    sum += parseInt(prefix.charAt(index), 10) * weightsPrefix[index];
+  }
+  let remainder = sum % 11;
+  if (controlPrefix !== (remainder === 0 ? 0 : remainder === 1 ? 1 : 11 - remainder)) {
+    return false;
+  }
+  sum = 0;
+  for (let index = 0; index < suffix.length; index++) {
+    sum += parseInt(suffix.charAt(index), 10) * weightsSuffix[index];
+  }
+  remainder = sum % 11;
+  return controlSuffix === (remainder === 0 ? 0 : remainder === 1 ? 1 : 11 - remainder);
+};
+
 /**
  * Country specifications
  */
@@ -809,7 +832,13 @@ export const countrySpecs: CountryMapInternal = {
     IBANRegistry: true,
     SEPA: true,
   },
-  CZ: { chars: 24, bban_regexp: '^[0-9]{20}$', IBANRegistry: true, SEPA: true },
+  CZ: {
+    chars: 24,
+    bban_regexp: '^[0-9]{20}$',
+    bban_validation_func: checkCzechBBAN,
+    IBANRegistry: true,
+    SEPA: true,
+  },
   DE: { chars: 22, bban_regexp: '^[0-9]{18}$', IBANRegistry: true, SEPA: true },
   DJ: {
     chars: 27,

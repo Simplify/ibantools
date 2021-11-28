@@ -230,6 +230,9 @@ describe('IBANTools', function() {
     it('with valid SI IBAN should return true', function() {
       expect(iban.isValidIBAN('SI56051008000032875')).to.be.true;
     });
+    it('with valid CZ IBAN should return true', function() {
+      expect(iban.isValidIBAN('CZ6508000000192000145399')).to.be.true;
+    });
   });
 
   describe('When calling validateIBAN()', function() {
