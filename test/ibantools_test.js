@@ -233,6 +233,18 @@ describe('IBANTools', function() {
     it('with valid CZ IBAN should return true', function() {
       expect(iban.isValidIBAN('CZ6508000000192000145399')).to.be.true;
     });
+    it('with valid EE IBAN should return true', function() {
+      expect(iban.isValidIBAN('EE443300338400100007')).to.be.true;
+    });
+    it('with valid EE IBAN should return true', function() {
+      expect(iban.isValidIBAN('EE382200221020145685')).to.be.true;
+    });
+    it('with valid EE IBAN should return true', function() {
+      expect(iban.isValidIBAN('EE901700017000000006')).to.be.true;
+    });
+    it('with valid EE IBAN should return true', function() {
+      expect(iban.isValidIBAN('EE975500000550008329')).to.be.true;
+    });
   });
 
   describe('When calling validateIBAN()', function() {
