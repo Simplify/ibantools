@@ -2,6 +2,7 @@
 	* Added Estonian (EE) BBAN validation
 	* Added Finland (FI) BBAN validation
 	* Aland Islands (AX) uses BBAN valkidation from Finland
+	* Added French (FR) and Monaco (MC) BBAN validation
 
 2021-11-28  Saša Jovanić <sasa@simplify.ba>
 	* Added Czech (CZ) BBAN validation

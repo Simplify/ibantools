@@ -745,6 +745,72 @@ const checkFinlandBBAN = (bban: string): boolean => {
 };
 
 /**
+ * Check French (FR) BBAN
+ * Also for Monaco (MC)
+ *
+ * @ignore
+ */
+const checkFrenchBBAN = (bban: string): boolean => {
+  const stripped = bban.replace(/[\s.]+/g, '');
+  const normalized = Array.from(stripped);
+  for (let index = 0; index < stripped.length; index++) {
+    const c = normalized[index].charCodeAt(0);
+    if (c >= 65) {
+      switch (c) {
+        case 65:
+        case 74:
+          normalized[index] = '1';
+          break;
+        case 66:
+        case 75:
+        case 83:
+          normalized[index] = '2';
+          break;
+        case 67:
+        case 76:
+        case 84:
+          normalized[index] = '3';
+          break;
+        case 68:
+        case 77:
+        case 85:
+          normalized[index] = '4';
+          break;
+        case 69:
+        case 78:
+        case 86:
+          normalized[index] = '5';
+          break;
+        case 70:
+        case 79:
+        case 87:
+          normalized[index] = '6';
+          break;
+        case 71:
+        case 80:
+        case 88:
+          normalized[index] = '7';
+          break;
+        case 72:
+        case 81:
+        case 89:
+          normalized[index] = '8';
+          break;
+        case 73:
+        case 82:
+        case 90:
+          normalized[index] = '9';
+          break;
+        default:
+          break;
+      }
+    }
+  }
+  const remainder = mod9710(normalized.join(''));
+  return remainder === 0;
+};
+
+/**
  * Country specifications
  */
 export const countrySpecs: CountryMapInternal = {
@@ -923,7 +989,13 @@ export const countrySpecs: CountryMapInternal = {
   EG: { chars: 29, bban_regexp: '^[0-9]{25}', IBANRegistry: true },
   EH: {},
   ER: {},
-  ES: { chars: 24, bban_validation_func: checkSpainBBAN, bban_regexp: '^[0-9]{20}$', IBANRegistry: true, SEPA: true },
+  ES: {
+    chars: 24,
+    bban_validation_func: checkSpainBBAN,
+    bban_regexp: '^[0-9]{20}$',
+    IBANRegistry: true,
+    SEPA: true,
+  },
   ET: {},
   FI: {
     chars: 18,
@@ -939,6 +1011,7 @@ export const countrySpecs: CountryMapInternal = {
   FR: {
     chars: 27,
     bban_regexp: '^[0-9]{10}[A-Z0-9]{11}[0-9]{2}$',
+    bban_validation_func: checkFrenchBBAN,
     IBANRegistry: true,
     SEPA: true,
   },
@@ -1122,6 +1195,7 @@ export const countrySpecs: CountryMapInternal = {
   MC: {
     chars: 27,
     bban_regexp: '^[0-9]{10}[A-Z0-9]{11}[0-9]{2}$',
+    bban_validation_func: checkFrenchBBAN,
     IBANRegistry: true,
     SEPA: true,
   },
