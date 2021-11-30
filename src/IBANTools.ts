@@ -700,7 +700,6 @@ const checkCzechBBAN = (bban: string): boolean => {
  */
 const checkEstonianBBAN = (bban: string): boolean => {
   const weights = [7, 1, 3, 7, 1, 3, 7, 1, 3, 7, 1, 3, 7];
-  // 2200221020145685
   const controlDigit = parseInt(bban.charAt(15), 10);
   const toCheck = bban.substring(2, 15);
   let sum = 0;
@@ -709,6 +708,40 @@ const checkEstonianBBAN = (bban: string): boolean => {
   }
   const remainder = sum % 10;
   return controlDigit === (remainder === 0 ? 0 : 10 - remainder);
+};
+
+/**
+ * Finland (FI) BBAN check
+ *
+ * @ignore
+ */
+const checkFinlandBBAN = (bban: string): boolean => {
+  const weightsMethod1 = [2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2];
+  const weightsMethod2 = [0, 0, 0, 0, 0, 0, 0, 1, 3, 7, 1, 3, 7];
+  const controlDigit = parseInt(bban.charAt(13), 10);
+  const toCheck = bban.substring(0, 13);
+  let sum = 0;
+  if (toCheck.startsWith('88')) {
+    for (let index = 0; index < toCheck.length; index++) {
+      sum += parseInt(toCheck.charAt(index), 10) * weightsMethod2[index];
+    }
+    const remainder = sum % 10;
+    return controlDigit === (remainder === 0 ? 0 : 10 - remainder);
+  } else {
+    for (let index = 0; index < toCheck.length; index++) {
+      if (weightsMethod1[index] === 1) {
+        sum += parseInt(toCheck.charAt(index), 10) * weightsMethod1[index];
+      } else {
+        let value = parseInt(toCheck.charAt(index), 10) * weightsMethod1[index];
+        sum += Math.floor(value / 10) + (value % 10);
+      }
+    }
+    const extraSum = sum + controlDigit;
+    const multiDigit = Math.floor(extraSum / 10);
+    const result = multiDigit * 10;
+    const remainder = result - sum;
+    return remainder === controlDigit;
+  }
 };
 
 /**
@@ -891,7 +924,13 @@ export const countrySpecs: CountryMapInternal = {
   ER: {},
   ES: { chars: 24, bban_validation_func: checkSpainBBAN, bban_regexp: '^[0-9]{20}$', IBANRegistry: true, SEPA: true },
   ET: {},
-  FI: { chars: 18, bban_regexp: '^[0-9]{14}$', IBANRegistry: true, SEPA: true },
+  FI: {
+    chars: 18,
+    bban_regexp: '^[0-9]{14}$',
+    bban_validation_func: checkFinlandBBAN,
+    IBANRegistry: true,
+    SEPA: true,
+  },
   FJ: {},
   FK: {},
   FM: {},

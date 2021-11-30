@@ -245,6 +245,15 @@ describe('IBANTools', function() {
     it('with valid EE IBAN should return true', function() {
       expect(iban.isValidIBAN('EE975500000550008329')).to.be.true;
     });
+    it('with valid FI IBAN should return true', function() {
+      expect(iban.isValidIBAN('FI2112345600000785')).to.be.true;
+    });
+    it('with valid FI IBAN should return true', function() {
+      expect(iban.isValidIBAN('FI5542345670000081')).to.be.true;
+    });
+    it('with valid FI IBAN should return true', function() {
+      expect(iban.isValidIBAN('FI5888345670005487')).to.be.true;
+    });
   });
 
   describe('When calling validateIBAN()', function() {
