@@ -732,7 +732,7 @@ const checkFinlandBBAN = (bban: string): boolean => {
       if (weightsMethod1[index] === 1) {
         sum += parseInt(toCheck.charAt(index), 10) * weightsMethod1[index];
       } else {
-        let value = parseInt(toCheck.charAt(index), 10) * weightsMethod1[index];
+        const value = parseInt(toCheck.charAt(index), 10) * weightsMethod1[index];
         sum += Math.floor(value / 10) + (value % 10);
       }
     }
@@ -781,6 +781,7 @@ export const countrySpecs: CountryMapInternal = {
   AX: {
     chars: 18,
     bban_regexp: '^[0-9]{14}$',
+    bban_validation_func: checkFinlandBBAN,
     IBANRegistry: true,
   },
   AZ: {

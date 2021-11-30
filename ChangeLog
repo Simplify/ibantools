@@ -1,6 +1,7 @@
 2021-11-30  Saša Jovanić <sasa@simplify.ba>
 	* Added Estonian (EE) BBAN validation
 	* Added Finland (FI) BBAN validation
+	* Aland Islands (AX) uses BBAN valkidation from Finland
 
 2021-11-28  Saša Jovanić <sasa@simplify.ba>
 	* Added Czech (CZ) BBAN validation
