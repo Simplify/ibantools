@@ -516,18 +516,14 @@ interface CountryMapInternal {
 const checkNorwayBBAN = (bban: string): boolean => {
   const weights = [5, 4, 3, 2, 7, 6, 5, 4, 3, 2];
   const bbanWithoutSpacesAndPeriods = bban.replace(/[\s.]+/g, '');
-  if (bbanWithoutSpacesAndPeriods.length !== 11) {
-    return false;
-  } else {
-    const controlDigit = parseInt(bbanWithoutSpacesAndPeriods.charAt(10), 10);
-    const bbanWithoutControlDigit = bbanWithoutSpacesAndPeriods.substring(0, 10);
-    let sum = 0;
-    for (let index = 0; index < 10; index++) {
-      sum += parseInt(bbanWithoutControlDigit.charAt(index), 10) * weights[index];
-    }
-    const remainder = sum % 11;
-    return controlDigit === (remainder === 0 ? 0 : 11 - remainder);
+  const controlDigit = parseInt(bbanWithoutSpacesAndPeriods.charAt(10), 10);
+  const bbanWithoutControlDigit = bbanWithoutSpacesAndPeriods.substring(0, 10);
+  let sum = 0;
+  for (let index = 0; index < 10; index++) {
+    sum += parseInt(bbanWithoutControlDigit.charAt(index), 10) * weights[index];
   }
+  const remainder = sum % 11;
+  return controlDigit === (remainder === 0 ? 0 : 11 - remainder);
 };
 
 /**
@@ -557,11 +553,8 @@ const checkBelgianBBAN = (bban: string): boolean => {
   const stripped = bban.replace(/[\s.]+/g, '');
   const checkingPart = parseInt(stripped.substring(0, stripped.length - 2), 10);
   const checksum = parseInt(stripped.substring(stripped.length - 2, stripped.length), 10);
-  let reminder = checkingPart % 97;
-  if (reminder === 0) {
-    reminder = 97;
-  }
-  return reminder === checksum;
+  const remainder = checkingPart % 97 === 0 ? 97 : checkingPart % 97;
+  return remainder === checksum;
 };
 
 /**
@@ -800,8 +793,6 @@ const checkFrenchBBAN = (bban: string): boolean => {
         case 82:
         case 90:
           normalized[index] = '9';
-          break;
-        default:
           break;
       }
     }

@@ -1,3 +1,6 @@
+2021-12-01  Saša Jovanić <sasa@simplify.ba>
+	* Improve test coverage
+
 2021-11-30  Saša Jovanić <sasa@simplify.ba>
 	* Added Estonian (EE) BBAN validation
 	* Added Finland (FI) BBAN validation

@@ -233,6 +233,9 @@ describe('IBANTools', function() {
     it('with valid CZ IBAN should return true', function() {
       expect(iban.isValidIBAN('CZ6508000000192000145399')).to.be.true;
     });
+    it('with invalid CZ IBAN should return false', function() {
+      expect(iban.isValidIBAN('CZ6508000000182000145399')).to.be.false;
+    });
     it('with valid EE IBAN should return true', function() {
       expect(iban.isValidIBAN('EE443300338400100007')).to.be.true;
     });
@@ -256,6 +259,9 @@ describe('IBANTools', function() {
     });
     it('with valid FR IBAN should return true', function() {
       expect(iban.isValidIBAN('FR1420041010050500013M02606')).to.be.true;
+    });
+    it('with valid FR IBAN should return true', function() {
+      expect(iban.isValidIBAN('FR22200410100505QZABCMGEF65')).to.be.true;
     });
     it('with valid MC IBAN should return true', function() {
       expect(iban.isValidIBAN('MC5811222000010123456789030')).to.be.true;
@@ -529,6 +535,9 @@ describe('IBANTools', function() {
     });
     it('with valid BBAN for country code NO should return true', function() {
       expect(iban.isValidBBAN('12043175449', 'NO')).to.be.true;
+    });
+    it('with too short BBAN for country code NO should return false', function() {
+      expect(iban.isValidBBAN('1204317544', 'NO')).to.be.false;
     });
   });
 
