@@ -9,7 +9,7 @@ define(["require", "exports"], function (require, exports) {
      * @package Documentation
      * @author Saša Jovanić
      * @module ibantools
-     * @version 4.1.0
+     * @version 4.1.1
      * @license MPL-2.0
      * @preferred
      */
@@ -434,19 +434,14 @@ define(["require", "exports"], function (require, exports) {
     var checkNorwayBBAN = function (bban) {
         var weights = [5, 4, 3, 2, 7, 6, 5, 4, 3, 2];
         var bbanWithoutSpacesAndPeriods = bban.replace(/[\s.]+/g, '');
-        if (bbanWithoutSpacesAndPeriods.length !== 11) {
-            return false;
+        var controlDigit = parseInt(bbanWithoutSpacesAndPeriods.charAt(10), 10);
+        var bbanWithoutControlDigit = bbanWithoutSpacesAndPeriods.substring(0, 10);
+        var sum = 0;
+        for (var index = 0; index < 10; index++) {
+            sum += parseInt(bbanWithoutControlDigit.charAt(index), 10) * weights[index];
         }
-        else {
-            var controlDigit = parseInt(bbanWithoutSpacesAndPeriods.charAt(10), 10);
-            var bbanWithoutControlDigit = bbanWithoutSpacesAndPeriods.substring(0, 10);
-            var sum = 0;
-            for (var index = 0; index < 10; index++) {
-                sum += parseInt(bbanWithoutControlDigit.charAt(index), 10) * weights[index];
-            }
-            var remainder = sum % 11;
-            return controlDigit === (remainder === 0 ? 0 : 11 - remainder);
-        }
+        var remainder = sum % 11;
+        return controlDigit === (remainder === 0 ? 0 : 11 - remainder);
     };
     /**
      * Used for Netherlands BBAN check
@@ -474,11 +469,8 @@ define(["require", "exports"], function (require, exports) {
         var stripped = bban.replace(/[\s.]+/g, '');
         var checkingPart = parseInt(stripped.substring(0, stripped.length - 2), 10);
         var checksum = parseInt(stripped.substring(stripped.length - 2, stripped.length), 10);
-        var reminder = checkingPart % 97;
-        if (reminder === 0) {
-            reminder = 97;
-        }
-        return reminder === checksum;
+        var remainder = checkingPart % 97 === 0 ? 97 : checkingPart % 97;
+        return remainder === checksum;
     };
     /**
      * Mod 97/10 calculation
@@ -547,6 +539,213 @@ define(["require", "exports"], function (require, exports) {
         return controlAccount === (remainder === 0 ? 0 : remainder === 1 ? 1 : 11 - remainder);
     };
     /**
+     * Mod 11/10 check
+     *
+     * @ignore
+     */
+    var checkMod1110 = function (toCheck, control) {
+        var nr = 10;
+        for (var index = 0; index < toCheck.length; index++) {
+            nr += parseInt(toCheck.charAt(index), 10);
+            if (nr % 10 !== 0) {
+                nr = nr % 10;
+            }
+            nr = nr * 2;
+            nr = nr % 11;
+        }
+        return control === (11 - nr === 10 ? 0 : 11 - nr);
+    };
+    /**
+     * Croatian (HR) BBAN check
+     *
+     * @ignore
+     */
+    var checkCroatianBBAN = function (bban) {
+        var controlBankBranch = parseInt(bban.charAt(6), 10);
+        var controlAccount = parseInt(bban.charAt(16), 10);
+        var bankBranch = bban.substring(0, 6);
+        var account = bban.substring(7, 16);
+        return checkMod1110(bankBranch, controlBankBranch) && checkMod1110(account, controlAccount);
+    };
+    /**
+     * Czech (CZ) BBAN check
+     *
+     * @ignore
+     */
+    var checkCzechBBAN = function (bban) {
+        var weightsPrefix = [10, 5, 8, 4, 2, 1];
+        var weightsSuffix = [6, 3, 7, 9, 10, 5, 8, 4, 2, 1];
+        var controlPrefix = parseInt(bban.charAt(9), 10);
+        var controlSuffix = parseInt(bban.charAt(19), 10);
+        var prefix = bban.substring(4, 9);
+        var suffix = bban.substring(10, 19);
+        var sum = 0;
+        for (var index = 0; index < prefix.length; index++) {
+            sum += parseInt(prefix.charAt(index), 10) * weightsPrefix[index];
+        }
+        var remainder = sum % 11;
+        if (controlPrefix !== (remainder === 0 ? 0 : remainder === 1 ? 1 : 11 - remainder)) {
+            return false;
+        }
+        sum = 0;
+        for (var index = 0; index < suffix.length; index++) {
+            sum += parseInt(suffix.charAt(index), 10) * weightsSuffix[index];
+        }
+        remainder = sum % 11;
+        return controlSuffix === (remainder === 0 ? 0 : remainder === 1 ? 1 : 11 - remainder);
+    };
+    /**
+     * Estonian (EE) BBAN check
+     *
+     * @ignore
+     */
+    var checkEstonianBBAN = function (bban) {
+        var weights = [7, 1, 3, 7, 1, 3, 7, 1, 3, 7, 1, 3, 7];
+        var controlDigit = parseInt(bban.charAt(15), 10);
+        var toCheck = bban.substring(2, 15);
+        var sum = 0;
+        for (var index = 0; index < toCheck.length; index++) {
+            sum += parseInt(toCheck.charAt(index), 10) * weights[index];
+        }
+        var remainder = sum % 10;
+        return controlDigit === (remainder === 0 ? 0 : 10 - remainder);
+    };
+    /**
+     * Finland (FI) BBAN check
+     *
+     * @ignore
+     */
+    var checkFinlandBBAN = function (bban) {
+        var weightsMethod1 = [2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2];
+        var weightsMethod2 = [0, 0, 0, 0, 0, 0, 0, 1, 3, 7, 1, 3, 7];
+        var controlDigit = parseInt(bban.charAt(13), 10);
+        var toCheck = bban.substring(0, 13);
+        var sum = 0;
+        if (toCheck.startsWith('88')) {
+            for (var index = 0; index < toCheck.length; index++) {
+                sum += parseInt(toCheck.charAt(index), 10) * weightsMethod2[index];
+            }
+            var remainder = sum % 10;
+            return controlDigit === (remainder === 0 ? 0 : 10 - remainder);
+        }
+        else {
+            for (var index = 0; index < toCheck.length; index++) {
+                if (weightsMethod1[index] === 1) {
+                    sum += parseInt(toCheck.charAt(index), 10) * weightsMethod1[index];
+                }
+                else {
+                    var value = parseInt(toCheck.charAt(index), 10) * weightsMethod1[index];
+                    sum += Math.floor(value / 10) + (value % 10);
+                }
+            }
+            var extraSum = sum + controlDigit;
+            var multiDigit = Math.floor(extraSum / 10);
+            var result = multiDigit * 10;
+            var remainder = result - sum;
+            return remainder === controlDigit;
+        }
+    };
+    /**
+     * Check French (FR) BBAN
+     * Also for Monaco (MC)
+     *
+     * @ignore
+     */
+    var checkFrenchBBAN = function (bban) {
+        var stripped = bban.replace(/[\s.]+/g, '');
+        var normalized = Array.from(stripped);
+        for (var index = 0; index < stripped.length; index++) {
+            var c = normalized[index].charCodeAt(0);
+            if (c >= 65) {
+                switch (c) {
+                    case 65:
+                    case 74:
+                        normalized[index] = '1';
+                        break;
+                    case 66:
+                    case 75:
+                    case 83:
+                        normalized[index] = '2';
+                        break;
+                    case 67:
+                    case 76:
+                    case 84:
+                        normalized[index] = '3';
+                        break;
+                    case 68:
+                    case 77:
+                    case 85:
+                        normalized[index] = '4';
+                        break;
+                    case 69:
+                    case 78:
+                    case 86:
+                        normalized[index] = '5';
+                        break;
+                    case 70:
+                    case 79:
+                    case 87:
+                        normalized[index] = '6';
+                        break;
+                    case 71:
+                    case 80:
+                    case 88:
+                        normalized[index] = '7';
+                        break;
+                    case 72:
+                    case 81:
+                    case 89:
+                        normalized[index] = '8';
+                        break;
+                    case 73:
+                    case 82:
+                    case 90:
+                        normalized[index] = '9';
+                        break;
+                }
+            }
+        }
+        var remainder = mod9710(normalized.join(''));
+        return remainder === 0;
+    };
+    /**
+     * Hungarian (HU) BBAN check
+     *
+     * @ignore
+     */
+    var checkHungarianBBAN = function (bban) {
+        var weights = [9, 7, 3, 1, 9, 7, 3, 1, 9, 7, 3, 1, 9, 7, 3];
+        var controlDigitBankBranch = parseInt(bban.charAt(7), 10);
+        var toCheckBankBranch = bban.substring(0, 7);
+        var sum = 0;
+        for (var index = 0; index < toCheckBankBranch.length; index++) {
+            sum += parseInt(toCheckBankBranch.charAt(index), 10) * weights[index];
+        }
+        var remainder = sum % 10;
+        if (controlDigitBankBranch !== (remainder === 0 ? 0 : 10 - remainder)) {
+            return false;
+        }
+        sum = 0;
+        if (bban.endsWith('00000000')) {
+            var toCheckAccount = bban.substring(8, 15);
+            var controlDigitAccount = parseInt(bban.charAt(15), 10);
+            for (var index = 0; index < toCheckAccount.length; index++) {
+                sum += parseInt(toCheckAccount.charAt(index), 10) * weights[index];
+            }
+            var remainder_1 = sum % 10;
+            return controlDigitAccount === (remainder_1 === 0 ? 0 : 10 - remainder_1);
+        }
+        else {
+            var toCheckAccount = bban.substring(8, 23);
+            var controlDigitAccount = parseInt(bban.charAt(23), 10);
+            for (var index = 0; index < toCheckAccount.length; index++) {
+                sum += parseInt(toCheckAccount.charAt(index), 10) * weights[index];
+            }
+            var remainder_2 = sum % 10;
+            return controlDigitAccount === (remainder_2 === 0 ? 0 : 10 - remainder_2);
+        }
+    };
+    /**
      * Country specifications
      */
     exports.countrySpecs = {
@@ -583,6 +782,7 @@ define(["require", "exports"], function (require, exports) {
         AX: {
             chars: 18,
             bban_regexp: '^[0-9]{14}$',
+            bban_validation_func: checkFinlandBBAN,
             IBANRegistry: true,
         },
         AZ: {
@@ -690,7 +890,13 @@ define(["require", "exports"], function (require, exports) {
             IBANRegistry: true,
             SEPA: true,
         },
-        CZ: { chars: 24, bban_regexp: '^[0-9]{20}$', IBANRegistry: true, SEPA: true },
+        CZ: {
+            chars: 24,
+            bban_regexp: '^[0-9]{20}$',
+            bban_validation_func: checkCzechBBAN,
+            IBANRegistry: true,
+            SEPA: true,
+        },
         DE: { chars: 22, bban_regexp: '^[0-9]{18}$', IBANRegistry: true, SEPA: true },
         DJ: {
             chars: 27,
@@ -708,13 +914,31 @@ define(["require", "exports"], function (require, exports) {
             bban_regexp: '^[0-9]{22}$',
         },
         EC: {},
-        EE: { chars: 20, bban_regexp: '^[0-9]{16}$', IBANRegistry: true, SEPA: true },
+        EE: {
+            chars: 20,
+            bban_regexp: '^[0-9]{16}$',
+            bban_validation_func: checkEstonianBBAN,
+            IBANRegistry: true,
+            SEPA: true,
+        },
         EG: { chars: 29, bban_regexp: '^[0-9]{25}', IBANRegistry: true },
         EH: {},
         ER: {},
-        ES: { chars: 24, bban_validation_func: checkSpainBBAN, bban_regexp: '^[0-9]{20}$', IBANRegistry: true, SEPA: true },
+        ES: {
+            chars: 24,
+            bban_validation_func: checkSpainBBAN,
+            bban_regexp: '^[0-9]{20}$',
+            IBANRegistry: true,
+            SEPA: true,
+        },
         ET: {},
-        FI: { chars: 18, bban_regexp: '^[0-9]{14}$', IBANRegistry: true, SEPA: true },
+        FI: {
+            chars: 18,
+            bban_regexp: '^[0-9]{14}$',
+            bban_validation_func: checkFinlandBBAN,
+            IBANRegistry: true,
+            SEPA: true,
+        },
         FJ: {},
         FK: {},
         FM: {},
@@ -722,6 +946,7 @@ define(["require", "exports"], function (require, exports) {
         FR: {
             chars: 27,
             bban_regexp: '^[0-9]{10}[A-Z0-9]{11}[0-9]{2}$',
+            bban_validation_func: checkFrenchBBAN,
             IBANRegistry: true,
             SEPA: true,
         },
@@ -790,9 +1015,21 @@ define(["require", "exports"], function (require, exports) {
             chars: 28,
             bban_regexp: '^[A-Z]{4}[0-9]{20}$',
         },
-        HR: { chars: 21, bban_regexp: '^[0-9]{17}$', IBANRegistry: true, SEPA: true },
+        HR: {
+            chars: 21,
+            bban_regexp: '^[0-9]{17}$',
+            bban_validation_func: checkCroatianBBAN,
+            IBANRegistry: true,
+            SEPA: true,
+        },
         HT: {},
-        HU: { chars: 28, bban_regexp: '^[0-9]{24}$', IBANRegistry: true, SEPA: true },
+        HU: {
+            chars: 28,
+            bban_regexp: '^[0-9]{24}$',
+            bban_validation_func: checkHungarianBBAN,
+            IBANRegistry: true,
+            SEPA: true,
+        },
         ID: {},
         IE: {
             chars: 22,
@@ -899,6 +1136,7 @@ define(["require", "exports"], function (require, exports) {
         MC: {
             chars: 27,
             bban_regexp: '^[0-9]{10}[A-Z0-9]{11}[0-9]{2}$',
+            bban_validation_func: checkFrenchBBAN,
             IBANRegistry: true,
             SEPA: true,
         },
