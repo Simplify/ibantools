@@ -802,6 +802,43 @@ const checkFrenchBBAN = (bban: string): boolean => {
 };
 
 /**
+ * Hungarian (HU) BBAN check
+ *
+ * @ignore
+ */
+const checkHungarianBBAN = (bban: string): boolean => {
+  const weights = [9, 7, 3, 1, 9, 7, 3, 1, 9, 7, 3, 1, 9, 7, 3];
+  const controlDigitBankBranch = parseInt(bban.charAt(7), 10);
+  const toCheckBankBranch = bban.substring(0, 7);
+  let sum = 0;
+  for (let index = 0; index < toCheckBankBranch.length; index++) {
+    sum += parseInt(toCheckBankBranch.charAt(index), 10) * weights[index];
+  }
+  const remainder = sum % 10;
+  if (controlDigitBankBranch !== (remainder === 0 ? 0 : 10 - remainder)) {
+    return false;
+  }
+  sum = 0;
+  if (bban.endsWith('00000000')) {
+    const toCheckAccount = bban.substring(8, 15);
+    const controlDigitAccount = parseInt(bban.charAt(15), 10);
+    for (let index = 0; index < toCheckAccount.length; index++) {
+      sum += parseInt(toCheckAccount.charAt(index), 10) * weights[index];
+    }
+    const remainder = sum % 10;
+    return controlDigitAccount === (remainder === 0 ? 0 : 10 - remainder);
+  } else {
+    const toCheckAccount = bban.substring(8, 23);
+    const controlDigitAccount = parseInt(bban.charAt(23), 10);
+    for (let index = 0; index < toCheckAccount.length; index++) {
+      sum += parseInt(toCheckAccount.charAt(index), 10) * weights[index];
+    }
+    const remainder = sum % 10;
+    return controlDigitAccount === (remainder === 0 ? 0 : 10 - remainder);
+  }
+};
+
+/**
  * Country specifications
  */
 export const countrySpecs: CountryMapInternal = {
@@ -1079,7 +1116,13 @@ export const countrySpecs: CountryMapInternal = {
     SEPA: true,
   },
   HT: {},
-  HU: { chars: 28, bban_regexp: '^[0-9]{24}$', IBANRegistry: true, SEPA: true },
+  HU: {
+    chars: 28,
+    bban_regexp: '^[0-9]{24}$',
+    bban_validation_func: checkHungarianBBAN,
+    IBANRegistry: true,
+    SEPA: true,
+  },
   ID: {},
   IE: {
     chars: 22,

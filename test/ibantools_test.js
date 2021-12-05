@@ -269,6 +269,18 @@ describe('IBANTools', function() {
     it('with valid MC IBAN should return true', function() {
       expect(iban.isValidIBAN('MC1112739000700011111000H79')).to.be.true;
     });
+    it('with valid HU IBAN should return true', function() {
+      expect(iban.isValidIBAN('HU42117730161111101800000000')).to.be.true;
+    });
+    it('with valid HU IBAN should return true', function() {
+      expect(iban.isValidIBAN('HU51100320000122013950000249')).to.be.true;
+    });
+    it('with valid HU IBAN should return true', function() {
+      expect(iban.isValidIBAN('HU43100320000122032850002447')).to.be.true;
+    });
+    it('with valid HU IBAN should return true', function() {
+      expect(iban.isValidIBAN('HU90100320000160120200000000')).to.be.true;
+    });
   });
 
   describe('When calling validateIBAN()', function() {
