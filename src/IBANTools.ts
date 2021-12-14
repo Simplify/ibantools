@@ -81,6 +81,7 @@ export function validateIBAN(iban?: string): ValidateIBANResult {
     if (!spec || !(spec.bban_regexp || spec.chars)) {
       result.valid = false;
       result.errorCodes.push(ValidationErrorsIBAN.NoIBANCountry);
+      return result;
     }
     if (spec && spec.chars && spec.chars !== iban.length) {
       result.valid = false;

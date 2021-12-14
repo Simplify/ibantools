@@ -281,6 +281,9 @@ describe('IBANTools', function() {
     it('with valid HU IBAN should return true', function() {
       expect(iban.isValidIBAN('HU90100320000160120200000000')).to.be.true;
     });
+    it('with two dots should return false', function() {
+      expect(iban.isValidIBAN('..')).to.be.false;
+    });
   });
 
   describe('When calling validateIBAN()', function() {
@@ -295,6 +298,13 @@ describe('IBANTools', function() {
       expect(iban.validateIBAN('')).to.deep.equal({
         valid: false,
         errorCodes: [iban.ValidationErrorsIBAN.NoIBANProvided],
+      });
+    });
+
+    it('with two dots instead of IBAN should return false', function() {
+      expect(iban.validateIBAN('..')).to.deep.equal({
+        valid: false,
+        errorCodes: [iban.ValidationErrorsIBAN.NoIBANCountry],
       });
     });
 
@@ -315,31 +325,23 @@ describe('IBANTools', function() {
       });
     });
 
-    it('with invalid IBAN country and correct checksum should return false with correct code', function() {
-      expect(iban.validateIBAN('XX09ABNA0517164300')).to.deep.equal({
-        valid: false,
-        errorCodes: [iban.ValidationErrorsIBAN.NoIBANCountry],
-      });
-    });
-
-    it('with invalid IBAN country and wrong checksum should return false with wrong code', function() {
+    it('with invalid IBAN country should return false with error codes', function() {
       expect(iban.validateIBAN('XX91ABNA0517164300')).to.deep.equal({
         valid: false,
-        errorCodes: [iban.ValidationErrorsIBAN.NoIBANCountry, iban.ValidationErrorsIBAN.WrongIBANChecksum],
-      });
-    });
-
-    it('with country with no IBAN support should return false with correct code', function() {
-      expect(iban.validateIBAN('US64SVBKUS6S3300958879')).to.deep.equal({
-        valid: false,
         errorCodes: [iban.ValidationErrorsIBAN.NoIBANCountry],
       });
     });
 
-    it('with country with no IBAN support and wrong checksum should return false with wrong code', function() {
-      expect(iban.validateIBAN('US46SVBKUS6S3300958879')).to.deep.equal({
+    it('with country code only should return false with wrong code', function() {
+      expect(iban.validateIBAN('NL')).to.deep.equal({
         valid: false,
-        errorCodes: [iban.ValidationErrorsIBAN.NoIBANCountry, iban.ValidationErrorsIBAN.WrongIBANChecksum],
+        errorCodes: [
+          iban.ValidationErrorsIBAN.WrongBBANLength,
+          iban.ValidationErrorsIBAN.WrongBBANFormat,
+          iban.ValidationErrorsIBAN.WrongAccountBankBranchChecksum,
+          iban.ValidationErrorsIBAN.ChecksumNotNumber,
+          iban.ValidationErrorsIBAN.WrongIBANChecksum,
+        ],
       });
     });
 
