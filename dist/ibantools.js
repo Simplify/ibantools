@@ -9,7 +9,7 @@ define(["require", "exports"], function (require, exports) {
      * @package Documentation
      * @author Saša Jovanić
      * @module ibantools
-     * @version 4.1.1
+     * @version 4.1.2
      * @license MPL-2.0
      * @preferred
      */
@@ -72,6 +72,7 @@ define(["require", "exports"], function (require, exports) {
             if (!spec || !(spec.bban_regexp || spec.chars)) {
                 result.valid = false;
                 result.errorCodes.push(ValidationErrorsIBAN.NoIBANCountry);
+                return result;
             }
             if (spec && spec.chars && spec.chars !== iban.length) {
                 result.valid = false;
