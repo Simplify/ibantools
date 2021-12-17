@@ -9,7 +9,7 @@ define(["require", "exports"], function (require, exports) {
      * @package Documentation
      * @author Saša Jovanić
      * @module ibantools
-     * @version 4.1.2
+     * @version 4.1.3
      * @license MPL-2.0
      * @preferred
      */
@@ -481,7 +481,11 @@ define(["require", "exports"], function (require, exports) {
     var mod9710 = function (validationString) {
         while (validationString.length > 2) {
             var part = validationString.slice(0, 6);
-            validationString = (parseInt(part, 10) % 97).toString() + validationString.slice(part.length);
+            var value = parseInt(part, 10) % 97;
+            if (isNaN(value)) {
+                return NaN;
+            }
+            validationString = value.toString() + validationString.slice(part.length);
         }
         return parseInt(validationString, 10) % 97;
     };
