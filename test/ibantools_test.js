@@ -284,6 +284,9 @@ describe('IBANTools', function() {
     it('with two dots should return false', function() {
       expect(iban.isValidIBAN('..')).to.be.false;
     });
+    it('with too short IBAN should return false', function() {
+      expect(iban.isValidIBAN('SI94BARC102')).to.be.false;
+    });
   });
 
   describe('When calling validateIBAN()', function() {
@@ -305,6 +308,18 @@ describe('IBANTools', function() {
       expect(iban.validateIBAN('..')).to.deep.equal({
         valid: false,
         errorCodes: [iban.ValidationErrorsIBAN.NoIBANCountry],
+      });
+    });
+
+    it('with too short IBAN should return false', function() {
+      expect(iban.validateIBAN('SI94BARC102')).to.deep.equal({
+        valid: false,
+        errorCodes: [
+          iban.ValidationErrorsIBAN.WrongBBANLength,
+          iban.ValidationErrorsIBAN.WrongBBANFormat,
+          iban.ValidationErrorsIBAN.WrongAccountBankBranchChecksum,
+          iban.ValidationErrorsIBAN.WrongIBANChecksum,
+        ],
       });
     });
 

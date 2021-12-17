@@ -566,7 +566,11 @@ const checkBelgianBBAN = (bban: string): boolean => {
 const mod9710 = (validationString: string): number => {
   while (validationString.length > 2) {
     const part = validationString.slice(0, 6);
-    validationString = (parseInt(part, 10) % 97).toString() + validationString.slice(part.length);
+    const value = parseInt(part, 10) % 97;
+    if (isNaN(value)) {
+      return NaN;
+    }
+    validationString = value.toString() + validationString.slice(part.length);
   }
   return parseInt(validationString, 10) % 97;
 };
