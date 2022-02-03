@@ -9,7 +9,7 @@ define(["require", "exports"], function (require, exports) {
      * @package Documentation
      * @author Saša Jovanić
      * @module ibantools
-     * @version 4.1.3
+     * @version 4.1.4
      * @license MPL-2.0
      * @preferred
      */
@@ -443,23 +443,6 @@ define(["require", "exports"], function (require, exports) {
         }
         var remainder = sum % 11;
         return controlDigit === (remainder === 0 ? 0 : 11 - remainder);
-    };
-    /**
-     * Used for Netherlands BBAN check
-     *
-     * @ignore
-     */
-    var checkDutchBBAN = function (bban) {
-        var bbanWithoutSpacesAndPeriods = bban.replace(/[\s.]+/g, '');
-        var accountNumber = bbanWithoutSpacesAndPeriods.substring(4, 14);
-        if (accountNumber.startsWith('000')) {
-            return true; // Postbank account, no `elfproef` possible
-        }
-        var sum = 0;
-        for (var index = 0; index < 10; index++) {
-            sum += parseInt(accountNumber.charAt(index), 10) * (10 - index);
-        }
-        return sum % 11 === 0;
     };
     /**
      * Used for Belgian BBAN check
@@ -1229,7 +1212,6 @@ define(["require", "exports"], function (require, exports) {
         NL: {
             chars: 18,
             bban_regexp: '^[A-Z]{4}[0-9]{10}$',
-            bban_validation_func: checkDutchBBAN,
             IBANRegistry: true,
             SEPA: true,
         },
