@@ -1,662 +1,71 @@
-<!doctype html>
-<html class="default no-js">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IBANTools</title>
-	<meta name="description" content="Documentation for IBANTools">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="assets/css/main.css">
-	<script async src="assets/js/search.js" id="search-script"></script>
-</head>
-<body>
-<header>
-	<div class="tsd-page-toolbar">
-		<div class="container">
-			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
-					<div class="field">
-						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
-						<input id="tsd-search-field" type="text" />
-					</div>
-					<ul class="results">
-						<li class="state loading">Preparing search index...</li>
-						<li class="state failure">The search index is not available</li>
-					</ul>
-					<a href="index.html" class="title">IBANTools</a>
-				</div>
-				<div class="table-cell" id="tsd-widgets">
-					<div id="tsd-filter">
-						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
-						<div class="tsd-filter-group">
-							<div class="tsd-select" id="tsd-filter-visibility">
-								<span class="tsd-select-label">All</span>
-								<ul class="tsd-select-list">
-									<li data-value="public">Public</li>
-									<li data-value="protected">Public/Protected</li>
-									<li data-value="private" class="selected">All</li>
-								</ul>
-							</div>
-							<input type="checkbox" id="tsd-filter-inherited" checked />
-							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-						</div>
-					</div>
-					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="tsd-page-title">
-		<div class="container">
-			<h1>IBANTools</h1>
-		</div>
-	</div>
-</header>
-<div class="container container-main">
-	<div class="row">
-		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Validation, extraction and creation of IBAN, BBAN, BIC/SWIFT numbers plus some other helpful stuff</p>
-					</div>
-					<dl class="tsd-comment-tags">
-						<dt>package</dt>
-						<dd><p>Documentation</p>
-						</dd>
-						<dt>author</dt>
-						<dd><p>Saša Jovanić</p>
-						</dd>
-						<dt>version</dt>
-						<dd><p>4.1.3</p>
-						</dd>
-						<dt>license</dt>
-						<dd><p>MPL-2.0</p>
-						</dd>
-						<dt>preferred</dt>
-						<dd></dd>
-					</dl>
-				</div>
-			</section>
-			<section class="tsd-panel-group tsd-index-group">
-				<h2>Index</h2>
-				<section class="tsd-panel tsd-index-panel">
-					<div class="tsd-index-content">
-						<section class="tsd-index-section ">
-							<h3>Enumerations</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-enum"><a href="enums/ValidationErrorsBIC.html" class="tsd-kind-icon">Validation<wbr>ErrorsBIC</a></li>
-								<li class="tsd-kind-enum"><a href="enums/ValidationErrorsIBAN.html" class="tsd-kind-icon">Validation<wbr>ErrorsIBAN</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Interfaces</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-interface"><a href="interfaces/ComposeIBANParams.html" class="tsd-kind-icon">ComposeIBANParams</a></li>
-								<li class="tsd-kind-interface"><a href="interfaces/CountryMap.html" class="tsd-kind-icon">Country<wbr>Map</a></li>
-								<li class="tsd-kind-interface"><a href="interfaces/CountrySpec.html" class="tsd-kind-icon">Country<wbr>Spec</a></li>
-								<li class="tsd-kind-interface"><a href="interfaces/ExtractBICResult.html" class="tsd-kind-icon">ExtractBICResult</a></li>
-								<li class="tsd-kind-interface"><a href="interfaces/ExtractIBANResult.html" class="tsd-kind-icon">ExtractIBANResult</a></li>
-								<li class="tsd-kind-interface"><a href="interfaces/ValidateBICResult.html" class="tsd-kind-icon">ValidateBICResult</a></li>
-								<li class="tsd-kind-interface"><a href="interfaces/ValidateIBANResult.html" class="tsd-kind-icon">ValidateIBANResult</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Variables</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-variable"><a href="modules.html#countrySpecs" class="tsd-kind-icon">country<wbr>Specs</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Functions</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-function"><a href="modules.html#composeIBAN" class="tsd-kind-icon">composeIBAN</a></li>
-								<li class="tsd-kind-function"><a href="modules.html#electronicFormatIBAN" class="tsd-kind-icon">electronic<wbr>FormatIBAN</a></li>
-								<li class="tsd-kind-function"><a href="modules.html#extractBIC" class="tsd-kind-icon">extractBIC</a></li>
-								<li class="tsd-kind-function"><a href="modules.html#extractIBAN" class="tsd-kind-icon">extractIBAN</a></li>
-								<li class="tsd-kind-function"><a href="modules.html#friendlyFormatIBAN" class="tsd-kind-icon">friendly<wbr>FormatIBAN</a></li>
-								<li class="tsd-kind-function"><a href="modules.html#getCountrySpecifications" class="tsd-kind-icon">get<wbr>Country<wbr>Specifications</a></li>
-								<li class="tsd-kind-function"><a href="modules.html#isSEPACountry" class="tsd-kind-icon">isSEPACountry</a></li>
-								<li class="tsd-kind-function"><a href="modules.html#isValidBBAN" class="tsd-kind-icon">is<wbr>ValidBBAN</a></li>
-								<li class="tsd-kind-function"><a href="modules.html#isValidBIC" class="tsd-kind-icon">is<wbr>ValidBIC</a></li>
-								<li class="tsd-kind-function"><a href="modules.html#isValidIBAN" class="tsd-kind-icon">is<wbr>ValidIBAN</a></li>
-								<li class="tsd-kind-function"><a href="modules.html#validateBIC" class="tsd-kind-icon">validateBIC</a></li>
-								<li class="tsd-kind-function"><a href="modules.html#validateIBAN" class="tsd-kind-icon">validateIBAN</a></li>
-							</ul>
-						</section>
-					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Variables</h2>
-				<section class="tsd-panel tsd-member tsd-kind-variable">
-					<a name="countrySpecs" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> country<wbr>Specs</h3>
-					<div class="tsd-signature tsd-kind-icon">country<wbr>Specs<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">CountryMapInternal</span><span class="tsd-signature-symbol"> = ...</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/Simplify/ibantools/blob/0216e14/src/IBANTools.ts#L849">IBANTools.ts:849</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Country specifications</p>
-						</div>
-					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Functions</h2>
-				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="composeIBAN" class="tsd-anchor"></a>
-					<h3>composeIBAN</h3>
-					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">composeIBAN<span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><a href="interfaces/ComposeIBANParams.html" class="tsd-signature-type" data-tsd-kind="Interface">ComposeIBANParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/Simplify/ibantools/blob/0216e14/src/IBANTools.ts#L185">IBANTools.ts:185</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>composeIBAN</p>
-								</div>
-								<pre><code><span style="color: #008000">// returns NL91ABNA0417164300</span>
-<span style="color: #001080">ibantools</span><span style="color: #000000">.</span><span style="color: #795E26">composeIBAN</span><span style="color: #000000">({ </span><span style="color: #001080">countryCode:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;NL&quot;</span><span style="color: #000000">, </span><span style="color: #001080">bban:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;ABNA0417164300&quot;</span><span style="color: #000000"> });</span>
+<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>IBANTools</title><meta name="description" content="Documentation for IBANTools"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">IBANTools</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>IBANTools</h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><section class="tsd-panel tsd-comment"><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Validation, extraction and creation of IBAN, BBAN, BIC/SWIFT numbers plus some other helpful stuff</p>
+</div><dl class="tsd-comment-tags"><dt>package</dt><dd><p>Documentation</p>
+</dd><dt>author</dt><dd><p>Saša Jovanić</p>
+</dd><dt>version</dt><dd><p>4.1.3</p>
+</dd><dt>license</dt><dd><p>MPL-2.0</p>
+</dd><dt>preferred</dt><dd></dd></dl></div></section><section class="tsd-panel-group tsd-index-group"><h2>Index</h2><section class="tsd-panel tsd-index-panel"><div class="tsd-index-content"><section class="tsd-index-section "><h3>Enumerations</h3><ul class="tsd-index-list"><li class="tsd-kind-enum"><a href="enums/ValidationErrorsBIC.html" class="tsd-kind-icon">Validation<wbr/>ErrorsBIC</a></li><li class="tsd-kind-enum"><a href="enums/ValidationErrorsIBAN.html" class="tsd-kind-icon">Validation<wbr/>ErrorsIBAN</a></li></ul></section><section class="tsd-index-section "><h3>Interfaces</h3><ul class="tsd-index-list"><li class="tsd-kind-interface"><a href="interfaces/ComposeIBANParams.html" class="tsd-kind-icon">ComposeIBANParams</a></li><li class="tsd-kind-interface"><a href="interfaces/CountryMap.html" class="tsd-kind-icon">Country<wbr/>Map</a></li><li class="tsd-kind-interface"><a href="interfaces/CountrySpec.html" class="tsd-kind-icon">Country<wbr/>Spec</a></li><li class="tsd-kind-interface"><a href="interfaces/ExtractBICResult.html" class="tsd-kind-icon">ExtractBICResult</a></li><li class="tsd-kind-interface"><a href="interfaces/ExtractIBANResult.html" class="tsd-kind-icon">ExtractIBANResult</a></li><li class="tsd-kind-interface"><a href="interfaces/ValidateBICResult.html" class="tsd-kind-icon">ValidateBICResult</a></li><li class="tsd-kind-interface"><a href="interfaces/ValidateIBANResult.html" class="tsd-kind-icon">ValidateIBANResult</a></li></ul></section><section class="tsd-index-section "><h3>Variables</h3><ul class="tsd-index-list"><li class="tsd-kind-variable"><a href="modules.html#countrySpecs" class="tsd-kind-icon">country<wbr/>Specs</a></li></ul></section><section class="tsd-index-section "><h3>Functions</h3><ul class="tsd-index-list"><li class="tsd-kind-function"><a href="modules.html#composeIBAN" class="tsd-kind-icon">composeIBAN</a></li><li class="tsd-kind-function"><a href="modules.html#electronicFormatIBAN" class="tsd-kind-icon">electronic<wbr/>FormatIBAN</a></li><li class="tsd-kind-function"><a href="modules.html#extractBIC" class="tsd-kind-icon">extractBIC</a></li><li class="tsd-kind-function"><a href="modules.html#extractIBAN" class="tsd-kind-icon">extractIBAN</a></li><li class="tsd-kind-function"><a href="modules.html#friendlyFormatIBAN" class="tsd-kind-icon">friendly<wbr/>FormatIBAN</a></li><li class="tsd-kind-function"><a href="modules.html#getCountrySpecifications" class="tsd-kind-icon">get<wbr/>Country<wbr/>Specifications</a></li><li class="tsd-kind-function"><a href="modules.html#isSEPACountry" class="tsd-kind-icon">isSEPACountry</a></li><li class="tsd-kind-function"><a href="modules.html#isValidBBAN" class="tsd-kind-icon">is<wbr/>ValidBBAN</a></li><li class="tsd-kind-function"><a href="modules.html#isValidBIC" class="tsd-kind-icon">is<wbr/>ValidBIC</a></li><li class="tsd-kind-function"><a href="modules.html#isValidIBAN" class="tsd-kind-icon">is<wbr/>ValidIBAN</a></li><li class="tsd-kind-function"><a href="modules.html#validateBIC" class="tsd-kind-icon">validateBIC</a></li><li class="tsd-kind-function"><a href="modules.html#validateIBAN" class="tsd-kind-icon">validateIBAN</a></li></ul></section></div></section></section><section class="tsd-panel-group tsd-member-group "><h2>Variables</h2><section class="tsd-panel tsd-member tsd-kind-variable"><a id="countrySpecs" class="tsd-anchor"></a><h3 class="tsd-anchor-link">country<wbr/>Specs<a href="#countrySpecs" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><div class="tsd-signature tsd-kind-icon">country<wbr/>Specs<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">CountryMapInternal</span><span class="tsd-signature-symbol"> = ...</span></div><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/Simplify/ibantools/blob/f8652d8/src/IBANTools.ts#L849">IBANTools.ts:849</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Country specifications</p>
+</div></div></section></section><section class="tsd-panel-group tsd-member-group "><h2>Functions</h2><section class="tsd-panel tsd-member tsd-kind-function"><a id="composeIBAN" class="tsd-anchor"></a><h3 class="tsd-anchor-link">composeIBAN<a href="#composeIBAN" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-function"><li class="tsd-signature tsd-kind-icon">composeIBAN<span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><a href="interfaces/ComposeIBANParams.html" class="tsd-signature-type" data-tsd-kind="Interface">ComposeIBANParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/Simplify/ibantools/blob/f8652d8/src/IBANTools.ts#L185">IBANTools.ts:185</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>composeIBAN</p>
+</div><div><pre><code><span class="hl-0">// returns NL91ABNA0417164300</span><br/><span class="hl-1">ibantools</span><span class="hl-2">.</span><span class="hl-3">composeIBAN</span><span class="hl-2">({ </span><span class="hl-1">countryCode:</span><span class="hl-2"> </span><span class="hl-4">&quot;NL&quot;</span><span class="hl-2">, </span><span class="hl-1">bban:</span><span class="hl-2"> </span><span class="hl-4">&quot;ABNA0417164300&quot;</span><span class="hl-2"> });</span>
 </code></pre>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>params: <a href="interfaces/ComposeIBANParams.html" class="tsd-signature-type" data-tsd-kind="Interface">ComposeIBANParams</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="electronicFormatIBAN" class="tsd-anchor"></a>
-					<h3>electronic<wbr>FormatIBAN</h3>
-					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">electronic<wbr>FormatIBAN<span class="tsd-signature-symbol">(</span>iban<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/Simplify/ibantools/blob/0216e14/src/IBANTools.ts#L256">IBANTools.ts:256</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Get IBAN in electronic format (no spaces)
-										IBAN validation is not performed.
-									When non-string value for IBAN is provided, returns null.</p>
-									<pre><code><span style="color: #008000">// returns &quot;NL91ABNA0417164300&quot;</span>
-<span style="color: #001080">ibantools</span><span style="color: #000000">.</span><span style="color: #795E26">electronicFormatIBAN</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;NL91 ABNA 0417 1643 00&quot;</span><span style="color: #000000">);</span>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>params: <a href="interfaces/ComposeIBANParams.html" class="tsd-signature-type" data-tsd-kind="Interface">ComposeIBANParams</a></h5></li></ul><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h4></li></ul></section><section class="tsd-panel tsd-member tsd-kind-function"><a id="electronicFormatIBAN" class="tsd-anchor"></a><h3 class="tsd-anchor-link">electronic<wbr/>FormatIBAN<a href="#electronicFormatIBAN" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-function"><li class="tsd-signature tsd-kind-icon">electronic<wbr/>FormatIBAN<span class="tsd-signature-symbol">(</span>iban<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/Simplify/ibantools/blob/f8652d8/src/IBANTools.ts#L256">IBANTools.ts:256</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Get IBAN in electronic format (no spaces)
+IBAN validation is not performed.
+When non-string value for IBAN is provided, returns null.</p>
+<pre><code><span class="hl-0">// returns &quot;NL91ABNA0417164300&quot;</span><br/><span class="hl-1">ibantools</span><span class="hl-2">.</span><span class="hl-3">electronicFormatIBAN</span><span class="hl-2">(</span><span class="hl-4">&quot;NL91 ABNA 0417 1643 00&quot;</span><span class="hl-2">);</span>
 </code></pre>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> iban: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="extractBIC" class="tsd-anchor"></a>
-					<h3>extractBIC</h3>
-					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">extractBIC<span class="tsd-signature-symbol">(</span>inputBic<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/ExtractBICResult.html" class="tsd-signature-type" data-tsd-kind="Interface">ExtractBICResult</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/Simplify/ibantools/blob/0216e14/src/IBANTools.ts#L461">IBANTools.ts:461</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>extractBIC</p>
-									<pre><code><span style="color: #008000">// returns {bankCode: &quot;ABNA&quot;, countryCode: &quot;NL&quot;, locationCode: &quot;2A&quot;, branchCode: null, testBIC: flase, valid: true}</span>
-<span style="color: #001080">ibantools</span><span style="color: #000000">.</span><span style="color: #795E26">extractBIC</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;ABNANL2A&quot;</span><span style="color: #000000">);</span>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5><span class="tsd-flag ts-flagOptional">Optional</span> iban: <span class="tsd-signature-type">string</span></h5></li></ul><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h4></li></ul></section><section class="tsd-panel tsd-member tsd-kind-function"><a id="extractBIC" class="tsd-anchor"></a><h3 class="tsd-anchor-link">extractBIC<a href="#extractBIC" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-function"><li class="tsd-signature tsd-kind-icon">extractBIC<span class="tsd-signature-symbol">(</span>inputBic<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/ExtractBICResult.html" class="tsd-signature-type" data-tsd-kind="Interface">ExtractBICResult</a></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/Simplify/ibantools/blob/f8652d8/src/IBANTools.ts#L461">IBANTools.ts:461</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>extractBIC</p>
+<pre><code><span class="hl-0">// returns {bankCode: &quot;ABNA&quot;, countryCode: &quot;NL&quot;, locationCode: &quot;2A&quot;, branchCode: null, testBIC: flase, valid: true}</span><br/><span class="hl-1">ibantools</span><span class="hl-2">.</span><span class="hl-3">extractBIC</span><span class="hl-2">(</span><span class="hl-4">&quot;ABNANL2A&quot;</span><span class="hl-2">);</span>
 </code></pre>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>inputBic: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="interfaces/ExtractBICResult.html" class="tsd-signature-type" data-tsd-kind="Interface">ExtractBICResult</a></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="extractIBAN" class="tsd-anchor"></a>
-					<h3>extractIBAN</h3>
-					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">extractIBAN<span class="tsd-signature-symbol">(</span>iban<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/ExtractIBANResult.html" class="tsd-signature-type" data-tsd-kind="Interface">ExtractIBANResult</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/Simplify/ibantools/blob/0216e14/src/IBANTools.ts#L224">IBANTools.ts:224</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>extractIBAN</p>
-									<pre><code><span style="color: #008000">// returns {iban: &quot;NL91ABNA0417164300&quot;, bban: &quot;ABNA0417164300&quot;, countryCode: &quot;NL&quot;, valid: true}</span>
-<span style="color: #001080">ibantools</span><span style="color: #000000">.</span><span style="color: #795E26">extractIBAN</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;NL91 ABNA 0417 1643 00&quot;</span><span style="color: #000000">);</span>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>inputBic: <span class="tsd-signature-type">string</span></h5></li></ul><h4 class="tsd-returns-title">Returns <a href="interfaces/ExtractBICResult.html" class="tsd-signature-type" data-tsd-kind="Interface">ExtractBICResult</a></h4></li></ul></section><section class="tsd-panel tsd-member tsd-kind-function"><a id="extractIBAN" class="tsd-anchor"></a><h3 class="tsd-anchor-link">extractIBAN<a href="#extractIBAN" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-function"><li class="tsd-signature tsd-kind-icon">extractIBAN<span class="tsd-signature-symbol">(</span>iban<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/ExtractIBANResult.html" class="tsd-signature-type" data-tsd-kind="Interface">ExtractIBANResult</a></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/Simplify/ibantools/blob/f8652d8/src/IBANTools.ts#L224">IBANTools.ts:224</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>extractIBAN</p>
+<pre><code><span class="hl-0">// returns {iban: &quot;NL91ABNA0417164300&quot;, bban: &quot;ABNA0417164300&quot;, countryCode: &quot;NL&quot;, valid: true}</span><br/><span class="hl-1">ibantools</span><span class="hl-2">.</span><span class="hl-3">extractIBAN</span><span class="hl-2">(</span><span class="hl-4">&quot;NL91 ABNA 0417 1643 00&quot;</span><span class="hl-2">);</span>
 </code></pre>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>iban: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="interfaces/ExtractIBANResult.html" class="tsd-signature-type" data-tsd-kind="Interface">ExtractIBANResult</a></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="friendlyFormatIBAN" class="tsd-anchor"></a>
-					<h3>friendly<wbr>FormatIBAN</h3>
-					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">friendly<wbr>FormatIBAN<span class="tsd-signature-symbol">(</span>iban<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, separator<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/Simplify/ibantools/blob/0216e14/src/IBANTools.ts#L276">IBANTools.ts:276</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Get IBAN in friendly format (separated after every 4 characters)
-										IBAN validation is not performed.
-									When non-string value for IBAN is provided, returns null.</p>
-									<pre><code><span style="color: #008000">// returns &quot;NL91 ABNA 0417 1643 00&quot;</span>
-<span style="color: #001080">ibantools</span><span style="color: #000000">.</span><span style="color: #795E26">friendlyFormatIBAN</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;NL91ABNA0417164300&quot;</span><span style="color: #000000">);</span>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>iban: <span class="tsd-signature-type">string</span></h5></li></ul><h4 class="tsd-returns-title">Returns <a href="interfaces/ExtractIBANResult.html" class="tsd-signature-type" data-tsd-kind="Interface">ExtractIBANResult</a></h4></li></ul></section><section class="tsd-panel tsd-member tsd-kind-function"><a id="friendlyFormatIBAN" class="tsd-anchor"></a><h3 class="tsd-anchor-link">friendly<wbr/>FormatIBAN<a href="#friendlyFormatIBAN" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-function"><li class="tsd-signature tsd-kind-icon">friendly<wbr/>FormatIBAN<span class="tsd-signature-symbol">(</span>iban<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, separator<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/Simplify/ibantools/blob/f8652d8/src/IBANTools.ts#L276">IBANTools.ts:276</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Get IBAN in friendly format (separated after every 4 characters)
+IBAN validation is not performed.
+When non-string value for IBAN is provided, returns null.</p>
+<pre><code><span class="hl-0">// returns &quot;NL91 ABNA 0417 1643 00&quot;</span><br/><span class="hl-1">ibantools</span><span class="hl-2">.</span><span class="hl-3">friendlyFormatIBAN</span><span class="hl-2">(</span><span class="hl-4">&quot;NL91ABNA0417164300&quot;</span><span class="hl-2">);</span>
 </code></pre>
-									<pre><code><span style="color: #008000">// returns &quot;NL91-ABNA-0417-1643-00&quot;</span>
-<span style="color: #001080">ibantools</span><span style="color: #000000">.</span><span style="color: #795E26">friendlyFormatIBAN</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;NL91ABNA0417164300&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;-&quot;</span><span style="color: #000000">);</span>
+<pre><code><span class="hl-0">// returns &quot;NL91-ABNA-0417-1643-00&quot;</span><br/><span class="hl-1">ibantools</span><span class="hl-2">.</span><span class="hl-3">friendlyFormatIBAN</span><span class="hl-2">(</span><span class="hl-4">&quot;NL91ABNA0417164300&quot;</span><span class="hl-2">,</span><span class="hl-4">&quot;-&quot;</span><span class="hl-2">);</span>
 </code></pre>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> iban: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> separator: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="getCountrySpecifications" class="tsd-anchor"></a>
-					<h3>get<wbr>Country<wbr>Specifications</h3>
-					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Country<wbr>Specifications<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/CountryMap.html" class="tsd-signature-type" data-tsd-kind="Interface">CountryMap</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/Simplify/ibantools/blob/0216e14/src/IBANTools.ts#L356">IBANTools.ts:356</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns specifications for all countries, even those who are not
-										members of IBAN registry. <code>IBANRegistry</code> field indicates if country
-									is member of not.</p>
-								</div>
-								<pre><code><span style="color: #008000">// Validating IBAN form field after user selects his country</span>
-<span style="color: #008000">// &lt;select id=&quot;countries&quot;&gt;</span>
-<span style="color: #008000">//   ...</span>
-<span style="color: #008000">//   &lt;option value=&quot;NL&quot;&gt;Netherlands&lt;/option&gt;</span>
-<span style="color: #008000">//   ...</span>
-<span style="color: #008000">// &lt;/select&gt;</span>
-<span style="color: #795E26">$</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;#countries&quot;</span><span style="color: #000000">).</span><span style="color: #795E26">select</span><span style="color: #000000">(</span><span style="color: #0000FF">function</span><span style="color: #000000">() {</span>
-<span style="color: #000000">  </span><span style="color: #008000">// Find country</span>
-<span style="color: #000000">  </span><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">country</span><span style="color: #000000"> = </span><span style="color: #001080">ibantools</span><span style="color: #000000">.</span><span style="color: #795E26">getCountrySpecifications</span><span style="color: #000000">()[</span><span style="color: #795E26">$</span><span style="color: #000000">(</span><span style="color: #0000FF">this</span><span style="color: #000000">).</span><span style="color: #795E26">val</span><span style="color: #000000">()];</span>
-<span style="color: #000000">  </span><span style="color: #008000">// Add country code letters to IBAN form field</span>
-<span style="color: #000000">  </span><span style="color: #795E26">$</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;input#iban&quot;</span><span style="color: #000000">).</span><span style="color: #795E26">value</span><span style="color: #000000">(</span><span style="color: #795E26">$</span><span style="color: #000000">(</span><span style="color: #0000FF">this</span><span style="color: #000000">).</span><span style="color: #795E26">val</span><span style="color: #000000">());</span>
-<span style="color: #000000">  </span><span style="color: #008000">// Add New value to &quot;pattern&quot; attribute to #iban input text field</span>
-<span style="color: #000000">  </span><span style="color: #795E26">$</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;input#iban&quot;</span><span style="color: #000000">).</span><span style="color: #795E26">attr</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;pattern&quot;</span><span style="color: #000000">, </span><span style="color: #795E26">$</span><span style="color: #000000">(</span><span style="color: #0000FF">this</span><span style="color: #000000">).</span><span style="color: #795E26">val</span><span style="color: #000000">() + </span><span style="color: #A31515">&quot;[0-9]{2}&quot;</span><span style="color: #000000"> + </span><span style="color: #001080">country</span><span style="color: #000000">.</span><span style="color: #001080">bban_regexp</span><span style="color: #000000">.</span><span style="color: #795E26">slice</span><span style="color: #000000">(</span><span style="color: #098658">1</span><span style="color: #000000">).</span><span style="color: #795E26">replace</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;$&quot;</span><span style="color: #000000">,</span><span style="color: #A31515">&quot;&quot;</span><span style="color: #000000">));</span>
-<span style="color: #000000">});</span>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5><span class="tsd-flag ts-flagOptional">Optional</span> iban: <span class="tsd-signature-type">string</span></h5></li><li><h5><span class="tsd-flag ts-flagOptional">Optional</span> separator: <span class="tsd-signature-type">string</span></h5></li></ul><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h4></li></ul></section><section class="tsd-panel tsd-member tsd-kind-function"><a id="getCountrySpecifications" class="tsd-anchor"></a><h3 class="tsd-anchor-link">get<wbr/>Country<wbr/>Specifications<a href="#getCountrySpecifications" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-function"><li class="tsd-signature tsd-kind-icon">get<wbr/>Country<wbr/>Specifications<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/CountryMap.html" class="tsd-signature-type" data-tsd-kind="Interface">CountryMap</a></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/Simplify/ibantools/blob/f8652d8/src/IBANTools.ts#L356">IBANTools.ts:356</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Returns specifications for all countries, even those who are not
+members of IBAN registry. <code>IBANRegistry</code> field indicates if country
+is member of not.</p>
+</div><div><pre><code><span class="hl-0">// Validating IBAN form field after user selects his country</span><br/><span class="hl-0">// &lt;select id=&quot;countries&quot;&gt;</span><br/><span class="hl-0">//   ...</span><br/><span class="hl-0">//   &lt;option value=&quot;NL&quot;&gt;Netherlands&lt;/option&gt;</span><br/><span class="hl-0">//   ...</span><br/><span class="hl-0">// &lt;/select&gt;</span><br/><span class="hl-3">$</span><span class="hl-2">(</span><span class="hl-4">&quot;#countries&quot;</span><span class="hl-2">).</span><span class="hl-3">select</span><span class="hl-2">(</span><span class="hl-5">function</span><span class="hl-2">() {</span><br/><span class="hl-2">  </span><span class="hl-0">// Find country</span><br/><span class="hl-2">  </span><span class="hl-5">let</span><span class="hl-2"> </span><span class="hl-1">country</span><span class="hl-2"> = </span><span class="hl-1">ibantools</span><span class="hl-2">.</span><span class="hl-3">getCountrySpecifications</span><span class="hl-2">()[</span><span class="hl-3">$</span><span class="hl-2">(</span><span class="hl-5">this</span><span class="hl-2">).</span><span class="hl-3">val</span><span class="hl-2">()];</span><br/><span class="hl-2">  </span><span class="hl-0">// Add country code letters to IBAN form field</span><br/><span class="hl-2">  </span><span class="hl-3">$</span><span class="hl-2">(</span><span class="hl-4">&quot;input#iban&quot;</span><span class="hl-2">).</span><span class="hl-3">value</span><span class="hl-2">(</span><span class="hl-3">$</span><span class="hl-2">(</span><span class="hl-5">this</span><span class="hl-2">).</span><span class="hl-3">val</span><span class="hl-2">());</span><br/><span class="hl-2">  </span><span class="hl-0">// Add New value to &quot;pattern&quot; attribute to #iban input text field</span><br/><span class="hl-2">  </span><span class="hl-3">$</span><span class="hl-2">(</span><span class="hl-4">&quot;input#iban&quot;</span><span class="hl-2">).</span><span class="hl-3">attr</span><span class="hl-2">(</span><span class="hl-4">&quot;pattern&quot;</span><span class="hl-2">, </span><span class="hl-3">$</span><span class="hl-2">(</span><span class="hl-5">this</span><span class="hl-2">).</span><span class="hl-3">val</span><span class="hl-2">() + </span><span class="hl-4">&quot;[0-9]{2}&quot;</span><span class="hl-2"> + </span><span class="hl-1">country</span><span class="hl-2">.</span><span class="hl-1">bban_regexp</span><span class="hl-2">.</span><span class="hl-3">slice</span><span class="hl-2">(</span><span class="hl-6">1</span><span class="hl-2">).</span><span class="hl-3">replace</span><span class="hl-2">(</span><span class="hl-4">&quot;$&quot;</span><span class="hl-2">,</span><span class="hl-4">&quot;&quot;</span><span class="hl-2">));</span><br/><span class="hl-2">});</span>
 </code></pre>
-							</div>
-							<h4 class="tsd-returns-title">Returns <a href="interfaces/CountryMap.html" class="tsd-signature-type" data-tsd-kind="Interface">CountryMap</a></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="isSEPACountry" class="tsd-anchor"></a>
-					<h3>isSEPACountry</h3>
-					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">isSEPACountry<span class="tsd-signature-symbol">(</span>countryCode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/Simplify/ibantools/blob/0216e14/src/IBANTools.ts#L159">IBANTools.ts:159</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Validate if country code is from a SEPA country</p>
-									<pre><code><span style="color: #008000">// returns true</span>
-<span style="color: #001080">ibantools</span><span style="color: #000000">.</span><span style="color: #795E26">isSEPACountry</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;NL&quot;</span><span style="color: #000000">);</span>
+</div></div><h4 class="tsd-returns-title">Returns <a href="interfaces/CountryMap.html" class="tsd-signature-type" data-tsd-kind="Interface">CountryMap</a></h4></li></ul></section><section class="tsd-panel tsd-member tsd-kind-function"><a id="isSEPACountry" class="tsd-anchor"></a><h3 class="tsd-anchor-link">isSEPACountry<a href="#isSEPACountry" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-function"><li class="tsd-signature tsd-kind-icon">isSEPACountry<span class="tsd-signature-symbol">(</span>countryCode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/Simplify/ibantools/blob/f8652d8/src/IBANTools.ts#L159">IBANTools.ts:159</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Validate if country code is from a SEPA country</p>
+<pre><code><span class="hl-0">// returns true</span><br/><span class="hl-1">ibantools</span><span class="hl-2">.</span><span class="hl-3">isSEPACountry</span><span class="hl-2">(</span><span class="hl-4">&quot;NL&quot;</span><span class="hl-2">);</span>
 </code></pre>
-									<pre><code><span style="color: #008000">// returns false</span>
-<span style="color: #001080">ibantools</span><span style="color: #000000">.</span><span style="color: #795E26">isSEPACountry</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;PK&quot;</span><span style="color: #000000">);</span>
+<pre><code><span class="hl-0">// returns false</span><br/><span class="hl-1">ibantools</span><span class="hl-2">.</span><span class="hl-3">isSEPACountry</span><span class="hl-2">(</span><span class="hl-4">&quot;PK&quot;</span><span class="hl-2">);</span>
 </code></pre>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>countryCode: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="isValidBBAN" class="tsd-anchor"></a>
-					<h3>is<wbr>ValidBBAN</h3>
-					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">is<wbr>ValidBBAN<span class="tsd-signature-symbol">(</span>bban<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, countryCode<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/Simplify/ibantools/blob/0216e14/src/IBANTools.ts#L126">IBANTools.ts:126</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Validate BBAN</p>
-								</div>
-								<pre><code><span style="color: #008000">// returns true</span>
-<span style="color: #001080">ibantools</span><span style="color: #000000">.</span><span style="color: #795E26">isValidBBAN</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;ABNA0517164300&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;NL&quot;</span><span style="color: #000000">);</span>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>countryCode: <span class="tsd-signature-type">string</span></h5></li></ul><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4></li></ul></section><section class="tsd-panel tsd-member tsd-kind-function"><a id="isValidBBAN" class="tsd-anchor"></a><h3 class="tsd-anchor-link">is<wbr/>ValidBBAN<a href="#isValidBBAN" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-function"><li class="tsd-signature tsd-kind-icon">is<wbr/>ValidBBAN<span class="tsd-signature-symbol">(</span>bban<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, countryCode<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/Simplify/ibantools/blob/f8652d8/src/IBANTools.ts#L126">IBANTools.ts:126</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Validate BBAN</p>
+</div><div><pre><code><span class="hl-0">// returns true</span><br/><span class="hl-1">ibantools</span><span class="hl-2">.</span><span class="hl-3">isValidBBAN</span><span class="hl-2">(</span><span class="hl-4">&quot;ABNA0517164300&quot;</span><span class="hl-2">, </span><span class="hl-4">&quot;NL&quot;</span><span class="hl-2">);</span>
 </code></pre>
-								<pre><code><span style="color: #008000">// returns false</span>
-<span style="color: #001080">ibantools</span><span style="color: #000000">.</span><span style="color: #795E26">isValidBBAN</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;A7NA0517164300&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;NL&quot;</span><span style="color: #000000">);</span>
+<pre><code><span class="hl-0">// returns false</span><br/><span class="hl-1">ibantools</span><span class="hl-2">.</span><span class="hl-3">isValidBBAN</span><span class="hl-2">(</span><span class="hl-4">&quot;A7NA0517164300&quot;</span><span class="hl-2">, </span><span class="hl-4">&quot;NL&quot;</span><span class="hl-2">);</span>
 </code></pre>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> bban: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> countryCode: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="isValidBIC" class="tsd-anchor"></a>
-					<h3>is<wbr>ValidBIC</h3>
-					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">is<wbr>ValidBIC<span class="tsd-signature-symbol">(</span>bic<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/Simplify/ibantools/blob/0216e14/src/IBANTools.ts#L388">IBANTools.ts:388</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Validate BIC/SWIFT</p>
-								</div>
-								<pre><code><span style="color: #008000">// returns true</span>
-<span style="color: #001080">ibantools</span><span style="color: #000000">.</span><span style="color: #795E26">isValidBIC</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;ABNANL2A&quot;</span><span style="color: #000000">);</span>
-
-<span style="color: #008000">// returns true</span>
-<span style="color: #001080">ibantools</span><span style="color: #000000">.</span><span style="color: #795E26">isValidBIC</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;NEDSZAJJXXX&quot;</span><span style="color: #000000">);</span>
-
-<span style="color: #008000">// returns false</span>
-<span style="color: #001080">ibantools</span><span style="color: #000000">.</span><span style="color: #795E26">isValidBIC</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;ABN4NL2A&quot;</span><span style="color: #000000">);</span>
-
-<span style="color: #008000">// returns false</span>
-<span style="color: #001080">ibantools</span><span style="color: #000000">.</span><span style="color: #795E26">isValidBIC</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;ABNA NL 2A&quot;</span><span style="color: #000000">);</span>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5><span class="tsd-flag ts-flagOptional">Optional</span> bban: <span class="tsd-signature-type">string</span></h5></li><li><h5><span class="tsd-flag ts-flagOptional">Optional</span> countryCode: <span class="tsd-signature-type">string</span></h5></li></ul><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4></li></ul></section><section class="tsd-panel tsd-member tsd-kind-function"><a id="isValidBIC" class="tsd-anchor"></a><h3 class="tsd-anchor-link">is<wbr/>ValidBIC<a href="#isValidBIC" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-function"><li class="tsd-signature tsd-kind-icon">is<wbr/>ValidBIC<span class="tsd-signature-symbol">(</span>bic<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/Simplify/ibantools/blob/f8652d8/src/IBANTools.ts#L388">IBANTools.ts:388</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Validate BIC/SWIFT</p>
+</div><div><pre><code><span class="hl-0">// returns true</span><br/><span class="hl-1">ibantools</span><span class="hl-2">.</span><span class="hl-3">isValidBIC</span><span class="hl-2">(</span><span class="hl-4">&quot;ABNANL2A&quot;</span><span class="hl-2">);</span><br/><br/><span class="hl-0">// returns true</span><br/><span class="hl-1">ibantools</span><span class="hl-2">.</span><span class="hl-3">isValidBIC</span><span class="hl-2">(</span><span class="hl-4">&quot;NEDSZAJJXXX&quot;</span><span class="hl-2">);</span><br/><br/><span class="hl-0">// returns false</span><br/><span class="hl-1">ibantools</span><span class="hl-2">.</span><span class="hl-3">isValidBIC</span><span class="hl-2">(</span><span class="hl-4">&quot;ABN4NL2A&quot;</span><span class="hl-2">);</span><br/><br/><span class="hl-0">// returns false</span><br/><span class="hl-1">ibantools</span><span class="hl-2">.</span><span class="hl-3">isValidBIC</span><span class="hl-2">(</span><span class="hl-4">&quot;ABNA NL 2A&quot;</span><span class="hl-2">);</span>
 </code></pre>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>bic: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="isValidIBAN" class="tsd-anchor"></a>
-					<h3>is<wbr>ValidIBAN</h3>
-					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">is<wbr>ValidIBAN<span class="tsd-signature-symbol">(</span>iban<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/Simplify/ibantools/blob/0216e14/src/IBANTools.ts#L29">IBANTools.ts:29</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Validate IBAN</p>
-									<pre><code><span style="color: #008000">// returns true</span>
-<span style="color: #001080">ibantools</span><span style="color: #000000">.</span><span style="color: #795E26">isValidIBAN</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;NL91ABNA0517164300&quot;</span><span style="color: #000000">);</span>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>bic: <span class="tsd-signature-type">string</span></h5></li></ul><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4></li></ul></section><section class="tsd-panel tsd-member tsd-kind-function"><a id="isValidIBAN" class="tsd-anchor"></a><h3 class="tsd-anchor-link">is<wbr/>ValidIBAN<a href="#isValidIBAN" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-function"><li class="tsd-signature tsd-kind-icon">is<wbr/>ValidIBAN<span class="tsd-signature-symbol">(</span>iban<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/Simplify/ibantools/blob/f8652d8/src/IBANTools.ts#L29">IBANTools.ts:29</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>Validate IBAN</p>
+<pre><code><span class="hl-0">// returns true</span><br/><span class="hl-1">ibantools</span><span class="hl-2">.</span><span class="hl-3">isValidIBAN</span><span class="hl-2">(</span><span class="hl-4">&quot;NL91ABNA0517164300&quot;</span><span class="hl-2">);</span>
 </code></pre>
-									<pre><code><span style="color: #008000">// returns false</span>
-<span style="color: #001080">ibantools</span><span style="color: #000000">.</span><span style="color: #795E26">isValidIBAN</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;NL92ABNA0517164300&quot;</span><span style="color: #000000">);</span>
+<pre><code><span class="hl-0">// returns false</span><br/><span class="hl-1">ibantools</span><span class="hl-2">.</span><span class="hl-3">isValidIBAN</span><span class="hl-2">(</span><span class="hl-4">&quot;NL92ABNA0517164300&quot;</span><span class="hl-2">);</span>
 </code></pre>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>iban: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="validateBIC" class="tsd-anchor"></a>
-					<h3>validateBIC</h3>
-					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">validateBIC<span class="tsd-signature-symbol">(</span>bic<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/ValidateBICResult.html" class="tsd-signature-type" data-tsd-kind="Interface">ValidateBICResult</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/Simplify/ibantools/blob/0216e14/src/IBANTools.ts#L421">IBANTools.ts:421</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>validateBIC</p>
-									<pre><code><span style="color: #008000">// returns {errorCodes: [], valid: true}</span>
-<span style="color: #001080">ibantools</span><span style="color: #000000">.</span><span style="color: #795E26">validateBIC</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;NEDSZAJJXXX&quot;</span><span style="color: #000000">);</span>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5>iban: <span class="tsd-signature-type">string</span></h5></li></ul><h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4></li></ul></section><section class="tsd-panel tsd-member tsd-kind-function"><a id="validateBIC" class="tsd-anchor"></a><h3 class="tsd-anchor-link">validateBIC<a href="#validateBIC" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-function"><li class="tsd-signature tsd-kind-icon">validateBIC<span class="tsd-signature-symbol">(</span>bic<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/ValidateBICResult.html" class="tsd-signature-type" data-tsd-kind="Interface">ValidateBICResult</a></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/Simplify/ibantools/blob/f8652d8/src/IBANTools.ts#L421">IBANTools.ts:421</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>validateBIC</p>
+<pre><code><span class="hl-0">// returns {errorCodes: [], valid: true}</span><br/><span class="hl-1">ibantools</span><span class="hl-2">.</span><span class="hl-3">validateBIC</span><span class="hl-2">(</span><span class="hl-4">&quot;NEDSZAJJXXX&quot;</span><span class="hl-2">);</span>
 </code></pre>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> bic: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="interfaces/ValidateBICResult.html" class="tsd-signature-type" data-tsd-kind="Interface">ValidateBICResult</a></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="validateIBAN" class="tsd-anchor"></a>
-					<h3>validateIBAN</h3>
-					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">validateIBAN<span class="tsd-signature-symbol">(</span>iban<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/ValidateIBANResult.html" class="tsd-signature-type" data-tsd-kind="Interface">ValidateIBANResult</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/Simplify/ibantools/blob/0216e14/src/IBANTools.ts#L77">IBANTools.ts:77</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>validateIBAN</p>
-									<pre><code><span style="color: #008000">// returns {errorCodes: [], valid: true}</span>
-<span style="color: #001080">ibantools</span><span style="color: #000000">.</span><span style="color: #795E26">validateIBAN</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;NL91 ABNA 0417 1643 00&quot;</span><span style="color: #000000">);</span>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5><span class="tsd-flag ts-flagOptional">Optional</span> bic: <span class="tsd-signature-type">string</span></h5></li></ul><h4 class="tsd-returns-title">Returns <a href="interfaces/ValidateBICResult.html" class="tsd-signature-type" data-tsd-kind="Interface">ValidateBICResult</a></h4></li></ul></section><section class="tsd-panel tsd-member tsd-kind-function"><a id="validateIBAN" class="tsd-anchor"></a><h3 class="tsd-anchor-link">validateIBAN<a href="#validateIBAN" aria-label="Permalink" class="tsd-anchor-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></svg></a></h3><ul class="tsd-signatures tsd-kind-function"><li class="tsd-signature tsd-kind-icon">validateIBAN<span class="tsd-signature-symbol">(</span>iban<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/ValidateIBANResult.html" class="tsd-signature-type" data-tsd-kind="Interface">ValidateIBANResult</a></li></ul><ul class="tsd-descriptions"><li class="tsd-description"><aside class="tsd-sources"><ul><li>Defined in <a href="https://github.com/Simplify/ibantools/blob/f8652d8/src/IBANTools.ts#L77">IBANTools.ts:77</a></li></ul></aside><div class="tsd-comment tsd-typography"><div class="lead">
+<p>validateIBAN</p>
+<pre><code><span class="hl-0">// returns {errorCodes: [], valid: true}</span><br/><span class="hl-1">ibantools</span><span class="hl-2">.</span><span class="hl-3">validateIBAN</span><span class="hl-2">(</span><span class="hl-4">&quot;NL91 ABNA 0417 1643 00&quot;</span><span class="hl-2">);</span>
 </code></pre>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> iban: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="interfaces/ValidateIBANResult.html" class="tsd-signature-type" data-tsd-kind="Interface">ValidateIBANResult</a></h4>
-						</li>
-					</ul>
-				</section>
-			</section>
-		</div>
-		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
-			<nav class="tsd-navigation primary">
-				<ul>
-					<li class="current ">
-						<a href="modules.html">Exports</a>
-					</li>
-				</ul>
-			</nav>
-			<nav class="tsd-navigation secondary menu-sticky">
-				<ul class="before-current">
-					<li class=" tsd-kind-enum">
-						<a href="enums/ValidationErrorsBIC.html" class="tsd-kind-icon">Validation<wbr>ErrorsBIC</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/ValidationErrorsIBAN.html" class="tsd-kind-icon">Validation<wbr>ErrorsIBAN</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/ComposeIBANParams.html" class="tsd-kind-icon">ComposeIBANParams</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/CountryMap.html" class="tsd-kind-icon">Country<wbr>Map</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/CountrySpec.html" class="tsd-kind-icon">Country<wbr>Spec</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/ExtractBICResult.html" class="tsd-kind-icon">ExtractBICResult</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/ExtractIBANResult.html" class="tsd-kind-icon">ExtractIBANResult</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/ValidateBICResult.html" class="tsd-kind-icon">ValidateBICResult</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/ValidateIBANResult.html" class="tsd-kind-icon">ValidateIBANResult</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="modules.html#countrySpecs" class="tsd-kind-icon">country<wbr>Specs</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#composeIBAN" class="tsd-kind-icon">composeIBAN</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#electronicFormatIBAN" class="tsd-kind-icon">electronic<wbr>FormatIBAN</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#extractBIC" class="tsd-kind-icon">extractBIC</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#extractIBAN" class="tsd-kind-icon">extractIBAN</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#friendlyFormatIBAN" class="tsd-kind-icon">friendly<wbr>FormatIBAN</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#getCountrySpecifications" class="tsd-kind-icon">get<wbr>Country<wbr>Specifications</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#isSEPACountry" class="tsd-kind-icon">isSEPACountry</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#isValidBBAN" class="tsd-kind-icon">is<wbr>ValidBBAN</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#isValidBIC" class="tsd-kind-icon">is<wbr>ValidBIC</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#isValidIBAN" class="tsd-kind-icon">is<wbr>ValidIBAN</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#validateBIC" class="tsd-kind-icon">validateBIC</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#validateIBAN" class="tsd-kind-icon">validateIBAN</a>
-					</li>
-				</ul>
-			</nav>
-		</div>
-	</div>
-</div>
-<footer class="with-border-bottom">
-	<div class="container">
-		<h2>Legend</h2>
-		<div class="tsd-legend-group">
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-<div class="container tsd-generator">
-	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
-</div>
-<div class="overlay"></div>
-<script src="assets/js/main.js"></script>
-</body>
-</html>
+</div></div><h4 class="tsd-parameters-title">Parameters</h4><ul class="tsd-parameters"><li><h5><span class="tsd-flag ts-flagOptional">Optional</span> iban: <span class="tsd-signature-type">string</span></h5></li></ul><h4 class="tsd-returns-title">Returns <a href="interfaces/ValidateIBANResult.html" class="tsd-signature-type" data-tsd-kind="Interface">ValidateIBANResult</a></h4></li></ul></section></section></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-enum"><a href="enums/ValidationErrorsBIC.html" class="tsd-kind-icon">Validation<wbr/>ErrorsBIC</a></li><li class="tsd-kind-enum"><a href="enums/ValidationErrorsIBAN.html" class="tsd-kind-icon">Validation<wbr/>ErrorsIBAN</a></li><li class="tsd-kind-interface"><a href="interfaces/ComposeIBANParams.html" class="tsd-kind-icon">ComposeIBANParams</a></li><li class="tsd-kind-interface"><a href="interfaces/CountryMap.html" class="tsd-kind-icon">Country<wbr/>Map</a></li><li class="tsd-kind-interface"><a href="interfaces/CountrySpec.html" class="tsd-kind-icon">Country<wbr/>Spec</a></li><li class="tsd-kind-interface"><a href="interfaces/ExtractBICResult.html" class="tsd-kind-icon">ExtractBICResult</a></li><li class="tsd-kind-interface"><a href="interfaces/ExtractIBANResult.html" class="tsd-kind-icon">ExtractIBANResult</a></li><li class="tsd-kind-interface"><a href="interfaces/ValidateBICResult.html" class="tsd-kind-icon">ValidateBICResult</a></li><li class="tsd-kind-interface"><a href="interfaces/ValidateIBANResult.html" class="tsd-kind-icon">ValidateIBANResult</a></li><li class="tsd-kind-variable"><a href="modules.html#countrySpecs" class="tsd-kind-icon">country<wbr/>Specs</a></li><li class="tsd-kind-function"><a href="modules.html#composeIBAN" class="tsd-kind-icon">composeIBAN</a></li><li class="tsd-kind-function"><a href="modules.html#electronicFormatIBAN" class="tsd-kind-icon">electronic<wbr/>FormatIBAN</a></li><li class="tsd-kind-function"><a href="modules.html#extractBIC" class="tsd-kind-icon">extractBIC</a></li><li class="tsd-kind-function"><a href="modules.html#extractIBAN" class="tsd-kind-icon">extractIBAN</a></li><li class="tsd-kind-function"><a href="modules.html#friendlyFormatIBAN" class="tsd-kind-icon">friendly<wbr/>FormatIBAN</a></li><li class="tsd-kind-function"><a href="modules.html#getCountrySpecifications" class="tsd-kind-icon">get<wbr/>Country<wbr/>Specifications</a></li><li class="tsd-kind-function"><a href="modules.html#isSEPACountry" class="tsd-kind-icon">isSEPACountry</a></li><li class="tsd-kind-function"><a href="modules.html#isValidBBAN" class="tsd-kind-icon">is<wbr/>ValidBBAN</a></li><li class="tsd-kind-function"><a href="modules.html#isValidBIC" class="tsd-kind-icon">is<wbr/>ValidBIC</a></li><li class="tsd-kind-function"><a href="modules.html#isValidIBAN" class="tsd-kind-icon">is<wbr/>ValidIBAN</a></li><li class="tsd-kind-function"><a href="modules.html#validateBIC" class="tsd-kind-icon">validateBIC</a></li><li class="tsd-kind-function"><a href="modules.html#validateIBAN" class="tsd-kind-icon">validateIBAN</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>

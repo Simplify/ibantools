@@ -528,24 +528,6 @@ const checkNorwayBBAN = (bban: string): boolean => {
 };
 
 /**
- * Used for Netherlands BBAN check
- *
- * @ignore
- */
-const checkDutchBBAN = (bban: string): boolean => {
-  const bbanWithoutSpacesAndPeriods = bban.replace(/[\s.]+/g, '');
-  const accountNumber = bbanWithoutSpacesAndPeriods.substring(4, 14);
-  if (accountNumber.startsWith('000')) {
-    return true; // Postbank account, no `elfproef` possible
-  }
-  let sum = 0;
-  for (let index = 0; index < 10; index++) {
-    sum += parseInt(accountNumber.charAt(index), 10) * (10 - index);
-  }
-  return sum % 11 === 0;
-};
-
-/**
  * Used for Belgian BBAN check
  *
  * @ignore
@@ -1322,7 +1304,6 @@ export const countrySpecs: CountryMapInternal = {
   NL: {
     chars: 18,
     bban_regexp: '^[A-Z]{4}[0-9]{10}$',
-    bban_validation_func: checkDutchBBAN,
     IBANRegistry: true,
     SEPA: true,
   },

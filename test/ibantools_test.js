@@ -333,10 +333,7 @@ describe('IBANTools', function() {
     it('with invalid IBAN checksum should return false with correct code', function() {
       expect(iban.validateIBAN('NL91ABNA0517164300')).to.deep.equal({
         valid: false,
-        errorCodes: [
-          iban.ValidationErrorsIBAN.WrongAccountBankBranchChecksum,
-          iban.ValidationErrorsIBAN.WrongIBANChecksum,
-        ],
+        errorCodes: [iban.ValidationErrorsIBAN.WrongIBANChecksum],
       });
     });
 
@@ -353,7 +350,6 @@ describe('IBANTools', function() {
         errorCodes: [
           iban.ValidationErrorsIBAN.WrongBBANLength,
           iban.ValidationErrorsIBAN.WrongBBANFormat,
-          iban.ValidationErrorsIBAN.WrongAccountBankBranchChecksum,
           iban.ValidationErrorsIBAN.ChecksumNotNumber,
           iban.ValidationErrorsIBAN.WrongIBANChecksum,
         ],
@@ -366,7 +362,6 @@ describe('IBANTools', function() {
         errorCodes: [
           iban.ValidationErrorsIBAN.WrongBBANLength,
           iban.ValidationErrorsIBAN.WrongBBANFormat,
-          iban.ValidationErrorsIBAN.WrongAccountBankBranchChecksum,
           iban.ValidationErrorsIBAN.ChecksumNotNumber,
           iban.ValidationErrorsIBAN.WrongIBANChecksum,
         ],

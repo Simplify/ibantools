@@ -1,6 +1,11 @@
+2022-02-03  Saša Jovanić <sasa@simplify.ba>
+	* Version 4.1.4
+	* Fix issue #103 - Remove Dutch BBAN validation
+	* Various development dependencies upgrades
+
 2021-12-17  Saša Jovanić <sasa@simplify.ba>
 	* Version 4.1.3
-	* Fix issue #85 - Fix NaN issue when calling `validateIBAN``
+	* Fix issue #85 - Fix NaN issue when calling `validateIBAN`
 
 2021-12-14  Saša Jovanić <sasa@simplify.ba>
 	* Version 4.1.2
