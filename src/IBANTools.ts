@@ -1315,7 +1315,13 @@ export const countrySpecs: CountryMapInternal = {
     IBANRegistry: true,
     SEPA: true,
   },
-  NO: { chars: 15, bban_regexp: '^[0-9]{11}$', bban_validation_func: checkNorwayBBAN, IBANRegistry: true, SEPA: true },
+  NO: {
+    chars: 15,
+    bban_regexp: '^[0-9]{11}$',
+    bban_validation_func: checkNorwayBBAN,
+    IBANRegistry: true,
+    SEPA: true
+  },
   NP: {},
   NR: {},
   NU: {},
