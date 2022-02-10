@@ -27,23 +27,23 @@
  * ```
  */
 export function isValidIBAN(iban: string): boolean {
-  if (iban !== undefined && iban !== null) {
-    const reg = new RegExp('^[0-9]{2}$', '');
-    const spec = countrySpecs[iban.slice(0, 2)];
-    if (
-      spec !== undefined &&
-      spec.bban_regexp &&
-      spec.bban_regexp !== null &&
-      spec.chars &&
-      spec.chars === iban.length &&
-      reg.test(iban.slice(2, 4)) &&
-      isValidBBAN(iban.slice(4), iban.slice(0, 2)) &&
-      isValidIBANChecksum(iban)
-    ) {
-      return true;
-    }
-  }
-  return false;
+  if (iban === undefined || iban === null) return false;
+
+  const reg = new RegExp('^[0-9]{2}$', '');
+  const spec = countrySpecs[iban.slice(0, 2)];
+
+  if (spec === undefined ||
+    spec.bban_regexp === undefined ||
+    spec.bban_regexp === null ||
+    spec.chars === undefined
+  ) return false;
+
+  return (
+    spec.chars === iban.length &&
+    reg.test(iban.slice(2, 4)) &&
+    isValidBBAN(iban.slice(4), iban.slice(0, 2)) &&
+    isValidIBANChecksum(iban)
+  )
 }
 
 /**
