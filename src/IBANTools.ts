@@ -294,22 +294,30 @@ export function friendlyFormatIBAN(iban?: string, separator?: string): string | 
  * @ignore
  */
 function isValidIBANChecksum(iban: string): boolean {
-  const providedChecksum: number = parseInt(iban.slice(2, 4), 10);
-  const temp: string = iban.slice(3) + iban.slice(0, 2) + '00';
-  let validationString = '';
-  for (let n = 1; n < temp.length; n++) {
-    const c = temp.charCodeAt(n);
-    if (c >= 65) {
-      validationString += (c - 55).toString();
-    } else {
-      validationString += temp[n];
-    }
-  }
-  while (validationString.length > 2) {
-    const part: string = validationString.slice(0, 6);
-    validationString = (parseInt(part, 10) % 97).toString() + validationString.slice(part.length);
-  }
-  const rest: number = parseInt(validationString, 10) % 97;
+  const countryCode : string = iban.slice(0, 2);
+  const providedChecksum : number = parseInt(iban.slice(2, 4), 10);
+  const bban : string = iban.slice(4);
+
+  // Wikipedia[validating_iban] says there are a specif way to check if a IBAN is valid but
+  // it. It says 'If the remainder is 1, the check digit test is passed and the
+  // IBAN might be valid.'. might, MIGHT!
+  // We don't want might but want yes or no. Since every BBAN is IBAN from the fifth
+  // (slice(4)) we can generate the IBAN from BBAN and country code(two first characters)
+  // from in the IBAN.
+  // To generate the (generate the iban check digits)[generating-iban-check]
+  //   Move the country code to the end
+  //   remove the checksum from the begging
+  //   Add "00" to the end
+  //   modulo 97 on the amount
+  //   subtract remainder from 98, (98 - remainder)
+  //   Add a leading 0 if the remainder is less then 10 (padStart(2, "0")) (we skip this
+  //     since we compare int, not string)
+  //
+  // [validating_iban][https://en.wikipedia.org/wiki/International_Bank_Account_Number#Validating_the_IBAN]
+  // [generating-iban-check][https://en.wikipedia.org/wiki/International_Bank_Account_Number#Generating_IBAN_check_digits]
+
+  const validationString = replaceCharaterWithCode(`${bban}${countryCode}00`)
+  const rest = mod9710(validationString);
   return 98 - rest === providedChecksum;
 }
 
