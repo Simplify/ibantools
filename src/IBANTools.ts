@@ -366,10 +366,10 @@ export function getCountrySpecifications(): CountryMap {
   for (const countyCode in countrySpecs) {
     const county = countrySpecs[countyCode];
     countyMap[countyCode] = {
-      chars: county.chars ? county.chars : null,
-      bban_regexp: county.bban_regexp ? county.bban_regexp : null,
-      IBANRegistry: county.IBANRegistry ? county.IBANRegistry : false,
-      SEPA: county.SEPA ? county.SEPA : false,
+      chars: county.chars || null,
+      bban_regexp: county.bban_regexp || null,
+      IBANRegistry: county.IBANRegistry || false,
+      SEPA: county.SEPA || false,
     };
   }
 
