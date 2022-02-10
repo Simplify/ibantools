@@ -312,23 +312,31 @@ function isValidIBANChecksum(iban: string): boolean {
   const rest: number = parseInt(validationString, 10) % 97;
   return 98 - rest === providedChecksum;
 }
+
+/**
+ * Iban contain characters and should be converted to intereger by 55 substracted
+ * from there ascii value
+ *
+ * @ignore
+ */
+function replaceCharaterWithCode(str: string): string {
+  // It is slower but alot more readable
+  // https://jsbench.me/ttkzgsekae/1
+  return str.split("")
+    .map(c => {
+      const code = c.charCodeAt(0);
+      return code >= 65 ? (code - 55).toString() : c
+    })
+    .join("");
+}
+
 /**
  * MOD-97-10
  *
  * @ignore
  */
 function mod9710Iban(iban: string): number {
-  iban = iban.slice(3) + iban.slice(0, 4);
-  let validationString = '';
-  for (let n = 1; n < iban.length; n++) {
-    const c = iban.charCodeAt(n);
-    if (c >= 65) {
-      validationString += (c - 55).toString();
-    } else {
-      validationString += iban[n];
-    }
-  }
-  return mod9710(validationString);
+  return mod9710(replaceCharaterWithCode(iban.slice(3) + iban.slice(0, 4)));
 }
 
 /**
