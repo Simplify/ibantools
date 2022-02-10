@@ -555,12 +555,15 @@ const checkBelgianBBAN = (bban: string): boolean => {
  */
 const mod9710 = (validationString: string): number => {
   while (validationString.length > 2) {
+    // > Any computer programming language or software package that is used to compute D
+    // > mod 97 directly must have the ability to handle integers of more than 30 digits.
+    // > In practice, this can only be done by software that either supports
+    // > arbitrary-precision arithmetic or that can handle 219-bit (unsigned) integers
+    // https://en.wikipedia.org/wiki/International_Bank_Account_Number#Modulo_operation_on_IBAN
     const part = validationString.slice(0, 6);
-    const value = parseInt(part, 10) % 97;
-    if (isNaN(value)) {
-      return NaN;
-    }
-    validationString = value.toString() + validationString.slice(part.length);
+    const partInt = parseInt(part, 10);
+    if (isNaN(partInt)) {return NaN;}
+    validationString = partInt % 97 + validationString.slice(part.length);
   }
   return parseInt(validationString, 10) % 97;
 };
