@@ -1,3 +1,11 @@
+2022-02-14  Saša Jovanić <sasa@simplify.ba>
+	* Removed `gulp-mocha` and `cheerio` plugins as dev dependency
+	* Various dependabot upgrades
+
+2022-02-14  Saša Jovanić <sasa@simplify.ba>
+	* Merged PR#105 from Stoivo
+	* Various dependabot upgrades
+
 2022-02-03  Saša Jovanić <sasa@simplify.ba>
 	* Version 4.1.4
 	* Fix issue #103 - Remove Dutch BBAN validation

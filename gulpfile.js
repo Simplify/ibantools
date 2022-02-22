@@ -3,7 +3,6 @@
 const gulp = require('gulp');
 const ts = require('gulp-typescript');
 const shell = require('gulp-shell');
-const mocha = require('gulp-mocha');
 const merge = require('merge2');
 const rename = require('gulp-rename');
 const Server = require('karma').Server;
@@ -56,9 +55,7 @@ gulp.task('build-module', function() {
 });
 
 // Run tests
-gulp.task('test', function() {
-  return gulp.src(['test/**/*.js'], { read: false }).pipe(mocha());
-});
+gulp.task('test', shell.task(["mocha 'test/**/*.js'"]));
 
 // Watch for changes
 gulp.task('watch', function() {
