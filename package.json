@@ -53,7 +53,6 @@
     "@typescript-eslint/eslint-plugin": "^4.28.4",
     "@typescript-eslint/parser": "^4.28.4",
     "chai": "^4.3.4",
-    "cheerio": "^0.22",
     "coveralls": "^3.1.1",
     "docdash": "^1.2.0",
     "eslint": "^7.31.0",
