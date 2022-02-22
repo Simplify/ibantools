@@ -28,21 +28,19 @@ define(["require", "exports"], function (require, exports) {
      * ```
      */
     function isValidIBAN(iban) {
-        if (iban !== undefined && iban !== null) {
-            var reg = new RegExp('^[0-9]{2}$', '');
-            var spec = exports.countrySpecs[iban.slice(0, 2)];
-            if (spec !== undefined &&
-                spec.bban_regexp &&
-                spec.bban_regexp !== null &&
-                spec.chars &&
-                spec.chars === iban.length &&
-                reg.test(iban.slice(2, 4)) &&
-                isValidBBAN(iban.slice(4), iban.slice(0, 2)) &&
-                isValidIBANChecksum(iban)) {
-                return true;
-            }
-        }
-        return false;
+        if (iban === undefined || iban === null)
+            return false;
+        var reg = new RegExp('^[0-9]{2}$', '');
+        var spec = exports.countrySpecs[iban.slice(0, 2)];
+        if (spec === undefined ||
+            spec.bban_regexp === undefined ||
+            spec.bban_regexp === null ||
+            spec.chars === undefined)
+            return false;
+        return (spec.chars === iban.length &&
+            reg.test(iban.slice(2, 4)) &&
+            isValidBBAN(iban.slice(4), iban.slice(0, 2)) &&
+            isValidIBANChecksum(iban));
     }
     exports.isValidIBAN = isValidIBAN;
     /**
@@ -116,21 +114,21 @@ define(["require", "exports"], function (require, exports) {
      * ```
      */
     function isValidBBAN(bban, countryCode) {
-        if (bban !== undefined && bban !== null && countryCode !== undefined && countryCode !== null) {
-            var spec = exports.countrySpecs[countryCode];
-            if (spec !== undefined &&
-                spec !== null &&
-                spec.bban_regexp &&
-                spec.bban_regexp !== null &&
-                spec.chars &&
-                spec.chars !== null &&
-                spec.chars - 4 === bban.length &&
-                checkFormatBBAN(bban, spec.bban_regexp)) {
-                if (spec.bban_validation_func) {
-                    return spec.bban_validation_func(bban.replace(/[\s.]+/g, ''));
-                }
-                return true;
+        if (bban === undefined || bban === null || countryCode === undefined || countryCode === null)
+            return false;
+        var spec = exports.countrySpecs[countryCode];
+        if (spec === undefined ||
+            spec === null ||
+            spec.bban_regexp === undefined ||
+            spec.bban_regexp === null ||
+            spec.chars === undefined ||
+            spec.chars === null)
+            return false;
+        if (spec.chars - 4 === bban.length && checkFormatBBAN(bban, spec.bban_regexp)) {
+            if (spec.bban_validation_func) {
+                return spec.bban_validation_func(bban.replace(/[\s.]+/g, ''));
             }
+            return true;
         }
         return false;
     }
@@ -264,24 +262,45 @@ define(["require", "exports"], function (require, exports) {
      * @ignore
      */
     function isValidIBANChecksum(iban) {
+        var countryCode = iban.slice(0, 2);
         var providedChecksum = parseInt(iban.slice(2, 4), 10);
-        var temp = iban.slice(3) + iban.slice(0, 2) + '00';
-        var validationString = '';
-        for (var n = 1; n < temp.length; n++) {
-            var c = temp.charCodeAt(n);
-            if (c >= 65) {
-                validationString += (c - 55).toString();
-            }
-            else {
-                validationString += temp[n];
-            }
-        }
-        while (validationString.length > 2) {
-            var part = validationString.slice(0, 6);
-            validationString = (parseInt(part, 10) % 97).toString() + validationString.slice(part.length);
-        }
-        var rest = parseInt(validationString, 10) % 97;
+        var bban = iban.slice(4);
+        // Wikipedia[validating_iban] says there are a specif way to check if a IBAN is valid but
+        // it. It says 'If the remainder is 1, the check digit test is passed and the
+        // IBAN might be valid.'. might, MIGHT!
+        // We don't want might but want yes or no. Since every BBAN is IBAN from the fifth
+        // (slice(4)) we can generate the IBAN from BBAN and country code(two first characters)
+        // from in the IBAN.
+        // To generate the (generate the iban check digits)[generating-iban-check]
+        //   Move the country code to the end
+        //   remove the checksum from the begging
+        //   Add "00" to the end
+        //   modulo 97 on the amount
+        //   subtract remainder from 98, (98 - remainder)
+        //   Add a leading 0 if the remainder is less then 10 (padStart(2, "0")) (we skip this
+        //     since we compare int, not string)
+        //
+        // [validating_iban][https://en.wikipedia.org/wiki/International_Bank_Account_Number#Validating_the_IBAN]
+        // [generating-iban-check][https://en.wikipedia.org/wiki/International_Bank_Account_Number#Generating_IBAN_check_digits]
+        var validationString = replaceCharaterWithCode("".concat(bban).concat(countryCode, "00"));
+        var rest = mod9710(validationString);
         return 98 - rest === providedChecksum;
+    }
+    /**
+     * Iban contain characters and should be converted to intereger by 55 substracted
+     * from there ascii value
+     *
+     * @ignore
+     */
+    function replaceCharaterWithCode(str) {
+        // It is slower but alot more readable
+        // https://jsbench.me/ttkzgsekae/1
+        return str.split("")
+            .map(function (c) {
+            var code = c.charCodeAt(0);
+            return code >= 65 ? (code - 55).toString() : c;
+        })
+            .join("");
     }
     /**
      * MOD-97-10
@@ -289,18 +308,7 @@ define(["require", "exports"], function (require, exports) {
      * @ignore
      */
     function mod9710Iban(iban) {
-        iban = iban.slice(3) + iban.slice(0, 4);
-        var validationString = '';
-        for (var n = 1; n < iban.length; n++) {
-            var c = iban.charCodeAt(n);
-            if (c >= 65) {
-                validationString += (c - 55).toString();
-            }
-            else {
-                validationString += iban[n];
-            }
-        }
-        return mod9710(validationString);
+        return mod9710(replaceCharaterWithCode(iban.slice(3) + iban.slice(0, 4)));
     }
     /**
      * Returns specifications for all countries, even those who are not
@@ -329,10 +337,10 @@ define(["require", "exports"], function (require, exports) {
         for (var countyCode in exports.countrySpecs) {
             var county = exports.countrySpecs[countyCode];
             countyMap[countyCode] = {
-                chars: county.chars ? county.chars : null,
-                bban_regexp: county.bban_regexp ? county.bban_regexp : null,
-                IBANRegistry: county.IBANRegistry ? county.IBANRegistry : false,
-                SEPA: county.SEPA ? county.SEPA : false,
+                chars: county.chars || null,
+                bban_regexp: county.bban_regexp || null,
+                IBANRegistry: county.IBANRegistry || false,
+                SEPA: county.SEPA || false,
             };
         }
         return countyMap;
@@ -463,12 +471,17 @@ define(["require", "exports"], function (require, exports) {
      */
     var mod9710 = function (validationString) {
         while (validationString.length > 2) {
+            // > Any computer programming language or software package that is used to compute D
+            // > mod 97 directly must have the ability to handle integers of more than 30 digits.
+            // > In practice, this can only be done by software that either supports
+            // > arbitrary-precision arithmetic or that can handle 219-bit (unsigned) integers
+            // https://en.wikipedia.org/wiki/International_Bank_Account_Number#Modulo_operation_on_IBAN
             var part = validationString.slice(0, 6);
-            var value = parseInt(part, 10) % 97;
-            if (isNaN(value)) {
+            var partInt = parseInt(part, 10);
+            if (isNaN(partInt)) {
                 return NaN;
             }
-            validationString = value.toString() + validationString.slice(part.length);
+            validationString = partInt % 97 + validationString.slice(part.length);
         }
         return parseInt(validationString, 10) % 97;
     };
@@ -1215,7 +1228,13 @@ define(["require", "exports"], function (require, exports) {
             IBANRegistry: true,
             SEPA: true,
         },
-        NO: { chars: 15, bban_regexp: '^[0-9]{11}$', bban_validation_func: checkNorwayBBAN, IBANRegistry: true, SEPA: true },
+        NO: {
+            chars: 15,
+            bban_regexp: '^[0-9]{11}$',
+            bban_validation_func: checkNorwayBBAN,
+            IBANRegistry: true,
+            SEPA: true
+        },
         NP: {},
         NR: {},
         NU: {},
