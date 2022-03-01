@@ -621,6 +621,44 @@ describe('IBANTools', function() {
     });
   });
 
+  describe('When calling extractIBAN() with space separated IBAN', function() {
+    var ext = iban.extractIBAN('NL91 ABNA 0417 1643 00');
+
+    it('valid should be true', function() {
+      expect(ext.valid).to.be.true;
+    });
+
+    it('IBAN should be NL91ABNA0417164300', function() {
+      expect(ext.iban).to.equal('NL91ABNA0417164300');
+    });
+
+    it('BBAN should be ABNA0417164300', function() {
+      expect(ext.bban).to.equal('ABNA0417164300');
+    });
+    it('countryCode should be NL', function() {
+      expect(ext.countryCode).to.equal('NL');
+    });
+  });
+
+  describe('When calling extractIBAN() with dash separated IBAN', function() {
+    var ext = iban.extractIBAN('NL91-ABNA-0417-1643-00');
+
+    it('valid should be true', function() {
+      expect(ext.valid).to.be.true;
+    });
+
+    it('IBAN should be NL91ABNA0417164300', function() {
+      expect(ext.iban).to.equal('NL91ABNA0417164300');
+    });
+
+    it('BBAN should be ABNA0417164300', function() {
+      expect(ext.bban).to.equal('ABNA0417164300');
+    });
+    it('countryCode should be NL', function() {
+      expect(ext.countryCode).to.equal('NL');
+    });
+  });
+
   describe('When calling electronicFormatIBAN()', function() {
     it('with valid Brazilian IBAN should return BR9700360305000010009795493P1', function() {
       expect(iban.electronicFormatIBAN('BR97 0036 0305 0000 1000 9795 493P 1')).to.equal(

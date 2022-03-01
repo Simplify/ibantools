@@ -223,10 +223,11 @@ export interface ExtractIBANResult {
  */
 export function extractIBAN(iban: string): ExtractIBANResult {
   const result = {} as ExtractIBANResult;
-  result.iban = iban;
-  if (isValidIBAN(iban)) {
-    result.bban = iban.slice(4);
-    result.countryCode = iban.slice(0, 2);
+  const eFormatIBAN: string | null = electronicFormatIBAN(iban);
+  result.iban = eFormatIBAN || iban;
+  if (!!eFormatIBAN && isValidIBAN(eFormatIBAN)) {
+    result.bban = eFormatIBAN.slice(4);
+    result.countryCode = eFormatIBAN.slice(0, 2);
     result.valid = true;
   } else {
     result.valid = false;
