@@ -1,3 +1,6 @@
+2022-03-01  Dominik Heigl <heigdomi@gmail.com>
+  * Fix issue #113 - Fix extractIBAN with IBAN separated by space or symbol invalid
+
 2022-02-14  Saša Jovanić <sasa@simplify.ba>
 	* Removed `gulp-mocha` and `cheerio` plugins as dev dependency
 	* Various dependabot upgrades
