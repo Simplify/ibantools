@@ -9,7 +9,7 @@
  * @package Documentation
  * @author Saša Jovanić
  * @module ibantools
- * @version 4.1.4
+ * @version 4.1.5
  * @license MPL-2.0
  * @preferred
  */
@@ -32,18 +32,15 @@ export function isValidIBAN(iban: string): boolean {
   const reg = new RegExp('^[0-9]{2}$', '');
   const spec = countrySpecs[iban.slice(0, 2)];
 
-  if (spec === undefined ||
-    spec.bban_regexp === undefined ||
-    spec.bban_regexp === null ||
-    spec.chars === undefined
-  ) return false;
+  if (spec === undefined || spec.bban_regexp === undefined || spec.bban_regexp === null || spec.chars === undefined)
+    return false;
 
   return (
     spec.chars === iban.length &&
     reg.test(iban.slice(2, 4)) &&
     isValidBBAN(iban.slice(4), iban.slice(0, 2)) &&
     isValidIBANChecksum(iban)
-  )
+  );
 }
 
 /**
@@ -128,13 +125,15 @@ export function isValidBBAN(bban?: string, countryCode?: string): boolean {
 
   const spec = countrySpecs[countryCode];
 
-  if (spec === undefined ||
+  if (
+    spec === undefined ||
     spec === null ||
     spec.bban_regexp === undefined ||
     spec.bban_regexp === null ||
     spec.chars === undefined ||
     spec.chars === null
-  ) return false;
+  )
+    return false;
 
   if (spec.chars - 4 === bban.length && checkFormatBBAN(bban, spec.bban_regexp)) {
     if (spec.bban_validation_func) {
@@ -295,9 +294,9 @@ export function friendlyFormatIBAN(iban?: string, separator?: string): string | 
  * @ignore
  */
 function isValidIBANChecksum(iban: string): boolean {
-  const countryCode : string = iban.slice(0, 2);
-  const providedChecksum : number = parseInt(iban.slice(2, 4), 10);
-  const bban : string = iban.slice(4);
+  const countryCode: string = iban.slice(0, 2);
+  const providedChecksum: number = parseInt(iban.slice(2, 4), 10);
+  const bban: string = iban.slice(4);
 
   // Wikipedia[validating_iban] says there are a specif way to check if a IBAN is valid but
   // it. It says 'If the remainder is 1, the check digit test is passed and the
@@ -317,7 +316,7 @@ function isValidIBANChecksum(iban: string): boolean {
   // [validating_iban][https://en.wikipedia.org/wiki/International_Bank_Account_Number#Validating_the_IBAN]
   // [generating-iban-check][https://en.wikipedia.org/wiki/International_Bank_Account_Number#Generating_IBAN_check_digits]
 
-  const validationString = replaceCharaterWithCode(`${bban}${countryCode}00`)
+  const validationString = replaceCharaterWithCode(`${bban}${countryCode}00`);
   const rest = mod9710(validationString);
   return 98 - rest === providedChecksum;
 }
@@ -331,12 +330,13 @@ function isValidIBANChecksum(iban: string): boolean {
 function replaceCharaterWithCode(str: string): string {
   // It is slower but alot more readable
   // https://jsbench.me/ttkzgsekae/1
-  return str.split("")
+  return str
+    .split('')
     .map(c => {
       const code = c.charCodeAt(0);
-      return code >= 65 ? (code - 55).toString() : c
+      return code >= 65 ? (code - 55).toString() : c;
     })
-    .join("");
+    .join('');
 }
 
 /**
@@ -571,8 +571,10 @@ const mod9710 = (validationString: string): number => {
     // https://en.wikipedia.org/wiki/International_Bank_Account_Number#Modulo_operation_on_IBAN
     const part = validationString.slice(0, 6);
     const partInt = parseInt(part, 10);
-    if (isNaN(partInt)) {return NaN;}
-    validationString = partInt % 97 + validationString.slice(part.length);
+    if (isNaN(partInt)) {
+      return NaN;
+    }
+    validationString = (partInt % 97) + validationString.slice(part.length);
   }
   return parseInt(validationString, 10) % 97;
 };
@@ -1332,7 +1334,7 @@ export const countrySpecs: CountryMapInternal = {
     bban_regexp: '^[0-9]{11}$',
     bban_validation_func: checkNorwayBBAN,
     IBANRegistry: true,
-    SEPA: true
+    SEPA: true,
   },
   NP: {},
   NR: {},

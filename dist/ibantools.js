@@ -9,7 +9,7 @@ define(["require", "exports"], function (require, exports) {
      * @package Documentation
      * @author Saša Jovanić
      * @module ibantools
-     * @version 4.1.4
+     * @version 4.1.5
      * @license MPL-2.0
      * @preferred
      */
@@ -32,10 +32,7 @@ define(["require", "exports"], function (require, exports) {
             return false;
         var reg = new RegExp('^[0-9]{2}$', '');
         var spec = exports.countrySpecs[iban.slice(0, 2)];
-        if (spec === undefined ||
-            spec.bban_regexp === undefined ||
-            spec.bban_regexp === null ||
-            spec.chars === undefined)
+        if (spec === undefined || spec.bban_regexp === undefined || spec.bban_regexp === null || spec.chars === undefined)
             return false;
         return (spec.chars === iban.length &&
             reg.test(iban.slice(2, 4)) &&
@@ -191,10 +188,11 @@ define(["require", "exports"], function (require, exports) {
      */
     function extractIBAN(iban) {
         var result = {};
-        result.iban = iban;
-        if (isValidIBAN(iban)) {
-            result.bban = iban.slice(4);
-            result.countryCode = iban.slice(0, 2);
+        var eFormatIBAN = electronicFormatIBAN(iban);
+        result.iban = eFormatIBAN || iban;
+        if (!!eFormatIBAN && isValidIBAN(eFormatIBAN)) {
+            result.bban = eFormatIBAN.slice(4);
+            result.countryCode = eFormatIBAN.slice(0, 2);
             result.valid = true;
         }
         else {
@@ -295,12 +293,13 @@ define(["require", "exports"], function (require, exports) {
     function replaceCharaterWithCode(str) {
         // It is slower but alot more readable
         // https://jsbench.me/ttkzgsekae/1
-        return str.split("")
+        return str
+            .split('')
             .map(function (c) {
             var code = c.charCodeAt(0);
             return code >= 65 ? (code - 55).toString() : c;
         })
-            .join("");
+            .join('');
     }
     /**
      * MOD-97-10
@@ -481,7 +480,7 @@ define(["require", "exports"], function (require, exports) {
             if (isNaN(partInt)) {
                 return NaN;
             }
-            validationString = partInt % 97 + validationString.slice(part.length);
+            validationString = (partInt % 97) + validationString.slice(part.length);
         }
         return parseInt(validationString, 10) % 97;
     };
@@ -1233,7 +1232,7 @@ define(["require", "exports"], function (require, exports) {
             bban_regexp: '^[0-9]{11}$',
             bban_validation_func: checkNorwayBBAN,
             IBANRegistry: true,
-            SEPA: true
+            SEPA: true,
         },
         NP: {},
         NR: {},
