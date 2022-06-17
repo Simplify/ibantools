@@ -281,6 +281,9 @@ describe('IBANTools', function() {
     it('with valid HU IBAN should return true', function() {
       expect(iban.isValidIBAN('HU90100320000160120200000000')).to.be.true;
     });
+    it('with valid MN IBAN should return true', function() {
+      expect(iban.isValidIBAN('MN121234123456789123')).to.be.true;
+    });
     it('with two dots should return false', function() {
       expect(iban.isValidIBAN('..')).to.be.false;
     });
