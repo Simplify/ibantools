@@ -1274,7 +1274,10 @@ export const countrySpecs: CountryMapInternal = {
     bban_regexp: '^[A-Z0-9]{2}[0-9]{22}$',
   },
   MM: {},
-  MN: {},
+  MN: {
+    chars: 20,
+    bban_regexp: '^[0-9]{16}$',
+  },
   MO: {},
   MP: {},
   MQ: {
