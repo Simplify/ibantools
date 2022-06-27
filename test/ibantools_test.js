@@ -485,8 +485,8 @@ describe('IBANTools', function() {
     it('testBIC should be false', function() {
       expect(ext.testBIC).to.be.false;
     });
-    it('branchCode should be 619 (primary office)', function() {
-      expect(ext.branchCode).to.equal('619');
+    it('branchCode should be null', function() {
+      expect(ext.branchCode).to.equal(null);
     });
   });
 

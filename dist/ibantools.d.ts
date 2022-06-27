@@ -195,8 +195,8 @@ export interface ExtractBICResult {
     bankCode?: string;
     countryCode?: string;
     locationCode?: string;
-    branchCode?: string;
-    testBIC?: boolean;
+    branchCode: string | null;
+    testBIC: boolean;
     valid: boolean;
 }
 /**

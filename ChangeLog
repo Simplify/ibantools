@@ -1,4 +1,8 @@
-2022-06-18	Zolboobayar Gantumur <zolboobayar@metainc.mn>
+2022-03-10  Saša Jovanić <sasa@simplify.ba>
+	* Version 4.1.6
+	* Fix incorrectly setting BIC branch code to 619 instead of null #133
+
+2022-06-18  Zolboobayar Gantumur <zolboobayar@metainc.mn>
 	* Added Mongolian (MN) specification
 
 2022-03-10  Saša Jovanić <sasa@simplify.ba>

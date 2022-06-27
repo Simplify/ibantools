@@ -9,7 +9,7 @@
  * @package Documentation
  * @author Saša Jovanić
  * @module ibantools
- * @version 4.1.5
+ * @version 4.1.6
  * @license MPL-2.0
  * @preferred
  */
@@ -463,8 +463,8 @@ export interface ExtractBICResult {
   bankCode?: string;
   countryCode?: string;
   locationCode?: string;
-  branchCode?: string;
-  testBIC?: boolean;
+  branchCode: string | null;
+  testBIC: boolean;
   valid: boolean;
 }
 
@@ -483,7 +483,7 @@ export function extractBIC(inputBic: string): ExtractBICResult {
     result.countryCode = bic.slice(4, 6);
     result.locationCode = bic.slice(6, 8);
     result.testBIC = result.locationCode[1] === '0' ? true : false;
-    result.branchCode = bic.length > 8 ? bic.slice(8) : '619';
+    result.branchCode = bic.length > 8 ? bic.slice(8) : null;
     result.valid = true;
   } else {
     result.valid = false;

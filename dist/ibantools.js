@@ -9,7 +9,7 @@ define(["require", "exports"], function (require, exports) {
      * @package Documentation
      * @author Saša Jovanić
      * @module ibantools
-     * @version 4.1.5
+     * @version 4.1.6
      * @license MPL-2.0
      * @preferred
      */
@@ -425,7 +425,7 @@ define(["require", "exports"], function (require, exports) {
             result.countryCode = bic.slice(4, 6);
             result.locationCode = bic.slice(6, 8);
             result.testBIC = result.locationCode[1] === '0' ? true : false;
-            result.branchCode = bic.length > 8 ? bic.slice(8) : '619';
+            result.branchCode = bic.length > 8 ? bic.slice(8) : null;
             result.valid = true;
         }
         else {
@@ -1172,7 +1172,10 @@ define(["require", "exports"], function (require, exports) {
             bban_regexp: '^[A-Z0-9]{2}[0-9]{22}$',
         },
         MM: {},
-        MN: {},
+        MN: {
+            chars: 20,
+            bban_regexp: '^[0-9]{16}$',
+        },
         MO: {},
         MP: {},
         MQ: {

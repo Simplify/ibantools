@@ -10,6 +10,6 @@ jobs:
     - name: Lint code
       uses: actions/setup-node@v1
       with:
-        node-version: 18.x
+        node-version: 16.x
     - run: npm ci
     - run: npm run lint
