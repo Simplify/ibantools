@@ -55,7 +55,7 @@
     "chai": "^4.3.4",
     "coveralls": "^3.1.1",
     "docdash": "^1.2.0",
-    "eslint": "^7.31.0",
+    "eslint": "^8.18.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "gulp": "^4.0.2",
