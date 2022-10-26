@@ -86,6 +86,18 @@ If you are using tools that support `jsnext`, like a [rollup](https://github.com
 
 Install library/module using npm. Package bundles type definitions and if you are on TypeScript 2.0 or above `tsc` will access those automatically. If not, check your `tsconfig.json` file.
 
+### Extension
+
+Country specifications can be extended with national BBAN validations by calling `setCountryBBANValidation`.
+
+For example, to fully syntactically check German IBAN, you can install [IBANTools-Germany](https://github.com/baumerdev/ibantools-germany) and add this with
+
+```
+const ibantools = require('ibantools');
+const ibantoolsGermany = require("ibantools-germany");
+ibantools.setCountryBBANValidation("DE", ibantoolsGermany.isValidBBAN);
+```
+
 ## Contributing
 
 This project adheres to the Contributor Covenant [code of conduct](https://github.com/Simplify/ibantools/blob/master/.github/CODE_OF_CONDUCT.md).

@@ -739,4 +739,22 @@ describe('IBANTools', function() {
       expect(ext.NO.bban_validation_function).not.to.be.null;
     });
   });
+
+  describe('Adding custom BBAN validation function', function () {
+    it('with valid DE IBAN should return true', function () {
+      iban.setCountryBBANValidation('DE', () => false);
+
+      // This IBAN has been tested valid (see above).
+      // After we changed the method, it should now be false
+      expect(iban.isValidIBAN('DE89370400440532013000')).to.be.false;
+    });
+    it('Unknown country returns false', function () {
+      expect(iban.setCountryBBANValidation('XY', () => true)).to.be.false;
+    });
+    it('Unknown country cannot be modified', function () {
+      iban.setCountryBBANValidation('XY', () => true);
+      const ext = iban.getCountrySpecifications();
+      expect(ext.XY).to.be.undefined;
+    });
+  });
 });

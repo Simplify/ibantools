@@ -848,6 +848,21 @@ const checkHungarianBBAN = (bban: string): boolean => {
 };
 
 /**
+ * Set custom BBAN validation function for country.
+ *
+ * If `bban_validation_func` already exists for the corresponding country,
+ * it will be overwritten.
+ */
+export const setCountryBBANValidation = (country: string, func: (bban: string) => boolean): boolean => {
+  if (typeof countrySpecs[country] === 'undefined') {
+    return false;
+  }
+
+  countrySpecs[country].bban_validation_func = func;
+  return true;
+};
+
+/**
  * Country specifications
  */
 export const countrySpecs: CountryMapInternal = {
