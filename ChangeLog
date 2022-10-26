@@ -1,3 +1,6 @@
+2022-10-26  Markus Baumer <markus@baumer.dev>
+  * New method `setCountryBBANValidation` for adding custom BBAN validations
+
 2022-03-10  Saša Jovanić <sasa@simplify.ba>
 	* Version 4.1.6
 	* Fix incorrectly setting BIC branch code to 619 instead of null #133
