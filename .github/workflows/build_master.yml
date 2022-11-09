@@ -25,3 +25,6 @@ jobs:
     - run: npm run coverage
       env:
         COVERALLS_REPO_TOKEN: ${{secrets.COVERALLS_REPO_TOKEN}}
+    - name: Unset ENV
+      if: matrix.node-version > '16'
+      run: echo "NODE_OPTIONS=''" >> $GITHUB_ENV
