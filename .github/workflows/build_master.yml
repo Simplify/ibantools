@@ -5,9 +5,6 @@ on:
     branches:
       - master
 
-env:
-  NODE_OPTIONS: --no-experimental-fetch
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,6 +13,9 @@ jobs:
         node-version: [14.x, 16.x, 18.x, 19.x]
     steps:
     - uses: actions/checkout@v2
+    - name: Set ENV
+      if: matrix.node-version > '16'
+      run: echo "NODE_OPTIONS=--no-experimental-fetch" >> $GITHUB_ENV
     - name: Build with Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
