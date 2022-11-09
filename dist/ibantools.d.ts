@@ -224,6 +224,8 @@ export interface CountryMap {
 }
 /**
  * Interface for IBAN Country Specification
+ *
+ * @ignore
  */
 interface CountrySpecInternal {
     chars?: number;
@@ -238,6 +240,13 @@ interface CountrySpecInternal {
 interface CountryMapInternal {
     [code: string]: CountrySpecInternal;
 }
+/**
+ * Set custom BBAN validation function for country.
+ *
+ * If `bban_validation_func` already exists for the corresponding country,
+ * it will be overwritten.
+ */
+export declare const setCountryBBANValidation: (country: string, func: (bban: string) => boolean) => boolean;
 /**
  * Country specifications
  */

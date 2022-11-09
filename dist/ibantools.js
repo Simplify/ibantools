@@ -9,13 +9,13 @@ define(["require", "exports"], function (require, exports) {
      * @package Documentation
      * @author Saša Jovanić
      * @module ibantools
-     * @version 4.1.6
+     * @version 4.2.0
      * @license MPL-2.0
      * @preferred
      */
     'use strict';
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.countrySpecs = exports.extractBIC = exports.validateBIC = exports.ValidationErrorsBIC = exports.isValidBIC = exports.getCountrySpecifications = exports.friendlyFormatIBAN = exports.electronicFormatIBAN = exports.extractIBAN = exports.composeIBAN = exports.isSEPACountry = exports.isValidBBAN = exports.validateIBAN = exports.ValidationErrorsIBAN = exports.isValidIBAN = void 0;
+    exports.countrySpecs = exports.setCountryBBANValidation = exports.extractBIC = exports.validateBIC = exports.ValidationErrorsBIC = exports.isValidBIC = exports.getCountrySpecifications = exports.friendlyFormatIBAN = exports.electronicFormatIBAN = exports.extractIBAN = exports.composeIBAN = exports.isSEPACountry = exports.isValidBBAN = exports.validateIBAN = exports.ValidationErrorsIBAN = exports.isValidIBAN = void 0;
     /**
      * Validate IBAN
      * ```
@@ -568,11 +568,11 @@ define(["require", "exports"], function (require, exports) {
         return checkMod1110(bankBranch, controlBankBranch) && checkMod1110(account, controlAccount);
     };
     /**
-     * Czech (CZ) BBAN check
+     * Czech (CZ) and Slowak (SK) BBAN check
      *
      * @ignore
      */
-    var checkCzechBBAN = function (bban) {
+    var checkCzechAndSlovakBBAN = function (bban) {
         var weightsPrefix = [10, 5, 8, 4, 2, 1];
         var weightsSuffix = [6, 3, 7, 9, 10, 5, 8, 4, 2, 1];
         var controlPrefix = parseInt(bban.charAt(9), 10);
@@ -746,6 +746,20 @@ define(["require", "exports"], function (require, exports) {
         }
     };
     /**
+     * Set custom BBAN validation function for country.
+     *
+     * If `bban_validation_func` already exists for the corresponding country,
+     * it will be overwritten.
+     */
+    var setCountryBBANValidation = function (country, func) {
+        if (typeof exports.countrySpecs[country] === 'undefined') {
+            return false;
+        }
+        exports.countrySpecs[country].bban_validation_func = func;
+        return true;
+    };
+    exports.setCountryBBANValidation = setCountryBBANValidation;
+    /**
      * Country specifications
      */
     exports.countrySpecs = {
@@ -893,7 +907,7 @@ define(["require", "exports"], function (require, exports) {
         CZ: {
             chars: 24,
             bban_regexp: '^[0-9]{20}$',
-            bban_validation_func: checkCzechBBAN,
+            bban_validation_func: checkCzechAndSlovakBBAN,
             IBANRegistry: true,
             SEPA: true,
         },
@@ -1319,7 +1333,13 @@ define(["require", "exports"], function (require, exports) {
             SEPA: true,
         },
         SJ: {},
-        SK: { chars: 24, bban_regexp: '^[0-9]{20}$', IBANRegistry: true, SEPA: true },
+        SK: {
+            chars: 24,
+            bban_regexp: '^[0-9]{20}$',
+            bban_validation_func: checkCzechAndSlovakBBAN,
+            IBANRegistry: true,
+            SEPA: true,
+        },
         SL: {},
         SM: {
             chars: 27,

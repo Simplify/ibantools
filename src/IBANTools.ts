@@ -9,7 +9,7 @@
  * @package Documentation
  * @author Saša Jovanić
  * @module ibantools
- * @version 4.1.6
+ * @version 4.2.0
  * @license MPL-2.0
  * @preferred
  */
@@ -510,6 +510,8 @@ export interface CountryMap {
 
 /**
  * Interface for IBAN Country Specification
+ *
+ * @ignore
  */
 interface CountrySpecInternal {
   chars?: number;
@@ -668,11 +670,11 @@ const checkCroatianBBAN = (bban: string): boolean => {
 };
 
 /**
- * Czech (CZ) BBAN check
+ * Czech (CZ) and Slowak (SK) BBAN check
  *
  * @ignore
  */
-const checkCzechBBAN = (bban: string): boolean => {
+const checkCzechAndSlovakBBAN = (bban: string): boolean => {
   const weightsPrefix = [10, 5, 8, 4, 2, 1];
   const weightsSuffix = [6, 3, 7, 9, 10, 5, 8, 4, 2, 1];
   const controlPrefix = parseInt(bban.charAt(9), 10);
@@ -1010,7 +1012,7 @@ export const countrySpecs: CountryMapInternal = {
   CZ: {
     chars: 24,
     bban_regexp: '^[0-9]{20}$',
-    bban_validation_func: checkCzechBBAN,
+    bban_validation_func: checkCzechAndSlovakBBAN,
     IBANRegistry: true,
     SEPA: true,
   },
@@ -1436,7 +1438,13 @@ export const countrySpecs: CountryMapInternal = {
     SEPA: true,
   },
   SJ: {},
-  SK: { chars: 24, bban_regexp: '^[0-9]{20}$', IBANRegistry: true, SEPA: true },
+  SK: {
+    chars: 24,
+    bban_regexp: '^[0-9]{20}$',
+    bban_validation_func: checkCzechAndSlovakBBAN,
+    IBANRegistry: true,
+    SEPA: true,
+  },
   SL: {},
   SM: {
     chars: 27,
