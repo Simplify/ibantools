@@ -9,7 +9,7 @@
  * @package Documentation
  * @author Saša Jovanić
  * @module ibantools
- * @version 4.2.0
+ * @version 4.2.1
  * @license MPL-2.0
  * @preferred
  */
@@ -720,32 +720,23 @@ const checkEstonianBBAN = (bban: string): boolean => {
  * @ignore
  */
 const checkFinlandBBAN = (bban: string): boolean => {
-  const weightsMethod1 = [2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2];
-  const weightsMethod2 = [0, 0, 0, 0, 0, 0, 0, 1, 3, 7, 1, 3, 7];
+  const weights = [2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2];
   const controlDigit = parseInt(bban.charAt(13), 10);
   const toCheck = bban.substring(0, 13);
   let sum = 0;
-  if (toCheck.startsWith('88')) {
-    for (let index = 0; index < toCheck.length; index++) {
-      sum += parseInt(toCheck.charAt(index), 10) * weightsMethod2[index];
+  for (let index = 0; index < toCheck.length; index++) {
+    if (weights[index] === 1) {
+      sum += parseInt(toCheck.charAt(index), 10) * weights[index];
+    } else {
+      const value = parseInt(toCheck.charAt(index), 10) * weights[index];
+      sum += Math.floor(value / 10) + (value % 10);
     }
-    const remainder = sum % 10;
-    return controlDigit === (remainder === 0 ? 0 : 10 - remainder);
-  } else {
-    for (let index = 0; index < toCheck.length; index++) {
-      if (weightsMethod1[index] === 1) {
-        sum += parseInt(toCheck.charAt(index), 10) * weightsMethod1[index];
-      } else {
-        const value = parseInt(toCheck.charAt(index), 10) * weightsMethod1[index];
-        sum += Math.floor(value / 10) + (value % 10);
-      }
-    }
-    const extraSum = sum + controlDigit;
-    const multiDigit = Math.floor(extraSum / 10);
-    const result = multiDigit * 10;
-    const remainder = result - sum;
-    return remainder === controlDigit;
   }
+  const extraSum = sum + controlDigit;
+  const multiDigit = Math.floor(extraSum / 10);
+  const result = multiDigit * 10;
+  const remainder = result - sum;
+  return remainder === controlDigit;
 };
 
 /**

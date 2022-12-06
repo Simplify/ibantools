@@ -254,8 +254,11 @@ describe('IBANTools', function() {
     it('with valid FI IBAN should return true', function() {
       expect(iban.isValidIBAN('FI5542345670000081')).to.be.true;
     });
+    it('with invalid FI IBAN should return false', function() {
+      expect(iban.isValidIBAN('FI5888345670005487')).to.be.false;
+    });
     it('with valid FI IBAN should return true', function() {
-      expect(iban.isValidIBAN('FI5888345670005487')).to.be.true;
+      expect(iban.isValidIBAN('FI0488000710574083')).to.be.true;
     });
     it('with valid FR IBAN should return true', function() {
       expect(iban.isValidIBAN('FR1420041010050500013M02606')).to.be.true;
