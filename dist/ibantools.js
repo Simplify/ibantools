@@ -9,7 +9,7 @@ define(["require", "exports"], function (require, exports) {
      * @package Documentation
      * @author Saša Jovanić
      * @module ibantools
-     * @version 4.2.1
+     * @version 4.2.2
      * @license MPL-2.0
      * @preferred
      */
@@ -57,7 +57,7 @@ define(["require", "exports"], function (require, exports) {
      * validateIBAN
      * ```
      * // returns {errorCodes: [], valid: true}
-     * ibantools.validateIBAN("NL91 ABNA 0417 1643 00");
+     * ibantools.validateIBAN("NL91ABNA0417164300");
      * ```
      */
     function validateIBAN(iban) {
@@ -86,7 +86,7 @@ define(["require", "exports"], function (require, exports) {
                 result.valid = false;
                 result.errorCodes.push(ValidationErrorsIBAN.ChecksumNotNumber);
             }
-            if (!isValidIBANChecksum(iban)) {
+            if (result.errorCodes.indexOf(ValidationErrorsIBAN.WrongBBANFormat) !== -1 || !isValidIBANChecksum(iban)) {
                 result.valid = false;
                 result.errorCodes.push(ValidationErrorsIBAN.WrongIBANChecksum);
             }

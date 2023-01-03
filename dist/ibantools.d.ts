@@ -38,7 +38,7 @@ export interface ValidateIBANResult {
  * validateIBAN
  * ```
  * // returns {errorCodes: [], valid: true}
- * ibantools.validateIBAN("NL91 ABNA 0417 1643 00");
+ * ibantools.validateIBAN("NL91ABNA0417164300");
  * ```
  */
 export declare function validateIBAN(iban?: string): ValidateIBANResult;
