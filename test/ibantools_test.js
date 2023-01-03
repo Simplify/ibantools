@@ -320,6 +320,29 @@ describe('IBANTools', function() {
       });
     });
 
+    it('with valid IBAN separeted with spaces returns false', function() {
+      expect(iban.validateIBAN('NL91 ABNA 0417 1643 00')).to.deep.equal({
+        valid: false,
+        errorCodes: [
+          iban.ValidationErrorsIBAN.WrongBBANLength,
+          iban.ValidationErrorsIBAN.WrongBBANFormat,
+          iban.ValidationErrorsIBAN.WrongIBANChecksum,
+        ],
+      });
+    });
+
+    it('with IBAN separeted with dashes returns false', function() {
+      expect(iban.validateIBAN('FR76-4097-8265-8510-1221-2598-123')).to.deep.equal({
+        valid: false,
+        errorCodes: [
+          iban.ValidationErrorsIBAN.WrongBBANLength,
+          iban.ValidationErrorsIBAN.WrongBBANFormat,
+          iban.ValidationErrorsIBAN.WrongAccountBankBranchChecksum,
+          iban.ValidationErrorsIBAN.WrongIBANChecksum,
+        ],
+      });
+    });
+
     it('with too short IBAN should return false', function() {
       expect(iban.validateIBAN('SI94BARC102')).to.deep.equal({
         valid: false,

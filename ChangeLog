@@ -1,3 +1,7 @@
+2023-01-03  Saša Jovanić <sasa@simplify.ba>
+	* Version 4.2.2
+	* Fixed issue #273 - Do not call IBAN checksum calculation if format is incorrect
+
 2022-12-06  Saša Jovanić <sasa@simplify.ba>
 	* Version 4.2.1
 	* Fixed Finland (FI) BBAN validation
