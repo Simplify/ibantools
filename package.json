@@ -42,7 +42,7 @@
     "coverage": "gulp coverage",
     "lint": "gulp lint",
     "prepare": "npm run build",
-    "docs": "gulp docs"
+    "docs": "gulp doc"
   },
   "author": {
     "name": "Saša Jovanić",
