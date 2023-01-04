@@ -1,3 +1,6 @@
+2023-01-04  Saša Jovanić <sasa@simplify.ba>
+	* Removed Gulp as development dependency
+
 2023-01-03  Saša Jovanić <sasa@simplify.ba>
 	* Version 4.2.2
 	* Fixed issue #273 - Do not call IBAN checksum calculation if format is incorrect
