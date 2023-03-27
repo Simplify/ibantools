@@ -1,4 +1,7 @@
 2023-01-04  Saša Jovanić <sasa@simplify.ba>
+	* Fixed documentation issues (#326)
+
+2023-01-04  Saša Jovanić <sasa@simplify.ba>
 	* Removed Gulp as development dependency
 
 2023-01-03  Saša Jovanić <sasa@simplify.ba>

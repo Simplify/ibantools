@@ -52,7 +52,7 @@ See [full documentation](http://simplify.github.io/ibantools) with examples on G
 
 ```js
 const ibantools = require('ibantools');
-const iban = electronicFormatIBAN('NL91 ABNA 0517 1643 00'); // 'NL91ABNA0517164300'
+const iban = electronicFormatIBAN('NL91 ABNA 0417 1643 00'); // 'NL91ABNA0517164300'
 ibantools.isValidIBAN(iban);
 
 // If you want to know reason why IBAN is invalid
@@ -67,7 +67,7 @@ ibantools.isValidBIC('ABNANL2A');
 
 ```js
 require(["ibantools"], function(ibantools) {
-  console.log(ibantools.isValidIBAN('NL91 ABNA 0517 1643 00'));
+  console.log(ibantools.isValidIBAN('NL91 ABNA 0417 1643 00'));
   console.log(ibantools.isValidBIC('ABNANL2A'));
 });
 ```
