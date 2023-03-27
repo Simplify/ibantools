@@ -19,7 +19,7 @@
  * Validate IBAN
  * ```
  * // returns true
- * ibantools.isValidIBAN("NL91ABNA0517164300");
+ * ibantools.isValidIBAN("NL91ABNA0417164300");
  * ```
  * ```
  * // returns false
@@ -113,7 +113,7 @@ export function validateIBAN(iban?: string): ValidateIBANResult {
  *
  * ```
  * // returns true
- * ibantools.isValidBBAN("ABNA0517164300", "NL");
+ * ibantools.isValidBBAN("ABNA0417164300", "NL");
  * ```
  * ```
  * // returns false
