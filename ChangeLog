@@ -1,3 +1,6 @@
+2023-04-10  Saša Jovanić <sasa@simplify.ba>
+	* Added support for QR-IBAN (#332)
+
 2023-01-04  Saša Jovanić <sasa@simplify.ba>
 	* Fixed documentation issues (#326)
 

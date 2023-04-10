@@ -4,6 +4,12 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 /**
+ * Interface for validation options
+ */
+export interface ValidateIBANOptions {
+    allowQRIBAN: boolean;
+}
+/**
  * Validate IBAN
  * ```
  * // returns true
@@ -13,8 +19,16 @@
  * // returns false
  * ibantools.isValidIBAN("NL92ABNA0517164300");
  * ```
+ * ```
+ * // returns true
+ * ibantools.isValidIBAN('CH4431999123000889012');
+ * ```
+ * ```
+ * // returns false
+ * ibantools.isValidIBAN('CH4431999123000889012', { allowQRIBAN: false });
+ * ```
  */
-export declare function isValidIBAN(iban: string): boolean;
+export declare function isValidIBAN(iban: string, validationOptions?: ValidateIBANOptions): boolean;
 /**
  * IBAM validation errors
  */
@@ -25,7 +39,8 @@ export declare enum ValidationErrorsIBAN {
     WrongBBANFormat = 3,
     ChecksumNotNumber = 4,
     WrongIBANChecksum = 5,
-    WrongAccountBankBranchChecksum = 6
+    WrongAccountBankBranchChecksum = 6,
+    QRIBANNotAllowed = 7
 }
 /**
  * Interface for ValidateIBAN result
@@ -40,8 +55,17 @@ export interface ValidateIBANResult {
  * // returns {errorCodes: [], valid: true}
  * ibantools.validateIBAN("NL91ABNA0417164300");
  * ```
+ * ```
+ * ```
+ * // returns {errorCodes: [], valid: true}
+ * ibantools.validateIBAN('CH4431999123000889012');
+ * ```
+ * ```
+ * // returns {errorCodes: [7], valid: false}
+ * ibantools.validateIBAN('CH4431999123000889012', { allowQRIBAN: false });
+ * ```
  */
-export declare function validateIBAN(iban?: string): ValidateIBANResult;
+export declare function validateIBAN(iban?: string, validationOptions?: ValidateIBANOptions): ValidateIBANResult;
 /**
  * Validate BBAN
  *
@@ -67,6 +91,18 @@ export declare function isValidBBAN(bban?: string, countryCode?: string): boolea
  * ```
  */
 export declare function isSEPACountry(countryCode: string): boolean;
+/**
+ * Check if IBAN is QR-IBAN
+ * ```
+ * // returns true
+ * ibantools.isQRIBAN("CH4431999123000889012");
+ * ```
+ * ```
+ * // returns false
+ * ibantools.isQRIBAN("NL92ABNA0517164300");
+ * ```
+ */
+export declare function isQRIBAN(iban: string): boolean;
 /**
  * Interface for ComposeIBAN parameteres
  */

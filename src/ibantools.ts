@@ -9,11 +9,18 @@
  * @package Documentation
  * @author Saša Jovanić
  * @module ibantools
- * @version 4.2.2
+ * @version 4.3.0
  * @license MPL-2.0
  * @preferred
  */
 'use strict';
+
+/**
+ * Interface for validation options
+ */
+export interface ValidateIBANOptions {
+  allowQRIBAN: boolean;
+}
 
 /**
  * Validate IBAN
@@ -25,12 +32,21 @@
  * // returns false
  * ibantools.isValidIBAN("NL92ABNA0517164300");
  * ```
+ * ```
+ * // returns true
+ * ibantools.isValidIBAN('CH4431999123000889012');
+ * ```
+ * ```
+ * // returns false
+ * ibantools.isValidIBAN('CH4431999123000889012', { allowQRIBAN: false });
+ * ```
  */
-export function isValidIBAN(iban: string): boolean {
+export function isValidIBAN(iban: string, validationOptions: ValidateIBANOptions = { allowQRIBAN: true }): boolean {
   if (iban === undefined || iban === null) return false;
 
   const reg = new RegExp('^[0-9]{2}$', '');
-  const spec = countrySpecs[iban.slice(0, 2)];
+  const countryCode = iban.slice(0, 2);
+  const spec = countrySpecs[countryCode];
 
   if (spec === undefined || spec.bban_regexp === undefined || spec.bban_regexp === null || spec.chars === undefined)
     return false;
@@ -38,8 +54,9 @@ export function isValidIBAN(iban: string): boolean {
   return (
     spec.chars === iban.length &&
     reg.test(iban.slice(2, 4)) &&
-    isValidBBAN(iban.slice(4), iban.slice(0, 2)) &&
-    isValidIBANChecksum(iban)
+    isValidBBAN(iban.slice(4), countryCode) &&
+    isValidIBANChecksum(iban) &&
+    (validationOptions.allowQRIBAN || !isQRIBAN(iban))
   );
 }
 
@@ -54,6 +71,7 @@ export enum ValidationErrorsIBAN {
   ChecksumNotNumber,
   WrongIBANChecksum,
   WrongAccountBankBranchChecksum,
+  QRIBANNotAllowed,
 }
 
 /**
@@ -70,8 +88,20 @@ export interface ValidateIBANResult {
  * // returns {errorCodes: [], valid: true}
  * ibantools.validateIBAN("NL91ABNA0417164300");
  * ```
+ * ```
+ * ```
+ * // returns {errorCodes: [], valid: true}
+ * ibantools.validateIBAN('CH4431999123000889012');
+ * ```
+ * ```
+ * // returns {errorCodes: [7], valid: false}
+ * ibantools.validateIBAN('CH4431999123000889012', { allowQRIBAN: false });
+ * ```
  */
-export function validateIBAN(iban?: string): ValidateIBANResult {
+export function validateIBAN(
+  iban?: string,
+  validationOptions: ValidateIBANOptions = { allowQRIBAN: true },
+): ValidateIBANResult {
   const result = { errorCodes: [], valid: true } as ValidateIBANResult;
   if (iban !== undefined && iban !== null && iban !== '') {
     const spec = countrySpecs[iban.slice(0, 2)];
@@ -100,6 +130,10 @@ export function validateIBAN(iban?: string): ValidateIBANResult {
     if (result.errorCodes.indexOf(ValidationErrorsIBAN.WrongBBANFormat) !== -1 || !isValidIBANChecksum(iban)) {
       result.valid = false;
       result.errorCodes.push(ValidationErrorsIBAN.WrongIBANChecksum);
+    }
+    if (!validationOptions.allowQRIBAN && isQRIBAN(iban)) {
+      result.valid = false;
+      result.errorCodes.push(ValidationErrorsIBAN.QRIBANNotAllowed);
     }
   } else {
     result.valid = false;
@@ -163,6 +197,26 @@ export function isSEPACountry(countryCode: string): boolean {
     }
   }
   return false;
+}
+
+/**
+ * Check if IBAN is QR-IBAN
+ * ```
+ * // returns true
+ * ibantools.isQRIBAN("CH4431999123000889012");
+ * ```
+ * ```
+ * // returns false
+ * ibantools.isQRIBAN("NL92ABNA0517164300");
+ * ```
+ */
+export function isQRIBAN(iban: string): boolean {
+  if (iban === undefined || iban === null) return false;
+  const countryCode = iban.slice(0, 2);
+  const QRIBANCountries: string[] = ['LX', 'CH'];
+  if (!QRIBANCountries.includes(countryCode)) return false;
+  const reg = new RegExp('^3[0-1]{1}[0-9]{3}$', '');
+  return reg.test(iban.slice(4, 9));
 }
 
 /**
