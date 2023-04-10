@@ -9,13 +9,13 @@ define(["require", "exports"], function (require, exports) {
      * @package Documentation
      * @author Saša Jovanić
      * @module ibantools
-     * @version 4.2.2
+     * @version 4.3.0
      * @license MPL-2.0
      * @preferred
      */
     'use strict';
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.countrySpecs = exports.setCountryBBANValidation = exports.extractBIC = exports.validateBIC = exports.ValidationErrorsBIC = exports.isValidBIC = exports.getCountrySpecifications = exports.friendlyFormatIBAN = exports.electronicFormatIBAN = exports.extractIBAN = exports.composeIBAN = exports.isSEPACountry = exports.isValidBBAN = exports.validateIBAN = exports.ValidationErrorsIBAN = exports.isValidIBAN = void 0;
+    exports.countrySpecs = exports.setCountryBBANValidation = exports.extractBIC = exports.validateBIC = exports.ValidationErrorsBIC = exports.isValidBIC = exports.getCountrySpecifications = exports.friendlyFormatIBAN = exports.electronicFormatIBAN = exports.extractIBAN = exports.composeIBAN = exports.isQRIBAN = exports.isSEPACountry = exports.isValidBBAN = exports.validateIBAN = exports.ValidationErrorsIBAN = exports.isValidIBAN = void 0;
     /**
      * Validate IBAN
      * ```
@@ -26,18 +26,29 @@ define(["require", "exports"], function (require, exports) {
      * // returns false
      * ibantools.isValidIBAN("NL92ABNA0517164300");
      * ```
+     * ```
+     * // returns true
+     * ibantools.isValidIBAN('CH4431999123000889012');
+     * ```
+     * ```
+     * // returns false
+     * ibantools.isValidIBAN('CH4431999123000889012', { allowQRIBAN: false });
+     * ```
      */
-    function isValidIBAN(iban) {
+    function isValidIBAN(iban, validationOptions) {
+        if (validationOptions === void 0) { validationOptions = { allowQRIBAN: true }; }
         if (iban === undefined || iban === null)
             return false;
         var reg = new RegExp('^[0-9]{2}$', '');
-        var spec = exports.countrySpecs[iban.slice(0, 2)];
+        var countryCode = iban.slice(0, 2);
+        var spec = exports.countrySpecs[countryCode];
         if (spec === undefined || spec.bban_regexp === undefined || spec.bban_regexp === null || spec.chars === undefined)
             return false;
         return (spec.chars === iban.length &&
             reg.test(iban.slice(2, 4)) &&
-            isValidBBAN(iban.slice(4), iban.slice(0, 2)) &&
-            isValidIBANChecksum(iban));
+            isValidBBAN(iban.slice(4), countryCode) &&
+            isValidIBANChecksum(iban) &&
+            (validationOptions.allowQRIBAN || !isQRIBAN(iban)));
     }
     exports.isValidIBAN = isValidIBAN;
     /**
@@ -52,6 +63,7 @@ define(["require", "exports"], function (require, exports) {
         ValidationErrorsIBAN[ValidationErrorsIBAN["ChecksumNotNumber"] = 4] = "ChecksumNotNumber";
         ValidationErrorsIBAN[ValidationErrorsIBAN["WrongIBANChecksum"] = 5] = "WrongIBANChecksum";
         ValidationErrorsIBAN[ValidationErrorsIBAN["WrongAccountBankBranchChecksum"] = 6] = "WrongAccountBankBranchChecksum";
+        ValidationErrorsIBAN[ValidationErrorsIBAN["QRIBANNotAllowed"] = 7] = "QRIBANNotAllowed";
     })(ValidationErrorsIBAN = exports.ValidationErrorsIBAN || (exports.ValidationErrorsIBAN = {}));
     /**
      * validateIBAN
@@ -59,8 +71,18 @@ define(["require", "exports"], function (require, exports) {
      * // returns {errorCodes: [], valid: true}
      * ibantools.validateIBAN("NL91ABNA0417164300");
      * ```
+     * ```
+     * ```
+     * // returns {errorCodes: [], valid: true}
+     * ibantools.validateIBAN('CH4431999123000889012');
+     * ```
+     * ```
+     * // returns {errorCodes: [7], valid: false}
+     * ibantools.validateIBAN('CH4431999123000889012', { allowQRIBAN: false });
+     * ```
      */
-    function validateIBAN(iban) {
+    function validateIBAN(iban, validationOptions) {
+        if (validationOptions === void 0) { validationOptions = { allowQRIBAN: true }; }
         var result = { errorCodes: [], valid: true };
         if (iban !== undefined && iban !== null && iban !== '') {
             var spec = exports.countrySpecs[iban.slice(0, 2)];
@@ -89,6 +111,10 @@ define(["require", "exports"], function (require, exports) {
             if (result.errorCodes.indexOf(ValidationErrorsIBAN.WrongBBANFormat) !== -1 || !isValidIBANChecksum(iban)) {
                 result.valid = false;
                 result.errorCodes.push(ValidationErrorsIBAN.WrongIBANChecksum);
+            }
+            if (!validationOptions.allowQRIBAN && isQRIBAN(iban)) {
+                result.valid = false;
+                result.errorCodes.push(ValidationErrorsIBAN.QRIBANNotAllowed);
             }
         }
         else {
@@ -151,6 +177,28 @@ define(["require", "exports"], function (require, exports) {
         return false;
     }
     exports.isSEPACountry = isSEPACountry;
+    /**
+     * Check if IBAN is QR-IBAN
+     * ```
+     * // returns true
+     * ibantools.isQRIBAN("CH4431999123000889012");
+     * ```
+     * ```
+     * // returns false
+     * ibantools.isQRIBAN("NL92ABNA0517164300");
+     * ```
+     */
+    function isQRIBAN(iban) {
+        if (iban === undefined || iban === null)
+            return false;
+        var countryCode = iban.slice(0, 2);
+        var QRIBANCountries = ['LX', 'CH'];
+        if (!QRIBANCountries.includes(countryCode))
+            return false;
+        var reg = new RegExp('^3[0-1]{1}[0-9]{3}$', '');
+        return reg.test(iban.slice(4, 9));
+    }
+    exports.isQRIBAN = isQRIBAN;
     /**
      * composeIBAN
      *

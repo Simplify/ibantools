@@ -296,6 +296,12 @@ describe('IBANTools', function() {
     it('with too short IBAN should return false', function() {
       expect(iban.isValidIBAN('SI94BARC102')).to.be.false;
     });
+    it('allows QR-IBAN by default', function() {
+      expect(iban.isValidIBAN('CH4431999123000889012')).to.be.true;
+    });
+    it('does not allows QR-IBAN when requested to do so', function() {
+      expect(iban.isValidIBAN('CH4431999123000889012', { allowQRIBAN: false })).to.be.false;
+    });
   });
 
   describe('When calling validateIBAN()', function() {
@@ -397,6 +403,20 @@ describe('IBANTools', function() {
           iban.ValidationErrorsIBAN.ChecksumNotNumber,
           iban.ValidationErrorsIBAN.WrongIBANChecksum,
         ],
+      });
+    });
+
+    it('allows QR-IBAN by default', function() {
+      expect(iban.validateIBAN('CH4431999123000889012')).to.deep.equal({
+        valid: true,
+        errorCodes: [],
+      });
+    });
+
+    it('does not allows QR-IBAN when requested to do so', function() {
+      expect(iban.validateIBAN('CH4431999123000889012', { allowQRIBAN: false })).to.deep.equal({
+        valid: false,
+        errorCodes: [iban.ValidationErrorsIBAN.QRIBANNotAllowed],
       });
     });
 
@@ -784,6 +804,15 @@ describe('IBANTools', function() {
       iban.setCountryBBANValidation('XY', () => true);
       const ext = iban.getCountrySpecifications();
       expect(ext.XY).to.be.undefined;
+    });
+  });
+
+  describe('isQRIBAN', function() {
+    it('should return true', function() {
+      expect(iban.isQRIBAN('CH4431999123000889012')).to.be.true;
+    });
+    it('should return false', function() {
+      expect(iban.isQRIBAN('NL50PSTB0000054322')).to.be.false;
     });
   });
 });
