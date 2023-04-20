@@ -1475,7 +1475,11 @@ export const countrySpecs: CountryMapInternal = {
     bban_regexp: '^[A-Z]{4}[0-9]{20}[A-Z]{3}$',
     IBANRegistry: true,
   },
-  SD: {},
+  SD: { 
+    chars: 18,
+    bban_regexp: '^[0-9]{14}$',
+    IBANRegistry: true
+  },
   SE: { chars: 24, bban_regexp: '^[0-9]{20}$', IBANRegistry: true, SEPA: true },
   SG: {},
   SH: {},
@@ -1505,7 +1509,11 @@ export const countrySpecs: CountryMapInternal = {
     chars: 28,
     bban_regexp: '^[A-Z]{2}[0-9]{22}$',
   },
-  SO: {},
+  SO: {
+    chars: 23,
+    bban_regexp: '^[0-9]{19}$',
+    IBANRegistry: true
+  },
   SR: {},
   SS: {},
   ST: {

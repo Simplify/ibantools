@@ -194,6 +194,12 @@ describe('IBANTools', function() {
     it('with valid Senegal IBAN should return true', function() {
       expect(iban.isValidIBAN('SN08SN0100152000048500003035')).to.be.true;
     });
+    it('with valid Sudan IBAN should return true', function() {
+      expect(iban.isValidIBAN('SD8811123456789012')).to.be.true;
+    });
+    it('with valid Somalian IBAN should return true', function() {
+      expect(iban.isValidIBAN('SO061000001123123456789')).to.be.true;
+    });
     it('with valid Poland IBAN should return true', function() {
       expect(iban.isValidIBAN('PL10105000997603123456789123')).to.be.true;
     });
@@ -430,6 +436,15 @@ describe('IBANTools', function() {
     it('with valid Russian IBAN should return true', function() {
       expect(iban.validateIBAN('RU0204452560040702810412345678901')).to.deep.equal({ valid: true, errorCodes: [] });
     });
+
+    it('with valid Sudanese IBAN should return true', function() {
+      expect(iban.validateIBAN('SD8811123456789012')).to.deep.equal({ valid: true, errorCodes: [] });
+    });
+    
+    it('with valid Somalian IBAN should return true', function() {
+      expect(iban.validateIBAN('SO061000001123123456789')).to.deep.equal({ valid: true, errorCodes: [] });
+    });
+    
   });
 
   describe('When calling isValidBIC()', function() {
