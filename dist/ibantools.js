@@ -1346,7 +1346,11 @@ define(["require", "exports"], function (require, exports) {
             bban_validation_func: checkMod9710BBAN,
             IBANRegistry: true,
         },
-        RU: {},
+        RU: {
+            chars: 33,
+            bban_regexp: '^[0-9]{14}[A-Z0-9]{15}$',
+            IBANRegistry: true,
+        },
         RW: {},
         SA: {
             chars: 24,
