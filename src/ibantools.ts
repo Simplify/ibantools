@@ -9,7 +9,7 @@
  * @package Documentation
  * @author Saša Jovanić
  * @module ibantools
- * @version 4.3.0
+ * @version 4.3.1
  * @license MPL-2.0
  * @preferred
  */
@@ -1458,7 +1458,11 @@ export const countrySpecs: CountryMapInternal = {
     bban_validation_func: checkMod9710BBAN,
     IBANRegistry: true,
   },
-  RU: {},
+  RU: {
+    chars: 33,
+    bban_regexp: '^[0-9]{14}[A-Z0-9]{15}$',
+    IBANRegistry: true,
+  },
   RW: {},
   SA: {
     chars: 24,

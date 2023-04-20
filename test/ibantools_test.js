@@ -290,6 +290,9 @@ describe('IBANTools', function() {
     it('with valid SK IBAN should return true', function() {
       expect(iban.isValidIBAN('SK3112000000198742637541')).to.be.true;
     });
+    it('with valid RU IBAN should return true', function() {
+      expect(iban.isValidIBAN('RU0204452560040702810412345678901')).to.be.true;
+    });
     it('with two dots should return false', function() {
       expect(iban.isValidIBAN('..')).to.be.false;
     });
@@ -422,6 +425,10 @@ describe('IBANTools', function() {
 
     it('with valid Libya IBAN should return true', function() {
       expect(iban.validateIBAN('LY83002048000020100120361')).to.deep.equal({ valid: true, errorCodes: [] });
+    });
+
+    it('with valid Russian IBAN should return true', function() {
+      expect(iban.validateIBAN('RU0204452560040702810412345678901')).to.deep.equal({ valid: true, errorCodes: [] });
     });
   });
 
