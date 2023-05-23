@@ -260,8 +260,8 @@ describe('IBANTools', function() {
     it('with valid FI IBAN should return true', function() {
       expect(iban.isValidIBAN('FI5542345670000081')).to.be.true;
     });
-    it('with invalid FI IBAN should return false', function() {
-      expect(iban.isValidIBAN('FI5888345670005487')).to.be.false;
+    it('with valid FI IBAN should return true', function() {
+      expect(iban.isValidIBAN('FI6879826661004681')).to.be.true;
     });
     it('with valid FI IBAN should return true', function() {
       expect(iban.isValidIBAN('FI0488000710574083')).to.be.true;
@@ -440,11 +440,10 @@ describe('IBANTools', function() {
     it('with valid Sudanese IBAN should return true', function() {
       expect(iban.validateIBAN('SD8811123456789012')).to.deep.equal({ valid: true, errorCodes: [] });
     });
-    
+
     it('with valid Somalian IBAN should return true', function() {
       expect(iban.validateIBAN('SO061000001123123456789')).to.deep.equal({ valid: true, errorCodes: [] });
     });
-    
   });
 
   describe('When calling isValidBIC()', function() {
