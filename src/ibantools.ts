@@ -9,7 +9,7 @@
  * @package Documentation
  * @author Saša Jovanić
  * @module ibantools
- * @version 4.3.2
+ * @version 4.3.3
  * @license MPL-2.0
  * @preferred
  */
@@ -213,7 +213,7 @@ export function isSEPACountry(countryCode: string): boolean {
 export function isQRIBAN(iban: string): boolean {
   if (iban === undefined || iban === null) return false;
   const countryCode = iban.slice(0, 2);
-  const QRIBANCountries: string[] = ['LX', 'CH'];
+  const QRIBANCountries: string[] = ['LI', 'CH'];
   if (!QRIBANCountries.includes(countryCode)) return false;
   const reg = new RegExp('^3[0-1]{1}[0-9]{3}$', '');
   return reg.test(iban.slice(4, 9));
