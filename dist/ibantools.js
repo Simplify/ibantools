@@ -9,7 +9,7 @@ define(["require", "exports"], function (require, exports) {
      * @package Documentation
      * @author Saša Jovanić
      * @module ibantools
-     * @version 4.3.1
+     * @version 4.3.2
      * @license MPL-2.0
      * @preferred
      */
@@ -192,7 +192,7 @@ define(["require", "exports"], function (require, exports) {
         if (iban === undefined || iban === null)
             return false;
         var countryCode = iban.slice(0, 2);
-        var QRIBANCountries = ['LX', 'CH'];
+        var QRIBANCountries = ['LI', 'CH'];
         if (!QRIBANCountries.includes(countryCode))
             return false;
         var reg = new RegExp('^3[0-1]{1}[0-9]{3}$', '');
@@ -1363,10 +1363,10 @@ define(["require", "exports"], function (require, exports) {
             bban_regexp: '^[A-Z]{4}[0-9]{20}[A-Z]{3}$',
             IBANRegistry: true,
         },
-        SD: { 
-          chars: 18,
-          bban_regexp: '^[0-9]{14}$',
-          IBANRegistry: true 
+        SD: {
+            chars: 18,
+            bban_regexp: '^[0-9]{14}$',
+            IBANRegistry: true,
         },
         SE: { chars: 24, bban_regexp: '^[0-9]{20}$', IBANRegistry: true, SEPA: true },
         SG: {},
@@ -1398,9 +1398,9 @@ define(["require", "exports"], function (require, exports) {
             bban_regexp: '^[A-Z]{2}[0-9]{22}$',
         },
         SO: {
-          chars: 23,
-          bban_regexp: '^[0-9]{19}$',
-          IBANRegistry: true
+            chars: 23,
+            bban_regexp: '^[0-9]{19}$',
+            IBANRegistry: true,
         },
         SR: {},
         SS: {},
