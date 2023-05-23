@@ -1,5 +1,6 @@
 2023-05-23  Saša Jovanić <sasa@simplify.ba>
 	* Version 4.3.3
+	* Remove outdated BBAN check for Finland
 	* Fix issue with using LX for QR-IBAN instead of LI
 
 2023-04-21  Saša Jovanić <sasa@simplify.ba>
