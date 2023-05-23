@@ -9,7 +9,7 @@ define(["require", "exports"], function (require, exports) {
      * @package Documentation
      * @author Saša Jovanić
      * @module ibantools
-     * @version 4.3.1
+     * @version 4.3.2
      * @license MPL-2.0
      * @preferred
      */
@@ -659,31 +659,6 @@ define(["require", "exports"], function (require, exports) {
         return controlDigit === (remainder === 0 ? 0 : 10 - remainder);
     };
     /**
-     * Finland (FI) BBAN check
-     *
-     * @ignore
-     */
-    var checkFinlandBBAN = function (bban) {
-        var weights = [2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2];
-        var controlDigit = parseInt(bban.charAt(13), 10);
-        var toCheck = bban.substring(0, 13);
-        var sum = 0;
-        for (var index = 0; index < toCheck.length; index++) {
-            if (weights[index] === 1) {
-                sum += parseInt(toCheck.charAt(index), 10) * weights[index];
-            }
-            else {
-                var value = parseInt(toCheck.charAt(index), 10) * weights[index];
-                sum += Math.floor(value / 10) + (value % 10);
-            }
-        }
-        var extraSum = sum + controlDigit;
-        var multiDigit = Math.floor(extraSum / 10);
-        var result = multiDigit * 10;
-        var remainder = result - sum;
-        return remainder === controlDigit;
-    };
-    /**
      * Check French (FR) BBAN
      * Also for Monaco (MC)
      *
@@ -834,7 +809,6 @@ define(["require", "exports"], function (require, exports) {
         AX: {
             chars: 18,
             bban_regexp: '^[0-9]{14}$',
-            bban_validation_func: checkFinlandBBAN,
             IBANRegistry: true,
         },
         AZ: {
@@ -987,7 +961,6 @@ define(["require", "exports"], function (require, exports) {
         FI: {
             chars: 18,
             bban_regexp: '^[0-9]{14}$',
-            bban_validation_func: checkFinlandBBAN,
             IBANRegistry: true,
             SEPA: true,
         },
@@ -1363,10 +1336,10 @@ define(["require", "exports"], function (require, exports) {
             bban_regexp: '^[A-Z]{4}[0-9]{20}[A-Z]{3}$',
             IBANRegistry: true,
         },
-        SD: { 
-          chars: 18,
-          bban_regexp: '^[0-9]{14}$',
-          IBANRegistry: true 
+        SD: {
+            chars: 18,
+            bban_regexp: '^[0-9]{14}$',
+            IBANRegistry: true,
         },
         SE: { chars: 24, bban_regexp: '^[0-9]{20}$', IBANRegistry: true, SEPA: true },
         SG: {},
@@ -1398,9 +1371,9 @@ define(["require", "exports"], function (require, exports) {
             bban_regexp: '^[A-Z]{2}[0-9]{22}$',
         },
         SO: {
-          chars: 23,
-          bban_regexp: '^[0-9]{19}$',
-          IBANRegistry: true
+            chars: 23,
+            bban_regexp: '^[0-9]{19}$',
+            IBANRegistry: true,
         },
         SR: {},
         SS: {},
