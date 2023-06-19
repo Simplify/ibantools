@@ -399,7 +399,7 @@ function replaceCharaterWithCode(str: string): string {
  * @ignore
  */
 function mod9710Iban(iban: string): number {
-  return mod9710(replaceCharaterWithCode(iban.slice(3) + iban.slice(0, 4)));
+  return mod9710(replaceCharaterWithCode(iban.slice(4) + iban.slice(0, 4)));
 }
 
 /**
