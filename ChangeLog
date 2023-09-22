@@ -1,3 +1,8 @@
+2023-09-22  Guilherme Webber Mendes <guilherme.webber@outlook.com>
+	* Version 4.3.4
+	* Add FK (Falkland Islands) IBAN validation
+	* Update NI (Nicaragua) IBAN validation
+
 2023-05-23  Saša Jovanić <sasa@simplify.ba>
 	* Version 4.3.3
 	* Remove outdated BBAN check for Finland
