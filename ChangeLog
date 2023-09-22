@@ -3,8 +3,10 @@
 	* Add FK (Falkland Islands) IBAN validation
 	* Update NI (Nicaragua) IBAN validation
 
+2023-07-11  Pawlina53
+	* Add SEPA attribute to VA (Vatican)
+
 2023-06-19 Saichand Chowdary <chandu.sai@gmail.com>
-	* Version 4.3.3
 	* Fixed slice index in mod9710Iban method
 
 2023-05-23  Saša Jovanić <sasa@simplify.ba>
