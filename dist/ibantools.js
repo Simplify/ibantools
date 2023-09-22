@@ -1438,7 +1438,7 @@ define(["require", "exports"], function (require, exports) {
         US: {},
         UY: {},
         UZ: {},
-        VA: { chars: 22, bban_regexp: '^[0-9]{18}', IBANRegistry: true },
+        VA: { chars: 22, bban_regexp: '^[0-9]{18}', IBANRegistry: true, SEPA: true },
         VC: {},
         VE: {},
         VG: {
