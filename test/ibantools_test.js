@@ -165,7 +165,7 @@ describe('IBANTools', function() {
       expect(iban.isValidIBAN('MA64011519000001205000534921')).to.be.true;
     });
     it('with valid Nicaragua IBAN should return true', function() {
-      expect(iban.isValidIBAN('NI92BAMC000000000000000003123123')).to.be.true;
+      expect(iban.isValidIBAN('NI79BAMC00000000000003123123')).to.be.true;
     });
     it('with valid Niger IBAN should return true', function() {
       expect(iban.isValidIBAN('NE58NE0380100100130305000268')).to.be.true;
@@ -310,6 +310,9 @@ describe('IBANTools', function() {
     });
     it('does not allows QR-IBAN when requested to do so', function() {
       expect(iban.isValidIBAN('CH4431999123000889012', { allowQRIBAN: false })).to.be.false;
+    });
+    it('with valid FK IBAN should return true', function() {
+      expect(iban.isValidIBAN('FK88SC123456789012')).to.be.true;
     });
   });
 
