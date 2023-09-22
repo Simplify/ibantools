@@ -965,7 +965,10 @@ define(["require", "exports"], function (require, exports) {
             SEPA: true,
         },
         FJ: {},
-        FK: {},
+        FK: {
+            chars: 18,
+            bban_regexp: '^[A-Z]{2}[0-9]{12}$',
+        },
         FM: {},
         FO: { chars: 18, bban_regexp: '^[0-9]{14}$', IBANRegistry: true },
         FR: {
@@ -1246,8 +1249,8 @@ define(["require", "exports"], function (require, exports) {
         NF: {},
         NG: {},
         NI: {
-            chars: 32,
-            bban_regexp: '^[A-Z]{4}[0-9]{24}$',
+            chars: 28,
+            bban_regexp: '^[A-Z]{4}[0-9]{20}$',
         },
         NL: {
             chars: 18,
