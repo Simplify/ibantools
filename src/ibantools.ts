@@ -399,7 +399,7 @@ function replaceCharaterWithCode(str: string): string {
  * @ignore
  */
 function mod9710Iban(iban: string): number {
-  return mod9710(replaceCharaterWithCode(iban.slice(3) + iban.slice(0, 4)));
+  return mod9710(replaceCharaterWithCode(iban.slice(4) + iban.slice(0, 4)));
 }
 
 /**
@@ -1550,7 +1550,7 @@ export const countrySpecs: CountryMapInternal = {
   US: {},
   UY: {},
   UZ: {},
-  VA: { chars: 22, bban_regexp: '^[0-9]{18}', IBANRegistry: true },
+  VA: { chars: 22, bban_regexp: '^[0-9]{18}', IBANRegistry: true, SEPA: true },
   VC: {},
   VE: {},
   VG: {
