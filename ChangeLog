@@ -1,3 +1,7 @@
+2023-09-22  Guilherme Webber Mendes <guilherme.webber@outlook.com>
+	* Add FK (Falkland Islands) IBAN validation
+	* Update NI (Nicaragua) IBAN validation
+
 2023-07-11  Pawlina53
 	* Add SEPA attribute to VA (Vatican)
 
