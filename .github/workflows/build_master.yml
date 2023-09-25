@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x, 19.x]
+        node-version: [18.x, 20.x]
     steps:
     - uses: actions/checkout@v3
     - name: Build with Node.js ${{ matrix.node-version }}
@@ -18,7 +18,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Set ENV
-      if: matrix.node-version > '16'
       run: echo "NODE_OPTIONS=--no-experimental-fetch" >> $GITHUB_ENV
     - run: npm ci
     - run: npm run test
@@ -26,5 +25,4 @@ jobs:
       env:
         COVERALLS_REPO_TOKEN: ${{secrets.COVERALLS_REPO_TOKEN}}
     - name: Unset ENV
-      if: matrix.node-version > '16'
       run: echo "NODE_OPTIONS=''" >> $GITHUB_ENV
