@@ -238,7 +238,7 @@ export interface ExtractBICResult {
 /**
  * extractBIC
  * ```
- * // returns {bankCode: "ABNA", countryCode: "NL", locationCode: "2A", branchCode: null, testBIC: flase, valid: true}
+ * // returns {bankCode: "ABNA", countryCode: "NL", locationCode: "2A", branchCode: null, testBIC: false, valid: true}
  * ibantools.extractBIC("ABNANL2A");
  * ```
  */

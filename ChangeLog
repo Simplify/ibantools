@@ -1,3 +1,6 @@
+2023-09-25  Saša Jovanić <sasa@simplify.ba>
+	* Version 4.3.4
+
 2023-09-22  Guilherme Webber Mendes <guilherme.webber@outlook.com>
 	* Add FK (Falkland Islands) IBAN validation
 	* Update NI (Nicaragua) IBAN validation

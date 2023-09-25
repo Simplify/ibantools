@@ -9,7 +9,7 @@ define(["require", "exports"], function (require, exports) {
      * @package Documentation
      * @author Saša Jovanić
      * @module ibantools
-     * @version 4.3.3
+     * @version 4.3.4
      * @license MPL-2.0
      * @preferred
      */
@@ -64,7 +64,7 @@ define(["require", "exports"], function (require, exports) {
         ValidationErrorsIBAN[ValidationErrorsIBAN["WrongIBANChecksum"] = 5] = "WrongIBANChecksum";
         ValidationErrorsIBAN[ValidationErrorsIBAN["WrongAccountBankBranchChecksum"] = 6] = "WrongAccountBankBranchChecksum";
         ValidationErrorsIBAN[ValidationErrorsIBAN["QRIBANNotAllowed"] = 7] = "QRIBANNotAllowed";
-    })(ValidationErrorsIBAN = exports.ValidationErrorsIBAN || (exports.ValidationErrorsIBAN = {}));
+    })(ValidationErrorsIBAN || (exports.ValidationErrorsIBAN = ValidationErrorsIBAN = {}));
     /**
      * validateIBAN
      * ```
@@ -355,7 +355,7 @@ define(["require", "exports"], function (require, exports) {
      * @ignore
      */
     function mod9710Iban(iban) {
-        return mod9710(replaceCharaterWithCode(iban.slice(3) + iban.slice(0, 4)));
+        return mod9710(replaceCharaterWithCode(iban.slice(4) + iban.slice(0, 4)));
     }
     /**
      * Returns specifications for all countries, even those who are not
@@ -427,7 +427,7 @@ define(["require", "exports"], function (require, exports) {
         ValidationErrorsBIC[ValidationErrorsBIC["NoBICProvided"] = 0] = "NoBICProvided";
         ValidationErrorsBIC[ValidationErrorsBIC["NoBICCountry"] = 1] = "NoBICCountry";
         ValidationErrorsBIC[ValidationErrorsBIC["WrongBICFormat"] = 2] = "WrongBICFormat";
-    })(ValidationErrorsBIC = exports.ValidationErrorsBIC || (exports.ValidationErrorsBIC = {}));
+    })(ValidationErrorsBIC || (exports.ValidationErrorsBIC = ValidationErrorsBIC = {}));
     /**
      * validateBIC
      * ```
@@ -461,7 +461,7 @@ define(["require", "exports"], function (require, exports) {
     /**
      * extractBIC
      * ```
-     * // returns {bankCode: "ABNA", countryCode: "NL", locationCode: "2A", branchCode: null, testBIC: flase, valid: true}
+     * // returns {bankCode: "ABNA", countryCode: "NL", locationCode: "2A", branchCode: null, testBIC: false, valid: true}
      * ibantools.extractBIC("ABNANL2A");
      * ```
      */
