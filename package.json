@@ -60,7 +60,7 @@
     "coveralls": "^3.1.1",
     "docdash": "^2.0.0",
     "eslint": "^8.0.0",
-    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^4.0.0",
     "jasmine-core": "^5.0.0",
     "karma": "^6.3.4",
