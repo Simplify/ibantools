@@ -1,3 +1,8 @@
+2023-10-14  Saša Jovanić <sasa@simplify.ba>
+	* Version 4.3.5
+	* Added script to parse IBAN specification provided as text file
+	* Added code to extract `accountNumber`, `bankIdentifier` and `branchIdentifier` and provide it in `ExtractIBANResult`
+
 2023-09-25  Saša Jovanić <sasa@simplify.ba>
 	* Updated some development dependencies and list of supported node versions
 

@@ -9,7 +9,7 @@ define(["require", "exports"], function (require, exports) {
      * @package Documentation
      * @author Saša Jovanić
      * @module ibantools
-     * @version 4.3.4
+     * @version 4.3.5
      * @license MPL-2.0
      * @preferred
      */
@@ -230,7 +230,7 @@ define(["require", "exports"], function (require, exports) {
     /**
      * extractIBAN
      * ```
-     * // returns {iban: "NL91ABNA0417164300", bban: "ABNA0417164300", countryCode: "NL", valid: true}
+     * // returns {iban: "NL91ABNA0417164300", bban: "ABNA0417164300", countryCode: "NL", valid: true, accountNumber: '0417164300', bankIdentifier: 'ABNA'}
      * ibantools.extractIBAN("NL91 ABNA 0417 1643 00");
      * ```
      */
@@ -242,6 +242,25 @@ define(["require", "exports"], function (require, exports) {
             result.bban = eFormatIBAN.slice(4);
             result.countryCode = eFormatIBAN.slice(0, 2);
             result.valid = true;
+            var spec = exports.countrySpecs[result.countryCode];
+            if (spec.account_indentifier) {
+                var ac = spec.account_indentifier.split('-');
+                var starting = parseInt(ac[0]);
+                var ending = parseInt(ac[1]);
+                result.accountNumber = result.iban.slice(starting, ending + 1);
+            }
+            if (spec.bank_identifier) {
+                var ac = spec.bank_identifier.split('-');
+                var starting = parseInt(ac[0]);
+                var ending = parseInt(ac[1]);
+                result.bankIdentifier = result.bban.slice(starting, ending + 1);
+            }
+            if (spec.branch_indentifier) {
+                var ac = spec.branch_indentifier.split('-');
+                var starting = parseInt(ac[0]);
+                var ending = parseInt(ac[1]);
+                result.branchIdentifier = result.bban.slice(starting, ending + 1);
+            }
         }
         else {
             result.valid = false;
@@ -781,11 +800,16 @@ define(["require", "exports"], function (require, exports) {
             bban_regexp: '^[0-9]{8}[A-Z0-9]{12}$',
             IBANRegistry: true,
             SEPA: true,
+            branch_indentifier: '4-7',
+            bank_identifier: '0-3',
+            account_indentifier: '8-24',
         },
         AE: {
             chars: 23,
             bban_regexp: '^[0-9]{3}[0-9]{16}$',
             IBANRegistry: true,
+            bank_identifier: '0-2',
+            account_indentifier: '7-23',
         },
         AF: {},
         AG: {},
@@ -794,6 +818,9 @@ define(["require", "exports"], function (require, exports) {
             chars: 28,
             bban_regexp: '^[0-9]{8}[A-Z0-9]{16}$',
             IBANRegistry: true,
+            branch_indentifier: '3-7',
+            bank_identifier: '0-2',
+            account_indentifier: '12-28',
         },
         AM: {},
         AO: {
@@ -803,7 +830,7 @@ define(["require", "exports"], function (require, exports) {
         AQ: {},
         AR: {},
         AS: {},
-        AT: { chars: 20, bban_regexp: '^[0-9]{16}$', IBANRegistry: true, SEPA: true },
+        AT: { chars: 20, bban_regexp: '^[0-9]{16}$', IBANRegistry: true, SEPA: true, bank_identifier: '0-4' },
         AU: {},
         AW: {},
         AX: {
@@ -815,16 +842,28 @@ define(["require", "exports"], function (require, exports) {
             chars: 28,
             bban_regexp: '^[A-Z]{4}[A-Z0-9]{20}$',
             IBANRegistry: true,
+            bank_identifier: '0-3',
+            account_indentifier: '4-28',
         },
         BA: {
             chars: 20,
             bban_regexp: '^[0-9]{16}$',
             bban_validation_func: checkMod9710BBAN,
             IBANRegistry: true,
+            branch_indentifier: '3-5',
+            bank_identifier: '0-2',
         },
         BB: {},
         BD: {},
-        BE: { chars: 16, bban_regexp: '^[0-9]{12}$', bban_validation_func: checkBelgianBBAN, IBANRegistry: true, SEPA: true },
+        BE: {
+            chars: 16,
+            bban_regexp: '^[0-9]{12}$',
+            bban_validation_func: checkBelgianBBAN,
+            IBANRegistry: true,
+            SEPA: true,
+            bank_identifier: '0-2',
+            account_indentifier: '0-16',
+        },
         BF: {
             chars: 28,
             bban_regexp: '^[A-Z0-9]{2}[0-9]{22}$',
@@ -834,15 +873,22 @@ define(["require", "exports"], function (require, exports) {
             bban_regexp: '^[A-Z]{4}[0-9]{6}[A-Z0-9]{8}$',
             IBANRegistry: true,
             SEPA: true,
+            branch_indentifier: '4-7',
+            bank_identifier: '0-3',
         },
         BH: {
             chars: 22,
             bban_regexp: '^[A-Z]{4}[A-Z0-9]{14}$',
             IBANRegistry: true,
+            bank_identifier: '0-3',
+            account_indentifier: '8-22',
         },
         BI: {
             chars: 27,
             bban_regexp: '^[0-9]{23}$',
+            branch_indentifier: '5-9',
+            bank_identifier: '0-4',
+            account_indentifier: '14-27',
         },
         BJ: {
             chars: 28,
@@ -851,7 +897,6 @@ define(["require", "exports"], function (require, exports) {
         BL: {
             chars: 27,
             bban_regexp: '^[0-9]{10}[A-Z0-9]{11}[0-9]{2}$',
-            IBANRegistry: true,
         },
         BM: {},
         BN: {},
@@ -861,6 +906,9 @@ define(["require", "exports"], function (require, exports) {
             chars: 29,
             bban_regexp: '^[0-9]{23}[A-Z]{1}[A-Z0-9]{1}$',
             IBANRegistry: true,
+            branch_indentifier: '8-12',
+            bank_identifier: '0-7',
+            account_indentifier: '17-29',
         },
         BS: {},
         BT: {},
@@ -870,6 +918,7 @@ define(["require", "exports"], function (require, exports) {
             chars: 28,
             bban_regexp: '^[A-Z]{4}[0-9]{4}[A-Z0-9]{16}$',
             IBANRegistry: true,
+            bank_identifier: '0-3',
         },
         BZ: {},
         CA: {},
@@ -888,6 +937,7 @@ define(["require", "exports"], function (require, exports) {
             bban_regexp: '^[0-9]{5}[A-Z0-9]{12}$',
             IBANRegistry: true,
             SEPA: true,
+            bank_identifier: '0-4',
         },
         CI: {
             chars: 28,
@@ -905,6 +955,8 @@ define(["require", "exports"], function (require, exports) {
             chars: 22,
             bban_regexp: '^[0-9]{18}$',
             IBANRegistry: true,
+            bank_identifier: '0-3',
+            account_indentifier: '8-22',
         },
         CU: {},
         CV: { chars: 25, bban_regexp: '^[0-9]{21}$' },
@@ -915,6 +967,9 @@ define(["require", "exports"], function (require, exports) {
             bban_regexp: '^[0-9]{8}[A-Z0-9]{16}$',
             IBANRegistry: true,
             SEPA: true,
+            branch_indentifier: '3-7',
+            bank_identifier: '0-2',
+            account_indentifier: '12-28',
         },
         CZ: {
             chars: 24,
@@ -922,18 +977,38 @@ define(["require", "exports"], function (require, exports) {
             bban_validation_func: checkCzechAndSlovakBBAN,
             IBANRegistry: true,
             SEPA: true,
+            bank_identifier: '0-3',
         },
-        DE: { chars: 22, bban_regexp: '^[0-9]{18}$', IBANRegistry: true, SEPA: true },
+        DE: {
+            chars: 22,
+            bban_regexp: '^[0-9]{18}$',
+            IBANRegistry: true,
+            SEPA: true,
+            bank_identifier: '0-7',
+            account_indentifier: '13-22',
+        },
         DJ: {
             chars: 27,
             bban_regexp: '^[0-9]{23}$',
+            branch_indentifier: '5-9',
+            bank_identifier: '0-4',
+            account_indentifier: '14-27',
         },
-        DK: { chars: 18, bban_regexp: '^[0-9]{14}$', IBANRegistry: true, SEPA: true },
+        DK: {
+            chars: 18,
+            bban_regexp: '^[0-9]{14}$',
+            IBANRegistry: true,
+            SEPA: true,
+            bank_identifier: '0-3',
+            account_indentifier: '4-18',
+        },
         DM: {},
         DO: {
             chars: 28,
             bban_regexp: '^[A-Z]{4}[0-9]{20}$',
             IBANRegistry: true,
+            bank_identifier: '0-3',
+            account_indentifier: '8-28',
         },
         DZ: {
             chars: 26,
@@ -946,8 +1021,17 @@ define(["require", "exports"], function (require, exports) {
             bban_validation_func: checkEstonianBBAN,
             IBANRegistry: true,
             SEPA: true,
+            bank_identifier: '0-1',
+            account_indentifier: '8-20',
         },
-        EG: { chars: 29, bban_regexp: '^[0-9]{25}', IBANRegistry: true },
+        EG: {
+            chars: 29,
+            bban_regexp: '^[0-9]{25}',
+            IBANRegistry: true,
+            branch_indentifier: '4-7',
+            bank_identifier: '0-3',
+            account_indentifier: '17-29',
+        },
         EH: {},
         ER: {},
         ES: {
@@ -956,6 +1040,9 @@ define(["require", "exports"], function (require, exports) {
             bban_regexp: '^[0-9]{20}$',
             IBANRegistry: true,
             SEPA: true,
+            branch_indentifier: '4-7',
+            bank_identifier: '0-3',
+            account_indentifier: '4-24',
         },
         ET: {},
         FI: {
@@ -963,20 +1050,32 @@ define(["require", "exports"], function (require, exports) {
             bban_regexp: '^[0-9]{14}$',
             IBANRegistry: true,
             SEPA: true,
+            bank_identifier: '0-2',
+            account_indentifier: '0-0',
         },
         FJ: {},
         FK: {
             chars: 18,
             bban_regexp: '^[A-Z]{2}[0-9]{12}$',
+            bank_identifier: '0-1',
+            account_indentifier: '6-18',
         },
         FM: {},
-        FO: { chars: 18, bban_regexp: '^[0-9]{14}$', IBANRegistry: true },
+        FO: {
+            chars: 18,
+            bban_regexp: '^[0-9]{14}$',
+            IBANRegistry: true,
+            bank_identifier: '0-3',
+            account_indentifier: '4-18',
+        },
         FR: {
             chars: 27,
             bban_regexp: '^[0-9]{10}[A-Z0-9]{11}[0-9]{2}$',
             bban_validation_func: checkFrenchBBAN,
             IBANRegistry: true,
             SEPA: true,
+            bank_identifier: '0-4',
+            account_indentifier: '4-27',
         },
         GA: {
             chars: 27,
@@ -987,12 +1086,16 @@ define(["require", "exports"], function (require, exports) {
             bban_regexp: '^[A-Z]{4}[0-9]{14}$',
             IBANRegistry: true,
             SEPA: true,
+            branch_indentifier: '4-9',
+            bank_identifier: '0-3',
         },
         GD: {},
         GE: {
             chars: 22,
             bban_regexp: '^[A-Z0-9]{2}[0-9]{16}$',
             IBANRegistry: true,
+            bank_identifier: '0-1',
+            account_indentifier: '6-22',
         },
         GF: {
             chars: 27,
@@ -1006,8 +1109,16 @@ define(["require", "exports"], function (require, exports) {
             bban_regexp: '^[A-Z]{4}[A-Z0-9]{15}$',
             IBANRegistry: true,
             SEPA: true,
+            bank_identifier: '0-3',
+            account_indentifier: '8-23',
         },
-        GL: { chars: 18, bban_regexp: '^[0-9]{14}$', IBANRegistry: true },
+        GL: {
+            chars: 18,
+            bban_regexp: '^[0-9]{14}$',
+            IBANRegistry: true,
+            bank_identifier: '0-3',
+            account_indentifier: '4-18',
+        },
         GM: {},
         GN: {},
         GP: {
@@ -1024,12 +1135,17 @@ define(["require", "exports"], function (require, exports) {
             bban_regexp: '^[0-9]{7}[A-Z0-9]{16}$',
             IBANRegistry: true,
             SEPA: true,
+            branch_indentifier: '3-6',
+            bank_identifier: '0-2',
+            account_indentifier: '7-27',
         },
         GS: {},
         GT: {
             chars: 28,
             bban_regexp: '^[A-Z0-9]{24}$',
             IBANRegistry: true,
+            bank_identifier: '0-3',
+            account_indentifier: '8-28',
         },
         GU: {},
         GW: {
@@ -1049,6 +1165,7 @@ define(["require", "exports"], function (require, exports) {
             bban_validation_func: checkCroatianBBAN,
             IBANRegistry: true,
             SEPA: true,
+            bank_identifier: '0-6',
         },
         HT: {},
         HU: {
@@ -1057,6 +1174,8 @@ define(["require", "exports"], function (require, exports) {
             bban_validation_func: checkHungarianBBAN,
             IBANRegistry: true,
             SEPA: true,
+            branch_indentifier: '3-6',
+            bank_identifier: '0-2',
         },
         ID: {},
         IE: {
@@ -1064,11 +1183,15 @@ define(["require", "exports"], function (require, exports) {
             bban_regexp: '^[A-Z0-9]{4}[0-9]{14}$',
             IBANRegistry: true,
             SEPA: true,
+            branch_indentifier: '4-9',
+            bank_identifier: '0-3',
         },
         IL: {
             chars: 23,
             bban_regexp: '^[0-9]{19}$',
             IBANRegistry: true,
+            branch_indentifier: '3-5',
+            bank_identifier: '0-2',
         },
         IM: {},
         IN: {},
@@ -1077,17 +1200,30 @@ define(["require", "exports"], function (require, exports) {
             chars: 23,
             bban_regexp: '^[A-Z]{4}[0-9]{15}$',
             IBANRegistry: true,
+            branch_indentifier: '4-6',
+            bank_identifier: '0-3',
+            account_indentifier: '11-23',
         },
         IR: {
             chars: 26,
             bban_regexp: '^[0-9]{22}$',
         },
-        IS: { chars: 26, bban_regexp: '^[0-9]{22}$', IBANRegistry: true, SEPA: true },
+        IS: {
+            chars: 26,
+            bban_regexp: '^[0-9]{22}$',
+            IBANRegistry: true,
+            SEPA: true,
+            branch_indentifier: '2-3',
+            bank_identifier: '0-1',
+        },
         IT: {
             chars: 27,
             bban_regexp: '^[A-Z]{1}[0-9]{10}[A-Z0-9]{12}$',
             IBANRegistry: true,
             SEPA: true,
+            branch_indentifier: '6-10',
+            bank_identifier: '1-5',
+            account_indentifier: '4-27',
         },
         JE: {},
         JM: {},
@@ -1095,6 +1231,8 @@ define(["require", "exports"], function (require, exports) {
             chars: 30,
             bban_regexp: '^[A-Z]{4}[0-9]{4}[A-Z0-9]{18}$',
             IBANRegistry: true,
+            branch_indentifier: '4-7',
+            bank_identifier: '4-7',
         },
         JP: {},
         KE: {},
@@ -1112,50 +1250,65 @@ define(["require", "exports"], function (require, exports) {
             chars: 30,
             bban_regexp: '^[A-Z]{4}[A-Z0-9]{22}$',
             IBANRegistry: true,
+            bank_identifier: '0-3',
+            account_indentifier: '20-30',
         },
         KY: {},
         KZ: {
             chars: 20,
             bban_regexp: '^[0-9]{3}[A-Z0-9]{13}$',
             IBANRegistry: true,
+            bank_identifier: '0-2',
+            account_indentifier: '0-20',
         },
         LA: {},
         LB: {
             chars: 28,
             bban_regexp: '^[0-9]{4}[A-Z0-9]{20}$',
             IBANRegistry: true,
+            bank_identifier: '0-3',
+            account_indentifier: '14-28',
         },
         LC: {
             chars: 32,
             bban_regexp: '^[A-Z]{4}[A-Z0-9]{24}$',
             IBANRegistry: true,
+            bank_identifier: '0-3',
+            account_indentifier: '8-32',
         },
         LI: {
             chars: 21,
             bban_regexp: '^[0-9]{5}[A-Z0-9]{12}$',
             IBANRegistry: true,
             SEPA: true,
+            bank_identifier: '0-4',
         },
         LK: {},
         LR: {},
         LS: {},
-        LT: { chars: 20, bban_regexp: '^[0-9]{16}$', IBANRegistry: true, SEPA: true },
+        LT: { chars: 20, bban_regexp: '^[0-9]{16}$', IBANRegistry: true, SEPA: true, bank_identifier: '0-4' },
         LU: {
             chars: 20,
             bban_regexp: '^[0-9]{3}[A-Z0-9]{13}$',
             IBANRegistry: true,
             SEPA: true,
+            bank_identifier: '0-2',
         },
         LV: {
             chars: 21,
             bban_regexp: '^[A-Z]{4}[A-Z0-9]{13}$',
             IBANRegistry: true,
             SEPA: true,
+            bank_identifier: '0-3',
+            account_indentifier: '0-21',
         },
         LY: {
             chars: 25,
             bban_regexp: '^[0-9]{21}$',
             IBANRegistry: true,
+            branch_indentifier: '3-5',
+            bank_identifier: '0-2',
+            account_indentifier: '10-25',
         },
         MA: {
             chars: 28,
@@ -1167,17 +1320,23 @@ define(["require", "exports"], function (require, exports) {
             bban_validation_func: checkFrenchBBAN,
             IBANRegistry: true,
             SEPA: true,
+            branch_indentifier: '5-9',
+            bank_identifier: '0-4',
         },
         MD: {
             chars: 24,
             bban_regexp: '^[A-Z0-9]{2}[A-Z0-9]{18}$',
             IBANRegistry: true,
+            bank_identifier: '0-1',
+            account_indentifier: '6-24',
         },
         ME: {
             chars: 22,
             bban_regexp: '^[0-9]{18}$',
             bban_validation_func: checkMod9710BBAN,
             IBANRegistry: true,
+            bank_identifier: '0-2',
+            account_indentifier: '4-22',
         },
         MF: {
             chars: 27,
@@ -1194,6 +1353,7 @@ define(["require", "exports"], function (require, exports) {
             bban_regexp: '^[0-9]{3}[A-Z0-9]{10}[0-9]{2}$',
             bban_validation_func: checkMod9710BBAN,
             IBANRegistry: true,
+            bank_identifier: '0-2',
         },
         ML: {
             chars: 28,
@@ -1203,6 +1363,9 @@ define(["require", "exports"], function (require, exports) {
         MN: {
             chars: 20,
             bban_regexp: '^[0-9]{16}$',
+            IBANRegistry: true,
+            bank_identifier: '0-3',
+            account_indentifier: '8-20',
         },
         MO: {},
         MP: {},
@@ -1215,6 +1378,9 @@ define(["require", "exports"], function (require, exports) {
             chars: 27,
             bban_regexp: '^[0-9]{23}$',
             IBANRegistry: true,
+            branch_indentifier: '5-9',
+            bank_identifier: '0-4',
+            account_indentifier: '4-27',
         },
         MS: {},
         MT: {
@@ -1222,11 +1388,17 @@ define(["require", "exports"], function (require, exports) {
             bban_regexp: '^[A-Z]{4}[0-9]{5}[A-Z0-9]{18}$',
             IBANRegistry: true,
             SEPA: true,
+            branch_indentifier: '4-8',
+            bank_identifier: '0-3',
+            account_indentifier: '15-31',
         },
         MU: {
             chars: 30,
             bban_regexp: '^[A-Z]{4}[0-9]{19}[A-Z]{3}$',
             IBANRegistry: true,
+            branch_indentifier: '6-7',
+            bank_identifier: '0-5',
+            account_indentifier: '0-30',
         },
         MV: {},
         MW: {},
@@ -1251,12 +1423,17 @@ define(["require", "exports"], function (require, exports) {
         NI: {
             chars: 28,
             bban_regexp: '^[A-Z]{4}[0-9]{20}$',
+            bank_identifier: '0-3',
+            IBANRegistry: true,
+            account_indentifier: '8-28',
         },
         NL: {
             chars: 18,
             bban_regexp: '^[A-Z]{4}[0-9]{10}$',
             IBANRegistry: true,
             SEPA: true,
+            bank_identifier: '0-3',
+            account_indentifier: '8-18',
         },
         NO: {
             chars: 15,
@@ -1264,6 +1441,8 @@ define(["require", "exports"], function (require, exports) {
             bban_validation_func: checkNorwayBBAN,
             IBANRegistry: true,
             SEPA: true,
+            bank_identifier: '0-3',
+            account_indentifier: '4-15',
         },
         NP: {},
         NR: {},
@@ -1283,8 +1462,17 @@ define(["require", "exports"], function (require, exports) {
             chars: 24,
             bban_regexp: '^[A-Z0-9]{4}[0-9]{16}$',
             IBANRegistry: true,
+            bank_identifier: '0-3',
         },
-        PL: { chars: 28, bban_validation_func: checkPolandBBAN, bban_regexp: '^[0-9]{24}$', IBANRegistry: true, SEPA: true },
+        PL: {
+            chars: 28,
+            bban_validation_func: checkPolandBBAN,
+            bban_regexp: '^[0-9]{24}$',
+            IBANRegistry: true,
+            SEPA: true,
+            branch_indentifier: '0-7',
+            account_indentifier: '2-28',
+        },
         PM: {
             chars: 27,
             bban_regexp: '^[0-9]{10}[A-Z0-9]{11}[0-9]{2}$',
@@ -1296,14 +1484,25 @@ define(["require", "exports"], function (require, exports) {
             chars: 29,
             bban_regexp: '^[A-Z0-9]{4}[0-9]{21}$',
             IBANRegistry: true,
+            bank_identifier: '0-3',
+            account_indentifier: '17-29',
         },
-        PT: { chars: 25, bban_regexp: '^[0-9]{21}$', bban_validation_func: checkMod9710BBAN, IBANRegistry: true, SEPA: true },
+        PT: {
+            chars: 25,
+            bban_regexp: '^[0-9]{21}$',
+            bban_validation_func: checkMod9710BBAN,
+            IBANRegistry: true,
+            SEPA: true,
+            bank_identifier: '0-3',
+        },
         PW: {},
         PY: {},
         QA: {
             chars: 29,
             bban_regexp: '^[A-Z]{4}[A-Z0-9]{21}$',
             IBANRegistry: true,
+            bank_identifier: '0-3',
+            account_indentifier: '8-29',
         },
         RE: {
             chars: 27,
@@ -1315,36 +1514,49 @@ define(["require", "exports"], function (require, exports) {
             bban_regexp: '^[A-Z]{4}[A-Z0-9]{16}$',
             IBANRegistry: true,
             SEPA: true,
+            bank_identifier: '0-3',
+            account_indentifier: '0-24',
         },
         RS: {
             chars: 22,
             bban_regexp: '^[0-9]{18}$',
             bban_validation_func: checkMod9710BBAN,
             IBANRegistry: true,
+            bank_identifier: '0-2',
         },
         RU: {
             chars: 33,
             bban_regexp: '^[0-9]{14}[A-Z0-9]{15}$',
             IBANRegistry: true,
+            branch_indentifier: '9-13',
+            bank_identifier: '0-8',
+            account_indentifier: '13-33',
         },
         RW: {},
         SA: {
             chars: 24,
             bban_regexp: '^[0-9]{2}[A-Z0-9]{18}$',
             IBANRegistry: true,
+            bank_identifier: '0-1',
+            account_indentifier: '12-24',
         },
         SB: {},
         SC: {
             chars: 31,
             bban_regexp: '^[A-Z]{4}[0-9]{20}[A-Z]{3}$',
             IBANRegistry: true,
+            branch_indentifier: '6-7',
+            bank_identifier: '0-5',
+            account_indentifier: '12-28',
         },
         SD: {
             chars: 18,
             bban_regexp: '^[0-9]{14}$',
             IBANRegistry: true,
+            bank_identifier: '0-1',
+            account_indentifier: '6-18',
         },
-        SE: { chars: 24, bban_regexp: '^[0-9]{20}$', IBANRegistry: true, SEPA: true },
+        SE: { chars: 24, bban_regexp: '^[0-9]{20}$', IBANRegistry: true, SEPA: true, bank_identifier: '0-2' },
         SG: {},
         SH: {},
         SI: {
@@ -1353,6 +1565,8 @@ define(["require", "exports"], function (require, exports) {
             bban_validation_func: checkMod9710BBAN,
             IBANRegistry: true,
             SEPA: true,
+            bank_identifier: '-1-4',
+            account_indentifier: '4-19',
         },
         SJ: {},
         SK: {
@@ -1368,6 +1582,7 @@ define(["require", "exports"], function (require, exports) {
             bban_regexp: '^[A-Z]{1}[0-9]{10}[A-Z0-9]{12}$',
             IBANRegistry: true,
             SEPA: true,
+            branch_indentifier: '6-10',
         },
         SN: {
             chars: 28,
@@ -1377,6 +1592,8 @@ define(["require", "exports"], function (require, exports) {
             chars: 23,
             bban_regexp: '^[0-9]{19}$',
             IBANRegistry: true,
+            branch_indentifier: '4-6',
+            account_indentifier: '11-23',
         },
         SR: {},
         SS: {},
@@ -1384,11 +1601,13 @@ define(["require", "exports"], function (require, exports) {
             chars: 25,
             bban_regexp: '^[0-9]{21}$',
             IBANRegistry: true,
+            branch_indentifier: '4-7',
         },
         SV: {
             chars: 28,
             bban_regexp: '^[A-Z]{4}[0-9]{20}$',
             IBANRegistry: true,
+            account_indentifier: '8-28',
         },
         SX: {},
         SY: {},
@@ -1414,12 +1633,15 @@ define(["require", "exports"], function (require, exports) {
             chars: 23,
             bban_regexp: '^[0-9]{19}$',
             IBANRegistry: true,
+            account_indentifier: '4-23',
         },
         TM: {},
         TN: {
             chars: 24,
             bban_regexp: '^[0-9]{20}$',
             IBANRegistry: true,
+            branch_indentifier: '2-4',
+            account_indentifier: '4-24',
         },
         TO: {},
         TR: {
@@ -1435,19 +1657,27 @@ define(["require", "exports"], function (require, exports) {
             chars: 29,
             bban_regexp: '^[0-9]{6}[A-Z0-9]{19}$',
             IBANRegistry: true,
+            account_indentifier: '15-29',
         },
         UG: {},
         UM: {},
         US: {},
         UY: {},
         UZ: {},
-        VA: { chars: 22, bban_regexp: '^[0-9]{18}', IBANRegistry: true, SEPA: true },
+        VA: {
+            chars: 22,
+            bban_regexp: '^[0-9]{18}',
+            IBANRegistry: true,
+            SEPA: true,
+            account_indentifier: '7-22',
+        },
         VC: {},
         VE: {},
         VG: {
             chars: 24,
             bban_regexp: '^[A-Z0-9]{4}[0-9]{16}$',
             IBANRegistry: true,
+            account_indentifier: '8-24',
         },
         VI: {},
         VN: {},
@@ -1462,6 +1692,8 @@ define(["require", "exports"], function (require, exports) {
             chars: 20,
             bban_regexp: '^[0-9]{16}$',
             IBANRegistry: true,
+            branch_indentifier: '2-3',
+            account_indentifier: '4-20',
         },
         YE: {},
         YT: {

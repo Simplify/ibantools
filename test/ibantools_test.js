@@ -679,7 +679,16 @@ describe('IBANTools', function() {
     it('countryCode should be BR', function() {
       expect(ext.countryCode).to.equal('BR');
     });
-  });
+    it('accountNumber should be 0009795493P1', function() {
+      expect(ext.accountNumber).to.equal('0009795493P1');
+    });
+    it('bankIdentifier should be 00360305', function() {
+      expect(ext.bankIdentifier).to.equal('00360305');
+    });
+    it('branchIdentifier should be 00001', function() {
+      expect(ext.branchIdentifier).to.equal('00001');
+    });
+   });
 
   describe('When calling extractIBAN() with invalid IBAN', function() {
     var ext = iban.extractIBAN('BR970036030510009795493P1');
@@ -699,7 +708,7 @@ describe('IBANTools', function() {
 
   describe('When calling extractIBAN() with space separated IBAN', function() {
     var ext = iban.extractIBAN('NL91 ABNA 0417 1643 00');
-
+    console.log(ext);
     it('valid should be true', function() {
       expect(ext.valid).to.be.true;
     });
@@ -714,6 +723,10 @@ describe('IBANTools', function() {
     it('countryCode should be NL', function() {
       expect(ext.countryCode).to.equal('NL');
     });
+    it('accountNumber should be 0417164300', function() {
+      expect(ext.accountNumber).to.equal('0417164300');
+    });
+
   });
 
   describe('When calling extractIBAN() with dash separated IBAN', function() {
