@@ -126,12 +126,15 @@ export interface ExtractIBANResult {
     iban: string;
     bban?: string;
     countryCode?: string;
+    accountNumber?: string;
+    branchIdentifier?: string;
+    bankIdentifier?: string;
     valid: boolean;
 }
 /**
  * extractIBAN
  * ```
- * // returns {iban: "NL91ABNA0417164300", bban: "ABNA0417164300", countryCode: "NL", valid: true}
+ * // returns {iban: "NL91ABNA0417164300", bban: "ABNA0417164300", countryCode: "NL", valid: true, accountNumber: '0417164300', bankIdentifier: 'ABNA'}
  * ibantools.extractIBAN("NL91 ABNA 0417 1643 00");
  * ```
  */
@@ -269,6 +272,9 @@ interface CountrySpecInternal {
     bban_validation_func?: (bban: string) => boolean;
     IBANRegistry?: boolean;
     SEPA?: boolean;
+    branch_indentifier?: string;
+    bank_identifier?: string;
+    account_indentifier?: string;
 }
 /**
  * Interface for Map of Country Specifications

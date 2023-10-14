@@ -24,7 +24,7 @@
   ],
   "exclude": [],
   "files": [
-		"./src/ibantools.ts"
+    "./src/ibantools.ts"
   ],
   "types": [],
   "typedocOptions": {
