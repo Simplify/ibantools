@@ -1,13 +1,18 @@
 # frozen_string_literal: true
 
+# Download: https://www.swift.com/swift-resource/11971/download
+# or whatever the file path is on this page:
+# https://www.swift.com/standards/data-standards/iban-international-bank-account-number
+# and save it as `script/registry.txt`
+# Run with `ruby script/builder.rb` and `diff script/iban_spec.js` to see changes.
+
 class IBANRegistryParser
   def self.run
     new.run
   end
 
   def run
-    data = extract
-    create_specification(data)
+    create_specification(extract)
   end
 
   private
@@ -65,7 +70,6 @@ class IBANRegistryParser
     return nil if ranges == 'N/A'
     return nil if ranges == ''
 
-    # ranges == '' ? nil : ranges
     ranges.split('-').map(&:to_i).map(&:pred).join('-')
   end
 
