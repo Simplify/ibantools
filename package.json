@@ -10,6 +10,7 @@
     "SWIFT",
     "ISO 3136-1 alpha-2"
   ],
+  "sideEffects": false,
   "homepage": "https://github.com/Simplify/ibantools",
   "bugs": "https://github.com/Simplify/ibantools/issues",
   "main": "build/ibantools.js",
