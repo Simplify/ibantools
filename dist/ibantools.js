@@ -1565,8 +1565,9 @@ define(["require", "exports"], function (require, exports) {
             bban_validation_func: checkMod9710BBAN,
             IBANRegistry: true,
             SEPA: true,
-            bank_identifier: '-1-4',
-            account_indentifier: '4-19',
+            branch_indentifier: '2-4',
+            bank_identifier: '0-1',
+            account_indentifier: '9-16',
         },
         SJ: {},
         SK: {
