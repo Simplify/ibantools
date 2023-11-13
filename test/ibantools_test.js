@@ -690,6 +690,31 @@ describe('IBANTools', function() {
     });
    });
 
+  describe('When calling extractIBAN() with valid Slovenian IBAN', function() {
+    var ext = iban.extractIBAN('SI56263300012039086');
+    it('valid should be true', function() {
+      expect(ext.valid).to.be.true;
+    });
+    it('IBAN should be SI56263300012039086', function() {
+      expect(ext.iban).to.equal('SI56263300012039086');
+    });
+    it('BBAN should be 263300012039086', function() {
+      expect(ext.bban).to.equal('263300012039086');
+    });
+    it('countryCode should be SI', function() {
+      expect(ext.countryCode).to.equal('SI');
+    });
+    it('accountNumber should be 00120390', function() {
+      expect(ext.accountNumber).to.equal('00120390');
+    });
+    it('bankIdentifier should be 26', function() {
+      expect(ext.bankIdentifier).to.equal('26');
+    });
+    it('branchIdentifier should be 330', function() {
+      expect(ext.branchIdentifier).to.equal('330');
+    });
+   });
+
   describe('When calling extractIBAN() with invalid IBAN', function() {
     var ext = iban.extractIBAN('BR970036030510009795493P1');
     it('valid should be false', function() {

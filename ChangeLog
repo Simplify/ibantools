@@ -1,3 +1,6 @@
+2023-11-13  Davide Bianco <d.bianco@ermes.company>
+	* Fixed specs for Slovenian IBAN
+
 2023-10-14  Saša Jovanić <sasa@simplify.ba>
 	* Version 4.3.5
 	* Added script to parse IBAN specification provided as text file
