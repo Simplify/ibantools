@@ -9,7 +9,7 @@
  * @package Documentation
  * @author Saša Jovanić
  * @module ibantools
- * @version 4.3.5
+ * @version 4.3.6
  * @license MPL-2.0
  * @preferred
  */
@@ -290,19 +290,19 @@ export function extractIBAN(iban: string): ExtractIBANResult {
       const ac = spec.account_indentifier.split('-');
       const starting = parseInt(ac[0]);
       const ending = parseInt(ac[1]);
-      result.accountNumber = result.iban.slice(starting, ending+1);
+      result.accountNumber = result.iban.slice(starting, ending + 1);
     }
     if (spec.bank_identifier) {
       const ac = spec.bank_identifier.split('-');
       const starting = parseInt(ac[0]);
       const ending = parseInt(ac[1]);
-      result.bankIdentifier = result.bban.slice(starting, ending+1);
+      result.bankIdentifier = result.bban.slice(starting, ending + 1);
     }
     if (spec.branch_indentifier) {
       const ac = spec.branch_indentifier.split('-');
       const starting = parseInt(ac[0]);
       const ending = parseInt(ac[1]);
-      result.branchIdentifier = result.bban.slice(starting, ending+1);
+      result.branchIdentifier = result.bban.slice(starting, ending + 1);
     }
   } else {
     result.valid = false;
@@ -408,7 +408,7 @@ function replaceCharaterWithCode(str: string): string {
   // https://jsbench.me/ttkzgsekae/1
   return str
     .split('')
-    .map((c) => {
+    .map(c => {
       const code = c.charCodeAt(0);
       return code >= 65 ? (code - 55).toString() : c;
     })
