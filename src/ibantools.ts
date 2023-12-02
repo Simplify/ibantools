@@ -9,7 +9,7 @@
  * @package Documentation
  * @author Saša Jovanić
  * @module ibantools
- * @version 4.3.6
+ * @version 4.3.7
  * @license MPL-2.0
  * @preferred
  */
@@ -895,6 +895,31 @@ const checkHungarianBBAN = (bban: string): boolean => {
 };
 
 /**
+ * Dutch (NL) BBAN check
+ *
+ * @ignore
+ */
+const checkDutchBBAN = (bban: string): boolean => {
+  if(bban === '') { return false; }
+
+  const weights = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+  const toCheckAccount = bban.substring(4, 14);
+  if(toCheckAccount.startsWith('000')) { return true; }
+  if(toCheckAccount.startsWith('00')) { return false; }
+  const sum: number = toCheckAccount
+    .split('')
+    .map((value: string, index: number) => {
+      if(value === '0' && index === 0) { return 0; }
+      const number = parseInt(value, 10);
+      const weight = weights[index];
+      return number * weight;
+    })
+    .reduce((a: number, b: number) => a + b);
+  console.log(sum);
+  return sum % 11 === 0;
+}
+
+/**
  * Set custom BBAN validation function for country.
  *
  * If `bban_validation_func` already exists for the corresponding country,
@@ -1548,6 +1573,7 @@ export const countrySpecs: CountryMapInternal = {
   NL: {
     chars: 18,
     bban_regexp: '^[A-Z]{4}[0-9]{10}$',
+    bban_validation_func: checkDutchBBAN,
     IBANRegistry: true,
     SEPA: true,
     bank_identifier: '0-3',
