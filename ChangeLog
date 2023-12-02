@@ -1,4 +1,8 @@
-2023-10-14  Saša Jovanić <sasa@simplify.ba>
+2023-12-14  Saša Jovanić <sasa@simplify.ba>
+	* Version 4.3.7
+	* Added Dutch (NL) BBAN validation
+
+2023-11-26  Saša Jovanić <sasa@simplify.ba>
 	* Version 4.3.6
 
 2023-11-13  Davide Bianco <d.bianco@ermes.company>

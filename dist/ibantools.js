@@ -9,7 +9,7 @@ define(["require", "exports"], function (require, exports) {
      * @package Documentation
      * @author Saša Jovanić
      * @module ibantools
-     * @version 4.3.6
+     * @version 4.3.7
      * @license MPL-2.0
      * @preferred
      */
@@ -778,6 +778,37 @@ define(["require", "exports"], function (require, exports) {
         }
     };
     /**
+     * Dutch (NL) BBAN check
+     *
+     * @ignore
+     */
+    var checkDutchBBAN = function (bban) {
+        if (bban === '') {
+            return false;
+        }
+        var weights = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+        var toCheckAccount = bban.substring(4, 14);
+        if (toCheckAccount.startsWith('000')) {
+            return true;
+        }
+        if (toCheckAccount.startsWith('00')) {
+            return false;
+        }
+        var sum = toCheckAccount
+            .split('')
+            .map(function (value, index) {
+            if (value === '0' && index === 0) {
+                return 0;
+            }
+            var number = parseInt(value, 10);
+            var weight = weights[index];
+            return number * weight;
+        })
+            .reduce(function (a, b) { return a + b; });
+        console.log(sum);
+        return sum % 11 === 0;
+    };
+    /**
      * Set custom BBAN validation function for country.
      *
      * If `bban_validation_func` already exists for the corresponding country,
@@ -1430,6 +1461,7 @@ define(["require", "exports"], function (require, exports) {
         NL: {
             chars: 18,
             bban_regexp: '^[A-Z]{4}[0-9]{10}$',
+            bban_validation_func: checkDutchBBAN,
             IBANRegistry: true,
             SEPA: true,
             bank_identifier: '0-3',

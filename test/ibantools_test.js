@@ -299,6 +299,12 @@ describe('IBANTools', function() {
     it('with valid RU IBAN should return true', function() {
       expect(iban.isValidIBAN('RU0204452560040702810412345678901')).to.be.true;
     });
+    it('with valid old Postbank Dutch IBAN should return true', function() {
+      expect(iban.isValidIBAN('NL08INGB0000000555')).to.be.true;
+    });
+    it('with invalid Dutch IBAN should return false', function() {
+      expect(iban.isValidIBAN('NL08INGB0012345555')).to.be.false;
+    });
     it('with two dots should return false', function() {
       expect(iban.isValidIBAN('..')).to.be.false;
     });
@@ -344,6 +350,7 @@ describe('IBANTools', function() {
         errorCodes: [
           iban.ValidationErrorsIBAN.WrongBBANLength,
           iban.ValidationErrorsIBAN.WrongBBANFormat,
+          iban.ValidationErrorsIBAN.WrongAccountBankBranchChecksum,
           iban.ValidationErrorsIBAN.WrongIBANChecksum,
         ],
       });
@@ -383,7 +390,8 @@ describe('IBANTools', function() {
     it('with invalid IBAN checksum should return false with correct code', function() {
       expect(iban.validateIBAN('NL91ABNA0517164300')).to.deep.equal({
         valid: false,
-        errorCodes: [iban.ValidationErrorsIBAN.WrongIBANChecksum],
+        errorCodes: [iban.ValidationErrorsIBAN.WrongAccountBankBranchChecksum,
+		     iban.ValidationErrorsIBAN.WrongIBANChecksum],
       });
     });
 
@@ -400,6 +408,7 @@ describe('IBANTools', function() {
         errorCodes: [
           iban.ValidationErrorsIBAN.WrongBBANLength,
           iban.ValidationErrorsIBAN.WrongBBANFormat,
+	  iban.ValidationErrorsIBAN.WrongAccountBankBranchChecksum,
           iban.ValidationErrorsIBAN.ChecksumNotNumber,
           iban.ValidationErrorsIBAN.WrongIBANChecksum,
         ],
