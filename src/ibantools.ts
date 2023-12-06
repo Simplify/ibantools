@@ -915,7 +915,7 @@ const checkDutchBBAN = (bban: string): boolean => {
       return number * weight;
     })
     .reduce((a: number, b: number) => a + b);
-  console.log(sum);
+
   return sum % 11 === 0;
 }
 
