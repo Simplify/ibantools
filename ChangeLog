@@ -1,3 +1,9 @@
+2023-12-08  Saša Jovanić <sasa@simplify.ba>
+	* Version 4.3.8
+
+2023-12-06  Artur Aralin <artur.aralin97@gmail.com>
+	* Remove `console.log`
+
 2023-12-03  Saša Jovanić <sasa@simplify.ba>
 	* Version 4.3.7
 

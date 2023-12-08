@@ -9,7 +9,7 @@ define(["require", "exports"], function (require, exports) {
      * @package Documentation
      * @author Saša Jovanić
      * @module ibantools
-     * @version 4.3.7
+     * @version 4.3.8
      * @license MPL-2.0
      * @preferred
      */
@@ -805,7 +805,6 @@ define(["require", "exports"], function (require, exports) {
             return number * weight;
         })
             .reduce(function (a, b) { return a + b; });
-        console.log(sum);
         return sum % 11 === 0;
     };
     /**
