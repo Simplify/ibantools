@@ -1,6 +1,6 @@
 {
   "name": "ibantools",
-  "version": "4.3.9",
+  "version": "4.5.0",
   "description": "Validation, extraction and creation of IBAN, BBAN, BIC/SWIFT numbers plus some other helpful stuff like ISO 3136-1 alpha 2 country list",
   "keywords": [
     "IBAN",
@@ -53,7 +53,7 @@
     "name": "Saša Jovanić",
     "url": "https://www.simplify.ba/"
   },
-  "license": "MPL-2.0",
+  "license": "MIT or MPL-2.0",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",

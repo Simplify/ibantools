@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/github/license/Simplify/ibantools)](https://github.com/Simplify/ibantools/blob/master/LICENSE)
 
-[![Bower version](https://badge.fury.io/bo/ibantools.svg)](https://badge.fury.io/bo/ibantools)
+![Bower version](https://badge.fury.io/bo/ibantools.svg)]
 [![npm version](https://badge.fury.io/js/ibantools.svg)](https://badge.fury.io/js/ibantools)
 [![NPM downloads](https://img.shields.io/npm/dw/ibantools)](https://www.npmjs.com/package/ibantools)
 ![Dependents (via libraries.io)](https://img.shields.io/librariesio/dependents/npm/ibantools)
@@ -107,6 +107,8 @@ For contribution details, please read [this document](https://github.com/Simplif
 
 ## License
 
-This Source Code Form is subject to the terms of the Mozilla Public
-License, v. 2.0. If a copy of the MPL was not distributed with this
-file, You can obtain one at [http://mozilla.org/MPL/2.0/](http://mozilla.org/MPL/2.0/).
+This work is dual-licensed under MIT and MPL-2.0.
+You can choose between one of them if you use this work.
+
+`SPDX-License-Identifier: MIT OR MPL-2.0`
+

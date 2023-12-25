@@ -1,16 +1,20 @@
 /*!
  * @license
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+ * Copyright Saša Jovanić
+ * Licensed under the Mozilla Public License, Version 2.0 or the MIT license,
+ * at your option. This file may not be copied, modified, or distributed
+ * except according to those terms.
+ * SPDX-FileCopyrightText: Saša Jovanić
+ * SPDX-License-Identifier: MIT or MPL/2.0
+ */
 define(["require", "exports"], function (require, exports) {
     /**
      * Validation, extraction and creation of IBAN, BBAN, BIC/SWIFT numbers plus some other helpful stuff
      * @package Documentation
      * @author Saša Jovanić
      * @module ibantools
-     * @version 4.3.9
-     * @license MPL-2.0
+     * @version 4.5.0
+     * @license MIT or MPL-2.0
      * @preferred
      */
     'use strict';
