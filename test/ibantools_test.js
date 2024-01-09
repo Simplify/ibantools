@@ -350,7 +350,6 @@ describe('IBANTools', function() {
         errorCodes: [
           iban.ValidationErrorsIBAN.WrongBBANLength,
           iban.ValidationErrorsIBAN.WrongBBANFormat,
-          iban.ValidationErrorsIBAN.WrongAccountBankBranchChecksum,
           iban.ValidationErrorsIBAN.WrongIBANChecksum,
         ],
       });
@@ -390,8 +389,7 @@ describe('IBANTools', function() {
     it('with invalid IBAN checksum should return false with correct code', function() {
       expect(iban.validateIBAN('NL91ABNA0517164300')).to.deep.equal({
         valid: false,
-        errorCodes: [iban.ValidationErrorsIBAN.WrongAccountBankBranchChecksum,
-		     iban.ValidationErrorsIBAN.WrongIBANChecksum],
+        errorCodes: [iban.ValidationErrorsIBAN.WrongIBANChecksum],
       });
     });
 
@@ -408,7 +406,6 @@ describe('IBANTools', function() {
         errorCodes: [
           iban.ValidationErrorsIBAN.WrongBBANLength,
           iban.ValidationErrorsIBAN.WrongBBANFormat,
-	  iban.ValidationErrorsIBAN.WrongAccountBankBranchChecksum,
           iban.ValidationErrorsIBAN.ChecksumNotNumber,
           iban.ValidationErrorsIBAN.WrongIBANChecksum,
         ],
@@ -697,7 +694,7 @@ describe('IBANTools', function() {
     it('branchIdentifier should be 00001', function() {
       expect(ext.branchIdentifier).to.equal('00001');
     });
-   });
+  });
 
   describe('When calling extractIBAN() with valid Slovenian IBAN', function() {
     var ext = iban.extractIBAN('SI56263300012039086');
@@ -722,7 +719,7 @@ describe('IBANTools', function() {
     it('branchIdentifier should be 330', function() {
       expect(ext.branchIdentifier).to.equal('330');
     });
-   });
+  });
 
   describe('When calling extractIBAN() with invalid IBAN', function() {
     var ext = iban.extractIBAN('BR970036030510009795493P1');
@@ -760,7 +757,6 @@ describe('IBANTools', function() {
     it('accountNumber should be 0417164300', function() {
       expect(ext.accountNumber).to.equal('0417164300');
     });
-
   });
 
   describe('When calling extractIBAN() with dash separated IBAN', function() {

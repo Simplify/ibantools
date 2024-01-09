@@ -1,3 +1,7 @@
+2024-01-09  Saša Jovanić <sasa@simplify.ba>
+	* Version 4.3.9
+	* Removed Dutch (NL) BBAN validation
+
 2023-12-08  Saša Jovanić <sasa@simplify.ba>
 	* Version 4.3.8
 
