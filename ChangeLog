@@ -1,3 +1,6 @@
+2024-02-14  Mayeul-T <mayeul@touchard.bzh>
+	* Fix French (FR) IBAN extract
+
 2024-01-09  Saša Jovanić <sasa@simplify.ba>
 	* Added dual licensing, MIT or MPL-2.0
 
