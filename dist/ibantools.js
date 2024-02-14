@@ -1079,7 +1079,8 @@ define(["require", "exports"], function (require, exports) {
             IBANRegistry: true,
             SEPA: true,
             bank_identifier: '0-4',
-            account_indentifier: '4-27',
+            branch_indentifier: '5-9',
+            account_indentifier: '14-24',
         },
         GA: {
             chars: 27,
