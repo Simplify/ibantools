@@ -698,6 +698,31 @@ describe('IBANTools', function() {
     });
   });
 
+  describe('When calling extractIBAN() with valid French IBAN', function() {
+    var ext = iban.extractIBAN('FR3330002005500000157841Z25');
+    it('valid should be true', function() {
+      expect(ext.valid).to.be.true;
+    });
+    it('IBAN should be FR3330002005500000157841Z25', function() {
+      expect(ext.iban).to.equal('FR3330002005500000157841Z25');
+    });
+    it('BBAN should be 30002005500000157841Z25', function() {
+      expect(ext.bban).to.equal('30002005500000157841Z25');
+    });
+    it('countryCode should be FR', function() {
+      expect(ext.countryCode).to.equal('FR');
+    });
+    it('accountNumber should be 0000157841Z', function() {
+      expect(ext.accountNumber).to.equal('0000157841Z');
+    });
+    it('bankIdentifier should be 30002', function() {
+      expect(ext.bankIdentifier).to.equal('30002');
+    });
+    it('branchIdentifier should be 00550', function() {
+      expect(ext.branchIdentifier).to.equal('00550');
+    });
+  });
+
   describe('When calling extractIBAN() with valid Slovenian IBAN', function() {
     var ext = iban.extractIBAN('SI56263300012039086');
     it('valid should be true', function() {
