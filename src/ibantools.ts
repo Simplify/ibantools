@@ -412,7 +412,7 @@ function replaceCharaterWithCode(str: string): string {
   // https://jsbench.me/ttkzgsekae/1
   return str
     .split('')
-    .map(c => {
+    .map((c) => {
       const code = c.charCodeAt(0);
       return code >= 65 ? (code - 55).toString() : c;
     })
@@ -1164,7 +1164,7 @@ export const countrySpecs: CountryMapInternal = {
     SEPA: true,
     branch_indentifier: '4-7',
     bank_identifier: '0-3',
-    account_indentifier: '4-24',
+    account_indentifier: '14-24',
   },
   ET: {},
   FI: {
