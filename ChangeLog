@@ -1,388 +1,346 @@
-2024-02-14  Saša Jovanić <sasa@simplify.ba>
-	* Version 4.5.0
+2024-02-28 Guillem Martinez <guillem@antswarm.ai> \* Fix Spanish (ES) IBAN extraction
 
-2024-02-14  Mayeul-T <mayeul@touchard.bzh>
-	* Fix French (FR) IBAN extract
+2024-02-14 Saša Jovanić <sasa@simplify.ba> \* Version 4.5.0
 
-2024-01-09  Saša Jovanić <sasa@simplify.ba>
-	* Added dual licensing, MIT or MPL-2.0
+2024-02-14 Mayeul-T <mayeul@touchard.bzh> \* Fix French (FR) IBAN extract
 
-2024-01-09  Saša Jovanić <sasa@simplify.ba>
-	* Version 4.3.9
-	* Removed Dutch (NL) BBAN validation
+2024-01-09 Saša Jovanić <sasa@simplify.ba> \* Added dual licensing, MIT or MPL-2.0
 
-2023-12-08  Saša Jovanić <sasa@simplify.ba>
-	* Version 4.3.8
+2024-01-09 Saša Jovanić <sasa@simplify.ba>
+_ Version 4.3.9
+_ Removed Dutch (NL) BBAN validation
 
-2023-12-06  Artur Aralin <artur.aralin97@gmail.com>
-	* Remove `console.log`
+2023-12-08 Saša Jovanić <sasa@simplify.ba> \* Version 4.3.8
 
-2023-12-03  Saša Jovanić <sasa@simplify.ba>
-	* Version 4.3.7
+2023-12-06 Artur Aralin <artur.aralin97@gmail.com> \* Remove `console.log`
 
-2023-12-02  Saša Jovanić <sasa@simplify.ba>
-	* Added Dutch (NL) BBAN validation
+2023-12-03 Saša Jovanić <sasa@simplify.ba> \* Version 4.3.7
 
-2023-11-26  Saša Jovanić <sasa@simplify.ba>
-	* Version 4.3.6
+2023-12-02 Saša Jovanić <sasa@simplify.ba> \* Added Dutch (NL) BBAN validation
 
-2023-11-13  Davide Bianco <d.bianco@ermes.company>
-	* Fixed specs for Slovenian IBAN
+2023-11-26 Saša Jovanić <sasa@simplify.ba> \* Version 4.3.6
 
-2023-10-14  Saša Jovanić <sasa@simplify.ba>
-	* Version 4.3.5
-	* Added script to parse IBAN specification provided as text file
-	* Added code to extract `accountNumber`, `bankIdentifier` and `branchIdentifier` and provide it in `ExtractIBANResult`
+2023-11-13 Davide Bianco <d.bianco@ermes.company> \* Fixed specs for Slovenian IBAN
 
-2023-09-25  Saša Jovanić <sasa@simplify.ba>
-	* Updated some development dependencies and list of supported node versions
+2023-10-14 Saša Jovanić <sasa@simplify.ba>
+_ Version 4.3.5
+_ Added script to parse IBAN specification provided as text file \* Added code to extract `accountNumber`, `bankIdentifier` and `branchIdentifier` and provide it in `ExtractIBANResult`
 
-2023-09-25  Saša Jovanić <sasa@simplify.ba>
-	* Version 4.3.4
+2023-09-25 Saša Jovanić <sasa@simplify.ba> \* Updated some development dependencies and list of supported node versions
 
-2023-09-22  Guilherme Webber Mendes <guilherme.webber@outlook.com>
-	* Add FK (Falkland Islands) IBAN validation
-	* Update NI (Nicaragua) IBAN validation
+2023-09-25 Saša Jovanić <sasa@simplify.ba> \* Version 4.3.4
 
-2023-07-11  Pawlina53
-	* Add SEPA attribute to VA (Vatican)
+2023-09-22 Guilherme Webber Mendes <guilherme.webber@outlook.com>
+_ Add FK (Falkland Islands) IBAN validation
+_ Update NI (Nicaragua) IBAN validation
 
-2023-06-19 Saichand Chowdary <chandu.sai@gmail.com>
-	* Fixed slice index in mod9710Iban method
+2023-07-11 Pawlina53 \* Add SEPA attribute to VA (Vatican)
 
-2023-05-23  Saša Jovanić <sasa@simplify.ba>
-	* Version 4.3.3
-	* Remove outdated BBAN check for Finland
-	* Fix issue with using LX for QR-IBAN instead of LI
+2023-06-19 Saichand Chowdary <chandu.sai@gmail.com> \* Fixed slice index in mod9710Iban method
 
-2023-04-21  Saša Jovanić <sasa@simplify.ba>
-	* Version 4.3.2
+2023-05-23 Saša Jovanić <sasa@simplify.ba>
+_ Version 4.3.3
+_ Remove outdated BBAN check for Finland \* Fix issue with using LX for QR-IBAN instead of LI
 
-2023-04-20  Florian Morrenth <fm4work@gmail.com>
-	* Added support for Sudanese and Somalian IBAN
+2023-04-21 Saša Jovanić <sasa@simplify.ba> \* Version 4.3.2
 
-2023-04-20  Saša Jovanić <sasa@simplify.ba>
-	* Version 4.3.1
-	* Added support for Russian IBAN (#334)
+2023-04-20 Florian Morrenth <fm4work@gmail.com> \* Added support for Sudanese and Somalian IBAN
 
-2023-04-10  Saša Jovanić <sasa@simplify.ba>
-	* Version 4.3.0
-	* Added support for QR-IBAN (#332)
+2023-04-20 Saša Jovanić <sasa@simplify.ba>
+_ Version 4.3.1
+_ Added support for Russian IBAN (#334)
 
-2023-01-04  Saša Jovanić <sasa@simplify.ba>
-	* Fixed documentation issues (#326)
+2023-04-10 Saša Jovanić <sasa@simplify.ba>
+_ Version 4.3.0
+_ Added support for QR-IBAN (#332)
 
-2023-01-04  Saša Jovanić <sasa@simplify.ba>
-	* Removed Gulp as development dependency
+2023-01-04 Saša Jovanić <sasa@simplify.ba> \* Fixed documentation issues (#326)
 
-2023-01-03  Saša Jovanić <sasa@simplify.ba>
-	* Version 4.2.2
-	* Fixed issue #273 - Do not call IBAN checksum calculation if format is incorrect
+2023-01-04 Saša Jovanić <sasa@simplify.ba> \* Removed Gulp as development dependency
 
-2022-12-06  Saša Jovanić <sasa@simplify.ba>
-	* Version 4.2.1
-	* Fixed Finland (FI) BBAN validation
+2023-01-03 Saša Jovanić <sasa@simplify.ba>
+_ Version 4.2.2
+_ Fixed issue #273 - Do not call IBAN checksum calculation if format is incorrect
 
-2022-11-09  Saša Jovanić <sasa@simplify.ba>
-	* Version 4.2.0
-	* Added Hungarian (HU) BBAN validation
+2022-12-06 Saša Jovanić <sasa@simplify.ba>
+_ Version 4.2.1
+_ Fixed Finland (FI) BBAN validation
 
-2022-10-26  Markus Baumer <markus@baumer.dev>
-	* New method `setCountryBBANValidation` for adding custom BBAN validations
+2022-11-09 Saša Jovanić <sasa@simplify.ba>
+_ Version 4.2.0
+_ Added Hungarian (HU) BBAN validation
 
-2022-03-10  Saša Jovanić <sasa@simplify.ba>
-	* Version 4.1.6
-	* Fix incorrectly setting BIC branch code to 619 instead of null #133
+2022-10-26 Markus Baumer <markus@baumer.dev> \* New method `setCountryBBANValidation` for adding custom BBAN validations
 
-2022-06-18  Zolboobayar Gantumur <zolboobayar@metainc.mn>
-	* Added Mongolian (MN) specification
+2022-03-10 Saša Jovanić <sasa@simplify.ba>
+_ Version 4.1.6
+_ Fix incorrectly setting BIC branch code to 619 instead of null #133
 
-2022-03-10  Saša Jovanić <sasa@simplify.ba>
-	* Version 4.1.5
+2022-06-18 Zolboobayar Gantumur <zolboobayar@metainc.mn> \* Added Mongolian (MN) specification
 
-2022-03-01  Dominik Heigl <heigdomi@gmail.com>
-	* Fix issue #113 - Fix extractIBAN with IBAN separated by space or symbol invalid
+2022-03-10 Saša Jovanić <sasa@simplify.ba> \* Version 4.1.5
 
-2022-02-14  Saša Jovanić <sasa@simplify.ba>
-	* Removed `gulp-mocha` and `cheerio` plugins as dev dependency
-	* Various dependabot upgrades
+2022-03-01 Dominik Heigl <heigdomi@gmail.com> \* Fix issue #113 - Fix extractIBAN with IBAN separated by space or symbol invalid
 
-2022-02-14  Saša Jovanić <sasa@simplify.ba>
-	* Merged PR#105 from Stoivo
-	* Various dependabot upgrades
+2022-02-14 Saša Jovanić <sasa@simplify.ba>
+_ Removed `gulp-mocha` and `cheerio` plugins as dev dependency
+_ Various dependabot upgrades
 
-2022-02-03  Saša Jovanić <sasa@simplify.ba>
-	* Version 4.1.4
-	* Fix issue #103 - Remove Dutch BBAN validation
-	* Various development dependencies upgrades
+2022-02-14 Saša Jovanić <sasa@simplify.ba>
+_ Merged PR#105 from Stoivo
+_ Various dependabot upgrades
 
-2021-12-17  Saša Jovanić <sasa@simplify.ba>
-	* Version 4.1.3
-	* Fix issue #85 - Fix NaN issue when calling `validateIBAN`
+2022-02-03 Saša Jovanić <sasa@simplify.ba>
+_ Version 4.1.4
+_ Fix issue #103 - Remove Dutch BBAN validation \* Various development dependencies upgrades
 
-2021-12-14  Saša Jovanić <sasa@simplify.ba>
-	* Version 4.1.2
-	* Fix issue #83 - Fix problem when country can not be found when calling `validateIBAN`
+2021-12-17 Saša Jovanić <sasa@simplify.ba>
+_ Version 4.1.3
+_ Fix issue #85 - Fix NaN issue when calling `validateIBAN`
 
-2021-12-05  Saša Jovanić <sasa@simplify.ba>
-	* Version 4.1.1
-	* Added Hungarian (HU) BBAN validation
+2021-12-14 Saša Jovanić <sasa@simplify.ba>
+_ Version 4.1.2
+_ Fix issue #83 - Fix problem when country can not be found when calling `validateIBAN`
 
-2021-12-01  Saša Jovanić <sasa@simplify.ba>
-	* Improve test coverage
+2021-12-05 Saša Jovanić <sasa@simplify.ba>
+_ Version 4.1.1
+_ Added Hungarian (HU) BBAN validation
 
-2021-11-30  Saša Jovanić <sasa@simplify.ba>
-	* Added Estonian (EE) BBAN validation
-	* Added Finland (FI) BBAN validation
-	* Aland Islands (AX) uses BBAN valkidation from Finland
-	* Added French (FR) and Monaco (MC) BBAN validation
+2021-12-01 Saša Jovanić <sasa@simplify.ba> \* Improve test coverage
 
-2021-11-28  Saša Jovanić <sasa@simplify.ba>
-	* Added Czech (CZ) BBAN validation
+2021-11-30 Saša Jovanić <sasa@simplify.ba>
+_ Added Estonian (EE) BBAN validation
+_ Added Finland (FI) BBAN validation
+_ Aland Islands (AX) uses BBAN valkidation from Finland
+_ Added French (FR) and Monaco (MC) BBAN validation
 
-2021-11-27  Saša Jovanić <sasa@simplify.ba>
-	* Added Croatian (HR) BBAN validation
+2021-11-28 Saša Jovanić <sasa@simplify.ba> \* Added Czech (CZ) BBAN validation
 
-2021-11-25  Saša Jovanić <sasa@simplify.ba>
-	* Version 4.1.0
-	* Added Belgian (BE) extra BBAN validation
-	* Added mod97/10 BBAN validation for countries that do it that way: BA, ME, MK, PT, RS and SI
+2021-11-27 Saša Jovanić <sasa@simplify.ba> \* Added Croatian (HR) BBAN validation
 
-2021-11-24  Saša Jovanić <sasa@simplify.ba>
-	* Added Netherlands (NL) extra BBAN validation
-	* Added extra error code when validating IBAN `WrongAccountBankBranchChecksum` that indicates when checksum for account number or bank or branch code is incorrect
+2021-11-25 Saša Jovanić <sasa@simplify.ba>
+_ Version 4.1.0
+_ Added Belgian (BE) extra BBAN validation \* Added mod97/10 BBAN validation for countries that do it that way: BA, ME, MK, PT, RS and SI
 
-2021-11-23  Saša Jovanić <sasa@simplify.ba>
-	* Version 4.0.1
-	* Fixed bug when validating Spain IBAN
+2021-11-24 Saša Jovanić <sasa@simplify.ba>
+_ Added Netherlands (NL) extra BBAN validation
+_ Added extra error code when validating IBAN `WrongAccountBankBranchChecksum` that indicates when checksum for account number or bank or branch code is incorrect
 
-2021-11-18  Saša Jovanić <sasa@simplify.ba>
-	* Updated README with new and updated badges
-	* Fixed documentation on GH pages
-	* Added dependabot dependency updates and merged some created dependency pull requests
-	* Added Node 17 to build version on GitHub actions
-	* Added GitHub CodeQL workflow
+2021-11-23 Saša Jovanić <sasa@simplify.ba>
+_ Version 4.0.1
+_ Fixed bug when validating Spain IBAN
 
-2021-11-17  Saša Jovanić <sasa@simplify.ba>
-	* Version 4.0.0
-	* Fixed Senegal (SN) regular expression
-	* Updated Burundi (BI) specification
-	* Added Spain (ES) extra BBAN validation
-	* Added Poland (PL) extra BBAN validation
-	* Added test to check for extra BBAN validation function
+2021-11-18 Saša Jovanić <sasa@simplify.ba>
+_ Updated README with new and updated badges
+_ Fixed documentation on GH pages
+_ Added dependabot dependency updates and merged some created dependency pull requests
+_ Added Node 17 to build version on GitHub actions \* Added GitHub CodeQL workflow
 
-2021-09-30  Simen Mailund Svendsen <simen.m.s@hotmail.com>
-	* Fix invalid norwegian BBANS (failing MOD11 check) being incorrectly returned as valid
+2021-11-17 Saša Jovanić <sasa@simplify.ba>
+_ Version 4.0.0
+_ Fixed Senegal (SN) regular expression
+_ Updated Burundi (BI) specification
+_ Added Spain (ES) extra BBAN validation
+_ Added Poland (PL) extra BBAN validation
+_ Added test to check for extra BBAN validation function
 
-2021-07-24  Saša Jovanić <sasa@simplify.ba>
-	* Version 3.3.1
-	* Fixed issue not showing AD and BG as SEPA countries
-	* Fixed issue when incorrectly showing GL and FO as SEPA countryes
-	* Fixed incorrect documentation for `composeIBAN`
-	* Updates list of supported Node.js versions
-	* Update dev dependencies
+2021-09-30 Simen Mailund Svendsen <simen.m.s@hotmail.com> \* Fix invalid norwegian BBANS (failing MOD11 check) being incorrectly returned as valid
+
+2021-07-24 Saša Jovanić <sasa@simplify.ba>
+_ Version 3.3.1
+_ Fixed issue not showing AD and BG as SEPA countries
+_ Fixed issue when incorrectly showing GL and FO as SEPA countryes
+_ Fixed incorrect documentation for `composeIBAN`
+_ Updates list of supported Node.js versions
+_ Update dev dependencies
 
 2021-05-05 Daniel Friesen <d@danf.ca>
-  * Fixed `validateIBAN`'s handling of unsupported countries like US
-  * Added checksum validation for unsupported/unknown countries to `validateIBAN`
 
-2021-04-03  Saša Jovanić <sasa@simplify.ba>
-	* Coverage improved to 100%
+- Fixed `validateIBAN`'s handling of unsupported countries like US
+- Added checksum validation for unsupported/unknown countries to `validateIBAN`
 
-2021-04-03  Saša Jovanić <sasa@simplify.ba>
-	* Version 3.3.0
-	* Error codes for IBAN and BIC validation. Added `validateIBAN` and `validateBIC` methods that will return error codes.
+2021-04-03 Saša Jovanić <sasa@simplify.ba> \* Coverage improved to 100%
 
-2021-04-03  Saša Jovanić <sasa@simplify.ba>
-	* Version 3.2.5
-	* (Dependabot) Bump y18n from 3.2.1 to 3.2.2
+2021-04-03 Saša Jovanić <sasa@simplify.ba>
+_ Version 3.3.0
+_ Error codes for IBAN and BIC validation. Added `validateIBAN` and `validateBIC` methods that will return error codes.
 
-2021-03-29  Xavier Alvarez
-	* Fix validation for Burkina Faso, Benin, Algeria and Mali
+2021-04-03 Saša Jovanić <sasa@simplify.ba>
+_ Version 3.2.5
+_ (Dependabot) Bump y18n from 3.2.1 to 3.2.2
 
-2021-03-10  Saša Jovanić  <sasa@simplify.ba>
-	* Version 3.2.4
-	* Exported `countrySpecs` to restore a bit of compatibility broken in 3.2.3
-	* Updated development dependencies
-	* Documentation is now part of master branch
+2021-03-29 Xavier Alvarez \* Fix validation for Burkina Faso, Benin, Algeria and Mali
 
-2021-02-07  Saša Jovanić  <sasa@simplify.ba>
-	* Version 3.2.3
-	* Dependabot PR merged
+2021-03-10 Saša Jovanić <sasa@simplify.ba>
+_ Version 3.2.4
+_ Exported `countrySpecs` to restore a bit of compatibility broken in 3.2.3
+_ Updated development dependencies
+_ Documentation is now part of master branch
 
-2021-02-06  Richard Leurs
-	* Improve bundle size
+2021-02-07 Saša Jovanić <sasa@simplify.ba>
+_ Version 3.2.3
+_ Dependabot PR merged
 
-2020-11-10  Saša Jovanić  <sasa@simplify.ba>
-	* Version 3.2.2
-	* Fixed support for Cape Verde
-	* Dependabot PR merged
+2021-02-06 Richard Leurs \* Improve bundle size
 
-2020-11-10  Saša Jovanić  <sasa@simplify.ba>
-	* Switch from `jsdoc` to `typedoc` for documentation generation
-	* Typo in interface name fixed, this will require mayor version release
+2020-11-10 Saša Jovanić <sasa@simplify.ba>
+_ Version 3.2.2
+_ Fixed support for Cape Verde \* Dependabot PR merged
 
-2020-11-09  Saša Jovanić  <sasa@simplify.ba>
-	* Removed `tslint` and added `eslint` and `prettier` to be used with `gulp lint` task
-	* Added GitHub Action for linting to workflow
-	* Updated PR template on GitHub and modified `CONTRIBUTING.md` document
+2020-11-10 Saša Jovanić <sasa@simplify.ba>
+_ Switch from `jsdoc` to `typedoc` for documentation generation
+_ Typo in interface name fixed, this will require mayor version release
 
-2020-11-04  Saša Jovanić  <sasa@simplify.ba>
-	* Version 3.2.1
-	* Merged PR from @witoldsz: Fixed Azerbaijan IBAN check regexp
+2020-11-09 Saša Jovanić <sasa@simplify.ba>
+_ Removed `tslint` and added `eslint` and `prettier` to be used with `gulp lint` task
+_ Added GitHub Action for linting to workflow \* Updated PR template on GitHub and modified `CONTRIBUTING.md` document
 
-2020-11-04  Saša Jovanić  <sasa@simplify.ba>
-	* Removed Travis CI integration and integrated Github Action to show badge on master branch and status on pull requests
-	* Upgraded to `typescript` 4
+2020-11-04 Saša Jovanić <sasa@simplify.ba>
+_ Version 3.2.1
+_ Merged PR from @witoldsz: Fixed Azerbaijan IBAN check regexp
 
-2020-11-03  Saša Jovanić  <sasa@simplify.ba>
-	* Version 3.2.0
-	* Added Node 15 and removed node 13 to Travis environments
-	* Updated various development dependencies
-	* Test file is no longer written in TypeScript - types/chai is a problem when building for ES5
-	* Switched from `istanbul` to `nyc` for code coverage
-	* Added Libya as new addition to official IBAN registry
-	* Fix crash when `isValidBIC` receives `null` or `undefined`
-	* Added Github Build Action as preparation to move away from Travis CI
+2020-11-04 Saša Jovanić <sasa@simplify.ba>
+_ Removed Travis CI integration and integrated Github Action to show badge on master branch and status on pull requests
+_ Upgraded to `typescript` 4
 
-2020-06-21  Saša Jovanić  <sasa@simplify.ba>
-	* Version 3.1.0
-	* Merged PR from @EarthlingRich (Richard Leurs) that adds `isSEPACountry` function.
-	* Fixed RegExp for Seychelles
-	* Added Node 14 to Travis environments
+2020-11-03 Saša Jovanić <sasa@simplify.ba>
+_ Version 3.2.0
+_ Added Node 15 and removed node 13 to Travis environments
+_ Updated various development dependencies
+_ Test file is no longer written in TypeScript - types/chai is a problem when building for ES5
+_ Switched from `istanbul` to `nyc` for code coverage
+_ Added Libya as new addition to official IBAN registry
+_ Fix crash when `isValidBIC` receives `null` or `undefined`
+_ Added Github Build Action as preparation to move away from Travis CI
 
-2020-04-05  Saša Jovanić  <sasa@simplify.ba>
-	* Version 3.0.0
+2020-06-21 Saša Jovanić <sasa@simplify.ba>
+_ Version 3.1.0
+_ Merged PR from @EarthlingRich (Richard Leurs) that adds `isSEPACountry` function.
+_ Fixed RegExp for Seychelles
+_ Added Node 14 to Travis environments
 
-2020-03-31  Saša Jovanić  <sasa@simplify.ba>
-	* Updated some dev dependencies
+2020-04-05 Saša Jovanić <sasa@simplify.ba> \* Version 3.0.0
 
-2020-03-29  Saša Jovanić  <sasa@simplify.ba>
-	* Merged #18 - Drop country names from output - PR from @eemeli (Eemeli Aro) that removes country names from functions output. Country code is still present. This will reduce total bundle size. If you still need country names, please use `countrynames` or `country-iso` packages.
-	* Merged various dependabot pull requests.
-	* Added prettier as dev dependency.
-	* Upgraded dependencies based on `npm audit`.
-	* Added node 13 and dropped node 11 on Travis.
-	* Added Egypt as new addition to official IBAN specification.
-	* Added countries that are not in official IBAN specification published by Swift: Algeria, Angola, Benin, Burkina Faso, Burundi, Cameroon, Cape Verde, Iran, Ivory Coast, Madagascar, Mali, Mozambique, Senegal, Comoros, Chad, Gabon, Honduras, Morocco, Nicaragua, Niger, Togo, Central African Republic, Djibouti, Equatorial Guinea and Guinea-Bissau.
+2020-03-31 Saša Jovanić <sasa@simplify.ba> \* Updated some dev dependencies
 
-2019-08-12  Saša Jovanić  <sasa@simplify.ba>
-	* Released varsion 2.2.0
-	* Fixed Swift register PDF link on README file
-	* Fixed problem with invalid IBAN checksum structure (GH16)
-	* When checking if IBAN checksum is valid we will generate IBAN checksum and compare it with existing one instead of checking if result of mod97-10 is 1
-	* Added `strict` flag to tsconfig
+2020-03-29 Saša Jovanić <sasa@simplify.ba>
+_ Merged #18 - Drop country names from output - PR from @eemeli (Eemeli Aro) that removes country names from functions output. Country code is still present. This will reduce total bundle size. If you still need country names, please use `countrynames` or `country-iso` packages.
+_ Merged various dependabot pull requests.
+_ Added prettier as dev dependency.
+_ Upgraded dependencies based on `npm audit`.
+_ Added node 13 and dropped node 11 on Travis.
+_ Added Egypt as new addition to official IBAN specification. \* Added countries that are not in official IBAN specification published by Swift: Algeria, Angola, Benin, Burkina Faso, Burundi, Cameroon, Cape Verde, Iran, Ivory Coast, Madagascar, Mali, Mozambique, Senegal, Comoros, Chad, Gabon, Honduras, Morocco, Nicaragua, Niger, Togo, Central African Republic, Djibouti, Equatorial Guinea and Guinea-Bissau.
 
-2019-05-05  Saša Jovanić  <sasa@simplify.ba>
-	* Updated development dependencies to latest versions
-	* Updated deep dependencies that have security issues
+2019-08-12 Saša Jovanić <sasa@simplify.ba>
+_ Released varsion 2.2.0
+_ Fixed Swift register PDF link on README file
+_ Fixed problem with invalid IBAN checksum structure (GH16)
+_ When checking if IBAN checksum is valid we will generate IBAN checksum and compare it with existing one instead of checking if result of mod97-10 is 1 \* Added `strict` flag to tsconfig
 
-2019-05-05  Saša Jovanić  <sasa@simplify.ba>
-	* Released varsion 2.1.0
-	* Merged PR1 - Renamed `main:jsnext` to `modules` - Thanks @NeoLegends (PR1/GH9)
-	* Upraded various packages containing security vulnerabilities using `npm audit fix`
-	* Upgraded Gulp to version 4 and all gulp tasks
-	* Added Vatican City State (GH13)
-	* `friendlyFormatIBAN` and `electronicFormatIBAN` will return `null` when non-string value is provided (GH15).
-	* Fixed issue with `extractBIC` when argument is provided in lowercase (GH12).
+2019-05-05 Saša Jovanić <sasa@simplify.ba>
+_ Updated development dependencies to latest versions
+_ Updated deep dependencies that have security issues
 
-2018-03-11  Saša Jovanić  <sasa@simplify.ba>
-	* Released version 2.0.0
-	* BREAKING: `isValidIBAN` does not accept IBAN with `-` and ` ` any more - IBAN must be already in electronic format
-	* `getCountrySpecifications` now returns all countries (ISO-3166-1 alpha-2 + `XK` - temporary country code for Kosovo) with `IBANRegistry` boolean property that indicates if country is in IBAN registry or not
-	* `extractIBAN` now requires IBAN in electronic format
-	* `isValidBIC` now also checks if Country exists
-	* `extractBIC` also returns property `countryCode`
-	* Added `tslint` as development dependency
+2019-05-05 Saša Jovanić <sasa@simplify.ba>
+_ Released varsion 2.1.0
+_ Merged PR1 - Renamed `main:jsnext` to `modules` - Thanks @NeoLegends (PR1/GH9)
+_ Upraded various packages containing security vulnerabilities using `npm audit fix`
+_ Upgraded Gulp to version 4 and all gulp tasks
+_ Added Vatican City State (GH13)
+_ `friendlyFormatIBAN` and `electronicFormatIBAN` will return `null` when non-string value is provided (GH15). \* Fixed issue with `extractBIC` when argument is provided in lowercase (GH12).
 
-2018-02-13  Saša Jovanić  <sasa@simplify.ba>
-	* Released version 1.6.0
-	* Fixed link to latest IBAN registry PDF document
-	* Fixed validation for Costa Rica (it has 18 digits now, not 17)
-	* Added Republic of Belarus
-	* Added Iraq
-	* Renamed `Palestinian teritories` to `State of Palestine`, as in IBAN registry
-	* Added El Salvador
-	* Updated develpoment dependencies
-	* `ExtractIBANResult` now also contains `iban` that represents IBAN electronic format
-	* `electronicFormatIBAN` now removes only spaces and dashes, not the other unicode characters
+2018-03-11 Saša Jovanić <sasa@simplify.ba>
+_ Released version 2.0.0
+_ BREAKING: `isValidIBAN` does not accept IBAN with `-` and ` ` any more - IBAN must be already in electronic format
+_ `getCountrySpecifications` now returns all countries (ISO-3166-1 alpha-2 + `XK` - temporary country code for Kosovo) with `IBANRegistry` boolean property that indicates if country is in IBAN registry or not
+_ `extractIBAN` now requires IBAN in electronic format
+_ `isValidBIC` now also checks if Country exists
+_ `extractBIC` also returns property `countryCode` \* Added `tslint` as development dependency
 
-2017-11-15  Saša Jovanić  <sasa@simplify.ba>
-	* Released version 1.5.1
-	* Fixed mistake in BIC validation regexp when brach code is present (GH-5)
-	* Added node.js 9 to TravisCI
+2018-02-13 Saša Jovanić <sasa@simplify.ba>
+_ Released version 1.6.0
+_ Fixed link to latest IBAN registry PDF document
+_ Fixed validation for Costa Rica (it has 18 digits now, not 17)
+_ Added Republic of Belarus
+_ Added Iraq
+_ Renamed `Palestinian teritories` to `State of Palestine`, as in IBAN registry
+_ Added El Salvador
+_ Updated develpoment dependencies
+_ `ExtractIBANResult` now also contains `iban` that represents IBAN electronic format
+_ `electronicFormatIBAN` now removes only spaces and dashes, not the other unicode characters
 
-2017-10-10  Saša Jovanić  <sasa@simplify.ba>
-	* Released version 1.5.0
-	* Fixed typos in source code and documentation (GH-4)
+2017-11-15 Saša Jovanić <sasa@simplify.ba>
+_ Released version 1.5.1
+_ Fixed mistake in BIC validation regexp when brach code is present (GH-5) \* Added node.js 9 to TravisCI
 
-2017-10-05  Saša Jovanić  <sasa@simplify.ba>
-	* Changed documentation theme to `docdash`
-	* Fixed links in README to avoid broken links in documentation
-	* Updated `coverals` package
+2017-10-10 Saša Jovanić <sasa@simplify.ba>
+_ Released version 1.5.0
+_ Fixed typos in source code and documentation (GH-4)
 
-2017-10-05  Saša Jovanić  <sasa@simplify.ba>
-	* Released version 1.4.0
-	* Added code of conduct
-	* Updated mocha development dependency to 4.0
-	* Added contribution guide
-	* Updated JSDoc to latest version
-	* Added issue and pull request template
+2017-10-05 Saša Jovanić <sasa@simplify.ba>
+_ Changed documentation theme to `docdash`
+_ Fixed links in README to avoid broken links in documentation \* Updated `coverals` package
 
-2017-08-23  Saša Jovanić  <sasa@simplify.ba>
-	* Now using @types - typings removed
+2017-10-05 Saša Jovanić <sasa@simplify.ba>
+_ Released version 1.4.0
+_ Added code of conduct
+_ Updated mocha development dependency to 4.0
+_ Added contribution guide
+_ Updated JSDoc to latest version
+_ Added issue and pull request template
 
-2017-08-22  Saša Jovanić  <sasa@simplify.ba>
-	* Updated development dependencies
-	* Added node version 8 to TravisCI tests
+2017-08-23 Saša Jovanić <sasa@simplify.ba> \* Now using @types - typings removed
 
-2017-03-09  Saša Jovanić  <sasa@simplify.ba>
-	* Released version 1.3.0
-	* Fixed `jsnext:main` file output
-	* Fixed problem with BIC/SWIFT validation when branch code is part of BIC/SWIFT
-	* extractBIC will return `branchCode` as '619' (primary office) if branch code in not part of BIC/SWIFT number
-	* Fixed README file
-	* Updated development dependencies
+2017-08-22 Saša Jovanić <sasa@simplify.ba>
+_ Updated development dependencies
+_ Added node version 8 to TravisCI tests
 
-2017-02-04  Saša Jovanić  <sasa@simplify.ba>
-	* Released version 1.2.0
-	* Added BIC/SWIFT validation
-	* Added BIC/SWIFT extraction
-	* Updated TypeScript definitions
+2017-03-09 Saša Jovanić <sasa@simplify.ba>
+_ Released version 1.3.0
+_ Fixed `jsnext:main` file output
+_ Fixed problem with BIC/SWIFT validation when branch code is part of BIC/SWIFT
+_ extractBIC will return `branchCode` as '619' (primary office) if branch code in not part of BIC/SWIFT number
+_ Fixed README file
+_ Updated development dependencies
 
-2017-01-29  Saša Jovanić  <sasa@simplify.ba>
-	* Removed testing on Node 4 and 5 in TravisCI and added testing on 7
-	* Updated dev dependencies
-	* Removed TSLint deprecations
-	* Fixed ducumentation
+2017-02-04 Saša Jovanić <sasa@simplify.ba>
+_ Released version 1.2.0
+_ Added BIC/SWIFT validation
+_ Added BIC/SWIFT extraction
+_ Updated TypeScript definitions
 
-2016-08-30  Saša Jovanić  <sasa@simplify.ba>
-	* Removed CodeCov codes
-	* Added Coveralls badge and integration
-	* Added Dependency CI badge
+2017-01-29 Saša Jovanić <sasa@simplify.ba>
+_ Removed testing on Node 4 and 5 in TravisCI and added testing on 7
+_ Updated dev dependencies
+_ Removed TSLint deprecations
+_ Fixed ducumentation
 
-2016-08-27  Saša Jovanić  <sasa@simplify.ba>
-	* Released version 1.1.0
-	* Added Sao Tome And Principe (ST)
-	* Added Saint Lucia (LC)
-	* Added Aland Islands (AX)
-	* Added French Guyana (GF)
-	* Added Guadeloupe (GP)
-	* Added Martinique (MQ)
-	* Added Reunion (RE)
-	* Added French Polynesia (PF)
-	* Added French Southern Territories (TF)
-	* Added Mayotte (YT)
-	* Added New Caledonia (NC)
-	* Added Saint Barthelemy (BL)
-	* Added Saint Martin (MF)
-	* Added Saint Pierre et Miquelon (PM)
-	* Added Wallis and Futuna Islands (WF)
-	* Added Seychelles (SC)
-	* Fixed Republic of Azerbaijan and Jordan regexps
-	* Fixed some of the country names
-	* Added Node 6 to Travis CI
-	* Added Codecov to Travis CI config file
-	* Added this ChangeLog
-	* Updated development dependencies and typings
-	* Removed old script that used to retrive IBAN countries and codes from Wikipedia
+2016-08-30 Saša Jovanić <sasa@simplify.ba>
+_ Removed CodeCov codes
+_ Added Coveralls badge and integration \* Added Dependency CI badge
+
+2016-08-27 Saša Jovanić <sasa@simplify.ba>
+_ Released version 1.1.0
+_ Added Sao Tome And Principe (ST)
+_ Added Saint Lucia (LC)
+_ Added Aland Islands (AX)
+_ Added French Guyana (GF)
+_ Added Guadeloupe (GP)
+_ Added Martinique (MQ)
+_ Added Reunion (RE)
+_ Added French Polynesia (PF)
+_ Added French Southern Territories (TF)
+_ Added Mayotte (YT)
+_ Added New Caledonia (NC)
+_ Added Saint Barthelemy (BL)
+_ Added Saint Martin (MF)
+_ Added Saint Pierre et Miquelon (PM)
+_ Added Wallis and Futuna Islands (WF)
+_ Added Seychelles (SC)
+_ Fixed Republic of Azerbaijan and Jordan regexps
+_ Fixed some of the country names
+_ Added Node 6 to Travis CI
+_ Added Codecov to Travis CI config file
+_ Added this ChangeLog
+_ Updated development dependencies and typings
+_ Removed old script that used to retrive IBAN countries and codes from Wikipedia
