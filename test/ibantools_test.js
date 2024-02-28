@@ -786,6 +786,31 @@ describe('IBANTools', function() {
     });
   });
 
+  describe('When calling extractIBAN() with valid Spanish IBAN', function() {
+    var ext = iban.extractIBAN('ES6000491500051234567892');
+    it('valid should be true', function() {
+      expect(ext.valid).to.be.true;
+    });
+    it('IBAN should be ES6000491500051234567892', function() {
+      expect(ext.iban).to.equal('ES6000491500051234567892');
+    });
+    it('BBAN should be 00491500051234567892', function() {
+      expect(ext.bban).to.equal('00491500051234567892');
+    });
+    it('countryCode should be ES', function() {
+      expect(ext.countryCode).to.equal('ES');
+    });
+    it('accountNumber should be 1234567892', function() {
+      expect(ext.accountNumber).to.equal('1234567892');
+    });
+    it('bankIdentifier should be 0049', function() {
+      expect(ext.bankIdentifier).to.equal('0049');
+    });
+    it('branchIdentifier should be 1500', function() {
+      expect(ext.branchIdentifier).to.equal('1500');
+    });
+  });
+
   describe('When calling extractIBAN() with dash separated IBAN', function() {
     var ext = iban.extractIBAN('NL91-ABNA-0417-1643-00');
 
