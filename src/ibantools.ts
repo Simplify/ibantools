@@ -13,7 +13,7 @@
  * @package Documentation
  * @author Saša Jovanić
  * @module ibantools
- * @version 4.5.0
+ * @version 4.5.1
  * @license MIT or MPL-2.0
  * @preferred
  */
