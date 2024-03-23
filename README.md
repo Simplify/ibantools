@@ -1,8 +1,9 @@
 # IBANTools
 
-[![License](https://img.shields.io/github/license/Simplify/ibantools)](https://github.com/Simplify/ibantools/blob/master/LICENSE)
+![License](https://img.shields.io/badge/License-MIT-blue)
+![License](https://img.shields.io/badge/License-MPL_2.0-blue)
 
-![Bower version](https://badge.fury.io/bo/ibantools.svg)]
+![Bower version](https://badge.fury.io/bo/ibantools.svg)
 [![npm version](https://badge.fury.io/js/ibantools.svg)](https://badge.fury.io/js/ibantools)
 [![NPM downloads](https://img.shields.io/npm/dw/ibantools)](https://www.npmjs.com/package/ibantools)
 ![Dependents (via libraries.io)](https://img.shields.io/librariesio/dependents/npm/ibantools)

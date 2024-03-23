@@ -13,7 +13,7 @@ define(["require", "exports"], function (require, exports) {
      * @package Documentation
      * @author Saša Jovanić
      * @module ibantools
-     * @version 4.5.0
+     * @version 4.5.1
      * @license MIT or MPL-2.0
      * @preferred
      */
@@ -1046,7 +1046,7 @@ define(["require", "exports"], function (require, exports) {
             SEPA: true,
             branch_indentifier: '4-7',
             bank_identifier: '0-3',
-            account_indentifier: '4-24',
+            account_indentifier: '14-24',
         },
         ET: {},
         FI: {
