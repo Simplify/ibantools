@@ -13,6 +13,7 @@ const iban = require('../build/ibantools');
 
 describe('IBANTools', function() {
   describe('When calling isValidIBAN()', function() {
+
     it('with valid IBAN should return true', function() {
       expect(iban.isValidIBAN('NL91ABNA0417164300')).to.be.true;
     });
@@ -321,6 +322,9 @@ describe('IBANTools', function() {
     });
     it('with valid FK IBAN should return true', function() {
       expect(iban.isValidIBAN('FK88SC123456789012')).to.be.true;
+    });
+    it('with valid OM IBAN should return true', function() {
+      expect(iban.isValidIBAN('OM810180000001299123456')).to.be.true;
     });
   });
 
@@ -766,7 +770,6 @@ describe('IBANTools', function() {
 
   describe('When calling extractIBAN() with space separated IBAN', function() {
     var ext = iban.extractIBAN('NL91 ABNA 0417 1643 00');
-    console.log(ext);
     it('valid should be true', function() {
       expect(ext.valid).to.be.true;
     });

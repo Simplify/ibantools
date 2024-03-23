@@ -1571,7 +1571,13 @@ export const countrySpecs: CountryMapInternal = {
   NR: {},
   NU: {},
   NZ: {},
-  OM: {},
+  OM: {
+    chars: 23,
+    bban_regexp: '^[0-9]{3}[A-Z0-9]{16}$',
+    IBANRegistry: true,
+    SEPA: false,
+    bank_identifier: '0-2',
+  },
   PA: {},
   PE: {},
   PF: {
