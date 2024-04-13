@@ -43,7 +43,7 @@
     "build-bower": "rm -rf dist && npx tsc src/*.ts --declaration --target es2017 --module amd --outDir ./dist/",
     "build-module": "rm -rf jsnext && npx tsc src/*.ts --target es2017 --module es2020 --outDir ./jsnext/",
     "test": "npm run build && mocha 'test/**/*.js'",
-    "coverage": "c8 mocha && nyc report --reporter=text-lcov > test.lcov",
+    "coverage": "c8 mocha && c8 report --reporter=text-lcov > test.lcov",
     "lint": "eslint 'src/**/*.ts' 'test/**/*.js'",
     "prepare": "npm run build-node",
     "docs": "typedoc src/ibantools.ts",

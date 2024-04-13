@@ -10,3 +10,4 @@ jsnext
 build
 npm-debug.log
 .log
+test.lcov
