@@ -39,13 +39,12 @@ define(["require", "exports"], function (require, exports) {
      * ibantools.isValidIBAN('CH4431999123000889012', { allowQRIBAN: false });
      * ```
      */
-    function isValidIBAN(iban, validationOptions) {
-        if (validationOptions === void 0) { validationOptions = { allowQRIBAN: true }; }
+    function isValidIBAN(iban, validationOptions = { allowQRIBAN: true }) {
         if (iban === undefined || iban === null)
             return false;
-        var reg = new RegExp('^[0-9]{2}$', '');
-        var countryCode = iban.slice(0, 2);
-        var spec = exports.countrySpecs[countryCode];
+        const reg = new RegExp('^[0-9]{2}$', '');
+        const countryCode = iban.slice(0, 2);
+        const spec = exports.countrySpecs[countryCode];
         if (spec === undefined || spec.bban_regexp === undefined || spec.bban_regexp === null || spec.chars === undefined)
             return false;
         return (spec.chars === iban.length &&
@@ -85,11 +84,10 @@ define(["require", "exports"], function (require, exports) {
      * ibantools.validateIBAN('CH4431999123000889012', { allowQRIBAN: false });
      * ```
      */
-    function validateIBAN(iban, validationOptions) {
-        if (validationOptions === void 0) { validationOptions = { allowQRIBAN: true }; }
-        var result = { errorCodes: [], valid: true };
+    function validateIBAN(iban, validationOptions = { allowQRIBAN: true }) {
+        const result = { errorCodes: [], valid: true };
         if (iban !== undefined && iban !== null && iban !== '') {
-            var spec = exports.countrySpecs[iban.slice(0, 2)];
+            const spec = exports.countrySpecs[iban.slice(0, 2)];
             if (!spec || !(spec.bban_regexp || spec.chars)) {
                 result.valid = false;
                 result.errorCodes.push(ValidationErrorsIBAN.NoIBANCountry);
@@ -107,7 +105,7 @@ define(["require", "exports"], function (require, exports) {
                 result.valid = false;
                 result.errorCodes.push(ValidationErrorsIBAN.WrongAccountBankBranchChecksum);
             }
-            var reg = new RegExp('^[0-9]{2}$', '');
+            const reg = new RegExp('^[0-9]{2}$', '');
             if (!reg.test(iban.slice(2, 4))) {
                 result.valid = false;
                 result.errorCodes.push(ValidationErrorsIBAN.ChecksumNotNumber);
@@ -143,7 +141,7 @@ define(["require", "exports"], function (require, exports) {
     function isValidBBAN(bban, countryCode) {
         if (bban === undefined || bban === null || countryCode === undefined || countryCode === null)
             return false;
-        var spec = exports.countrySpecs[countryCode];
+        const spec = exports.countrySpecs[countryCode];
         if (spec === undefined ||
             spec === null ||
             spec.bban_regexp === undefined ||
@@ -173,7 +171,7 @@ define(["require", "exports"], function (require, exports) {
      */
     function isSEPACountry(countryCode) {
         if (countryCode !== undefined && countryCode !== null) {
-            var spec = exports.countrySpecs[countryCode];
+            const spec = exports.countrySpecs[countryCode];
             if (spec !== undefined) {
                 return spec.SEPA ? spec.SEPA : false;
             }
@@ -195,11 +193,11 @@ define(["require", "exports"], function (require, exports) {
     function isQRIBAN(iban) {
         if (iban === undefined || iban === null)
             return false;
-        var countryCode = iban.slice(0, 2);
-        var QRIBANCountries = ['LI', 'CH'];
+        const countryCode = iban.slice(0, 2);
+        const QRIBANCountries = ['LI', 'CH'];
         if (!QRIBANCountries.includes(countryCode))
             return false;
-        var reg = new RegExp('^3[0-1]{1}[0-9]{3}$', '');
+        const reg = new RegExp('^3[0-1]{1}[0-9]{3}$', '');
         return reg.test(iban.slice(4, 9));
     }
     exports.isQRIBAN = isQRIBAN;
@@ -212,11 +210,11 @@ define(["require", "exports"], function (require, exports) {
      * ```
      */
     function composeIBAN(params) {
-        var formated_bban = electronicFormatIBAN(params.bban) || '';
+        const formated_bban = electronicFormatIBAN(params.bban) || '';
         if (params.countryCode === null || params.countryCode === undefined) {
             return null;
         }
-        var spec = exports.countrySpecs[params.countryCode];
+        const spec = exports.countrySpecs[params.countryCode];
         if (formated_bban !== '' &&
             spec !== undefined &&
             spec.chars &&
@@ -225,7 +223,7 @@ define(["require", "exports"], function (require, exports) {
             spec.bban_regexp &&
             spec.bban_regexp !== null &&
             checkFormatBBAN(formated_bban, spec.bban_regexp)) {
-            var checksom = mod9710Iban(params.countryCode + '00' + formated_bban);
+            const checksom = mod9710Iban(params.countryCode + '00' + formated_bban);
             return params.countryCode + ('0' + (98 - checksom)).slice(-2) + formated_bban;
         }
         return null;
@@ -239,30 +237,30 @@ define(["require", "exports"], function (require, exports) {
      * ```
      */
     function extractIBAN(iban) {
-        var result = {};
-        var eFormatIBAN = electronicFormatIBAN(iban);
+        const result = {};
+        const eFormatIBAN = electronicFormatIBAN(iban);
         result.iban = eFormatIBAN || iban;
         if (!!eFormatIBAN && isValidIBAN(eFormatIBAN)) {
             result.bban = eFormatIBAN.slice(4);
             result.countryCode = eFormatIBAN.slice(0, 2);
             result.valid = true;
-            var spec = exports.countrySpecs[result.countryCode];
+            const spec = exports.countrySpecs[result.countryCode];
             if (spec.account_indentifier) {
-                var ac = spec.account_indentifier.split('-');
-                var starting = parseInt(ac[0]);
-                var ending = parseInt(ac[1]);
+                const ac = spec.account_indentifier.split('-');
+                const starting = parseInt(ac[0]);
+                const ending = parseInt(ac[1]);
                 result.accountNumber = result.iban.slice(starting, ending + 1);
             }
             if (spec.bank_identifier) {
-                var ac = spec.bank_identifier.split('-');
-                var starting = parseInt(ac[0]);
-                var ending = parseInt(ac[1]);
+                const ac = spec.bank_identifier.split('-');
+                const starting = parseInt(ac[0]);
+                const ending = parseInt(ac[1]);
                 result.bankIdentifier = result.bban.slice(starting, ending + 1);
             }
             if (spec.branch_indentifier) {
-                var ac = spec.branch_indentifier.split('-');
-                var starting = parseInt(ac[0]);
-                var ending = parseInt(ac[1]);
+                const ac = spec.branch_indentifier.split('-');
+                const starting = parseInt(ac[0]);
+                const ending = parseInt(ac[1]);
                 result.branchIdentifier = result.bban.slice(starting, ending + 1);
             }
         }
@@ -278,7 +276,7 @@ define(["require", "exports"], function (require, exports) {
      * @ignore
      */
     function checkFormatBBAN(bban, bformat) {
-        var reg = new RegExp(bformat, '');
+        const reg = new RegExp(bformat, '');
         return reg.test(bban);
     }
     /**
@@ -317,7 +315,7 @@ define(["require", "exports"], function (require, exports) {
         if (separator === undefined || separator === null) {
             separator = ' ';
         }
-        var electronic_iban = electronicFormatIBAN(iban);
+        const electronic_iban = electronicFormatIBAN(iban);
         /* istanbul ignore if */
         if (electronic_iban === null) {
             return null;
@@ -331,9 +329,9 @@ define(["require", "exports"], function (require, exports) {
      * @ignore
      */
     function isValidIBANChecksum(iban) {
-        var countryCode = iban.slice(0, 2);
-        var providedChecksum = parseInt(iban.slice(2, 4), 10);
-        var bban = iban.slice(4);
+        const countryCode = iban.slice(0, 2);
+        const providedChecksum = parseInt(iban.slice(2, 4), 10);
+        const bban = iban.slice(4);
         // Wikipedia[validating_iban] says there are a specif way to check if a IBAN is valid but
         // it. It says 'If the remainder is 1, the check digit test is passed and the
         // IBAN might be valid.'. might, MIGHT!
@@ -351,8 +349,8 @@ define(["require", "exports"], function (require, exports) {
         //
         // [validating_iban][https://en.wikipedia.org/wiki/International_Bank_Account_Number#Validating_the_IBAN]
         // [generating-iban-check][https://en.wikipedia.org/wiki/International_Bank_Account_Number#Generating_IBAN_check_digits]
-        var validationString = replaceCharaterWithCode("".concat(bban).concat(countryCode, "00"));
-        var rest = mod9710(validationString);
+        const validationString = replaceCharaterWithCode(`${bban}${countryCode}00`);
+        const rest = mod9710(validationString);
         return 98 - rest === providedChecksum;
     }
     /**
@@ -366,8 +364,8 @@ define(["require", "exports"], function (require, exports) {
         // https://jsbench.me/ttkzgsekae/1
         return str
             .split('')
-            .map(function (c) {
-            var code = c.charCodeAt(0);
+            .map((c) => {
+            const code = c.charCodeAt(0);
             return code >= 65 ? (code - 55).toString() : c;
         })
             .join('');
@@ -403,9 +401,9 @@ define(["require", "exports"], function (require, exports) {
      * ```
      */
     function getCountrySpecifications() {
-        var countyMap = {};
-        for (var countyCode in exports.countrySpecs) {
-            var county = exports.countrySpecs[countyCode];
+        const countyMap = {};
+        for (const countyCode in exports.countrySpecs) {
+            const county = exports.countrySpecs[countyCode];
             countyMap[countyCode] = {
                 chars: county.chars || null,
                 bban_regexp: county.bban_regexp || null,
@@ -437,8 +435,8 @@ define(["require", "exports"], function (require, exports) {
         if (!bic) {
             return false;
         }
-        var reg = new RegExp('^[a-zA-Z]{6}[a-zA-Z0-9]{2}([a-zA-Z0-9]{3})?$', '');
-        var spec = exports.countrySpecs[bic.toUpperCase().slice(4, 6)];
+        const reg = new RegExp('^[a-zA-Z]{6}[a-zA-Z0-9]{2}([a-zA-Z0-9]{3})?$', '');
+        const spec = exports.countrySpecs[bic.toUpperCase().slice(4, 6)];
         return reg.test(bic) && spec !== undefined;
     }
     exports.isValidBIC = isValidBIC;
@@ -459,15 +457,15 @@ define(["require", "exports"], function (require, exports) {
      * ```
      */
     function validateBIC(bic) {
-        var result = { errorCodes: [], valid: true };
+        const result = { errorCodes: [], valid: true };
         if (bic !== undefined && bic !== null && bic !== '') {
-            var spec = exports.countrySpecs[bic.toUpperCase().slice(4, 6)];
+            const spec = exports.countrySpecs[bic.toUpperCase().slice(4, 6)];
             if (spec === undefined) {
                 result.valid = false;
                 result.errorCodes.push(ValidationErrorsBIC.NoBICCountry);
             }
             else {
-                var reg = new RegExp('^[a-zA-Z]{6}[a-zA-Z0-9]{2}([a-zA-Z0-9]{3})?$', '');
+                const reg = new RegExp('^[a-zA-Z]{6}[a-zA-Z0-9]{2}([a-zA-Z0-9]{3})?$', '');
                 if (!reg.test(bic)) {
                     result.valid = false;
                     result.errorCodes.push(ValidationErrorsBIC.WrongBICFormat);
@@ -489,8 +487,8 @@ define(["require", "exports"], function (require, exports) {
      * ```
      */
     function extractBIC(inputBic) {
-        var result = {};
-        var bic = inputBic.toUpperCase();
+        const result = {};
+        const bic = inputBic.toUpperCase();
         if (isValidBIC(bic)) {
             result.bankCode = bic.slice(0, 4);
             result.countryCode = bic.slice(4, 6);
@@ -510,16 +508,16 @@ define(["require", "exports"], function (require, exports) {
      *
      * @ignore
      */
-    var checkNorwayBBAN = function (bban) {
-        var weights = [5, 4, 3, 2, 7, 6, 5, 4, 3, 2];
-        var bbanWithoutSpacesAndPeriods = bban.replace(/[\s.]+/g, '');
-        var controlDigit = parseInt(bbanWithoutSpacesAndPeriods.charAt(10), 10);
-        var bbanWithoutControlDigit = bbanWithoutSpacesAndPeriods.substring(0, 10);
-        var sum = 0;
-        for (var index = 0; index < 10; index++) {
+    const checkNorwayBBAN = (bban) => {
+        const weights = [5, 4, 3, 2, 7, 6, 5, 4, 3, 2];
+        const bbanWithoutSpacesAndPeriods = bban.replace(/[\s.]+/g, '');
+        const controlDigit = parseInt(bbanWithoutSpacesAndPeriods.charAt(10), 10);
+        const bbanWithoutControlDigit = bbanWithoutSpacesAndPeriods.substring(0, 10);
+        let sum = 0;
+        for (let index = 0; index < 10; index++) {
             sum += parseInt(bbanWithoutControlDigit.charAt(index), 10) * weights[index];
         }
-        var remainder = sum % 11;
+        const remainder = sum % 11;
         return controlDigit === (remainder === 0 ? 0 : 11 - remainder);
     };
     /**
@@ -527,11 +525,11 @@ define(["require", "exports"], function (require, exports) {
      *
      * @ignore
      */
-    var checkBelgianBBAN = function (bban) {
-        var stripped = bban.replace(/[\s.]+/g, '');
-        var checkingPart = parseInt(stripped.substring(0, stripped.length - 2), 10);
-        var checksum = parseInt(stripped.substring(stripped.length - 2, stripped.length), 10);
-        var remainder = checkingPart % 97 === 0 ? 97 : checkingPart % 97;
+    const checkBelgianBBAN = (bban) => {
+        const stripped = bban.replace(/[\s.]+/g, '');
+        const checkingPart = parseInt(stripped.substring(0, stripped.length - 2), 10);
+        const checksum = parseInt(stripped.substring(stripped.length - 2, stripped.length), 10);
+        const remainder = checkingPart % 97 === 0 ? 97 : checkingPart % 97;
         return remainder === checksum;
     };
     /**
@@ -539,15 +537,15 @@ define(["require", "exports"], function (require, exports) {
      *
      * @ignore
      */
-    var mod9710 = function (validationString) {
+    const mod9710 = (validationString) => {
         while (validationString.length > 2) {
             // > Any computer programming language or software package that is used to compute D
             // > mod 97 directly must have the ability to handle integers of more than 30 digits.
             // > In practice, this can only be done by software that either supports
             // > arbitrary-precision arithmetic or that can handle 219-bit (unsigned) integers
             // https://en.wikipedia.org/wiki/International_Bank_Account_Number#Modulo_operation_on_IBAN
-            var part = validationString.slice(0, 6);
-            var partInt = parseInt(part, 10);
+            const part = validationString.slice(0, 6);
+            const partInt = parseInt(part, 10);
             if (isNaN(partInt)) {
                 return NaN;
             }
@@ -561,9 +559,9 @@ define(["require", "exports"], function (require, exports) {
      *
      * @ignore
      */
-    var checkMod9710BBAN = function (bban) {
-        var stripped = bban.replace(/[\s.]+/g, '');
-        var reminder = mod9710(stripped);
+    const checkMod9710BBAN = (bban) => {
+        const stripped = bban.replace(/[\s.]+/g, '');
+        const reminder = mod9710(stripped);
         return reminder === 1;
     };
     /**
@@ -571,15 +569,15 @@ define(["require", "exports"], function (require, exports) {
      *
      * @ignore
      */
-    var checkPolandBBAN = function (bban) {
-        var weights = [3, 9, 7, 1, 3, 9, 7];
-        var controlDigit = parseInt(bban.charAt(7), 10);
-        var toCheck = bban.substring(0, 7);
-        var sum = 0;
-        for (var index = 0; index < 7; index++) {
+    const checkPolandBBAN = (bban) => {
+        const weights = [3, 9, 7, 1, 3, 9, 7];
+        const controlDigit = parseInt(bban.charAt(7), 10);
+        const toCheck = bban.substring(0, 7);
+        let sum = 0;
+        for (let index = 0; index < 7; index++) {
             sum += parseInt(toCheck.charAt(index), 10) * weights[index];
         }
-        var remainder = sum % 10;
+        const remainder = sum % 10;
         return controlDigit === (remainder === 0 ? 0 : 10 - remainder);
     };
     /**
@@ -587,23 +585,23 @@ define(["require", "exports"], function (require, exports) {
      *
      * @ignore
      */
-    var checkSpainBBAN = function (bban) {
-        var weightsBankBranch = [4, 8, 5, 10, 9, 7, 3, 6];
-        var weightsAccount = [1, 2, 4, 8, 5, 10, 9, 7, 3, 6];
-        var controlBankBranch = parseInt(bban.charAt(8), 10);
-        var controlAccount = parseInt(bban.charAt(9), 10);
-        var bankBranch = bban.substring(0, 8);
-        var account = bban.substring(10, 20);
-        var sum = 0;
-        for (var index = 0; index < 8; index++) {
+    const checkSpainBBAN = (bban) => {
+        const weightsBankBranch = [4, 8, 5, 10, 9, 7, 3, 6];
+        const weightsAccount = [1, 2, 4, 8, 5, 10, 9, 7, 3, 6];
+        const controlBankBranch = parseInt(bban.charAt(8), 10);
+        const controlAccount = parseInt(bban.charAt(9), 10);
+        const bankBranch = bban.substring(0, 8);
+        const account = bban.substring(10, 20);
+        let sum = 0;
+        for (let index = 0; index < 8; index++) {
             sum += parseInt(bankBranch.charAt(index), 10) * weightsBankBranch[index];
         }
-        var remainder = sum % 11;
+        let remainder = sum % 11;
         if (controlBankBranch !== (remainder === 0 ? 0 : remainder === 1 ? 1 : 11 - remainder)) {
             return false;
         }
         sum = 0;
-        for (var index = 0; index < 10; index++) {
+        for (let index = 0; index < 10; index++) {
             sum += parseInt(account.charAt(index), 10) * weightsAccount[index];
         }
         remainder = sum % 11;
@@ -614,9 +612,9 @@ define(["require", "exports"], function (require, exports) {
      *
      * @ignore
      */
-    var checkMod1110 = function (toCheck, control) {
-        var nr = 10;
-        for (var index = 0; index < toCheck.length; index++) {
+    const checkMod1110 = (toCheck, control) => {
+        let nr = 10;
+        for (let index = 0; index < toCheck.length; index++) {
             nr += parseInt(toCheck.charAt(index), 10);
             if (nr % 10 !== 0) {
                 nr = nr % 10;
@@ -631,11 +629,11 @@ define(["require", "exports"], function (require, exports) {
      *
      * @ignore
      */
-    var checkCroatianBBAN = function (bban) {
-        var controlBankBranch = parseInt(bban.charAt(6), 10);
-        var controlAccount = parseInt(bban.charAt(16), 10);
-        var bankBranch = bban.substring(0, 6);
-        var account = bban.substring(7, 16);
+    const checkCroatianBBAN = (bban) => {
+        const controlBankBranch = parseInt(bban.charAt(6), 10);
+        const controlAccount = parseInt(bban.charAt(16), 10);
+        const bankBranch = bban.substring(0, 6);
+        const account = bban.substring(7, 16);
         return checkMod1110(bankBranch, controlBankBranch) && checkMod1110(account, controlAccount);
     };
     /**
@@ -643,23 +641,23 @@ define(["require", "exports"], function (require, exports) {
      *
      * @ignore
      */
-    var checkCzechAndSlovakBBAN = function (bban) {
-        var weightsPrefix = [10, 5, 8, 4, 2, 1];
-        var weightsSuffix = [6, 3, 7, 9, 10, 5, 8, 4, 2, 1];
-        var controlPrefix = parseInt(bban.charAt(9), 10);
-        var controlSuffix = parseInt(bban.charAt(19), 10);
-        var prefix = bban.substring(4, 9);
-        var suffix = bban.substring(10, 19);
-        var sum = 0;
-        for (var index = 0; index < prefix.length; index++) {
+    const checkCzechAndSlovakBBAN = (bban) => {
+        const weightsPrefix = [10, 5, 8, 4, 2, 1];
+        const weightsSuffix = [6, 3, 7, 9, 10, 5, 8, 4, 2, 1];
+        const controlPrefix = parseInt(bban.charAt(9), 10);
+        const controlSuffix = parseInt(bban.charAt(19), 10);
+        const prefix = bban.substring(4, 9);
+        const suffix = bban.substring(10, 19);
+        let sum = 0;
+        for (let index = 0; index < prefix.length; index++) {
             sum += parseInt(prefix.charAt(index), 10) * weightsPrefix[index];
         }
-        var remainder = sum % 11;
+        let remainder = sum % 11;
         if (controlPrefix !== (remainder === 0 ? 0 : remainder === 1 ? 1 : 11 - remainder)) {
             return false;
         }
         sum = 0;
-        for (var index = 0; index < suffix.length; index++) {
+        for (let index = 0; index < suffix.length; index++) {
             sum += parseInt(suffix.charAt(index), 10) * weightsSuffix[index];
         }
         remainder = sum % 11;
@@ -670,15 +668,15 @@ define(["require", "exports"], function (require, exports) {
      *
      * @ignore
      */
-    var checkEstonianBBAN = function (bban) {
-        var weights = [7, 1, 3, 7, 1, 3, 7, 1, 3, 7, 1, 3, 7];
-        var controlDigit = parseInt(bban.charAt(15), 10);
-        var toCheck = bban.substring(2, 15);
-        var sum = 0;
-        for (var index = 0; index < toCheck.length; index++) {
+    const checkEstonianBBAN = (bban) => {
+        const weights = [7, 1, 3, 7, 1, 3, 7, 1, 3, 7, 1, 3, 7];
+        const controlDigit = parseInt(bban.charAt(15), 10);
+        const toCheck = bban.substring(2, 15);
+        let sum = 0;
+        for (let index = 0; index < toCheck.length; index++) {
             sum += parseInt(toCheck.charAt(index), 10) * weights[index];
         }
-        var remainder = sum % 10;
+        const remainder = sum % 10;
         return controlDigit === (remainder === 0 ? 0 : 10 - remainder);
     };
     /**
@@ -687,11 +685,11 @@ define(["require", "exports"], function (require, exports) {
      *
      * @ignore
      */
-    var checkFrenchBBAN = function (bban) {
-        var stripped = bban.replace(/[\s.]+/g, '');
-        var normalized = Array.from(stripped);
-        for (var index = 0; index < stripped.length; index++) {
-            var c = normalized[index].charCodeAt(0);
+    const checkFrenchBBAN = (bban) => {
+        const stripped = bban.replace(/[\s.]+/g, '');
+        const normalized = Array.from(stripped);
+        for (let index = 0; index < stripped.length; index++) {
+            const c = normalized[index].charCodeAt(0);
             if (c >= 65) {
                 switch (c) {
                     case 65:
@@ -741,7 +739,7 @@ define(["require", "exports"], function (require, exports) {
                 }
             }
         }
-        var remainder = mod9710(normalized.join(''));
+        const remainder = mod9710(normalized.join(''));
         return remainder === 0;
     };
     /**
@@ -749,36 +747,36 @@ define(["require", "exports"], function (require, exports) {
      *
      * @ignore
      */
-    var checkHungarianBBAN = function (bban) {
-        var weights = [9, 7, 3, 1, 9, 7, 3, 1, 9, 7, 3, 1, 9, 7, 3];
-        var controlDigitBankBranch = parseInt(bban.charAt(7), 10);
-        var toCheckBankBranch = bban.substring(0, 7);
-        var sum = 0;
-        for (var index = 0; index < toCheckBankBranch.length; index++) {
+    const checkHungarianBBAN = (bban) => {
+        const weights = [9, 7, 3, 1, 9, 7, 3, 1, 9, 7, 3, 1, 9, 7, 3];
+        const controlDigitBankBranch = parseInt(bban.charAt(7), 10);
+        const toCheckBankBranch = bban.substring(0, 7);
+        let sum = 0;
+        for (let index = 0; index < toCheckBankBranch.length; index++) {
             sum += parseInt(toCheckBankBranch.charAt(index), 10) * weights[index];
         }
-        var remainder = sum % 10;
+        const remainder = sum % 10;
         if (controlDigitBankBranch !== (remainder === 0 ? 0 : 10 - remainder)) {
             return false;
         }
         sum = 0;
         if (bban.endsWith('00000000')) {
-            var toCheckAccount = bban.substring(8, 15);
-            var controlDigitAccount = parseInt(bban.charAt(15), 10);
-            for (var index = 0; index < toCheckAccount.length; index++) {
+            const toCheckAccount = bban.substring(8, 15);
+            const controlDigitAccount = parseInt(bban.charAt(15), 10);
+            for (let index = 0; index < toCheckAccount.length; index++) {
                 sum += parseInt(toCheckAccount.charAt(index), 10) * weights[index];
             }
-            var remainder_1 = sum % 10;
-            return controlDigitAccount === (remainder_1 === 0 ? 0 : 10 - remainder_1);
+            const remainder = sum % 10;
+            return controlDigitAccount === (remainder === 0 ? 0 : 10 - remainder);
         }
         else {
-            var toCheckAccount = bban.substring(8, 23);
-            var controlDigitAccount = parseInt(bban.charAt(23), 10);
-            for (var index = 0; index < toCheckAccount.length; index++) {
+            const toCheckAccount = bban.substring(8, 23);
+            const controlDigitAccount = parseInt(bban.charAt(23), 10);
+            for (let index = 0; index < toCheckAccount.length; index++) {
                 sum += parseInt(toCheckAccount.charAt(index), 10) * weights[index];
             }
-            var remainder_2 = sum % 10;
-            return controlDigitAccount === (remainder_2 === 0 ? 0 : 10 - remainder_2);
+            const remainder = sum % 10;
+            return controlDigitAccount === (remainder === 0 ? 0 : 10 - remainder);
         }
     };
     /**
@@ -787,7 +785,7 @@ define(["require", "exports"], function (require, exports) {
      * If `bban_validation_func` already exists for the corresponding country,
      * it will be overwritten.
      */
-    var setCountryBBANValidation = function (country, func) {
+    const setCountryBBANValidation = (country, func) => {
         if (typeof exports.countrySpecs[country] === 'undefined') {
             return false;
         }

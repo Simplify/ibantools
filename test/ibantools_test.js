@@ -6,10 +6,8 @@
 
 'use strict';
 
-/* eslint @typescript-eslint/no-var-requires: "off" */
-const chai = require('chai');
-const expect = chai.expect;
-const iban = require('../build/ibantools');
+import { expect } from 'chai';
+import * as iban from '../jsnext/ibantools.js';
 
 describe('IBANTools', function() {
   describe('When calling isValidIBAN()', function() {
