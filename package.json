@@ -13,7 +13,7 @@
   "sideEffects": false,
   "homepage": "https://github.com/Simplify/ibantools",
   "bugs": "https://github.com/Simplify/ibantools/issues",
-  "main": "build/ibantools.js",
+  "main": "jsnext/ibantools.js",
   "type": "module",
   "module": "jsnext/ibantools.js",
   "jspm": {
@@ -43,7 +43,7 @@
     "build-bower": "rm -rf dist && npx tsc src/*.ts --declaration --target es2017 --module amd --outDir ./dist/",
     "build-module": "rm -rf jsnext && npx tsc src/*.ts --target es2017 --module es2020 --outDir ./jsnext/",
     "test": "npm run build && mocha 'test/**/*.js'",
-    "coverage": "nyc mocha && nyc report --reporter=text-lcov > test.lcov",
+    "coverage": "c8 mocha && nyc report --reporter=text-lcov > test.lcov",
     "lint": "eslint 'src/**/*.ts' 'test/**/*.js'",
     "prepare": "npm run build-node",
     "docs": "typedoc src/ibantools.ts",
@@ -57,6 +57,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^7.6",
     "@typescript-eslint/parser": "^7.6",
+    "c8": "^9.1.0",
     "chai": "^5.0.10",
     "coveralls-next": "^4.2.0",
     "docdash": "^2.0.0",
@@ -65,7 +66,6 @@
     "eslint-plugin-prettier": "^5.0.0",
     "mocha": "^10.0.0",
     "mocha-lcov-reporter": "^1.2.0",
-    "nyc": "^15.1.0",
     "prettier": "^3.0.3",
     "requirejs": "^2.3.6",
     "typedoc": "^0.25.1",
