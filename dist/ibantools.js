@@ -987,7 +987,7 @@ define(["require", "exports"], function (require, exports) {
             IBANRegistry: true,
             SEPA: true,
             bank_identifier: '0-7',
-            account_indentifier: '13-22',
+            account_indentifier: '12-22',
         },
         DJ: {
             chars: 27,
