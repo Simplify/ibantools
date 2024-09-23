@@ -750,6 +750,28 @@ describe('IBANTools', function() {
     });
   });
 
+  describe('When calling extractIBAN() with valid German IBAN', function () {
+    var ext = iban.extractIBAN('DE75512108001245126199');
+    it('valid should be true', function () {
+      expect(ext.valid).to.be.true;
+    });
+    it('IBAN should be DE75512108001245126199', function () {
+      expect(ext.iban).to.equal('DE75512108001245126199');
+    });
+    it('BBAN should be 512108001245126199', function () {
+      expect(ext.bban).to.equal('512108001245126199');
+    });
+    it('countryCode should be DE', function () {
+      expect(ext.countryCode).to.equal('DE');
+    });
+    it('accountNumber should be 1245126199', function () {
+      expect(ext.accountNumber).to.equal('1245126199');
+    });
+    it('bankIdentifier should be 51210800', function () {
+      expect(ext.bankIdentifier).to.equal('51210800');
+    });
+  });
+
   describe('When calling extractIBAN() with invalid IBAN', function() {
     var ext = iban.extractIBAN('BR970036030510009795493P1');
     it('valid should be false', function() {
