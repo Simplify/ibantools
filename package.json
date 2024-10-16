@@ -68,7 +68,7 @@
     "mocha-lcov-reporter": "^1.2.0",
     "prettier": "^3.0.3",
     "requirejs": "^2.3.6",
-    "typedoc": "^0.25.1",
+    "typedoc": "^0.26.10",
     "typescript": "^5.2"
   },
   "resolutions": {
