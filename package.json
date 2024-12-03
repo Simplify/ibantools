@@ -56,7 +56,7 @@
   "license": "MIT or MPL-2.0",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^7.6",
-    "@typescript-eslint/parser": "^7.6",
+    "@typescript-eslint/parser": "^8.17",
     "c8": "^10.1.2",
     "chai": "^5.0.10",
     "coveralls-next": "^4.2.0",
