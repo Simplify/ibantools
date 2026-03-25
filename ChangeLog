@@ -1,3 +1,6 @@
+2026-03-25  Pablo
+        * Added AL, ME, MK, MD, RS, GG, JE, IM, XK to SEPA countries
+
 2024-04-13  Saša Jovanić <sasa@simplify.ba>
         * Upgraded several npm packages
         * Moved to new ts compiler targets
