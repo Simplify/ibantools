@@ -19,7 +19,20 @@ define(["require", "exports"], function (require, exports) {
      */
     'use strict';
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.countrySpecs = exports.setCountryBBANValidation = exports.extractBIC = exports.validateBIC = exports.ValidationErrorsBIC = exports.isValidBIC = exports.getCountrySpecifications = exports.friendlyFormatIBAN = exports.electronicFormatIBAN = exports.extractIBAN = exports.composeIBAN = exports.isQRIBAN = exports.isSEPACountry = exports.isValidBBAN = exports.validateIBAN = exports.ValidationErrorsIBAN = exports.isValidIBAN = void 0;
+    exports.countrySpecs = exports.setCountryBBANValidation = exports.ValidationErrorsBIC = exports.ValidationErrorsIBAN = void 0;
+    exports.isValidIBAN = isValidIBAN;
+    exports.validateIBAN = validateIBAN;
+    exports.isValidBBAN = isValidBBAN;
+    exports.isSEPACountry = isSEPACountry;
+    exports.isQRIBAN = isQRIBAN;
+    exports.composeIBAN = composeIBAN;
+    exports.extractIBAN = extractIBAN;
+    exports.electronicFormatIBAN = electronicFormatIBAN;
+    exports.friendlyFormatIBAN = friendlyFormatIBAN;
+    exports.getCountrySpecifications = getCountrySpecifications;
+    exports.isValidBIC = isValidBIC;
+    exports.validateBIC = validateBIC;
+    exports.extractBIC = extractBIC;
     /**
      * Validate IBAN
      * ```
@@ -53,7 +66,6 @@ define(["require", "exports"], function (require, exports) {
             isValidIBANChecksum(iban) &&
             (validationOptions.allowQRIBAN || !isQRIBAN(iban)));
     }
-    exports.isValidIBAN = isValidIBAN;
     /**
      * IBAM validation errors
      */
@@ -125,7 +137,6 @@ define(["require", "exports"], function (require, exports) {
         }
         return result;
     }
-    exports.validateIBAN = validateIBAN;
     /**
      * Validate BBAN
      *
@@ -157,7 +168,6 @@ define(["require", "exports"], function (require, exports) {
         }
         return false;
     }
-    exports.isValidBBAN = isValidBBAN;
     /**
      * Validate if country code is from a SEPA country
      * ```
@@ -178,7 +188,6 @@ define(["require", "exports"], function (require, exports) {
         }
         return false;
     }
-    exports.isSEPACountry = isSEPACountry;
     /**
      * Check if IBAN is QR-IBAN
      * ```
@@ -200,7 +209,6 @@ define(["require", "exports"], function (require, exports) {
         const reg = new RegExp('^3[0-1]{1}[0-9]{3}$', '');
         return reg.test(iban.slice(4, 9));
     }
-    exports.isQRIBAN = isQRIBAN;
     /**
      * composeIBAN
      *
@@ -228,7 +236,6 @@ define(["require", "exports"], function (require, exports) {
         }
         return null;
     }
-    exports.composeIBAN = composeIBAN;
     /**
      * extractIBAN
      * ```
@@ -269,7 +276,6 @@ define(["require", "exports"], function (require, exports) {
         }
         return result;
     }
-    exports.extractIBAN = extractIBAN;
     /**
      * Check BBAN format
      *
@@ -294,7 +300,6 @@ define(["require", "exports"], function (require, exports) {
         }
         return iban.replace(/[-\ ]/g, '').toUpperCase();
     }
-    exports.electronicFormatIBAN = electronicFormatIBAN;
     /**
      * Get IBAN in friendly format (separated after every 4 characters)
      * IBAN validation is not performed.
@@ -322,7 +327,6 @@ define(["require", "exports"], function (require, exports) {
         }
         return electronic_iban.replace(/(.{4})(?!$)/g, '$1' + separator);
     }
-    exports.friendlyFormatIBAN = friendlyFormatIBAN;
     /**
      * Calculate checksum of IBAN and compares it with checksum provided in IBAN Registry
      *
@@ -413,7 +417,6 @@ define(["require", "exports"], function (require, exports) {
         }
         return countyMap;
     }
-    exports.getCountrySpecifications = getCountrySpecifications;
     /**
      * Validate BIC/SWIFT
      *
@@ -439,7 +442,6 @@ define(["require", "exports"], function (require, exports) {
         const spec = exports.countrySpecs[bic.toUpperCase().slice(4, 6)];
         return reg.test(bic) && spec !== undefined;
     }
-    exports.isValidBIC = isValidBIC;
     /**
      * BIC validation errors
      */
@@ -478,7 +480,6 @@ define(["require", "exports"], function (require, exports) {
         }
         return result;
     }
-    exports.validateBIC = validateBIC;
     /**
      * extractBIC
      * ```
@@ -502,7 +503,6 @@ define(["require", "exports"], function (require, exports) {
         }
         return result;
     }
-    exports.extractBIC = extractBIC;
     /**
      * Used for Norway BBAN check
      *
