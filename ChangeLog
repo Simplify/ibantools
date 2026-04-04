@@ -1,3 +1,9 @@
+2026-04-04  Saša Jovanić <sasa@simplify.ba>
+	      * Version 4.5.2
+        * Fixed issue with extraction of German IBAN (#550)
+        * Upgraded npm packages
+        * Fixed issues with outdated GitHub actions
+
 2024-04-13  Saša Jovanić <sasa@simplify.ba>
         * Upgraded several npm packages
         * Moved to new ts compiler targets
