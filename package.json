@@ -59,7 +59,7 @@
     "@eslint/js": "^10.0.1",
     "@typescript-eslint/eslint-plugin": "^8.58",
     "@typescript-eslint/parser": "^8.58",
-    "c8": "^10.1.2",
+    "c8": "^11.0.0",
     "chai": "^5.0.10",
     "coveralls-next": "^6.0.1",
     "docdash": "^2.0.0",
