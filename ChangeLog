@@ -1,3 +1,10 @@
+2026-04-09  Saša Jovanić <sasa@simplify.ba>
+	      * Version 4.5.3
+        * Fixed issue with pointing to CJS file (#670)
+        * Added YE
+        * Fixed account number extraction for several countries
+        * Upgraded npm packages
+
 2026-04-04  Saša Jovanić <sasa@simplify.ba>
 	      * Version 4.5.2
         * Fixed issue with extraction of German IBAN (#550)
