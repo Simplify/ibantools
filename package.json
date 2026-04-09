@@ -39,9 +39,9 @@
   },
   "scripts": {
     "build": "npm run build-node && npm run build-bower && npm run build-module",
-    "build-node": "rm -rf build && npx tsc src/*.ts --declaration --target es2017 --module commonjs --outDir ./build/",
-    "build-bower": "rm -rf dist && npx tsc src/*.ts --declaration --target es2017 --module amd --outDir ./dist/",
-    "build-module": "rm -rf jsnext && npx tsc src/*.ts --target es2017 --module es2020 --outDir ./jsnext/",
+    "build-node": "rm -rf build && npx tsc --declaration --target es2017 --module commonjs --outDir ./build/",
+    "build-bower": "rm -rf dist && npx tsc --declaration --target es2017 --module amd --outDir ./dist/",
+    "build-module": "rm -rf jsnext && npx tsc --target es2017 --module es2020 --outDir ./jsnext/",
     "test": "npm run build && mocha 'test/**/*.js'",
     "coverage": "npm run build && c8 mocha && c8 report --reporter=text-lcov > test.lcov",
     "lint": "eslint 'src/**/*.ts' 'test/**/*.js'",

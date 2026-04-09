@@ -8,11 +8,13 @@
     "removeComments": true,
     "experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
-    "rootDir": ".",
-    "sourceMap": true,
+    "rootDir": "src/",
+    "sourceMap": false,
     "listFiles": true,
     "newLine": "LF",
-    "noEmitOnError": true
+    "noEmitOnError": true,
+    "removeComments": false,
+    "ignoreDeprecations": "6.0"
   },
   "filesGlob": [
     "./**/*.ts",
