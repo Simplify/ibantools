@@ -324,6 +324,9 @@ describe('IBANTools', function() {
     it('with valid OM IBAN should return true', function() {
       return expect(iban.isValidIBAN('OM810180000001299123456')).to.be.true;
     });
+    it('with valid YE IBAN should return true', function() {
+      return expect(iban.isValidIBAN('YE15CBYE0001018861234567891234')).to.be.true;
+    });
   });
 
   describe('When calling validateIBAN()', function() {
@@ -831,6 +834,60 @@ describe('IBANTools', function() {
     });
     it('branchIdentifier should be 1500', function() {
       return expect(ext.branchIdentifier).to.equal('1500');
+    });
+  });
+
+  describe('When calling extractIBAN() with valid IBAN from Yemen', function() {
+    var ext = iban.extractIBAN('YE15CBYE0001018861234567891234');
+    it('valid should be true', function() {
+      return expect(ext.valid).to.be.true;
+    });
+    it('IBAN should be YE15CBYE0001018861234567891234', function() {
+      return expect(ext.iban).to.equal('YE15CBYE0001018861234567891234');
+    });
+    it('BBAN should be CBYE0001018861234567891234', function() {
+      return expect(ext.bban).to.equal('CBYE0001018861234567891234');
+    });
+    it('countryCode should be YE', function() {
+      return expect(ext.countryCode).to.equal('YE');
+    });
+    it('bankIdentifier should be CBYE', function() {
+      return expect(ext.bankIdentifier).to.equal('CBYE');
+    });
+    it('branchIdentifier should be 0001', function() {
+      return expect(ext.branchIdentifier).to.equal('0001');
+    });
+  });
+
+  describe('When calling extractIBAN() with valid IBAN from Iceland', function() {
+    var ext = iban.extractIBAN('IS140159260076545510730339');
+    it('valid should be true', function() {
+      return expect(ext.valid).to.be.true;
+    });
+    it('accountIdentifier should be 260076545510730339', function() {
+      return expect(ext.accountNumber).to.equal('260076545510730339');
+    });
+    it('bankIdentifier should be 01', function() {
+      return expect(ext.bankIdentifier).to.equal('01');
+    });
+    it('branchIdentifier should be 59', function() {
+      return expect(ext.branchIdentifier).to.equal('59');
+    });
+  });
+
+  describe('When calling extractIBAN() with valid IBAN from Andora', function() {
+    var ext = iban.extractIBAN('AD1200012030200359100100');
+    it('valid should be true', function() {
+      return expect(ext.valid).to.be.true;
+    });
+    it('accountIdentifier should be 200359100100', function() {
+      return expect(ext.accountNumber).to.equal('200359100100');
+    });
+    it('bankIdentifier should be 0001', function() {
+      return expect(ext.bankIdentifier).to.equal('0001');
+    });
+    it('branchIdentifier should be 2030', function() {
+      return expect(ext.branchIdentifier).to.equal('2030');
     });
   });
 
