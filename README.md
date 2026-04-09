@@ -45,6 +45,8 @@ $ npm install ibantools
 $ bower install ibantools
 ```
 
+Note that Bower package will not be generated any more after TypeScript 7 release.
+
 ## Usage
 
 See [full documentation](http://simplify.github.io/ibantools) with examples on Github pages.
@@ -112,4 +114,3 @@ This work is dual-licensed under MIT and MPL-2.0.
 You can choose between one of them if you use this work.
 
 `SPDX-License-Identifier: MIT OR MPL-2.0`
-
