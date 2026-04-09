@@ -71,7 +71,7 @@
     "prettier": "^3.0.3",
     "requirejs": "^2.3.6",
     "typedoc": "^0.28.18",
-    "typescript": "^5.2"
+    "typescript": "^6.0"
   },
   "resolutions": {
     "source-map": "^0.8.0-beta.0"
