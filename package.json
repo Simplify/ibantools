@@ -13,9 +13,16 @@
   "sideEffects": false,
   "homepage": "https://github.com/Simplify/ibantools",
   "bugs": "https://github.com/Simplify/ibantools/issues",
-  "main": "build/ibantools.js",
+  "main": "build/ibantools.cjs",
   "type": "module",
   "module": "jsnext/ibantools.js",
+  "exports": {
+    ".": {
+      "types": "./build/ibantools.d.ts",
+      "import": "./jsnext/ibantools.js",
+      "require": "./build/ibantools.cjs"
+    }
+  },
   "jspm": {
     "main": "jsnext/ibantools.js",
     "format": "esm"
@@ -39,7 +46,7 @@
   },
   "scripts": {
     "build": "npm run build-node && npm run build-bower && npm run build-module",
-    "build-node": "rm -rf build && npx tsc --declaration --target es2017 --module commonjs --outDir ./build/",
+    "build-node": "rm -rf build && npx tsc --declaration --target es2017 --module commonjs --outDir ./build/ && cp ./build/ibantools.js ./build/ibantools.cjs",
     "build-bower": "rm -rf dist && npx tsc --declaration --target es2017 --module amd --outDir ./dist/",
     "build-module": "rm -rf jsnext && npx tsc --target es2017 --module es2020 --outDir ./jsnext/",
     "test": "npm run build && mocha 'test/**/*.js'",
