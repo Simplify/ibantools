@@ -1038,7 +1038,7 @@ export const countrySpecs: CountryMapInternal = {
   BW: {},
   BY: {
     chars: 28,
-    bban_regexp: '^[A-Z]{4}[0-9]{4}[A-Z0-9]{16}$',
+    bban_regexp: '^[A-Z0-9]{4}[0-9]{4}[A-Z0-9]{16}$',
     IBANRegistry: true,
     bank_identifier: '0-3',
   },

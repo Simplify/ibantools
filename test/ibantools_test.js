@@ -33,6 +33,9 @@ describe('IBANTools', function() {
     it('with valid BY IBAN should return true', function() {
       return expect(iban.isValidIBAN('BY13NBRB3600900000002Z00AB00')).to.be.true;
     });
+    it('with valid BY IBAN whose bank code contains a digit should return true', function() {
+      return expect(iban.isValidIBAN('BY26AKB10100000002966000000A')).to.be.true;
+    });
     it('with valid CR IBAN should return true', function() {
       return expect(iban.isValidIBAN('CR25010200009074883572')).to.be.true;
     });
