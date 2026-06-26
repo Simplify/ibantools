@@ -552,6 +552,9 @@ describe('IBANTools', function() {
     it('with non valid country code XX return false', function() {
       return expect(iban.isSEPACountry('XX')).to.be.false;
     });
+    it('with valid country code RS should return true', function() {
+      return expect(iban.isSEPACountry('RS')).to.be.true;
+    });
   });
 
   describe('When calling extractBIC() with valid BIC ABNANL2A', function() {
