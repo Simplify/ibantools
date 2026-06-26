@@ -1652,7 +1652,9 @@ export const countrySpecs: CountryMapInternal = {
     bban_regexp: '^[0-9]{18}$',
     bban_validation_func: checkMod9710BBAN,
     IBANRegistry: true,
+    SEPA: true,
     bank_identifier: '0-2',
+    account_indentifier: '3-15',
   },
   RU: {
     chars: 33,
