@@ -93,7 +93,6 @@ export interface ValidateIBANResult {
  * ibantools.validateIBAN("NL91ABNA0417164300");
  * ```
  * ```
- * ```
  * // returns {errorCodes: [], valid: true}
  * ibantools.validateIBAN('CH4431999123000889012');
  * ```
