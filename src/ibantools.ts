@@ -328,6 +328,20 @@ function checkFormatBBAN(bban: string, bformat: string): boolean {
  * Get IBAN in electronic format (no spaces)
  * IBAN validation is not performed.
  * When non-string value for IBAN is provided, returns null.
+ *
+ * Uppercasing is ASCII only, on purpose. String.prototype.toUpperCase()
+ * applies full Unicode case mapping, and several non-ASCII characters map
+ * into A-Z, some of them turning one character into two:
+ *
+ *     'ﬁ'.toUpperCase()  // 'FI'
+ *     'ß'.toUpperCase()  // 'SS'
+ *     'ı'.toUpperCase()  // 'I'
+ *
+ * ISO 13616 permits only digits and the 26 Latin capitals, so a character
+ * outside that set has to survive to be rejected by the country's BBAN
+ * pattern. A Unicode aware uppercase would instead turn it into a string
+ * that passes, and the caller would keep the original input, which no
+ * payment rail can parse.
  * ```
  * // returns "NL91ABNA0417164300"
  * ibantools.electronicFormatIBAN("NL91 ABNA 0417 1643 00");
@@ -337,7 +351,7 @@ export function electronicFormatIBAN(iban?: string): string | null {
   if (typeof iban !== 'string') {
     return null;
   }
-  return iban.replace(/[-\ ]/g, '').toUpperCase();
+  return iban.replace(/[-\ ]/g, '').replace(/[a-z]/g, (char) => char.toUpperCase());
 }
 
 /**
