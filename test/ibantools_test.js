@@ -916,6 +916,39 @@ describe('IBANTools', function() {
         'BR9700360305000010009795493P1',
       );
     });
+    it('with lowercase Dutch IBAN should return NL91ABNA0417164300', function() {
+      return expect(iban.electronicFormatIBAN('nl91 abna 0417 1643 00')).to.equal('NL91ABNA0417164300');
+    });
+  });
+
+  describe('When calling electronicFormatIBAN() with non-ASCII characters', function() {
+    it('does not map U+FB01 LATIN SMALL LIGATURE FI into FI', function() {
+      return expect(iban.electronicFormatIBAN('ﬁ2112345600000785')).to.equal('ﬁ2112345600000785');
+    });
+    it('does not map U+00DF LATIN SMALL LETTER SHARP S into SS', function() {
+      return expect(iban.electronicFormatIBAN('GB77ßBK60161331926819')).to.equal('GB77ßBK60161331926819');
+    });
+    it('does not map U+0131 LATIN SMALL LETTER DOTLESS I into I', function() {
+      return expect(iban.electronicFormatIBAN('Fı2112345600000785')).to.equal('Fı2112345600000785');
+    });
+  });
+
+  describe('When calling isValidIBAN() on electronically formatted non-ASCII input', function() {
+    it('U+FB01 is not accepted as a Finnish IBAN', function() {
+      return expect(iban.isValidIBAN(iban.electronicFormatIBAN('ﬁ2112345600000785'))).to.be.false;
+    });
+    it('U+0131 is not accepted as a Finnish IBAN', function() {
+      return expect(iban.isValidIBAN(iban.electronicFormatIBAN('Fı2112345600000785'))).to.be.false;
+    });
+    it('U+00DF is not accepted inside a British bank code', function() {
+      return expect(iban.isValidIBAN(iban.electronicFormatIBAN('GB77ßBK60161331926819'))).to.be.false;
+    });
+    it('U+FB01 is not accepted inside a British bank code', function() {
+      return expect(iban.isValidIBAN(iban.electronicFormatIBAN('GB66ﬁBK60161331926819'))).to.be.false;
+    });
+    it('U+0131 is not accepted inside a British bank code', function() {
+      return expect(iban.isValidIBAN(iban.electronicFormatIBAN('GB48NWıK60161331926819'))).to.be.false;
+    });
   });
 
   describe('When calling friendlyFormatIBAN()', function() {
