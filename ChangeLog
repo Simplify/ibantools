@@ -1,3 +1,6 @@
+2026-09-05  Yash Budhia <yeshbudhia@gmail.com>
+        * Fixed account number extraction for IE, PT, ME, MU and SC (#544)
+
 2026-04-10  Saša Jovanić <sasa@simplify.ba>
 	      * Version 4.5.4
 

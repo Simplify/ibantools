@@ -875,6 +875,80 @@ describe('IBANTools', function() {
     });
   });
 
+  describe('When calling extractIBAN() with valid IBAN from Ireland', function() {
+    var ext = iban.extractIBAN('IE29AIBK93115212345678');
+    it('valid should be true', function() {
+      return expect(ext.valid).to.be.true;
+    });
+    it('accountNumber should be 12345678', function() {
+      return expect(ext.accountNumber).to.equal('12345678');
+    });
+    it('bankIdentifier should be AIBK', function() {
+      return expect(ext.bankIdentifier).to.equal('AIBK');
+    });
+    it('branchIdentifier should be 931152', function() {
+      return expect(ext.branchIdentifier).to.equal('931152');
+    });
+  });
+
+  describe('When calling extractIBAN() with valid IBAN from Portugal', function() {
+    var ext = iban.extractIBAN('PT50000201231234567890154');
+    it('valid should be true', function() {
+      return expect(ext.valid).to.be.true;
+    });
+    it('accountNumber should be 12345678901', function() {
+      return expect(ext.accountNumber).to.equal('12345678901');
+    });
+    it('bankIdentifier should be 0002', function() {
+      return expect(ext.bankIdentifier).to.equal('0002');
+    });
+  });
+
+  describe('When calling extractIBAN() with valid IBAN from Montenegro', function() {
+    var ext = iban.extractIBAN('ME25505000012345678951');
+    it('valid should be true', function() {
+      return expect(ext.valid).to.be.true;
+    });
+    it('accountNumber should be 0000123456789', function() {
+      return expect(ext.accountNumber).to.equal('0000123456789');
+    });
+    it('bankIdentifier should be 505', function() {
+      return expect(ext.bankIdentifier).to.equal('505');
+    });
+  });
+
+  describe('When calling extractIBAN() with valid IBAN from Mauritius', function() {
+    var ext = iban.extractIBAN('MU17BOMM0101101030300200000MUR');
+    it('valid should be true', function() {
+      return expect(ext.valid).to.be.true;
+    });
+    it('accountNumber should be 101030300200', function() {
+      return expect(ext.accountNumber).to.equal('101030300200');
+    });
+    it('bankIdentifier should be BOMM01', function() {
+      return expect(ext.bankIdentifier).to.equal('BOMM01');
+    });
+    it('branchIdentifier should be 01', function() {
+      return expect(ext.branchIdentifier).to.equal('01');
+    });
+  });
+
+  describe('When calling extractIBAN() with valid IBAN from Seychelles', function() {
+    var ext = iban.extractIBAN('SC18SSCB11010000000000001497USD');
+    it('valid should be true', function() {
+      return expect(ext.valid).to.be.true;
+    });
+    it('accountNumber should be 0000000000001497', function() {
+      return expect(ext.accountNumber).to.equal('0000000000001497');
+    });
+    it('bankIdentifier should be SSCB11', function() {
+      return expect(ext.bankIdentifier).to.equal('SSCB11');
+    });
+    it('branchIdentifier should be 01', function() {
+      return expect(ext.branchIdentifier).to.equal('01');
+    });
+  });
+
   describe('When calling extractIBAN() with valid IBAN from Andora', function() {
     var ext = iban.extractIBAN('AD1200012030200359100100');
     it('valid should be true', function() {
