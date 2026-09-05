@@ -1308,6 +1308,7 @@ export const countrySpecs: CountryMapInternal = {
     SEPA: true,
     branch_indentifier: '4-9',
     bank_identifier: '0-3',
+    account_indentifier: '14-21',
   },
   IL: {
     chars: 23,
@@ -1460,7 +1461,7 @@ export const countrySpecs: CountryMapInternal = {
     bban_validation_func: checkMod9710BBAN,
     IBANRegistry: true,
     bank_identifier: '0-2',
-    account_indentifier: '4-22',
+    account_indentifier: '7-19',
   },
   MF: {
     chars: 27,
@@ -1522,7 +1523,7 @@ export const countrySpecs: CountryMapInternal = {
     IBANRegistry: true,
     branch_indentifier: '6-7',
     bank_identifier: '0-5',
-    account_indentifier: '0-30',
+    account_indentifier: '12-23',
   },
   MV: {},
   MW: {},
@@ -1624,6 +1625,7 @@ export const countrySpecs: CountryMapInternal = {
     IBANRegistry: true,
     SEPA: true,
     bank_identifier: '0-3',
+    account_indentifier: '12-22',
   },
   PW: {},
   PY: {},
@@ -1677,7 +1679,7 @@ export const countrySpecs: CountryMapInternal = {
     IBANRegistry: true,
     branch_indentifier: '6-7',
     bank_identifier: '0-5',
-    account_indentifier: '12-28',
+    account_indentifier: '12-27',
   },
   SD: {
     chars: 18,
