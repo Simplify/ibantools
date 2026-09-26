@@ -243,6 +243,9 @@ describe('IBANTools', function() {
     it('with invalid CZ IBAN should return false', function() {
       return expect(iban.isValidIBAN('CZ6508000000182000145399')).to.be.false;
     });
+    it('with a Czech IBAN whose prefix is not divisible by 11 should return false', function() {
+      return expect(iban.isValidIBAN('CZ8008000000612000145399')).to.be.false;
+    });
     it('with valid EE IBAN should return true', function() {
       return expect(iban.isValidIBAN('EE443300338400100007')).to.be.true;
     });

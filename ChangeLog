@@ -1,3 +1,6 @@
+2026-09-26  Sasha Mitchell <sash.t.mitchell@gmail.com>
+        * Czech and Slovak account numbers must be divisible by 11
+
 2026-04-10  Saša Jovanić <sasa@simplify.ba>
 	      * Version 4.5.4
 

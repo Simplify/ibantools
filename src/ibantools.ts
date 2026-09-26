@@ -760,24 +760,20 @@ const checkCroatianBBAN = (bban: string): boolean => {
 const checkCzechAndSlovakBBAN = (bban: string): boolean => {
   const weightsPrefix = [10, 5, 8, 4, 2, 1];
   const weightsSuffix = [6, 3, 7, 9, 10, 5, 8, 4, 2, 1];
-  const controlPrefix = parseInt(bban.charAt(9), 10);
-  const controlSuffix = parseInt(bban.charAt(19), 10);
-  const prefix = bban.substring(4, 9);
-  const suffix = bban.substring(10, 19);
+  const prefix = bban.substring(4, 10);
+  const suffix = bban.substring(10, 20);
   let sum = 0;
   for (let index = 0; index < prefix.length; index++) {
     sum += parseInt(prefix.charAt(index), 10) * weightsPrefix[index];
   }
-  let remainder = sum % 11;
-  if (controlPrefix !== (remainder === 0 ? 0 : remainder === 1 ? 1 : 11 - remainder)) {
+  if (sum % 11 !== 0) {
     return false;
   }
   sum = 0;
   for (let index = 0; index < suffix.length; index++) {
     sum += parseInt(suffix.charAt(index), 10) * weightsSuffix[index];
   }
-  remainder = sum % 11;
-  return controlSuffix === (remainder === 0 ? 0 : remainder === 1 ? 1 : 11 - remainder);
+  return sum % 11 === 0;
 };
 
 /**
