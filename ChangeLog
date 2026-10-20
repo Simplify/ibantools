@@ -1,3 +1,7 @@
+2026-10-20  Oleh Kobeliatskyi <@poputu>
+        * Fixed bank identifier extraction for SK, SM, SO, ST, SV, TL, TN, TR, UA, VA, VG and XK
+        * Fixed script/builder.rb skipping registry values after a cell that spans two lines
+
 2026-04-10  Saša Jovanić <sasa@simplify.ba>
 	      * Version 4.5.4
 

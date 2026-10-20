@@ -775,6 +775,46 @@ describe('IBANTools', function() {
     });
   });
 
+  describe('When calling extractIBAN() with valid Ukrainian IBAN', function() {
+    var ext = iban.extractIBAN('UA213223130000026007233566001');
+    it('valid should be true', function() {
+      return expect(ext.valid).to.be.true;
+    });
+    it('BBAN should be 3223130000026007233566001', function() {
+      return expect(ext.bban).to.equal('3223130000026007233566001');
+    });
+    it('countryCode should be UA', function() {
+      return expect(ext.countryCode).to.equal('UA');
+    });
+    it('accountNumber should be 26007233566001', function() {
+      return expect(ext.accountNumber).to.equal('26007233566001');
+    });
+    it('bankIdentifier should be 322313', function() {
+      return expect(ext.bankIdentifier).to.equal('322313');
+    });
+  });
+
+  describe('When calling extractIBAN() with valid IBANs from SK, SM, SO, ST, SV, TL, TN, TR, UA, VA, VG and XK', function() {
+    [
+      ['SK3112000000198742637541', '1200'],
+      ['SM86U0322509800000000270100', '03225'],
+      ['SO211000001001000100141', '1000'],
+      ['ST68000100010051845310112', '0001'],
+      ['SV62CENR00000000000000700025', 'CENR'],
+      ['TL380080012345678910157', '008'],
+      ['TN5910006035183598478831', '10'],
+      ['TR330006100519786457841326', '00061'],
+      ['UA213223130000026007233566001', '322313'],
+      ['VA59001123000012345678', '001'],
+      ['VG96VPVG0000012345678901', 'VPVG'],
+      ['XK051212012345678906', '12'],
+    ].forEach(function(example) {
+      it('bankIdentifier of ' + example[0] + ' should be ' + example[1], function() {
+        return expect(iban.extractIBAN(example[0]).bankIdentifier).to.equal(example[1]);
+      });
+    });
+  });
+
   describe('When calling extractIBAN() with invalid IBAN', function() {
     var ext = iban.extractIBAN('BR970036030510009795493P1');
     it('valid should be false', function() {

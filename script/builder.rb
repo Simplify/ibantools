@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'csv'
+
 # Download: https://www.swift.com/swift-resource/11971/download
 # or whatever the file path is on this page:
 # https://www.swift.com/standards/data-standards/iban-international-bank-account-number
@@ -42,8 +44,9 @@ class IBANRegistryParser
   end
 
   def extract
-    data = File.readlines('./script/registry.txt').each_with_object([]) do |line, result|
-      data = line.force_encoding("iso-8859-1").split("\t").map { |e| e.strip }
+    rows = CSV.read('./script/registry.txt', col_sep: "\t", encoding: 'iso-8859-1')
+    data = rows.each_with_object([]) do |row, result|
+      data = row.map { |e| e.to_s.strip }
       data[1..].each_with_index { |element, index| result[index] = { country_name: element } } if data.first == 'Name of country'
       data[1..].each_with_index { |element, index| result[index][:code] = element } if data.first == 'IBAN prefix country code (ISO 3166)'
       data[1..].each_with_index { |element, index| result[index][:sepa] = element == 'Yes' } if data.first == 'SEPA country'
@@ -76,10 +79,10 @@ class IBANRegistryParser
   def type_to_range(type)
     return '[A-Z0-9]' if type == 'c'
     return '[0-9]' if type == 'n'
-  
+
     '[A-Z]'
   end
-  
+
   def build_reqexp(format)
     data = format.scan(/([0-9]+)!(.)/)
     '^' + data.map { |(amount, type)| "#{type_to_range(type)}{#{amount}}" }.join + '$'
